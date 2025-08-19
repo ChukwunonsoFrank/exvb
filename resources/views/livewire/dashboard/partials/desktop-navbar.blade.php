@@ -1,4 +1,4 @@
-<div class="hidden lg:flex flex-none flex-col items-center space-y-3 w-16 lg:border-r-2 lg:border-[#454545]">
+<div class="hidden lg:flex flex-none flex-col items-center space-y-3 w-16 lg:border-r lg:border-[#26252a]">
     <div @class([
         'w-full' => true,
         'py-3' => true,
