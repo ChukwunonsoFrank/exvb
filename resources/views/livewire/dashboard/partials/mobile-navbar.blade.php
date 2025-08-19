@@ -1,4 +1,4 @@
-<nav id="mobile__navbar" class="flex-none lg:hidden px-4 w-full py-4 border-t-2 border-[#454545]">
+<nav id="mobile__navbar" class="flex-none lg:hidden px-4 w-full py-4 border-t border-[#26252a]">
     <div class="flex justify-between items-center md:justify-around">
         <a class="block" href="{{ route('dashboard') }}">
             <div>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Bullfex - AI Trading Robot</title>
+    <title>Exvb - AI Trading Robot</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,10 +40,10 @@
 
 <body class="bg-dashboard font-dashboard">
     <main class="flex flex-col h-svh">
-        <header class="flex-none lg:mb-0 md:border-b-2 md:border-[#454545]">
+        <header class="flex-none lg:mb-0 md:border-b md:border-[#26252a]">
             <div class="md:flex md:items-center md:justify-between md:gap-x-36 lg:gap-x-[48rem]">
                 <div
-                    class="flex items-center px-4 border-b-2 border-[#454545] justify-between space-x-8 md:space-x-16 md:border-none md:mb-0 md:order-2 md:flex-1">
+                    class="flex items-center px-4 border-b border-[#26252a] justify-between space-x-8 md:space-x-16 md:border-none md:mb-0 md:order-2 md:flex-1">
                     <div class="flex-1 md:flex-none py-3">
                         <p class="text-zinc-300 text-[10px] mb-1 font-medium">Demo account</p>
                         <p class="text-white font-bold text-xs md:text-sm">@money(auth()->user()->demo_balance / 100)</p>

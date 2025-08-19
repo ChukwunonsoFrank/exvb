@@ -21,11 +21,11 @@
 {{-- Footer --}}
 <x-slot:footer>
 <x-mail::footer>
-© {{ date('Y') }} Bullfex Technologies Ltd. All rights reserved.
+© {{ date('Y') }} Exvb Technologies Ltd. All rights reserved.
 
-If you would like to find out more about which Bullfex Technologies entity you receive services from, please reach out to us via the in-dashboard support.
+If you would like to find out more about which Exvb Technologies entity you receive services from, please reach out to us via the in-dashboard support.
 
-"Bullfex" is trademark of Bullfex Technologies Ltd with the registered address at 12 Auckland Street, 1130 Vienna, Austria
+"Exvb" is trademark of Exvb Technologies Ltd with the registered address at 12 Auckland Street, 1130 Vienna, Austria
 </x-mail::footer>
 </x-slot:footer>
 </x-mail::layout>

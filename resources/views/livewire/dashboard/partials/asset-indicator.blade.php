@@ -1,5 +1,5 @@
 <div
-    class="bg-dashboard border-b-2 border-[#454545] flex space-x-2 p-2 px-4 items-center md:order-1 md:flex-none md:border-none">
+    class="bg-dashboard border-b border-[#26252a] flex space-x-2 p-2 px-4 items-center md:order-1 md:flex-none md:border-none">
     <div class="flex-none">
         <img class="w-8" src="{{ asset($this->assetImageUrl) }}" alt="">
     </div>
