@@ -18,8 +18,6 @@ class Traderoom extends Component
 
     public $timerCheckpoint;
 
-    public bool $isStopRobotConfirmationModalOpen = false;
-
     public $amount;
 
     public $fee;
@@ -67,11 +65,6 @@ class Traderoom extends Component
         $profit = $this->normalizeAmount($this->activeBot['profit']);
         $fee = 0.01 * $profit;
         return $fee;
-    }
-
-    public function toggleStopRobotConfirmationModal()
-    {
-        $this->isStopRobotConfirmationModalOpen = !$this->isStopRobotConfirmationModalOpen;
     }
 
     public function normalizeAmount(int $amount): int | float
