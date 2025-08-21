@@ -443,7 +443,7 @@
                 if (Date.now() > this.$wire.timerCheckpoint) {
                     this.$wire.refreshAssetData();
                     this.asset = this.$wire.asset;
-                    this.assetIcon = this.$wire.assetIcon;
+                    this.assetIcon = `/${this.$wire.assetIcon}`;
                     this.sentiment = this.$wire.sentiment;
                     this.fee = `$${Number(this.$wire.fee).toFixed(2)}`;
                     let nextCheckpoint = new Date(Number(this.$wire.timerCheckpoint)).getTime() + (5 * 60 + 8) * 1000;
