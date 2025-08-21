@@ -441,6 +441,7 @@
                 this.fee = `$${Number(this.$wire.fee).toFixed(2)}`;
 
                 if (Date.now() > this.$wire.timerCheckpoint) {
+                    console.log(this.$wire.timerCheckpoint);
                     this.$wire.refreshAssetData();
                     this.asset = this.$wire.asset;
                     this.assetIcon = this.$wire.assetIcon;
