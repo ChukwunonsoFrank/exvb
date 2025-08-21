@@ -446,9 +446,9 @@
                     this.assetIcon = this.$wire.assetIcon;
                     this.sentiment = this.$wire.sentiment;
                     this.fee = `$${Number(this.$wire.fee).toFixed(2)}`;
+                    const offset = (5 * 60 * 1000) + (8 * 1000);
+                    let nextCheckpoint = this.$wire.timerCheckpoint + offset;
                     if (this.timeLeft.minutes === 0 && this.timeLeft.seconds === 0) {
-                        const offset = (5 * 60 * 1000) + (8 * 1000);
-                        let nextCheckpoint = this.$wire.timerCheckpoint + offset;
                         this.timeLeft = this.calculateTimeLeftTillNextCheckpoint(nextCheckpoint);
                     }
                     console.log(this.timeLeft)
