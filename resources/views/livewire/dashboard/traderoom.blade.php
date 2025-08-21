@@ -449,8 +449,8 @@
                     this.fee = `$${Number(this.$wire.fee).toFixed(2)}`;
                     const offset = (5 * 60 * 1000) + (8 * 1000);
                     let nextCheckpoint = this.$wire.timerCheckpoint + offset;
-                    this.timeLeft = this.calculateTimeLeftTillNextCheckpoint(nextCheckpoint);
-                    console.log(this.timeLeft)
+                    let newTimeLeft = this.calculateTimeLeftTillNextCheckpoint(nextCheckpoint);
+                    console.log(newTimeLeft)
                 }
 
                 let formatted = this.formatTimeLeft(this.timeLeft.minutes, this.timeLeft.seconds);
