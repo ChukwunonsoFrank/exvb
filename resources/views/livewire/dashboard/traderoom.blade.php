@@ -389,8 +389,6 @@
 
                 let minutes = Math.floor((difference / (1000 * 60)) % 60);
                 let seconds = Math.floor((difference / 1000) % 60);
-                console.log(minutes)
-                console.log(seconds)
 
                 return {
                     minutes: minutes,
@@ -448,7 +446,6 @@
                     this.assetIcon = this.$wire.assetIcon;
                     this.sentiment = this.$wire.sentiment;
                     this.fee = `$${Number(this.$wire.fee).toFixed(2)}`;
-                    const offset = (5 * 60 * 1000) + (8 * 1000);
                     let nextCheckpoint = new Date(Number(this.$wire.timerCheckpoint)).getTime() + (5 * 60 + 8) * 1000;
                     this.timeLeft = this.calculateTimeLeftTillNextCheckpoint(nextCheckpoint);
                 }
