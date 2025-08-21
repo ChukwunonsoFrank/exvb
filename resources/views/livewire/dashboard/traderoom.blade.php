@@ -449,7 +449,7 @@
                     this.sentiment = this.$wire.sentiment;
                     this.fee = `$${Number(this.$wire.fee).toFixed(2)}`;
                     const offset = (5 * 60 * 1000) + (8 * 1000);
-                    let nextCheckpoint = new Date(this.$wire.timerCheckpoint).getTime() + (5 * 60 + 8) * 1000;
+                    let nextCheckpoint = new Date(Number(this.$wire.timerCheckpoint)).getTime() + (5 * 60 + 8) * 1000;
                     this.timeLeft = this.calculateTimeLeftTillNextCheckpoint(nextCheckpoint);
                 }
 
