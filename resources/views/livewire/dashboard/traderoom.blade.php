@@ -441,7 +441,6 @@
                 this.fee = `$${Number(this.$wire.fee).toFixed(2)}`;
 
                 if (Date.now() > this.$wire.timerCheckpoint) {
-                    console.log(this.$wire.timerCheckpoint);
                     this.$wire.refreshAssetData();
                     this.asset = this.$wire.asset;
                     this.assetIcon = this.$wire.assetIcon;
@@ -449,8 +448,7 @@
                     this.fee = `$${Number(this.$wire.fee).toFixed(2)}`;
                     const offset = (5 * 60 * 1000) + (8 * 1000);
                     let nextCheckpoint = this.$wire.timerCheckpoint + offset;
-                    let newTimeLeft = this.calculateTimeLeftTillNextCheckpoint(nextCheckpoint);
-                    console.log(newTimeLeft)
+                    this.timeLeft = this.calculateTimeLeftTillNextCheckpoint(nextCheckpoint);
                 }
 
                 let formatted = this.formatTimeLeft(this.timeLeft.minutes, this.timeLeft.seconds);
