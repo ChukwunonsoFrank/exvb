@@ -389,6 +389,8 @@
 
                 let minutes = Math.floor((difference / (1000 * 60)) % 60);
                 let seconds = Math.floor((difference / 1000) % 60);
+                console.log(minutes)
+                console.log(seconds)
 
                 return {
                     minutes: minutes,
