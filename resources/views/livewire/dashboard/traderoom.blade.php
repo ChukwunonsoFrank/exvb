@@ -451,8 +451,8 @@
                         let nextCheckpoint = this.$wire.timerCheckpoint + offset;
                         this.timeLeft = this.calculateTimeLeftTillNextCheckpoint(nextCheckpoint);
                     }
+                    console.log(this.timeLeft)
                 }
-
 
                 let formatted = this.formatTimeLeft(this.timeLeft.minutes, this.timeLeft.seconds);
                 this.timer = formatted;
