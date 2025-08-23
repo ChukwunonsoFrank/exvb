@@ -69,18 +69,26 @@ class Dashboard extends Component
         return $amount * 100;
     }
 
+    public function calculateFees(int $profit): float
+    {
+        $fee = 0.01 * $profit;
+        return $fee;
+    }
+
     public function stopRobot(int $botId)
     {
         try {
             $bot = Bot::find($botId);
             $userId = $bot->user->id;
             $accountType = $bot['account_type'];
+            $amount = $this->normalizeAmount($bot['amount']);
+            $profit = $this->normalizeAmount($bot['profit']);
+            $fee = $this->calculateFees($profit);
+            $netProfit = $profit - $fee;
 
             if ($accountType === "demo") {
-                $amount = $this->normalizeAmount($bot['amount']);
                 $currentBalance = $this->normalizeAmount($bot->user->demo_balance);
-                $profit = $this->normalizeAmount($bot['profit']);
-                $newBalance = $currentBalance + $amount + $profit;
+                $newBalance = $currentBalance + $amount + $netProfit;
                 $serialized = $this->serializeAmount($newBalance);
 
                 DB::transaction(function () use ($serialized, $botId, $userId) {
@@ -90,10 +98,8 @@ class Dashboard extends Component
             }
 
             if ($accountType === "live") {
-                $amount = $this->normalizeAmount($bot['amount']);
                 $currentBalance = $this->normalizeAmount($bot->user->live_balance);
-                $profit = $this->normalizeAmount($bot['profit']);
-                $newBalance = $currentBalance + $amount + $profit;
+                $newBalance = $currentBalance + $amount + $netProfit;
                 $serialized = $this->serializeAmount($newBalance);
 
                 DB::transaction(function () use ($serialized, $botId, $userId) {
