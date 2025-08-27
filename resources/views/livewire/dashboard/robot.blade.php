@@ -56,7 +56,7 @@
                 </div>
             </div>
 
-            <div class="flex items-center mb-3 mt-4 sticky top-0 bg-dashboard z-10 pb-2 lg:pt-4">
+            <div class="flex items-center mb-3 mt-4 sticky top-0 bg-dashboard z-10 py-2 lg:pt-4">
                 <div class="flex-1">
                     <h1 class="text-white text-lg md:text-xl lg:text-2xl font-bold tracking-[0.15px]">Robot Settings
                     </h1>
