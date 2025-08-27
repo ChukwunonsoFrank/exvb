@@ -231,41 +231,48 @@
             <div x-cloak x-show="isStopRobotConfirmationModalOpen"
                 class="fixed top-0 left-0 h-svh w-full px-4 lg:px-96 pt-6 z-20 bg-dashboard">
                 <div class="w-full h-full flex items-center justify-center">
-                    <div class="max-w-sm mx-auto flex flex-col bg-[#26252a] rounded-lg pointer-events-auto">
-                        <div class="flex justify-between items-center py-3 px-4 dark:border-neutral-700">
-                            <h3 class="font-bold text-gray-800 dark:text-white">
-                            </h3>
-                            <button x-on:click="toggleStopRobotConfirmationModal()" type="button"
-                                class="size-8 inline-flex justify-center items-center gap-x-2 rounded-full border border-transparent bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-hidden focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:hover:bg-neutral-600 dark:text-neutral-400 dark:focus:bg-neutral-600"
-                                aria-label="Close">
-                                <span class="sr-only">Close</span>
-                                <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
-                                    height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M18 6 6 18"></path>
-                                    <path d="m6 6 12 12"></path>
-                                </svg>
-                            </button>
-                        </div>
-                        <div class="p-4 overflow-y-auto text-center">
-                            <p class="text-white font-semibold text-xl">
+                    <div class="max-w-sm mx-auto flex flex-col bg-[#26252a] rounded-2xl pointer-events-auto">
+                        <div class="p-6 overflow-y-auto text-center">
+                            <div class="flex justify-center mb-8">
+                                <div
+                                    class="size-18 flex items-center justify-center rounded-full border-3 border-[#fb2c36]">
+                                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_773_46)">
+                                            <path
+                                                d="M6 24C6 26.3638 6.46558 28.7044 7.37017 30.8883C8.27475 33.0722 9.60062 35.0565 11.2721 36.7279C12.9435 38.3994 14.9278 39.7252 17.1117 40.6298C19.2956 41.5344 21.6362 42 24 42C26.3638 42 28.7044 41.5344 30.8883 40.6298C33.0722 39.7252 35.0565 38.3994 36.7279 36.7279C38.3994 35.0565 39.7252 33.0722 40.6298 30.8883C41.5344 28.7044 42 26.3638 42 24C42 21.6362 41.5344 19.2956 40.6298 17.1117C39.7252 14.9278 38.3994 12.9435 36.7279 11.2721C35.0565 9.60062 33.0722 8.27475 30.8883 7.37017C28.7044 6.46558 26.3638 6 24 6C21.6362 6 19.2956 6.46558 17.1117 7.37017C14.9278 8.27475 12.9435 9.60062 11.2721 11.2721C9.60062 12.9435 8.27475 14.9278 7.37017 17.1117C6.46558 19.2956 6 21.6362 6 24Z"
+                                                stroke="white" stroke-width="4" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                            <path d="M36.7275 11.272L11.2715 36.728" stroke="white" stroke-width="4"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_773_46">
+                                                <rect width="48" height="48" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+
+                                </div>
+                            </div>
+                            <p class="text-white font-medium text-base">
                                 Are you sure you want to stop the robot at @money($this->profit) profit?
                             </p>
-                        </div>
-                        <div class="py-3 px-4">
-                            <div>
-                                <button type="button" x-on:click="destroy()" wire:click="stopRobot()" type="button"
-                                    wire:loading.attr="disabled"
-                                    class="p-3 w-full text-center text-sm font-semibold rounded-lg border border-transparent bg-accent text-white cursor-pointer hover:bg-accent-hover focus:outline-hidden focus:bg-accent disabled:opacity-50 disabled:pointer-events-none">
-                                    Stop robot
-                                </button>
-                            </div>
-                            <div class="mt-3">
-                                <button x-on:click="toggleStopRobotConfirmationModal()" type="button"
-                                    class="p-3 w-full text-center text-sm font-semibold rounded-lg border border-gray-200 bg-white text-gray-800 shadow-2xs cursor-pointer hover:bg-gray-50 focus:outline-hidden focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
-                                    data-hs-overlay="#hs-vertically-centered-modal">
-                                    Cancel
-                                </button>
+                            <div class="mt-6 grid grid-cols-2 gap-x-2">
+                                <div>
+                                    <button type="button" x-on:click="destroy()" wire:click="stopRobot()"
+                                        type="button" wire:loading.attr="disabled"
+                                        class="p-3 w-full text-center text-sm font-semibold rounded-lg border border-transparent bg-[#fb2c36] text-white cursor-pointer hover:bg-[#fb2c36] focus:outline-hidden focus:bg-[#fb2c36] disabled:opacity-50 disabled:pointer-events-none">
+                                        Stop robot
+                                    </button>
+                                </div>
+                                <div>
+                                    <button x-on:click="toggleStopRobotConfirmationModal()" type="button"
+                                        class="p-3 w-full text-center text-sm font-semibold rounded-lg border border-white text-white shadow-2xs cursor-pointer focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none"
+                                        data-hs-overlay="#hs-vertically-centered-modal">
+                                        Cancel
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -27,6 +27,10 @@ class Robot extends Component
 
     public $strategies;
 
+    public $expectedProfitMin;
+
+    public $expectedProfitMax;
+
     public function mount()
     {
         if (session()->has('message')) {
@@ -36,12 +40,27 @@ class Robot extends Component
 
         $this->strategies = Strategy::all();
         $this->strategy = $this->strategies[0];
+        $this->expectedProfitMin = 0;
+        $this->expectedProfitMax = 0;
         $this->accountStatus = auth()->user()->account_status;
 
         if (auth()->user()->live_balance > 0) {
             $this->accountType = 'Live account';
             $this->accountTypeSlug = 'live';
         }
+    }
+
+    public function calculateProfitExpected()
+    {
+        if ($this->amount === '') {
+            $this->expectedProfitMin = 0;
+            $this->expectedProfitMax = 0;
+            return;
+        }
+        $expectedProfitMin = ($this->strategy['min_roi'] / 100) * $this->amount;
+        $expectedProfitMax = ($this->strategy['max_roi'] / 100) * $this->amount;
+        $this->expectedProfitMin = number_format($expectedProfitMin, 2, '.', ',');
+        $this->expectedProfitMax = number_format($expectedProfitMax, 2, '.', ',');
     }
 
     public function selectAccountType(string $accountType, string $accountTypeSlug): void
@@ -641,8 +660,10 @@ class Robot extends Component
         $filtered = $this->strategies->filter(function (Strategy $value, $key) use ($strategyId) {
             return $value['id'] === intval($strategyId);
         });
-
+        
         $this->strategy = $filtered->first();
+
+        $this->calculateProfitExpected();
     }
 
     public function normalizeAmount(int $amount): int | float

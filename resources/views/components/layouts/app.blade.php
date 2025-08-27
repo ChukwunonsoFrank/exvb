@@ -41,27 +41,20 @@
 <body class="bg-dashboard font-dashboard">
     <main class="flex flex-col h-svh">
         <header class="flex-none lg:mb-0 md:border-b md:border-[#26252a]">
-            <div class="md:flex md:items-center md:justify-between md:gap-x-36 lg:gap-x-[48rem]">
-                <div
-                    class="flex items-center px-4 border-b border-[#26252a] justify-between space-x-8 md:space-x-16 md:border-none md:mb-0 md:order-2 md:flex-1">
-                    <div class="flex-1 md:flex-none py-3">
-                        <p class="text-zinc-300 text-[10px] mb-1 font-medium">Demo account</p>
-                        <p class="text-white font-bold text-xs md:text-sm">@money(auth()->user()->demo_balance / 100)</p>
-                    </div>
-                    <div class="flex-1 md:flex-none py-3">
-                        <p class="text-zinc-300 text-[10px] mb-1 font-medium">Live account</p>
-                        <p class="text-white font-bold text-xs md:text-sm">@money(auth()->user()->live_balance / 100)</p>
-                    </div>
-                    <div class="flex-1 text-end py-3">
-                        <a href="{{ route('dashboard.deposit') }}">
-                            <button type="button"
-                                class="py-1.5 px-6 lg:px-10 inline-flex items-center gap-x-2 text-sm font-semibold tracking-[0.15px] rounded-md bg-accent text-white focus:outline-hidden">
-                                Deposit
-                            </button>
-                        </a>
-                    </div>
+            <div
+                class="flex items-center px-4 border-b border-[#26252a] justify-between space-x-8 md:space-x-16 md:border-none md:mb-0 md:order-2 md:flex-1">
+                <div class="flex-1 py-3">
+                    <livewire:dashboard.partials.balance-dropdown />
                 </div>
-                <livewire:dashboard.partials.asset-indicator />
+                <div class="flex-1 text-end py-3">
+                    <a href="{{ route('dashboard.deposit') }}">
+                        <button type="button"
+                            class="py-1.5 px-6 lg:px-10 inline-flex items-center gap-x-2 text-sm font-semibold tracking-[0.15px] rounded-md bg-accent text-white focus:outline-hidden">
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-credit-card"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M22 10v6a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4v-6h20zm-14.99 4h-.01a1 1 0 1 0 .01 2a1 1 0 0 0 0 -2zm5.99 0h-2a1 1 0 0 0 0 2h2a1 1 0 0 0 0 -2zm5 -10a4 4 0 0 1 4 4h-20a4 4 0 0 1 4 -4h12z" /></svg>
+                            Deposit
+                        </button>
+                    </a>
+                </div>
             </div>
         </header>
 
