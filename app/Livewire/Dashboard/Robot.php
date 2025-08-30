@@ -57,8 +57,8 @@ class Robot extends Component
             $this->expectedProfitMax = 0;
             return;
         }
-        $expectedProfitMin = ($this->strategy['min_roi'] / 100) * $this->amount;
-        $expectedProfitMax = ($this->strategy['max_roi'] / 100) * $this->amount;
+        $expectedProfitMin = (floatval($this->strategy['min_roi']) / 100) * floatval($this->amount);
+        $expectedProfitMax = (floatval($this->strategy['max_roi'] / 100)) * floatval($this->amount);
         $this->expectedProfitMin = number_format($expectedProfitMin, 2, '.', ',');
         $this->expectedProfitMax = number_format($expectedProfitMax, 2, '.', ',');
     }
