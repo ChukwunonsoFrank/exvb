@@ -152,9 +152,9 @@
                     <label for="input-label" class="block text-xs font-medium mb-2 text-zinc-300">Or Select amount manually</label>
                     <input type="range" wire:model="amount" wire:change.debounce.300ms="calculateProfitExpected"
                         class="w-full bg-transparent cursor-pointer appearance-none disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden
-                        [&::-webkit-slider-thumb]:w-4
-                        [&::-webkit-slider-thumb]:h-4
-                        [&::-webkit-slider-thumb]:-mt-1.5
+                        [&::-webkit-slider-thumb]:w-6
+                        [&::-webkit-slider-thumb]:h-6
+                        [&::-webkit-slider-thumb]:-mt-2.5
                         [&::-webkit-slider-thumb]:appearance-none
                         [&::-webkit-slider-thumb]:bg-accent
                         [&::-webkit-slider-thumb]:rounded-full
@@ -163,8 +163,8 @@
                         [&::-webkit-slider-thumb]:ease-in-out
                         
 
-                        [&::-moz-range-thumb]:w-4
-                        [&::-moz-range-thumb]:h-4
+                        [&::-moz-range-thumb]:w-6
+                        [&::-moz-range-thumb]:h-6
                         [&::-moz-range-thumb]:appearance-none
                         [&::-moz-range-thumb]:bg-accent
                         [&::-moz-range-thumb]:rounded-full
@@ -182,8 +182,8 @@
                         [&::-moz-range-track]:h-0.5
                         [&::-moz-range-track]:bg-accent
                         [&::-moz-range-track]:rounded-full"
-                        id="steps-range-slider-usage" aria-orientation="horizontal" min="0" max="10000000"
-                        step="500">
+                        id="steps-range-slider-usage" aria-orientation="horizontal" min="0" max="2000000"
+                        step="100">
                 </div>
 
                 <div class="mb-6">
