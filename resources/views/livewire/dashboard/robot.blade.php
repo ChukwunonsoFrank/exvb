@@ -149,6 +149,7 @@
 
                 <div class="mb-6">
                     <label for="steps-range-slider-usage" class="sr-only">Example range</label>
+                    <label for="input-label" class="block text-xs font-medium mb-2 text-zinc-300">Or Select amount manually</label>
                     <input type="range" wire:model="amount" wire:change.debounce.300ms="calculateProfitExpected"
                         class="w-full bg-transparent cursor-pointer appearance-none disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden
                         [&::-webkit-slider-thumb]:w-4
