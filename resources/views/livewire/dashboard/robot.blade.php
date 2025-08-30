@@ -489,7 +489,7 @@
                     </div>
                 </div> --}}
 
-                <div class="text-sm text-white rounded-lg bg-[#26252a] p-4 mb-6 mt-3" role="alert" tabindex="-1"
+                {{-- <div class="text-sm text-white rounded-lg bg-[#26252a] p-4 mb-6 mt-3" role="alert" tabindex="-1"
                     aria-labelledby="hs-with-description-label">
                     <div class="flex items-center">
                         <div class="shrink-0 text-green-400">
@@ -511,7 +511,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="sticky bottom-2">
                     <a x-on:click="$store.robotPage.toggleStartRobotConfirmationModal()">
