@@ -19,9 +19,9 @@ class Robot extends Component
 
     public int $duration = 5;
 
-    public string $accountType = 'Demo account';
+    public string $accountType = '';
 
-    public string $accountTypeSlug = 'demo';
+    public string $accountTypeSlug = '';
 
     public $strategy;
 
@@ -43,11 +43,6 @@ class Robot extends Component
         $this->expectedProfitMin = 0;
         $this->expectedProfitMax = 0;
         $this->accountStatus = auth()->user()->account_status;
-
-        if (auth()->user()->live_balance > 0) {
-            $this->accountType = 'Live account';
-            $this->accountTypeSlug = 'live';
-        }
     }
 
     public function calculateProfitExpected()
