@@ -194,20 +194,20 @@
                     <div class="flex-none w-16">
                         <label for="input-label" class="block text-xs font-medium mb-2 text-zinc-300">Duration</label>
                         <input type="text" value="{{ $this->strategy['duration'] }} hrs"
-                            class="border border-[#26252a] bg-transparent text-white text-start text-sm py-2.5 sm:py-3 px-2 block w-full rounded-lg sm:text-sm focus:outline-0"
+                            class="border border-[#26252a] bg-transparent text-white text-start text-xs py-2.5 sm:py-3 px-2 block w-full rounded-lg sm:text-sm focus:outline-0"
                             placeholder="" readonly>
                     </div>
                     <div class="flex-none w-28">
                         <label for="input-label" class="block text-xs font-medium mb-2 text-zinc-300">Profit is
                             Made</label>
                         <input type="text" value="Every 5 mins"
-                            class="border border-[#26252a] bg-transparent text-white text-start text-sm py-2.5 sm:py-3 px-2 block w-full rounded-lg sm:text-sm focus:outline-0"
+                            class="border border-[#26252a] bg-transparent text-white text-start text-xs py-2.5 sm:py-3 px-2 block w-full rounded-lg sm:text-sm focus:outline-0"
                             placeholder="" readonly>
                     </div>
                     <div class="flex-1">
                         <label for="input-label" class="block text-xs font-medium mb-2 text-zinc-300">Capital</label>
                         <input type="text" value="Returned after trade"
-                            class="border border-[#26252a] bg-transparent text-white text-start text-sm py-2.5 sm:py-3 px-2 block w-full rounded-lg sm:text-sm focus:outline-0"
+                            class="border border-[#26252a] bg-transparent text-white text-start text-xs py-2.5 sm:py-3 px-2 block w-full rounded-lg sm:text-sm focus:outline-0"
                             placeholder="" readonly>
                     </div>
                 </div>
@@ -340,7 +340,7 @@
                                 wire:click="selectStrategy({{ $strategy['id'] }})"
                                 class="flex p-3 gap-x-2 items-center w-full {{ $this->strategy['id'] === $strategy['id'] ? 'border-2 border-blue-500' : 'border border-[#26252a]' }} bg-transparent rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500">
                                 <div class="flex-none w-12">
-                                    <img class="w-24" src="{{ asset('storage/' . $strategy['image_url']) }}"
+                                    <img class="w-24" src="{{ asset('assets/images/robot-illustration.png') }}"
                                         alt="">
                                 </div>
                                 <div class="flex-1">
@@ -350,22 +350,9 @@
 
                                     <div>
                                         <div class="flex items-center gap-x-1">
-                                            <svg class="inline" xmlns="http://www.w3.org/2000/svg" width="16"
-                                                height="16" viewBox="0 0 16 16" fill="none">
-                                                <g clip-path="url(#clip0_47_16)">
-                                                    <path d="M4.66675 6.66667H14.0001L11.3334 4" stroke="white"
-                                                        stroke-linecap="round" stroke-linejoin="round" />
-                                                    <path d="M11.3333 9.33325H2L4.66667 11.9999" stroke="white"
-                                                        stroke-linecap="round" stroke-linejoin="round" />
-                                                </g>
-                                                <defs>
-                                                    <clipPath id="clip0_47_16">
-                                                        <rect width="16" height="16" fill="white" />
-                                                    </clipPath>
-                                                </defs>
-                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="inline lucide lucide-bot-icon lucide-bot"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
                                             <p class="text-[10px] text-zinc-300">
-                                                Profit Range: <span>{{ $strategy['min_roi'] }}</span>%
+                                                Robot will make up to <span>{{ $strategy['min_roi'] }}</span>%
                                                 to <span>{{ $strategy['max_roi'] }}</span>%
                                                 in <span>{{ $strategy['duration'] }}</span>hrs
                                             </p>
