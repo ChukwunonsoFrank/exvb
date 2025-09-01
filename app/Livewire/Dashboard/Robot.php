@@ -43,6 +43,11 @@ class Robot extends Component
         $this->expectedProfitMin = 0;
         $this->expectedProfitMax = 0;
         $this->accountStatus = auth()->user()->account_status;
+
+        if (auth()->user()->live_balance > 0) {
+            $this->accountType = 'Live account';
+            $this->accountTypeSlug = 'live';
+        }
     }
 
     public function calculateProfitExpected()
