@@ -42,17 +42,17 @@
             <div
                 class="flex items-center px-4 border-b border-[#26252a] justify-between space-x-8 md:space-x-16 md:border-none md:mb-0 md:order-2 md:flex-1">
                 <div class="flex-1 md:flex-none py-3">
-                    <p class="text-zinc-300 text-[10px] mb-1 font-medium">Demo account</p>
+                    <p class="text-zinc-300 text-xs mb-1 font-bold">Demo Account</p>
                     <p class="text-white font-bold text-xs md:text-sm">@money(auth()->user()->demo_balance / 100)</p>
                 </div>
                 <div class="flex-1 md:flex-none py-3">
-                    <p class="text-zinc-300 text-[10px] mb-1 font-medium">Live account</p>
+                    <p class="text-zinc-300 text-xs mb-1 font-bold">Live Account</p>
                     <p class="text-white font-bold text-xs md:text-sm">@money(auth()->user()->live_balance / 100)</p>
                 </div>
                 <div class="flex-1 text-end py-3">
                     <a href="{{ route('dashboard.deposit') }}">
                         <button type="button"
-                            class="py-1.5 px-6 lg:px-10 inline-flex items-center gap-x-2 text-sm font-semibold tracking-[0.15px] rounded-md bg-accent text-white focus:outline-hidden">
+                            class="py-1.5 px-4 lg:px-10 inline-flex items-center gap-x-2 text-sm font-semibold tracking-[0.15px] rounded-md bg-accent text-white focus:outline-hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="currentColor"
                                 class="icon icon-tabler icons-tabler-filled icon-tabler-credit-card">
