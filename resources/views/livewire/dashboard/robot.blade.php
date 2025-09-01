@@ -114,7 +114,7 @@
                     </label>
                     <div class="flex justify-center w-full">
                         <div
-                            class="flex items-center justify-center w-fit border border-[#26252a] rounded-lg py-1.5 px-4">
+                            class="flex items-center justify-center w-full border border-[#26252a] rounded-lg py-1.5 px-4">
                             <div class="flex-none text-sm text-white p-2 pl-0 py-1" role="alert" tabindex="-1"
                                 aria-labelledby="hs-with-description-label">
                                 <div class="flex items-center">

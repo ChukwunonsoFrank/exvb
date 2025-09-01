@@ -38,21 +38,21 @@
 
 <body class="bg-dashboard font-dashboard">
     <main class="flex flex-col h-svh">
-        <header class="flex-none lg:mb-0 md:border-b md:border-[#26252a]">
+        <header class="bg-[#1a1a1a] flex-none lg:mb-0 md:border-b md:border-[#26252a]">
             <div
-                class="flex items-center px-4 border-b border-[#26252a] justify-between space-x-8 md:space-x-16 md:border-none md:mb-0 md:order-2 md:flex-1">
-                <div class="flex-1 md:flex-none py-3">
-                    <p class="text-zinc-300 text-xs mb-1 font-bold">Demo Account</p>
+                class="flex items-center px-2 border-b border-[#26252a] justify-between gap-x-1 md:gap-x-16 md:border-none md:mb-0 md:order-2 md:flex-1">
+                <div class="flex-1 md:flex-none border py-2 border-[#26252a] rounded-lg text-center">
+                    <p class="text-zinc-300 text-xs font-bold">Demo Account</p>
                     <p class="text-white font-bold text-xs md:text-sm">@money(auth()->user()->demo_balance / 100)</p>
                 </div>
-                <div class="flex-1 md:flex-none py-3">
-                    <p class="text-zinc-300 text-xs mb-1 font-bold">Live Account</p>
+                <div class="flex-1 md:flex-none border py-2 border-[#26252a] rounded-lg text-center">
+                    <p class="text-zinc-300 text-xs font-bold">Live Account</p>
                     <p class="text-white font-bold text-xs md:text-sm">@money(auth()->user()->live_balance / 100)</p>
                 </div>
-                <div class="flex-1 text-end py-3">
+                <div class="flex-none text-end py-3">
                     <a href="{{ route('dashboard.deposit') }}">
                         <button type="button"
-                            class="py-1.5 px-4 lg:px-10 inline-flex items-center gap-x-2 text-sm font-semibold tracking-[0.15px] rounded-md bg-accent text-white focus:outline-hidden">
+                            class="p-2 py-2.5 lg:px-10 inline-flex items-center gap-x-0.5 text-[13px] font-semibold tracking-[0.15px] rounded-md bg-accent text-white focus:outline-hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="currentColor"
                                 class="icon icon-tabler icons-tabler-filled icon-tabler-credit-card">
