@@ -102,10 +102,10 @@
 
                     <div class="flex-1">
                         <label for="input-label" class="block text-sm text-center font-medium text-zinc-300">
-                            Profits In 24 Hours
+                            Estimated Profits <br>in 24hrs
                         </label>
                         <div class="flex items-center justify-center">
-                            <div class="flex-none text-sm text-white p-2" role="alert" tabindex="-1"
+                            <div class="flex-none text-sm text-white p-2 pt-1" role="alert" tabindex="-1"
                                 aria-labelledby="hs-with-description-label">
                                 <div class="flex items-center">
                                     <div class="shrink-0 text-green-400">
@@ -133,10 +133,10 @@
                             </div>
 
                             <div class="flex-none text-sm text-white pr-1">
-                                <p> - </p>
+                                <p class="-mt-1"> - </p>
                             </div>
 
-                            <div class="flex-none text-sm text-white p-2 pl-0" role="alert" tabindex="-1"
+                            <div class="flex-none text-sm text-white p-2 pl-0 pt-1" role="alert" tabindex="-1"
                                 aria-labelledby="hs-with-description-label">
                                 <div class="flex items-center">
                                     <div class="shrink-0 text-green-400">
