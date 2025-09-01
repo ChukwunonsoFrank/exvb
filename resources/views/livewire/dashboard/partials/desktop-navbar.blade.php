@@ -54,7 +54,7 @@
             <div class="text-center">
                 <p
                     class="text-[9px] font-semibold tracking-wide {{ request()->is('dashboard/history') ? 'text-white' : 'text-[#a4a4a4]' }}">
-                    History</p>
+                    Deals</p>
             </div>
         </a>
     </div>

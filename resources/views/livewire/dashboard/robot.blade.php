@@ -56,9 +56,9 @@
                 </div>
             </div>
 
-            <div class="flex items-center mb-3 mt-4 sticky top-0 bg-dashboard z-10 py-2 lg:pt-4">
+            <div class="flex items-center mb-3 mt-2 sticky top-0 bg-dashboard z-10 py-2 lg:pt-4">
                 <div class="flex-1">
-                    <h1 class="text-white text-lg md:text-xl lg:text-2xl font-bold tracking-[0.15px]">Robot Settings
+                    <h1 class="text-white text-lg md:text-xl lg:text-2xl font-bold tracking-[0.15px]">Setup Robot
                     </h1>
                 </div>
                 <div class="flex-none">
@@ -84,7 +84,8 @@
             <div class="lg:h-full lg:pb-24 lg:overflow-scroll scrollbar-hide">
                 <div class="mb-6">
                     <div class="text-center">
-                        <label for="input-label" class="block text-xs font-medium mb-2 text-zinc-300">Amount</label>
+                        <label for="input-label" class="block text-sm font-medium mb-2 text-zinc-300">Trade
+                            Amount</label>
                         <div class="relative">
                             <input wire:model="amount" wire:keyup.debounce.300ms="calculateProfitExpected"
                                 type="text"
@@ -98,11 +99,11 @@
                     </div>
                 </div>
 
-                <div class="mb-6">
-                    <label for="input-label" class="block text-xs text-center font-medium text-zinc-300">
+                <div class="mb-3">
+                    <label for="input-label" class="block text-sm text-center font-medium text-zinc-300">
                         Expected Profits In 24 Hours
                     </label>
-                    <div class="flex items-center justify-center mb-6">
+                    <div class="flex items-center justify-center">
                         <div class="flex-none text-sm text-white p-2" role="alert" tabindex="-1"
                             aria-labelledby="hs-with-description-label">
                             <div class="flex items-center">
@@ -164,15 +165,15 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="input-label" class="block text-xs font-medium mb-2 text-zinc-300">Trade On</label>
+                    <label for="input-label" class="block text-sm font-medium mb-2 text-zinc-300">Choose
+                        Account</label>
                     <div class="grid grid-cols-2 gap-x-2">
                         <label for="hs-vertical-radio-in-form-demo"
                             wire:click="selectAccountType('Demo account', 'demo')"
                             class="flex p-4 gap-x-2 items-center w-full bg-transparent border border-[#26252a] rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500">
-                            <div class="flex-1">
-                                <h2 class="text-white">
-                                    Demo Account - <span class="font-bold">@money(auth()->user()->demo_balance / 100)</span>
-                                </h2>
+                            <div class="flex-1 text-center text-white">
+                                <h2>Demo Account</h2>
+                                <h2 class="font-bold">@money(auth()->user()->demo_balance / 100)</h2>
                             </div>
                             <div class="flex-none w-4">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -187,10 +188,9 @@
                         <label for="hs-vertical-radio-in-form-live"
                             wire:click="selectAccountType('Live account', 'live')"
                             class="flex p-4 gap-x-2 items-center w-full border border-[#26252a] bg-transparent rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500">
-                            <div class="flex-1">
-                                <h2 class="text-white">
-                                    Live Account - <span class="font-bold">@money(auth()->user()->live_balance / 100)</span>
-                                </h2>
+                            <div class="flex-1 text-center text-white">
+                                <h2>Live Account</h2>
+                                <h2 class="font-bold">@money(auth()->user()->live_balance / 100)</h2>
                             </div>
                             <div class="flex-none w-4">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -206,80 +206,90 @@
                 </div>
 
                 <div class="mb-6">
-                    <label for="input-label" class="block text-xs font-medium mb-2 text-zinc-300">Strategy</label>
+                    <label for="input-label" class="block text-sm font-medium mb-2 text-zinc-300">Strategy</label>
                     <div class="grid space-y-2">
                         @foreach ($this->strategies as $strategy)
-                            <label for="hs-vertical-radio-in-form-{{ $strategy['id'] }}"
-                                wire:key="strategy-{{ $strategy['id'] }}"
-                                wire:click="selectStrategy({{ $strategy['id'] }})"
-                                class="flex p-3 gap-x-2 items-center w-full {{ $this->strategy['id'] === $strategy['id'] ? 'border-2 border-blue-500' : 'border border-[#26252a]' }} bg-transparent rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500">
-                                <div class="flex-none w-12">
-                                    <img class="w-24" src="{{ asset('assets/images/robot-illustration.png') }}"
-                                        alt="">
+                            <div class="relative">
+                                <div class="absolute -inset-0 bg-linear-to-r from-accent to-[#F76CC6] rounded-lg blur opacity-50">
                                 </div>
-                                <div class="flex-1">
-                                    <h2 class="font-bold mb-1 text-white">
-                                        {{ $strategy['name'] }}
-                                    </h2>
+                                <label for="hs-vertical-radio-in-form-{{ $strategy['id'] }}"
+                                    wire:key="strategy-{{ $strategy['id'] }}"
+                                    wire:click="selectStrategy({{ $strategy['id'] }})"
+                                    class="flex relative px-4 py-4 gap-x-4 items-center w-full bg-dashboard rounded-lg border-3 border-[#26252a] text-sm focus:border-blue-500 focus:ring-blue-500">
+                                    <div class="flex-none w-12">
+                                        <img class="w-24" src="{{ asset('assets/images/robot-illustration.png') }}"
+                                            alt="">
+                                    </div>
+                                    <div class="flex-1">
+                                        <h2 class="font-bold mb-1 text-base text-white">
+                                            {{ $strategy['name'] }}
+                                        </h2>
 
-                                    <div>
-                                        <div class="flex items-center gap-x-1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                viewBox="0 0 24 24" fill="none" stroke="white"
-                                                stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
-                                                class="inline lucide lucide-bot-icon lucide-bot">
-                                                <path d="M12 8V4H8" />
-                                                <rect width="16" height="12" x="4" y="8" rx="2" />
-                                                <path d="M2 14h2" />
-                                                <path d="M20 14h2" />
-                                                <path d="M15 13v2" />
-                                                <path d="M9 13v2" />
-                                            </svg>
-                                            <p class="text-[10px] text-zinc-300">
-                                                Robot will make up to <span>{{ $strategy['min_roi'] }}</span>%
-                                                to <span>{{ $strategy['max_roi'] }}</span>%
-                                                in <span>{{ $strategy['duration'] }}</span>hrs
-                                            </p>
+                                        <div class="mb-1">
+                                            <div class="flex items-center gap-x-1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="inline"
+                                                    viewBox="0 0 16 16" id="Deepfake-Technology-1--Streamline-Flex"
+                                                    height="16" width="16">
+                                                    <g
+                                                        id="deepfake-technology-1--automated-face-head-fake-generated-artificial-intelligence-ai">
+                                                        <path id="Union" fill="#8fbffa" fill-rule="evenodd"
+                                                            d="M7.031245714285713 1.0178571428571428c0 -0.3155908571428571 0.25584 -0.5714285714285714 0.5714285714285714 -0.5714285714285714 2.751622857142857 0 4.578354285714285 1.1277085714285713 5.840525714285714 2.8117314285714285 0.15405714285714286 0.20551999999999998 0.29942857142857143 0.4190628571428571 0.4371428571428571 0.6394057142857142 0.963542857142857 1.5423999999999998 1.5461714285714285 3.4179771428571426 2.0345142857142857 5.207245714285714 0.02022857142857143 0.07404571428571428 0.03554285714285714 0.15020571428571428 0.045714285714285714 0.22759999999999997 0.07142857142857142 0.5418171428571429 -0.10845714285714285 1.1444342857142855 -0.6225142857142857 1.5049142857142856 -0.25257142857142856 0.1770742857142857 -0.5055999999999999 0.29982857142857144 -0.8097142857142857 0.3665028571428571 -0.11451428571428571 0.025108571428571428 -0.232 0.04125714285714285 -0.3538285714285714 0.05070857142857142v2.0133485714285713c0 1.2622857142857142 -1.0233142857142856 2.2857142857142856 -2.2857142857142856 2.2857142857142856H7.602674285714285c-0.3155885714285714 0 -0.5714285714285714 -0.25588571428571427 -0.5714285714285714 -0.5714285714285714V1.0178571428571428Z"
+                                                            clip-rule="evenodd" stroke-width="1.1429"></path>
+                                                        <path id="Subtract" fill="#2859c5" fill-rule="evenodd"
+                                                            d="M7.031531428571428 2.86768H4.685199999999999c-0.21459428571428568 -0.5593028571428571 -0.7156342857142857 -0.8637714285714285 -1.4534742857142855 -0.8637714285714285 -1.0058057142857142 0 -1.571565714285714 0.5657599999999999 -1.571565714285714 1.571565714285714s0.5657599999999999 1.571565714285714 1.571565714285714 1.571565714285714c0.7321142857142856 0 1.231097142857143 -0.29976 1.4484342857142856 -0.8507885714285713h2.351371428571428v-1.4285714285714284Zm0 2.5357142857142856H5.696605714285714c-0.39449142857142855 0 -0.7142857142857142 0.3197942857142857 -0.7142857142857142 0.7142857142857142 0 0.39447999999999994 0.3197942857142857 0.7142857142857142 0.7142857142857142 0.7142857142857142h1.3349257142857143v-1.4285714285714284Zm0 2.151222857142857H3.1213942857142856c-0.22032 -0.5418742857142856 -0.7169485714285715 -0.8364228571428571 -1.4426857142857143 -0.8364228571428571 -1.0058011428571427 0 -1.571565714285714 0.5657599999999999 -1.571565714285714 1.571565714285714s0.5657645714285714 1.571565714285714 1.571565714285714 1.571565714285714c0.7441485714285714 0 1.2474171428571428 -0.30967999999999996 1.4589142857142856 -0.8781371428571428h3.893908571428571v-1.4285714285714284Zm0 4.686982857142858h-0.9349485714285715V10.625142857142857c0 -0.39449142857142855 -0.3197942857142857 -0.7142857142857142 -0.7142857142857142 -0.7142857142857142H4.106628571428572c-0.39449142857142855 0 -0.7142857142857142 0.3197942857142857 -0.7142857142857142 0.7142857142857142s0.3197942857142857 0.7142857142857142 0.7142857142857142 0.7142857142857142h0.5613828571428571v0.9021714285714285h-0.9058971428571428c-0.21677714285714283 -0.5528 -0.7161828571428571 -0.8534857142857143 -1.4494742857142855 -0.8534857142857143 -1.0058057142857142 0 -1.5715679999999999 0.5657142857142857 -1.5715679999999999 1.5715428571428571s0.5657622857142857 1.5715428571428571 1.5715679999999999 1.5715428571428571c0.7366742857142856 0 1.237302857142857 -0.30342857142857144 1.4524571428571427 -0.8610285714285714h3.2664342857142854v-1.4285714285714284Z"
+                                                            clip-rule="evenodd" stroke-width="1.1429"></path>
+                                                        <path id="Vector 1296 (Stroke)" fill="#2859c5"
+                                                            fill-rule="evenodd"
+                                                            d="M11.609371428571428 6.7142857142857135c0.3945142857142857 0 0.7142857142857142 0.3197942857142857 0.7142857142857142 0.7142857142857142v0.18839999999999998c0 0.39449142857142855 -0.31977142857142854 0.7142857142857142 -0.7142857142857142 0.7142857142857142 -0.39447999999999994 0 -0.7142857142857142 -0.3197942857142857 -0.7142857142857142 -0.7142857142857142V7.428571428571428c0 -0.39449142857142855 0.3198057142857143 -0.7142857142857142 0.7142857142857142 -0.7142857142857142Z"
+                                                            clip-rule="evenodd" stroke-width="1.1429"></path>
+                                                    </g>
+                                                </svg>
+                                                <p class="text-xs text-zinc-300">
+                                                    Robot will make up to <span>{{ $strategy['min_roi'] }}</span>%
+                                                    to <span>{{ $strategy['max_roi'] }}</span>%
+                                                    in <span>{{ $strategy['duration'] }}</span>hrs
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <div class="flex items-center gap-x-1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="inline"
+                                                    viewBox="0 0 16 16" id="Bill-4--Streamline-Flex" height="16"
+                                                    width="16">
+                                                    <g
+                                                        id="bill-4--accounting-billing-payment-finance-cash-currency-money-bill-dollar-stack">
+                                                        <path id="Intersect" fill="#2859c5"
+                                                            d="M3.716571428571428 12.934857142857142c0.11542857142857144 0.568 0.6034285714285714 1.0022857142857142 1.1828571428571426 1.0022857142857142h9.44c0.5805714285714285 0 1.0674285714285714 -0.4342857142857143 1.1885714285714286 -1.0022857142857142 0.14857142857142858 -0.7028571428571428 0.3017142857142857 -1.3599999999999999 0.3017142857142857 -3.419428571428571 0 -2.0582857142857143 -0.15428571428571428 -2.716571428571428 -0.3028571428571429 -3.419428571428571 -0.12 -0.5668571428571428 -0.6068571428571429 -1.0011428571428571 -1.1862857142857142 -1.0011428571428571l-9.44 0c-0.5805714285714285 0 -1.0685714285714285 0.4342857142857143 -1.184 1.0022857142857142 -0.14857142857142858 0.736 -0.3062857142857143 1.4217142857142857 -0.3062857142857143 3.418285714285714 0 1.9977142857142856 0.15657142857142858 2.682285714285714 0.3062857142857143 3.419428571428571Z"
+                                                            stroke-width="1.1429"></path>
+                                                        <path id="Intersect_2" fill="#8fbffa"
+                                                            d="M0.47771428571428565 9.902857142857142c0.11428571428571428 0.568 0.6034285714285714 1.0022857142857142 1.1828571428571426 1.0022857142857142h9.44c0.5794285714285714 0 1.0674285714285714 -0.4342857142857143 1.1874285714285713 -1.0022857142857142 0.14857142857142858 -0.7017142857142856 0.3017142857142857 -1.3599999999999999 0.3017142857142857 -3.418285714285714 0 -2.059428571428571 -0.15314285714285714 -2.7177142857142855 -0.3017142857142857 -3.419428571428571 -0.12 -0.568 -0.608 -1.0022857142857142 -1.1874285714285713 -1.0022857142857142l-9.44 0c-0.5794285714285714 0 -1.0674285714285714 0.4342857142857143 -1.1828571428571426 1.0022857142857142 -0.14971428571428572 0.7371428571428571 -0.30742857142857144 1.4217142857142857 -0.30742857142857144 3.418285714285714 0 1.9977142857142856 0.15771428571428572 2.682285714285714 0.30742857142857144 3.419428571428571Z"
+                                                            stroke-width="1.1429"></path>
+                                                        <path id="Union" fill="#2859c5" fill-rule="evenodd"
+                                                            d="M8.148571428571428 6.475428571428571c0 1.1314285714285715 -0.6365714285714286 1.7679999999999998 -1.7679999999999998 1.7679999999999998 -1.1314285714285715 0 -1.7691428571428571 -0.6365714285714286 -1.7691428571428571 -1.7679999999999998 0 -1.1314285714285715 0.6365714285714286 -1.7691428571428571 1.7691428571428571 -1.7691428571428571 1.1314285714285715 0 1.7679999999999998 0.6365714285714286 1.7679999999999998 1.7691428571428571Zm-6.985142857142857 0.018285714285714284a0.7142857142857142 0.7142857142857142 0 0 1 0.7051428571428571 -0.7234285714285714l0.7222857142857142 -0.009142857142857142a0.7142857142857142 0.7142857142857142 0 1 1 0.018285714285714284 1.4285714285714284l-0.7222857142857142 0.009142857142857142a0.7142857142857142 0.7142857142857142 0 0 1 -0.7234285714285714 -0.7051428571428571Zm8.283428571428571 0a0.7142857142857142 0.7142857142857142 0 0 1 0.7051428571428571 -0.7234285714285714l0.7222857142857142 -0.009142857142857142a0.7142857142857142 0.7142857142857142 0 1 1 0.018285714285714284 1.4285714285714284l-0.7222857142857142 0.009142857142857142a0.7142857142857142 0.7142857142857142 0 0 1 -0.7234285714285714 -0.7051428571428571Z"
+                                                            clip-rule="evenodd" stroke-width="1.1429"></path>
+                                                    </g>
+                                                </svg>
+                                                <p class="text-xs text-zinc-300">
+                                                    Minimum Amount: At
+                                                    least $<span>{{ $strategy['min_amount'] }}</span>
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
-
-                                    <div>
-                                        <div class="flex items-center gap-x-1">
-                                            <svg class="inline" xmlns="http://www.w3.org/2000/svg" width="16"
-                                                height="16" viewBox="0 0 16 16" fill="none">
-                                                <g clip-path="url(#clip0_48_21)">
-                                                    <path
-                                                        d="M11.1334 5.33333C11.0007 4.95683 10.7584 4.62864 10.4376 4.39102C10.1168 4.1534 9.73225 4.01722 9.33341 4H6.66675C6.13631 4 5.62761 4.21071 5.25253 4.58579C4.87746 4.96086 4.66675 5.46957 4.66675 6C4.66675 6.53043 4.87746 7.03914 5.25253 7.41421C5.62761 7.78929 6.13631 8 6.66675 8H9.33341C9.86385 8 10.3726 8.21071 10.7476 8.58579C11.1227 8.96086 11.3334 9.46957 11.3334 10C11.3334 10.5304 11.1227 11.0391 10.7476 11.4142C10.3726 11.7893 9.86385 12 9.33341 12H6.66675C6.26791 11.9828 5.88335 11.8466 5.56257 11.609C5.24178 11.3714 4.99945 11.0432 4.86675 10.6667"
-                                                        stroke="white" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                    <path d="M8 2V4M8 12V14" stroke="white" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                </g>
-                                                <defs>
-                                                    <clipPath id="clip0_48_21">
-                                                        <rect width="16" height="16" fill="white" />
-                                                    </clipPath>
-                                                </defs>
-                                            </svg>
-                                            <p class="text-[10px] text-zinc-300">
-                                                Minimum Amount: At
-                                                least $<span>{{ $strategy['min_amount'] }}</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </label>
+                                </label>
+                            </div>
                         @endforeach
                     </div>
                 </div>
 
                 <div class="mb-6 flex items-center space-x-2">
                     <div class="flex-1">
-                        <label for="input-label" class="block text-xs font-medium mb-2 text-zinc-300">Crypto
+                        <label for="input-label" class="block text-sm font-medium mb-2 text-zinc-300">Crypto
                             Exchange</label>
                         <div
-                            class="flex items-center gap-x-2 w-full text-sm self-center text-center border border-[#26252a] bg-transparent py-2.5 sm:py-3 px-4 rounded-lg text-[#FFFFFF] focus:outline-0">
-                            <div class="flex-1">
+                            class="flex items-center justify-center gap-x-1 w-full text-sm self-center text-center border border-[#26252a] bg-transparent py-2.5 sm:py-3 px-4 rounded-lg text-[#FFFFFF] focus:outline-0">
+                            <div class="flex-none">
                                 <img class="inline" src="{{ asset('assets/icons/binance.svg') }}"
                                     alt="binance-logo">
                             </div>
@@ -301,11 +311,11 @@
                         </div>
                     </div>
                     <div class="flex-1">
-                        <label for="input-label" class="block text-xs font-medium mb-2 text-zinc-300">Forex
+                        <label for="input-label" class="block text-sm font-medium mb-2 text-zinc-300">Forex
                             Broker</label>
                         <div
-                            class="flex items-center gap-x-2 border border-[#26252a] bg-transparent w-full text-sm self-center text-center py-2.5 sm:py-3 px-4 rounded-lg text-[#FFFFFF] focus:outline-0">
-                            <div class="flex-1">
+                            class="flex items-center justify-center gap-x-1 border border-[#26252a] bg-transparent w-full text-sm self-center text-center py-2.5 sm:py-3 px-4 rounded-lg text-[#FFFFFF] focus:outline-0">
+                            <div class="flex-none">
                                 <img class="inline" src="{{ asset('assets/icons/xtb.svg') }}" alt="xtb-logo">
                             </div>
                             <div class="flex-none w-4">
@@ -327,26 +337,16 @@
                     </div>
                 </div>
 
-                <div class="mb-6">
-                    <div>
-                        <label for="input-label" class="block text-xs font-medium mb-2 text-zinc-300">Duration</label>
-                        <input type="text" value="{{ $this->strategy['duration'] }} hrs"
-                            class="border border-[#26252a] bg-transparent text-white text-start text-sm py-2.5 sm:py-3 px-4 block w-full rounded-lg sm:text-sm focus:outline-0"
-                            placeholder="" readonly>
-                    </div>
-                </div>
-
-
                 <div class="mb-6 flex items-center space-x-2">
                     <div class="flex-1">
-                        <label for="input-label" class="block text-xs font-medium mb-2 text-zinc-300">Profit is
+                        <label for="input-label" class="block text-sm font-medium mb-2 text-zinc-300">Profit is
                             Made</label>
                         <input type="text" value="Every 5 mins"
                             class="border border-[#26252a] bg-transparent text-white text-start text-sm py-2.5 sm:py-3 px-4 block w-full rounded-lg sm:text-sm focus:outline-0"
                             placeholder="" readonly>
                     </div>
                     <div class="flex-1">
-                        <label for="input-label" class="block text-xs font-medium mb-2 text-zinc-300">Capital</label>
+                        <label for="input-label" class="block text-sm font-medium mb-2 text-zinc-300">Capital</label>
                         <input type="text" value="Returned after trade"
                             class="border border-[#26252a] bg-transparent text-white text-start text-sm py-2.5 sm:py-3 px-4 block w-full rounded-lg sm:text-sm focus:outline-0"
                             placeholder="" readonly>
@@ -447,22 +447,10 @@
 <script>
     document.addEventListener('alpine:init', () => {
         Alpine.store('robotPage', {
-            isStrategyListOverlayOpen: false,
-
-            isTradingAccountSelectOpen: false,
-
             isStartRobotConfirmationModalOpen: false,
 
             toggleStartRobotConfirmationModal() {
                 this.isStartRobotConfirmationModalOpen = !this.isStartRobotConfirmationModalOpen;
-            },
-
-            toggleStrategyListOverlay() {
-                this.isStrategyListOverlayOpen = !this.isStrategyListOverlayOpen
-            },
-
-            toggleTradingAccountSelect() {
-                this.isTradingAccountSelectOpen = !this.isTradingAccountSelectOpen
             }
         })
     })

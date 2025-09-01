@@ -37,7 +37,7 @@
                         <path d="M6.907 4.579a8.954 8.954 0 0 1 3.093 -1.356" />
                         <path d="M12 8v4l3 3" />
                     </svg>
-                    <p class="text-[10px] mt-0.5 tracking-wide {{ request()->is('dashboard/history') ? 'text-white' : 'text-[#a4a4a4]' }}">History</p>
+                    <p class="text-[10px] mt-0.5 tracking-wide {{ request()->is('dashboard/history') ? 'text-white' : 'text-[#a4a4a4]' }}">Deals</p>
                 </div>
             </div>
         </a>

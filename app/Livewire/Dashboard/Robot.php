@@ -19,9 +19,9 @@ class Robot extends Component
 
     public int $duration = 5;
 
-    public string $accountType = '';
+    public string $accountType = 'Demo Account';
 
-    public string $accountTypeSlug = '';
+    public string $accountTypeSlug = 'demo';
 
     public $strategy;
 
