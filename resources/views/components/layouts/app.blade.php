@@ -54,7 +54,7 @@
                 <div class="flex-none text-end py-3">
                     <a href="{{ route('dashboard.deposit') }}">
                         <button type="button"
-                            class="p-2 py-2.5 lg:px-10 inline-flex items-center gap-x-0.5 text-[13px] font-semibold tracking-[0.15px] rounded-md bg-accent text-white focus:outline-hidden">
+                            class="p-2 py-3.5 lg:px-10 inline-flex items-center gap-x-0.5 text-[13px] font-semibold tracking-[0.15px] rounded-md bg-accent text-white focus:outline-hidden">
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_808_2)">
