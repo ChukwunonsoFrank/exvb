@@ -101,65 +101,72 @@
                     </div>
 
                     <div class="flex-1">
-                        <label for="input-label" class="block text-sm text-center font-medium text-zinc-300">
-                            Estimated Profits <br>in 24hrs
-                        </label>
-                        <div class="flex items-center justify-center">
-                            <div class="flex-none text-sm text-white p-2 pt-1" role="alert" tabindex="-1"
-                                aria-labelledby="hs-with-description-label">
-                                <div class="flex items-center">
-                                    <div class="shrink-0 text-green-400">
-                                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <g clip-path="url(#clip0_776_2)">
-                                                <path
-                                                    d="M12.525 6C12.3757 5.57643 12.1031 5.20722 11.7422 4.9399C11.3813 4.67258 10.9487 4.51937 10.5 4.5H7.5C6.90326 4.5 6.33097 4.73705 5.90901 5.15901C5.48705 5.58097 5.25 6.15326 5.25 6.75C5.25 7.34674 5.48705 7.91903 5.90901 8.34099C6.33097 8.76295 6.90326 9 7.5 9H10.5C11.0967 9 11.669 9.23705 12.091 9.65901C12.5129 10.081 12.75 10.6533 12.75 11.25C12.75 11.8467 12.5129 12.419 12.091 12.841C11.669 13.2629 11.0967 13.5 10.5 13.5H7.5C7.05131 13.4806 6.61868 13.3274 6.2578 13.0601C5.89691 12.7928 5.62429 12.4236 5.475 12"
-                                                    stroke="#05DF72" stroke-width="1.5" stroke-linecap="round"
-                                                    stroke-linejoin="round" />
-                                                <path d="M9 2.25V4.5M9 13.5V15.75" stroke="#05DF72" stroke-width="1.5"
-                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_776_2">
-                                                    <rect width="18" height="18" fill="white" />
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                    </div>
-                                    <div class="flex-none">
-                                        <p wire:text="expectedProfitMin" class="text-white text-base font-bold"></p>
-                                    </div>
+                        <label for="input-label" class="block text-sm font-medium mb-2 text-zinc-300">Markets</label>
+                        <input type="text" value="Forex & Crypto"
+                            class="border border-[#26252a] bg-transparent text-white text-start text-sm py-2.5 sm:py-3 px-4 block w-full rounded-lg sm:text-sm focus:outline-0"
+                            placeholder="" readonly>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label for="input-label" class="block text-sm text-center font-medium text-zinc-300">
+                        Estimated Profits in 24hrs
+                    </label>
+                    <div class="flex items-center justify-center">
+                        <div class="flex-none text-sm text-white p-2 pt-1" role="alert" tabindex="-1"
+                            aria-labelledby="hs-with-description-label">
+                            <div class="flex items-center">
+                                <div class="shrink-0 text-green-400">
+                                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_776_2)">
+                                            <path
+                                                d="M12.525 6C12.3757 5.57643 12.1031 5.20722 11.7422 4.9399C11.3813 4.67258 10.9487 4.51937 10.5 4.5H7.5C6.90326 4.5 6.33097 4.73705 5.90901 5.15901C5.48705 5.58097 5.25 6.15326 5.25 6.75C5.25 7.34674 5.48705 7.91903 5.90901 8.34099C6.33097 8.76295 6.90326 9 7.5 9H10.5C11.0967 9 11.669 9.23705 12.091 9.65901C12.5129 10.081 12.75 10.6533 12.75 11.25C12.75 11.8467 12.5129 12.419 12.091 12.841C11.669 13.2629 11.0967 13.5 10.5 13.5H7.5C7.05131 13.4806 6.61868 13.3274 6.2578 13.0601C5.89691 12.7928 5.62429 12.4236 5.475 12"
+                                                stroke="#05DF72" stroke-width="1.5" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                            <path d="M9 2.25V4.5M9 13.5V15.75" stroke="#05DF72" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_776_2">
+                                                <rect width="18" height="18" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </div>
+                                <div class="flex-none">
+                                    <p wire:text="expectedProfitMin" class="text-white text-base font-bold"></p>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="flex-none text-sm text-white pr-1">
-                                <p class="-mt-1"> - </p>
-                            </div>
+                        <div class="flex-none text-sm text-white pr-1">
+                            <p class="-mt-1"> - </p>
+                        </div>
 
-                            <div class="flex-none text-sm text-white p-2 pl-0 pt-1" role="alert" tabindex="-1"
-                                aria-labelledby="hs-with-description-label">
-                                <div class="flex items-center">
-                                    <div class="shrink-0 text-green-400">
-                                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <g clip-path="url(#clip0_776_2)">
-                                                <path
-                                                    d="M12.525 6C12.3757 5.57643 12.1031 5.20722 11.7422 4.9399C11.3813 4.67258 10.9487 4.51937 10.5 4.5H7.5C6.90326 4.5 6.33097 4.73705 5.90901 5.15901C5.48705 5.58097 5.25 6.15326 5.25 6.75C5.25 7.34674 5.48705 7.91903 5.90901 8.34099C6.33097 8.76295 6.90326 9 7.5 9H10.5C11.0967 9 11.669 9.23705 12.091 9.65901C12.5129 10.081 12.75 10.6533 12.75 11.25C12.75 11.8467 12.5129 12.419 12.091 12.841C11.669 13.2629 11.0967 13.5 10.5 13.5H7.5C7.05131 13.4806 6.61868 13.3274 6.2578 13.0601C5.89691 12.7928 5.62429 12.4236 5.475 12"
-                                                    stroke="#05DF72" stroke-width="1.5" stroke-linecap="round"
-                                                    stroke-linejoin="round" />
-                                                <path d="M9 2.25V4.5M9 13.5V15.75" stroke="#05DF72" stroke-width="1.5"
-                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_776_2">
-                                                    <rect width="18" height="18" fill="white" />
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                    </div>
-                                    <div class="flex-none">
-                                        <p wire:text="expectedProfitMax" class="text-white text-base font-bold"></p>
-                                    </div>
+                        <div class="flex-none text-sm text-white p-2 pl-0 pt-1" role="alert" tabindex="-1"
+                            aria-labelledby="hs-with-description-label">
+                            <div class="flex items-center">
+                                <div class="shrink-0 text-green-400">
+                                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_776_2)">
+                                            <path
+                                                d="M12.525 6C12.3757 5.57643 12.1031 5.20722 11.7422 4.9399C11.3813 4.67258 10.9487 4.51937 10.5 4.5H7.5C6.90326 4.5 6.33097 4.73705 5.90901 5.15901C5.48705 5.58097 5.25 6.15326 5.25 6.75C5.25 7.34674 5.48705 7.91903 5.90901 8.34099C6.33097 8.76295 6.90326 9 7.5 9H10.5C11.0967 9 11.669 9.23705 12.091 9.65901C12.5129 10.081 12.75 10.6533 12.75 11.25C12.75 11.8467 12.5129 12.419 12.091 12.841C11.669 13.2629 11.0967 13.5 10.5 13.5H7.5C7.05131 13.4806 6.61868 13.3274 6.2578 13.0601C5.89691 12.7928 5.62429 12.4236 5.475 12"
+                                                stroke="#05DF72" stroke-width="1.5" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                            <path d="M9 2.25V4.5M9 13.5V15.75" stroke="#05DF72" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_776_2">
+                                                <rect width="18" height="18" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </div>
+                                <div class="flex-none">
+                                    <p wire:text="expectedProfitMax" class="text-white text-base font-bold"></p>
                                 </div>
                             </div>
                         </div>
@@ -217,7 +224,6 @@
                                 </div>
                                 <label for="hs-vertical-radio-in-form-{{ $strategy['id'] }}"
                                     wire:key="strategy-{{ $strategy['id'] }}"
-                                    wire:click="selectStrategy({{ $strategy['id'] }})"
                                     class="flex relative px-4 py-4 gap-x-4 items-center w-full bg-dashboard rounded-lg border-3 border-[#26252a] text-sm focus:border-blue-500 focus:ring-blue-500">
                                     <div class="flex-none w-12">
                                         <img class="w-24" src="{{ asset('assets/images/robot-illustration.png') }}"
