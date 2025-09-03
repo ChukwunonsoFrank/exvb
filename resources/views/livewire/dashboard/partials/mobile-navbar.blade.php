@@ -56,7 +56,7 @@
                         <path d="M22 5H16V8H17V16H16V19H22V16H21V8H22V5Z"
                             fill="{{ request()->is('dashboard/robot') || request()->is('dashboard/robot/traderoom') ? 'white' : '#A4A4A4' }}" />
                         <path d="M13 5V19H9.5V15H6.5V19H3V5H13ZM6.5 8.5V11.5H9.5V8.5H6.5Z"
-                            fill="{{ request()->is('dashboard/robot') ? 'white' : '#A4A4A4' }}" />
+                            fill="{{ request()->is('dashboard/robot') || request()->is('dashboard/robot/traderoom') ? 'white' : '#A4A4A4' }}" />
                     </svg>
                     <p
                         class="text-[10px] mt-0.5 tracking-wide {{ request()->is('dashboard/robot') ? 'text-white' : 'text-[#a4a4a4]' }}">
