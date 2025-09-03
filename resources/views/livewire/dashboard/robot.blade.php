@@ -257,7 +257,7 @@
                                 </div>
                                 <label for="hs-vertical-radio-in-form-{{ $strategy['id'] }}"
                                     wire:key="strategy-{{ $strategy['id'] }}"
-                                    class="flex relative px-4 py-4 gap-x-4 items-center w-full bg-dashboard rounded-lg border-3 border-[#26252a] text-sm focus:border-blue-500 focus:ring-blue-500">
+                                    class="flex relative px-3 py-3 pb-4 gap-x-4 items-center w-full bg-dashboard rounded-lg border-3 border-[#26252a] text-sm focus:border-blue-500 focus:ring-blue-500">
                                     <div class="flex-none w-12">
                                         <img class="w-24" src="{{ asset('assets/images/robot-illustration.png') }}"
                                             alt="">
@@ -268,7 +268,7 @@
                                         </h2>
 
                                         <div class="mb-1.5">
-                                            <div class="flex items-center gap-x-2">
+                                            <div class="flex items-start gap-x-2">
                                                 <div>
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                         viewBox="0 0 18 18" id="Time-Lapse--Streamline-Sharp"
