@@ -16,8 +16,11 @@
                     <div class="flex items-center space-x-3 border border-[#26252a] rounded-lg p-4 mb-4">
                         <div class="flex-1">
                             <template x-if="isBotSearchingForSignal === false">
-                                <div class="flex items-center justify-center w-fit">
-                                    <p x-text='timer' class="text-white font-medium font-mono text-2xl"></p>
+                                <div class="flex flex-col items-center justify-center w-fit">
+                                    <div class="mb-1">
+                                        <p class="text-zinc-300 text-[11px] text-center">Bot will take profit in</p>
+                                    </div>
+                                    <p x-text='timer' class="text-white font-bold text-2xl"></p>
                                 </div>
                             </template>
                             <template x-if="isBotSearchingForSignal === true">
@@ -29,7 +32,7 @@
                         <div class="flex-none w-fit">
                             <template x-if="isBotSearchingForSignal === false">
                                 <div class="flex flex-col">
-                                    <div>
+                                    <div class="mb-1">
                                         <p class="text-zinc-300 text-[11px] text-center">Robot is trading</p>
                                     </div>
                                     <div class="flex items-center space-x-1 rounded-lg">
