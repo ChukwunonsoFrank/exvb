@@ -90,7 +90,7 @@
                             <div class="relative">
                                 <input wire:model="amount" wire:keyup.debounce.300ms="calculateProfitExpected"
                                     type="text"
-                                    class="bg-transparent text-white border border-[#26252a] text-sm peer py-2.5 sm:py-3 px-4 ps-11 block w-full rounded-lg sm:text-sm focus:outline-0"
+                                    class="bg-transparent text-white border border-[#26252a] text-sm peer py-3 px-4 ps-11 block w-full rounded-lg sm:text-sm focus:outline-0"
                                     placeholder="">
                                 <div
                                     class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-4 peer-disabled:opacity-50 peer-disabled:pointer-events-none">
