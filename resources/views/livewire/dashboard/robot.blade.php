@@ -518,28 +518,34 @@
                     toastRobotError(
                         'This account has been disabled and unable to perform any transactions. Kindly contact support for more details.'
                     );
+                    return;
                 }
 
                 if (wire.amount === '') {
                     toastRobotError('Amount field is empty');
+                    return;
                 }
 
                 if (parseInt(wire.amount) === 0) {
                     toastRobotError('Amount must be greater than 0');
+                    return;
                 }
 
                 if (parseFloat(wire.amount) < parseInt(wire.minimumAmount) && parseFloat(wire
                         .amount) !== 0) {
                     let message = `Minimum amount is $${wire.minimumAmount}`;
                     toastRobotError(message);
+                    return;
                 }
 
                 if (parseFloat(wire.amount) > parseFloat(wire.accountBalance / 100)) {
                     toastRobotError('Insufficient balance');
+                    return;
                 }
 
                 if (wire.activeBotCount > 0) {
                     toastRobotError('Bot is still trading');
+                    return;
                 }
 
                 this.isStartRobotConfirmationModalOpen = !this.isStartRobotConfirmationModalOpen;
