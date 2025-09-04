@@ -380,7 +380,7 @@
                                 </p>
                                 <div class="w-full flex flex-col gap-y-2 justify-center items-center mb-4">
                                     <template x-if="$store.robotPage.isBrokerConnecting === true">
-                                        <div class="bg-[#1a1a1a] p-2 flex items-center gap-x-1.5 rounded-full">
+                                        <div class="bg-[#1a1a1a] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
                                             <div>
                                                 <i class="fa-solid fa-circle-notch fa-spin text-[#05df72]"></i>
                                             </div>
@@ -391,7 +391,7 @@
                                     </template>
 
                                     <template x-if="$store.robotPage.isBrokerConnecting === false">
-                                        <div class="bg-[#1a1a1a] p-2 flex items-center gap-x-1.5 rounded-full">
+                                        <div class="bg-[#1a1a1a] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
                                             <div>
                                                 <svg width="16" height="16" viewBox="0 0 16 16"
                                                     fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -418,7 +418,7 @@
                                     </template>
 
                                     <template x-if="$store.robotPage.isExchangeConnecting === true">
-                                        <div class="bg-[#1a1a1a] p-2 flex items-center gap-x-1.5 rounded-full">
+                                        <div class="bg-[#1a1a1a] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
                                             <div>
                                                 <i class="fa-solid fa-circle-notch fa-spin text-[#05df72]"></i>
                                             </div>
@@ -430,7 +430,7 @@
                                     </template>
 
                                     <template x-if="$store.robotPage.isExchangeConnecting === false">
-                                        <div class="bg-[#1a1a1a] p-2 flex items-center gap-x-1.5 rounded-full">
+                                        <div class="bg-[#1a1a1a] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
                                             <div>
                                                 <svg width="16" height="16" viewBox="0 0 16 16"
                                                     fill="none" xmlns="http://www.w3.org/2000/svg">
