@@ -6,39 +6,43 @@
                 <h1 class="text-white text-lg md:text-xl lg:text-2xl font-semibold">Deals</h1>
             </div>
             <div class="lg:h-full pb-14 lg:pb-24 lg:overflow-scroll scrollbar-hide">
-                @forelse ($trades as $trade)
-                    <div wire:key="bot-trade-{{ $trade['id'] }}"
-                        class="bg-[#26252a] w-full rounded-lg flex flex-col space-y-2 p-3 px-4 mb-3">
-                        <div class="flex items-center gap-x-4">
-                            <div class="flex-none">
-                                <img class="md:w-7" src="{{ asset($trade['asset_image_url']) }}" alt="">
-                            </div>
-                            <div class="flex-1">
-                                <div class="flex items-center mb-1.5">
-                                    <div class="flex-1">
-                                        <span
-                                            class="inline-flex items-center gap-x-1.5 py-0.5 px-2.5 rounded-md text-[10px] bg-[#3b3a41] uppercase font-medium text-white">{{ ucfirst($trade['account_type']) }}</span>
-                                    </div>
-                                    <div class="flex-1 text-end">
-                                        <p class="text-[#8d8d8d] text-xs">{{ $trade['created_at_formatted'] }}</p>
-                                    </div>
+                @forelse ($bots as $bot)
+                    <a href="{{ route('dashboard.history.details', ['id' => $bot['id']]) }}">
+                        <div wire:key="bot-{{ $bot['id'] }}"
+                            class="bg-[#26252a] w-full rounded-lg flex flex-col space-y-2 p-3 px-4 mb-3">
+                            <div class="flex items-center gap-x-4">
+                                <div class="flex-none">
+                                    <img class="w-7" src="{{ asset('assets/images/robot-illustration.png') }}"
+                                        alt="">
                                 </div>
-                                <div class="flex items-center">
-                                    <div class="flex-1 inline-flex items-center gap-x-1">
-                                        <p class="font-semibold text-xs inline text-white md:text-sm">
-                                            {{ $trade['asset'] }}
-                                        </p>
-                                        <span
-                                            class="inline-flex items-center gap-x-1.5 py-0.5 px-1.5 rounded-md text-[9px] font-medium {{ $trade['sentiment'] === 'BUY' ? 'bg-[#31865b]' : 'bg-[#e32d2d]' }} text-white">{{ $trade['sentiment'] }}</span>
+                                <div class="flex-1">
+                                    <div class="flex items-center mb-1.5">
+                                        <div class="flex-1">
+                                            <span
+                                                class="inline-flex items-center gap-x-1.5 py-0.5 px-2.5 rounded-md text-[10px] bg-[#3b3a41] uppercase font-medium text-white">{{ ucfirst($bot['account_type']) }}</span>
+                                        </div>
+                                        <div class="flex-1 text-end">
+                                            <p class="text-[#8d8d8d] text-xs">{{ $bot['created_at_formatted'] }}</p>
+                                        </div>
                                     </div>
-                                    <div class="flex-1 text-end">
-                                        <p class="font-semibold text-sm md:text-base text-green-500">+@money($trade['profit'] / 100)
-                                        </p>
+                                    <div class="flex items-center">
+                                        <div class="flex-1 inline-flex items-center gap-x-1">
+                                            <p class="font-semibold text-xs inline text-white md:text-sm">
+                                                @money($bot['amount'] / 100)
+                                            </p>
+                                            <span
+                                                class="inline-flex items-center gap-x-1.5 py-0.5 px-1.5 rounded-md text-[9px] font-medium {{ $bot['status'] === 'active' ? 'bg-[#31865b]' : 'bg-[#e32d2d]' }} text-white">{{ ucfirst($bot['status']) }}</span>
+                                        </div>
+                                        <div class="flex-1 text-end">
+                                            <p class="font-semibold text-sm md:text-base text-green-500">
+                                                +@money($bot['profit'] / 100)
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 @empty
                     <div class="flex justify-center items-center">
                         <div class="bg-[#26252a] w-full rounded-lg flex flex-col space-y-2 p-3 mb-3">

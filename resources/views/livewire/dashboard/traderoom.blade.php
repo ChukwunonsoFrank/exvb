@@ -17,7 +17,7 @@
                         <div class="flex-1">
                             <template x-if="isBotSearchingForSignal === false">
                                 <div class="flex flex-col items-center justify-center w-fit">
-                                    <div class="mb-1">
+                                    <div class="mb-1.5">
                                         <p class="text-zinc-300 text-[11px] text-center">Bot will take profit in</p>
                                     </div>
                                     <p x-text='timer' class="text-white font-bold text-2xl"></p>

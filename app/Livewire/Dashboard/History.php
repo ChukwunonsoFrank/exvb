@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Dashboard;
 
-use App\Models\Trade;
+use App\Models\Bot;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
@@ -14,27 +14,27 @@ class History extends Component
 
     public $visibleCount;
 
-    public $totalTrades;
+    public $totalBots;
 
     public function mount()
     {
-        $this->totalTrades = Trade::where('user_id', auth()->user()->id)->count();
-        $this->visibleCount = min($this->perPage, $this->totalTrades);
+        $this->totalBots = Bot::where('user_id', auth()->user()->id)->count();
+        $this->visibleCount = min($this->perPage, $this->totalBots);
     }
 
     public function loadMore(): void
     {
-        $this->visibleCount = min($this->visibleCount + $this->perPage, $this->totalTrades);
+        $this->visibleCount = min($this->visibleCount + $this->perPage, $this->totalBots);
     }
 
     public function render()
     {
-        $trades = Trade::where('user_id', auth()->user()->id)->latest()->take($this->visibleCount)->get();
+        $bots = Bot::where('user_id', auth()->user()->id)->latest()->take($this->visibleCount)->get();
 
-        $showLoadMoreButton = $this->visibleCount < $this->totalTrades;
+        $showLoadMoreButton = $this->visibleCount < $this->totalBots;
 
         return view('livewire.dashboard.history', [
-            'trades' => $trades,
+            'bots' => $bots,
             'showLoadMoreButton' => $showLoadMoreButton,
         ]);
     }

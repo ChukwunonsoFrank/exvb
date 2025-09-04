@@ -13,6 +13,8 @@ use Livewire\Component;
 
 class Robot extends Component
 {
+    public int $activeBotCount;
+
     public string $accountStatus = '';
 
     public string $amount = '';
@@ -23,9 +25,13 @@ class Robot extends Component
 
     public string $accountTypeSlug = 'demo';
 
+    public int $accountBalance;
+
     public $strategy;
 
     public $strategies;
+
+    public int $minimumAmount;
 
     public $expectedProfitMin;
 
@@ -38,15 +44,23 @@ class Robot extends Component
             $this->dispatch('robot-stopped', message: $message)->self();
         }
 
+        $this->activeBotCount = Bot::where(['user_id' => auth()->user()->id, 'status' => 'active'])->count();
+
         $this->strategies = Strategy::all();
         $this->strategy = $this->strategies[0];
         $this->expectedProfitMin = 0;
         $this->expectedProfitMax = 0;
+        $this->minimumAmount = $this->strategy['min_amount'];
         $this->accountStatus = auth()->user()->account_status;
 
         if (auth()->user()->live_balance > 0) {
             $this->accountType = 'Live account';
             $this->accountTypeSlug = 'live';
+            $this->accountBalance = auth()->user()->live_balance;
+        } else {
+            $this->accountType = 'Demo account';
+            $this->accountTypeSlug = 'demo';
+            $this->accountBalance = auth()->user()->demo_balance;
         }
     }
 
@@ -74,6 +88,7 @@ class Robot extends Component
     {
         $this->accountType = $accountType;
         $this->accountTypeSlug = $accountTypeSlug;
+        $this->accountBalance = $this->accountTypeSlug === 'demo' ? auth()->user()->demo_balance : auth()->user()->live_balance;
     }
 
     public function generateAssetToTrade()
@@ -710,39 +725,39 @@ class Robot extends Component
     public function startRobot(): void
     {
         try {
-            if ($this->accountStatus === 'inactive') {
-                $this->dispatch('robot-error', message: 'This account has been disabled and unable to perform any transactions. Kindly contact support for more details.')->self();
-                return;
-            }
+            // if ($this->accountStatus === 'inactive') {
+            //     $this->dispatch('robot-error', message: 'This account has been disabled and unable to perform any transactions. Kindly contact support for more details.')->self();
+            //     return;
+            // }
 
-            if ($this->amount === '') {
-                $this->dispatch('robot-error', message: 'Amount field is empty')->self();
-                return;
-            }
+            // if ($this->amount === '') {
+            //     $this->dispatch('robot-error', message: 'Amount field is empty')->self();
+            //     return;
+            // }
 
-            if (intval($this->amount) === 0) {
-                $this->dispatch('robot-error', message: 'Amount must be greater than 0')->self();
-                return;
-            }
+            // if (intval($this->amount) === 0) {
+            //     $this->dispatch('robot-error', message: 'Amount must be greater than 0')->self();
+            //     return;
+            // }
 
-            if (floatval($this->amount) < intval($this->strategy['min_amount'])) {
-                $message = 'Minimum amount is $' . $this->strategy['min_amount'];
-                $this->dispatch('robot-error', message: $message)->self();
-                return;
-            }
+            // if (floatval($this->amount) < intval($this->strategy['min_amount'])) {
+            //     $message = 'Minimum amount is $' . $this->strategy['min_amount'];
+            //     $this->dispatch('robot-error', message: $message)->self();
+            //     return;
+            // }
 
-            $accountBalanceToCheck = $this->accountTypeSlug === 'demo' ? auth()->user()->demo_balance : auth()->user()->live_balance;
-            $normalizedBalance = $this->normalizeAmount($accountBalanceToCheck);
-            if (floatval($this->amount) > $normalizedBalance) {
-                $this->dispatch('robot-error', message: 'Insufficient balance')->self();
-                return;
-            }
+            // $accountBalanceToCheck = $this->accountTypeSlug === 'demo' ? auth()->user()->demo_balance : auth()->user()->live_balance;
+            // $normalizedBalance = $this->normalizeAmount($accountBalanceToCheck);
+            // if (floatval($this->amount) > $normalizedBalance) {
+            //     $this->dispatch('robot-error', message: 'Insufficient balance')->self();
+            //     return;
+            // }
 
-            $bot = Bot::where(['user_id' => auth()->user()->id, 'status' => 'active'])->get();
-            if (! $bot->isEmpty()) {
-                $this->dispatch('robot-error', message: 'Bot is still trading')->self();
-                return;
-            }
+            // $bot = Bot::where(['user_id' => auth()->user()->id, 'status' => 'active'])->get();
+            // if (! $bot->isEmpty()) {
+            //     $this->dispatch('robot-error', message: 'Bot is still trading')->self();
+            //     return;
+            // }
 
             $amount = floatval($this->amount);
             $assetToTrade = $this->generateAssetToTrade();

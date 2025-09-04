@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('trades', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
+            $table->foreignId('bot_id')->constrained();
             $table->string('asset');
             $table->string('asset_image_url');
             $table->string('account_type');

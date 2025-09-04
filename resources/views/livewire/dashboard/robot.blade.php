@@ -263,9 +263,9 @@
                                             alt="">
                                     </div>
                                     <div class="flex-1">
-                                        <h2 class="font-bold mb-1 text-base text-white">
+                                        {{-- <h2 class="font-bold mb-1 text-base text-white">
                                             {{ $strategy['name'] }}
-                                        </h2>
+                                        </h2> --}}
 
                                         <div class="mb-1.5">
                                             <div class="flex items-start gap-x-2">
@@ -286,7 +286,9 @@
                                                     </svg>
                                                 </div>
                                                 <p class="text-xs text-zinc-300">
-                                                    Estimated 24 hours returns range from 9% to 15%, depending on market
+                                                    Estimated 24 hours returns range from
+                                                    {{ $this->strategy['min_roi'] }}% to
+                                                    {{ $this->strategy['max_roi'] }}%, depending on market
                                                     conditions.
                                                 </p>
                                             </div>
@@ -315,7 +317,7 @@
                                                     </svg>
                                                 </div>
                                                 <p class="text-xs text-zinc-300">
-                                                    Trading Strategy: Scalping
+                                                    Trading Strategy: <span class="font-bold">Scalping</span>
                                                 </p>
                                             </div>
                                         </div>
@@ -344,7 +346,7 @@
                 </div>
 
                 <div class="sticky bottom-2">
-                    <a x-on:click="$store.robotPage.toggleStartRobotConfirmationModal()">
+                    <a x-on:click="$store.robotPage.toggleStartRobotConfirmationModal($wire);">
                         <button type="button" wire:loading.attr="disabled"
                             class="py-2.5 cursor-pointer px-4 w-full md:px-6 text-center gap-x-2 text-sm font-semibold rounded-lg bg-accent text-white focus:outline-hidden disabled:pointer-events-none">
                             <i wire:loading class="fa-solid fa-circle-notch fa-spin"></i>
@@ -357,73 +359,94 @@
                     class="fixed top-0 left-0 h-svh w-full px-4 lg:px-96 pt-6 z-20 bg-dashboard">
                     <div class="w-full h-full flex items-center justify-center">
                         <div class="max-w-sm mx-auto bg-[#26252a] rounded-2xl pointer-events-auto">
-                            <div class="p-6 overflow-y-auto text-start">
+                            <div class="p-6 overflow-y-auto text-center">
                                 <div class="flex justify-center mb-8">
                                     <div
                                         class="size-18 flex items-center justify-center rounded-full border-3 border-[#05df72]">
-                                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <g clip-path="url(#clip0_771_34)">
-                                                <path
-                                                    d="M8 14C8 13.4696 8.21071 12.9609 8.58579 12.5858C8.96086 12.2107 9.46957 12 10 12H14C14.5304 12 15.0391 12.2107 15.4142 12.5858C15.7893 12.9609 16 13.4696 16 14V20C16 20.5304 15.7893 21.0391 15.4142 21.4142C15.0391 21.7893 14.5304 22 14 22H10C9.46957 22 8.96086 21.7893 8.58579 21.4142C8.21071 21.0391 8 20.5304 8 20V14Z"
-                                                    stroke="white" stroke-width="4" stroke-linecap="round"
-                                                    stroke-linejoin="round" />
-                                                <path d="M12 8V12" stroke="white" stroke-width="4"
-                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                                <path d="M12 22V40" stroke="white" stroke-width="4"
-                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                                <path
-                                                    d="M20 30C20 29.4696 20.2107 28.9609 20.5858 28.5858C20.9609 28.2107 21.4696 28 22 28H26C26.5304 28 27.0391 28.2107 27.4142 28.5858C27.7893 28.9609 28 29.4696 28 30V36C28 36.5304 27.7893 37.0391 27.4142 37.4142C27.0391 37.7893 26.5304 38 26 38H22C21.4696 38 20.9609 37.7893 20.5858 37.4142C20.2107 37.0391 20 36.5304 20 36V30Z"
-                                                    stroke="white" stroke-width="4" stroke-linecap="round"
-                                                    stroke-linejoin="round" />
-                                                <path d="M24 8V28" stroke="white" stroke-width="4"
-                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                                <path d="M24 38V40" stroke="white" stroke-width="4"
-                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                                <path
-                                                    d="M32 12C32 11.4696 32.2107 10.9609 32.5858 10.5858C32.9609 10.2107 33.4696 10 34 10H38C38.5304 10 39.0391 10.2107 39.4142 10.5858C39.7893 10.9609 40 11.4696 40 12V20C40 20.5304 39.7893 21.0391 39.4142 21.4142C39.0391 21.7893 38.5304 22 38 22H34C33.4696 22 32.9609 21.7893 32.5858 21.4142C32.2107 21.0391 32 20.5304 32 20V12Z"
-                                                    stroke="white" stroke-width="4" stroke-linecap="round"
-                                                    stroke-linejoin="round" />
-                                                <path d="M36 8V10" stroke="white" stroke-width="4"
-                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                                <path d="M36 22V40" stroke="white" stroke-width="4"
-                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_771_34">
-                                                    <rect width="48" height="48" fill="white" />
-                                                </clipPath>
-                                            </defs>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48"
+                                            viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-radio-icon lucide-radio">
+                                            <path d="M16.247 7.761a6 6 0 0 1 0 8.478" />
+                                            <path d="M19.075 4.933a10 10 0 0 1 0 14.134" />
+                                            <path d="M4.925 19.067a10 10 0 0 1 0-14.134" />
+                                            <path d="M7.753 16.239a6 6 0 0 1 0-8.478" />
+                                            <circle cx="12" cy="12" r="2" />
                                         </svg>
                                     </div>
                                 </div>
                                 <p class="text-white font-semibold text-xl mb-4">
-                                    You are about to start trading with:
+                                    Robot is connecting to the markets...
                                 </p>
-                                <div>
-                                    <ul class="list-disc list-inside text-white text-sm">
-                                        <li>Strategy: {{ $this->strategy['name'] }}</li>
-                                        <li>Trading Duration: 24 hours</li>
-                                        <li>Amount: @money(floatval($this->amount))</li>
-                                        <li>Expected Profit: {{ '$' . $this->expectedProfitMin }} -
-                                            {{ '$' . $this->expectedProfitMax }}</li>
-                                    </ul>
+                                <div class="w-full flex flex-col gap-y-2 justify-center items-center mb-4">
+                                    <template x-if="$store.robotPage.isBrokerConnecting === true">
+                                        <div class="bg-[#1a1a1a] p-2 flex items-center gap-x-1 rounded-full">
+                                            <i class="fa-solid fa-circle-notch fa-spin text-[#05df72]"></i>
+                                            <p class="font-light text-xs text-white">Connecting to broker</p>
+                                        </div>
+                                    </template>
+
+                                    <template x-if="$store.robotPage.isBrokerConnecting === false">
+                                        <div class="bg-[#1a1a1a] p-2 flex items-center gap-x-1 rounded-full">
+                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <g clip-path="url(#clip0_793_3)">
+                                                    <path
+                                                        d="M8.00662 1.34067C8.52514 1.3407 9.0259 1.52958 9.41528 1.872L9.51795 1.96867L9.98328 2.434C10.111 2.56088 10.2778 2.64097 10.4566 2.66133L10.5466 2.66667H11.2133C11.7581 2.66664 12.2823 2.87505 12.6783 3.24916C13.0744 3.62327 13.3123 4.13474 13.3433 4.67867L13.3466 4.8V5.46667C13.3466 5.64667 13.4079 5.822 13.5186 5.962L13.5786 6.02867L14.0433 6.494C14.4284 6.87697 14.653 7.39241 14.6712 7.93525C14.6894 8.47808 14.4999 9.00742 14.1413 9.41533L14.0446 9.518L13.5793 9.98333C13.4524 10.111 13.3723 10.2778 13.3519 10.4567L13.3466 10.5467V11.2133C13.3466 11.7581 13.1382 12.2823 12.7641 12.6784C12.39 13.0744 11.8785 13.3123 11.3346 13.3433L11.2133 13.3467H10.5466C10.3669 13.3467 10.1924 13.4073 10.0513 13.5187L9.98462 13.5787L9.51928 14.0433C9.13632 14.4285 8.62087 14.6531 8.07804 14.6713C7.5352 14.6895 7.00586 14.4999 6.59795 14.1413L6.49528 14.0447L6.02995 13.5793C5.90224 13.4525 5.73548 13.3724 5.55662 13.352L5.46662 13.3467H4.79995C4.25514 13.3467 3.73096 13.1383 3.3349 12.7642C2.93885 12.3901 2.70094 11.8786 2.66995 11.3347L2.66662 11.2133V10.5467C2.66656 10.3669 2.60597 10.1924 2.49462 10.0513L2.43462 9.98467L1.96995 9.51933C1.5848 9.13637 1.36023 8.62092 1.34202 8.07809C1.32381 7.53526 1.51333 7.00592 1.87195 6.598L1.96862 6.49533L2.43395 6.03C2.56082 5.90229 2.64092 5.73553 2.66128 5.55667L2.66662 5.46667V4.8L2.66995 4.67867C2.69972 4.15563 2.9209 3.66183 3.29134 3.29139C3.66178 2.92095 4.15558 2.69977 4.67862 2.67L4.79995 2.66667H5.46662C5.64636 2.66661 5.82085 2.60602 5.96195 2.49467L6.02862 2.43467L6.49395 1.97C6.69217 1.77059 6.92786 1.61234 7.18746 1.50433C7.44706 1.39633 7.72545 1.34071 8.00662 1.34067ZM10.4713 6.19533C10.3463 6.07035 10.1767 6.00014 9.99995 6.00014C9.82317 6.00014 9.65363 6.07035 9.52862 6.19533L7.33328 8.39L6.47128 7.52867L6.40862 7.47333C6.27462 7.36973 6.10621 7.32101 5.9376 7.33707C5.76898 7.35313 5.6128 7.43277 5.50078 7.55982C5.38876 7.68686 5.32929 7.85178 5.33446 8.02108C5.33963 8.19038 5.40905 8.35136 5.52862 8.47133L6.86195 9.80467L6.92462 9.86C7.05289 9.9595 7.21305 10.0088 7.37507 9.99859C7.53709 9.98841 7.68982 9.91945 7.80462 9.80467L10.4713 7.138L10.5266 7.07533C10.6261 6.94706 10.6754 6.7869 10.6652 6.62488C10.655 6.46286 10.5861 6.31013 10.4713 6.19533Z"
+                                                        fill="#05DF72" />
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip0_793_3">
+                                                        <rect width="16" height="16" fill="white" />
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                            <p class="font-light text-xs text-white">Connected to </p>
+                                            <div>
+                                                <img class="inline" src="{{ asset('assets/icons/xtb.svg') }}"
+                                                    alt="xtb-logo">
+                                            </div>
+                                        </div>
+                                    </template>
+
+                                    <template x-if="$store.robotPage.isExchangeConnecting === true">
+                                        <div class="bg-[#1a1a1a] p-2 flex items-center gap-x-1 rounded-full">
+                                            <i class="fa-solid fa-circle-notch fa-spin text-[#05df72]"></i>
+                                            <p class="font-light text-xs text-white">Connecting to crypto exchange</p>
+                                        </div>
+                                    </template>
+
+                                    <template x-if="$store.robotPage.isExchangeConnecting === false">
+                                        <div class="bg-[#1a1a1a] p-2 flex items-center gap-x-1 rounded-full">
+                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <g clip-path="url(#clip0_793_3)">
+                                                    <path
+                                                        d="M8.00662 1.34067C8.52514 1.3407 9.0259 1.52958 9.41528 1.872L9.51795 1.96867L9.98328 2.434C10.111 2.56088 10.2778 2.64097 10.4566 2.66133L10.5466 2.66667H11.2133C11.7581 2.66664 12.2823 2.87505 12.6783 3.24916C13.0744 3.62327 13.3123 4.13474 13.3433 4.67867L13.3466 4.8V5.46667C13.3466 5.64667 13.4079 5.822 13.5186 5.962L13.5786 6.02867L14.0433 6.494C14.4284 6.87697 14.653 7.39241 14.6712 7.93525C14.6894 8.47808 14.4999 9.00742 14.1413 9.41533L14.0446 9.518L13.5793 9.98333C13.4524 10.111 13.3723 10.2778 13.3519 10.4567L13.3466 10.5467V11.2133C13.3466 11.7581 13.1382 12.2823 12.7641 12.6784C12.39 13.0744 11.8785 13.3123 11.3346 13.3433L11.2133 13.3467H10.5466C10.3669 13.3467 10.1924 13.4073 10.0513 13.5187L9.98462 13.5787L9.51928 14.0433C9.13632 14.4285 8.62087 14.6531 8.07804 14.6713C7.5352 14.6895 7.00586 14.4999 6.59795 14.1413L6.49528 14.0447L6.02995 13.5793C5.90224 13.4525 5.73548 13.3724 5.55662 13.352L5.46662 13.3467H4.79995C4.25514 13.3467 3.73096 13.1383 3.3349 12.7642C2.93885 12.3901 2.70094 11.8786 2.66995 11.3347L2.66662 11.2133V10.5467C2.66656 10.3669 2.60597 10.1924 2.49462 10.0513L2.43462 9.98467L1.96995 9.51933C1.5848 9.13637 1.36023 8.62092 1.34202 8.07809C1.32381 7.53526 1.51333 7.00592 1.87195 6.598L1.96862 6.49533L2.43395 6.03C2.56082 5.90229 2.64092 5.73553 2.66128 5.55667L2.66662 5.46667V4.8L2.66995 4.67867C2.69972 4.15563 2.9209 3.66183 3.29134 3.29139C3.66178 2.92095 4.15558 2.69977 4.67862 2.67L4.79995 2.66667H5.46662C5.64636 2.66661 5.82085 2.60602 5.96195 2.49467L6.02862 2.43467L6.49395 1.97C6.69217 1.77059 6.92786 1.61234 7.18746 1.50433C7.44706 1.39633 7.72545 1.34071 8.00662 1.34067ZM10.4713 6.19533C10.3463 6.07035 10.1767 6.00014 9.99995 6.00014C9.82317 6.00014 9.65363 6.07035 9.52862 6.19533L7.33328 8.39L6.47128 7.52867L6.40862 7.47333C6.27462 7.36973 6.10621 7.32101 5.9376 7.33707C5.76898 7.35313 5.6128 7.43277 5.50078 7.55982C5.38876 7.68686 5.32929 7.85178 5.33446 8.02108C5.33963 8.19038 5.40905 8.35136 5.52862 8.47133L6.86195 9.80467L6.92462 9.86C7.05289 9.9595 7.21305 10.0088 7.37507 9.99859C7.53709 9.98841 7.68982 9.91945 7.80462 9.80467L10.4713 7.138L10.5266 7.07533C10.6261 6.94706 10.6754 6.7869 10.6652 6.62488C10.655 6.46286 10.5861 6.31013 10.4713 6.19533Z"
+                                                        fill="#05DF72" />
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip0_793_3">
+                                                        <rect width="16" height="16" fill="white" />
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                            <p class="font-light text-xs text-white">Connected to </p>
+                                            <div>
+                                                <img class="inline" src="{{ asset('assets/icons/bybit.svg') }}"
+                                                    alt="bybit-logo">
+                                            </div>
+                                        </div>
+                                    </template>
                                 </div>
-                                <div class="mt-6 grid grid-cols-2 gap-x-2">
-                                    <div>
-                                        <button type="button" wire:click="startRobot()" type="button"
-                                            wire:loading.attr="disabled"
-                                            class="p-3 w-full text-center text-sm font-semibold rounded-lg border border-transparent bg-accent text-white cursor-pointer hover:bg-accent-hover focus:outline-hidden focus:bg-accent disabled:opacity-50 disabled:pointer-events-none">
-                                            Please confirm
-                                        </button>
-                                    </div>
-                                    <div>
-                                        <button x-on:click="$store.robotPage.toggleStartRobotConfirmationModal()"
-                                            type="button"
-                                            class="p-3 w-full text-center text-sm font-semibold rounded-lg border border-white text-white shadow-2xs cursor-pointer focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none">
-                                            Cancel
-                                        </button>
-                                    </div>
+                                <div class="mb-0">
+                                    <p class="text-white font-semibold text-xl mb-4">Opening with:</p>
+                                </div>
+                                <div>
+                                    <p class="text-white text-sm"><b>Amount</b>: @money(floatval($this->amount))</p>
+                                    <p class="text-white text-sm"><b>Account</b>: {{ $this->accountType }}</p>
+                                    <p class="text-white text-sm"><b>Trading Strategy</b>:
+                                        {{ $this->strategy['name'] }}</p>
                                 </div>
                             </div>
                         </div>
@@ -434,64 +457,10 @@
     </div>
 </div>
 
-<script>
-    document.addEventListener('alpine:init', () => {
-        Alpine.store('robotPage', {
-            isStartRobotConfirmationModalOpen: false,
-
-            toggleStartRobotConfirmationModal() {
-                this.isStartRobotConfirmationModalOpen = !this.isStartRobotConfirmationModalOpen;
-            }
-        })
-    })
-</script>
-
 @script
     <script>
-        $wire.on('robot-error', (event) => {
-            const toastMarkup = `
-                <div class="flex items-center p-4">
-                    <div class="shrink-0">
-                        <svg class="shrink-0 size-4 text-red-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-alert-icon lucide-shield-alert"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
-                    </div>
-                    <div class="ms-3 flex-1">
-                        <p class="text-xs font-semibold text-white">${event.message}</p>
-                    </div>
-                </div>
-            `;
-
-            Toastify({
-                text: toastMarkup,
-                className: "hs-toastify-on:opacity-100 opacity-0 absolute top-0 start-1/2 -translate-x-1/2 z-90 w-4/5 md:w-1/2 lg:w-1/4 transition-all duration-300 bg-[#26252a] text-sm text-white rounded-xl shadow-lg [&>.toast-close]:hidden",
-                duration: 4000,
-                close: true,
-                escapeMarkup: false
-            }).showToast();
-        });
-
-        $wire.on('zero-amount-robot-error', (event) => {
-            const toastMarkup = `
-                <div class="flex items-start p-4">
-                    <div class="shrink-0">
-                        <svg class="shrink-0 size-4 text-red-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-alert-icon lucide-shield-alert"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
-                    </div>
-                    <div class="ms-3 flex-1">
-                        <p class="text-xs font-semibold text-white">${event.message}</p>
-                    </div>
-                </div>
-            `;
-
-            Toastify({
-                text: toastMarkup,
-                className: "hs-toastify-on:opacity-100 opacity-0 absolute top-0 start-1/2 -translate-x-1/2 z-90 w-4/5 md:w-1/2 lg:w-1/4 transition-all duration-300 bg-[#26252a] text-sm text-white rounded-xl shadow-lg [&>.toast-close]:hidden",
-                duration: 4000,
-                close: true,
-                escapeMarkup: false
-            }).showToast();
-        });
-
         $wire.on('robot-stopped', (event) => {
-            const toastMarkup = `
+            const robotStoppedToastMarkup = `
                 <div class="flex items-start p-4">
                     <div class="shrink-0">
                         <svg class="shrink-0 size-4 text-teal-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big-icon lucide-circle-check-big"><path d="M21.801 10A10 10 0 1 1 17 3.335"/><path d="m9 11 3 3L22 4"/></svg>
@@ -503,7 +472,7 @@
             `;
 
             Toastify({
-                text: toastMarkup,
+                text: robotStoppedToastMarkup,
                 className: "hs-toastify-on:opacity-100 opacity-0 absolute top-0 start-1/2 -translate-x-1/2 z-90 w-4/5 md:w-1/2 lg:w-1/4 transition-all duration-300 bg-[#26252a] text-sm text-white rounded-xl shadow-lg [&>.toast-close]:hidden",
                 duration: 4000,
                 close: true,
@@ -512,3 +481,81 @@
         });
     </script>
 @endscript
+
+
+<script>
+    function toastRobotError(message) {
+        const robotErrorToastMarkup = `
+            <div class="flex items-center p-4">
+                <div class="shrink-0">
+                    <svg class="shrink-0 size-4 text-red-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-alert-icon lucide-shield-alert"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+                </div>
+                <div class="ms-3 flex-1">
+                    <p class="text-xs font-semibold text-white">${message}</p>
+                </div>
+            </div>
+        `;
+
+        Toastify({
+            text: robotErrorToastMarkup,
+            className: "hs-toastify-on:opacity-100 opacity-0 absolute top-0 start-1/2 -translate-x-1/2 z-90 w-4/5 md:w-1/2 lg:w-1/4 transition-all duration-300 bg-[#26252a] text-sm text-white rounded-xl shadow-lg [&>.toast-close]:hidden",
+            duration: 4000,
+            close: true,
+            escapeMarkup: false
+        }).showToast();
+    }
+
+    document.addEventListener('alpine:init', () => {
+        Alpine.store('robotPage', {
+            isStartRobotConfirmationModalOpen: false,
+
+            isBrokerConnecting: true,
+
+            isExchangeConnecting: true,
+
+            toggleStartRobotConfirmationModal(wire) {
+                if (wire.accountStatus === 'inactive') {
+                    toastRobotError(
+                        'This account has been disabled and unable to perform any transactions. Kindly contact support for more details.'
+                    );
+                }
+
+                if (wire.amount === '') {
+                    toastRobotError('Amount field is empty');
+                }
+
+                if (parseInt(wire.amount) === 0) {
+                    toastRobotError('Amount must be greater than 0');
+                }
+
+                if (parseFloat(wire.amount) < parseInt(wire.minimumAmount) && parseFloat(wire
+                        .amount) !== 0) {
+                    let message = `Minimum amount is $${wire.minimumAmount}`;
+                    toastRobotError(message);
+                }
+
+                if (parseFloat(wire.amount) > parseFloat(wire.accountBalance / 100)) {
+                    toastRobotError('Insufficient balance');
+                }
+
+                if (wire.activeBotCount > 0) {
+                    toastRobotError('Bot is still trading');
+                }
+
+                this.isStartRobotConfirmationModalOpen = !this.isStartRobotConfirmationModalOpen;
+
+                setTimeout(() => {
+                    this.isBrokerConnecting = false;
+                }, 1500);
+
+                setTimeout(() => {
+                    this.isExchangeConnecting = false;
+                }, 3000);
+
+                setTimeout(() => {
+                    wire.startRobot();
+                }, 5000);
+            }
+        })
+    })
+</script>

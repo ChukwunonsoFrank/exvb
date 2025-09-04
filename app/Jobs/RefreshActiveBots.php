@@ -82,6 +82,16 @@ class RefreshActiveBots implements ShouldQueue
                     $updatedTotalProfit = $this->normalizeAmount($bot['profit']) + $profit;
 
                     DB::transaction(function () use ($bot, $assetToTrade, $newCheckpoint, $updatedTotalProfit, $profitPosition, $profit) {
+                        Trade::create([
+                            'user_id' => $bot['user_id'],
+                            'bot_id' => $bot['id'],
+                            'asset' => $bot['asset'],
+                            'asset_image_url' => $bot['asset_image_url'],
+                            'account_type' => $bot['account_type'],
+                            'profit' => $this->serializeAmount($profit),
+                            'sentiment' => $bot['sentiment']
+                        ]);
+                        
                         $bot->update([
                             'asset' => $assetToTrade['display_name'],
                             'asset_class' => $assetToTrade['asset_class'],
@@ -91,15 +101,6 @@ class RefreshActiveBots implements ShouldQueue
                             'timer_checkpoint' => strval($newCheckpoint),
                             'profit' => $this->serializeAmount($updatedTotalProfit),
                             'profit_position' => $profitPosition + 1
-                        ]);
-
-                        Trade::create([
-                            'user_id' => $bot['user_id'],
-                            'asset' => $bot['asset'],
-                            'asset_image_url' => $bot['asset_image_url'],
-                            'account_type' => $bot['account_type'],
-                            'profit' => $this->serializeAmount($profit),
-                            'sentiment' => $bot['sentiment']
                         ]);
                     });
                 }

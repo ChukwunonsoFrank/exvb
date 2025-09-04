@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Trade extends Model
 {
-    protected $fillable = ['user_id', 'asset', 'asset_image_url', 'account_type', 'profit', 'sentiment'];
+    protected $fillable = ['user_id', 'bot_id', 'asset', 'asset_image_url', 'account_type', 'profit', 'sentiment'];
 
     protected $appends = ['created_at_formatted'];
 

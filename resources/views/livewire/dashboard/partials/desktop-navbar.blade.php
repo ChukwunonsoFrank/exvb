@@ -40,7 +40,7 @@
         <a class="block" href="{{ route('dashboard.history') }}">
             <div class="mb-1">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="#D4D4D4" stroke-width="{{ request()->is('dashboard/history') ? 2 : 1 }}"
+                    stroke="#D4D4D4" stroke-width="{{ request()->is('dashboard/history') || request()->is('dashboard/history/details') ? 2 : 1 }}"
                     stroke-linecap="round" stroke-linejoin="round" class="block mx-auto lucide lucide-logs-icon lucide-logs">
                     <path d="M3 5h1" />
                     <path d="M3 12h1" />
@@ -55,7 +55,7 @@
             </div>
             <div class="text-center">
                 <p
-                    class="text-[9px] font-semibold tracking-wide {{ request()->is('dashboard/history') ? 'text-white' : 'text-[#a4a4a4]' }}">
+                    class="text-[9px] font-semibold tracking-wide {{ request()->is('dashboard/history') || request()->is('dashboard/history/details') ? 'text-white' : 'text-[#a4a4a4]' }}">
                     Deals</p>
             </div>
         </a>

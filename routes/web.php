@@ -32,6 +32,7 @@ use App\Livewire\Admin\PaymentMethodDetails;
 use App\Livewire\Terms;
 use App\Livewire\Privacy;
 use App\Livewire\About;
+use App\Livewire\Dashboard\HistoryDetails;
 
 Route::get('/link-storage', function () {
     Artisan::call('storage:link');
@@ -56,6 +57,7 @@ Route::get('/privacy', Privacy::class)->name('privacy');
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', Index::class)->middleware(['auth', 'verified'])->name('dashboard');
     Route::get('/dashboard/history', History::class)->middleware(['auth', 'verified'])->name('dashboard.history');
+    Route::get('/dashboard/history/details', HistoryDetails::class)->middleware(['auth', 'verified'])->name('dashboard.history.details');
     Route::get('/dashboard/robot', Robot::class)->middleware(['auth', 'verified'])->name('dashboard.robot');
     Route::get('/dashboard/support', Support::class)->middleware(['auth', 'verified'])->name('dashboard.support');
     Route::get('/dashboard/deposit', Deposit::class)->middleware(['auth', 'verified'])->name('dashboard.deposit');

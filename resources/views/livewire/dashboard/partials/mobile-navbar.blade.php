@@ -29,7 +29,7 @@
             <div>
                 <div class="text-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="#D4D4D4" stroke-width="{{ request()->is('dashboard/history') ? 2 : 1 }}" stroke-linecap="round"
+                        fill="none" stroke="#D4D4D4" stroke-width="{{ request()->is('dashboard/history') || request()->is('dashboard/history/details') ? 2 : 1 }}" stroke-linecap="round"
                         stroke-linejoin="round" class="inline lucide lucide-logs-icon lucide-logs">
                         <path d="M3 5h1" />
                         <path d="M3 12h1" />
@@ -42,7 +42,7 @@
                         <path d="M13 19h8" />
                     </svg>
                     <p
-                        class="text-[10px] mt-0.5 tracking-wide {{ request()->is('dashboard/history') ? 'text-white' : 'text-[#a4a4a4]' }}">
+                        class="text-[10px] mt-0.5 tracking-wide {{ request()->is('dashboard/history') || request()->is('dashboard/history/details') ? 'text-white' : 'text-[#a4a4a4]' }}">
                         Deals</p>
                 </div>
             </div>
