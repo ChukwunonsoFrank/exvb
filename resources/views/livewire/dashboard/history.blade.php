@@ -31,7 +31,7 @@
                                                 @money($bot['amount'] / 100)
                                             </p>
                                             <span
-                                                class="inline-flex items-center gap-x-1.5 py-0.5 px-1.5 rounded-md text-[9px] font-medium {{ $bot['status'] === 'active' ? 'bg-[#31865b]' : 'bg-[#e32d2d]' }} text-white">{{ ucfirst($bot['status']) }}</span>
+                                                class="inline-flex items-center gap-x-1.5 py-0.5 px-1.5 rounded-md text-[9px] font-medium {{ $bot['status'] === 'active' ? 'bg-[ ]' : 'bg-[#e32d2d]' }} text-white">{{ ucfirst($bot['status']) }}</span>
                                         </div>
                                         <div class="flex-1 text-end">
                                             <p class="font-semibold text-sm md:text-base text-green-500">

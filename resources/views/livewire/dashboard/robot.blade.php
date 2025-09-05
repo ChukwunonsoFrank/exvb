@@ -75,7 +75,7 @@
                             </svg>
                         </div>
                         <div>
-                            <p class="text-xs text-[#a4a4a4]">How it works</p>
+                            <p class="text-xs text-[#a4a4a4]">How it works?</p>
                         </div>
                     </button>
                 </div>
@@ -89,7 +89,7 @@
                                 Amount</label>
                             <div class="relative">
                                 <input wire:model="amount" wire:keyup.debounce.300ms="calculateProfitExpected"
-                                    type="text"
+                                    @input.debounce.1s="$store.robotPage.checkMinimumAmount($wire)" type="text"
                                     class="bg-transparent text-white border border-[#26252a] text-sm peer py-3 px-4 ps-11 block w-full rounded-lg sm:text-sm focus:outline-0"
                                     placeholder="">
                                 <div
@@ -257,7 +257,7 @@
                                 </div>
                                 <label for="hs-vertical-radio-in-form-{{ $strategy['id'] }}"
                                     wire:key="strategy-{{ $strategy['id'] }}"
-                                    class="flex relative px-3 py-3 pb-4 gap-x-4 items-center w-full bg-dashboard rounded-lg border-3 border-[#26252a] text-sm focus:border-blue-500 focus:ring-blue-500">
+                                    class="flex relative px-3 py-3 pb-4 gap-x-4 items-start w-full bg-dashboard rounded-lg border-3 border-[#26252a] text-sm focus:border-blue-500 focus:ring-blue-500">
                                     <div class="flex-none w-12">
                                         <img class="w-24" src="{{ asset('assets/images/robot-illustration.png') }}"
                                             alt="">
@@ -267,25 +267,14 @@
                                             {{ $strategy['name'] }}
                                         </h2> --}}
 
-                                        <div class="mb-1.5">
-                                            <div class="flex items-start gap-x-2">
+                                        <div class="mb-1">
+                                            <div class="flex items-start gap-x-1">
                                                 <div>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 18 18" id="Time-Lapse--Streamline-Sharp"
-                                                        height="18" width="18">
-                                                        <g
-                                                            id="time-lapse--time-lapse-mode-photo-picture-image-setting">
-                                                            <path id="Union" fill="#8fbffa" fill-rule="evenodd"
-                                                                d="M2.4375 9a6.5625 6.5625 0 1 0 13.125 0h1.875c0 4.65975 -3.77775 8.4375 -8.4375 8.4375S0.5625 13.65975 0.5625 9 4.34025 0.5625 9 0.5625v1.875A6.5625 6.5625 0 0 0 2.4375 9Zm12.993749999999999 -1.314a6.5062500000000005 6.5062500000000005 0 0 0 -0.5249999999999999 -1.5494999999999999l1.6875 -0.81975c0.30375 0.62625 0.5325 1.29525 0.675 1.9965l-1.8375000000000001 0.37275Zm-2.4945 -3.9375a6.60675 6.60675 0 0 1 1.314 1.31325l1.4985 -1.12575a8.48175 8.48175 0 0 0 -1.6860000000000002 -1.68675l-1.1265 1.5Zm-1.0725 -0.6547499999999999a6.508500000000001 6.508500000000001 0 0 0 -1.5510000000000002 -0.5249999999999999l0.3735 -1.8375000000000001c0.7005 0.14250000000000002 1.37025 0.372 1.9957500000000001 0.6757500000000001l-0.8190000000000001 1.68675Z"
-                                                                clip-rule="evenodd" stroke-width="0.75"></path>
-                                                            <path id="Vector 3844 (Stroke)" fill="#2859c5"
-                                                                fill-rule="evenodd"
-                                                                d="M8.25 5.25h1.5v3.4395000000000002l2.7802499999999997 2.7802499999999997 -1.0605 1.0605L8.25 9.3105V5.25Z"
-                                                                clip-rule="evenodd" stroke-width="0.75"></path>
-                                                        </g>
-                                                    </svg>
+                                                    <img class="w-8"
+                                                        src="{{ asset('assets/images/estimate-clock.png') }}"
+                                                        alt="">
                                                 </div>
-                                                <p class="text-xs text-zinc-300">
+                                                <p class="text-xs text-zinc-300 font-bold">
                                                     Estimated 24 hours returns range from
                                                     {{ $this->strategy['min_roi'] }}% to
                                                     {{ $this->strategy['max_roi'] }}%, depending on market
@@ -295,29 +284,26 @@
                                         </div>
 
                                         <div>
-                                            <div class="flex items-center gap-x-2">
+                                            <div class="flex items-center gap-x-1">
                                                 <div>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 18 18" id="Chess-Knight--Streamline-Sharp"
-                                                        height="18" width="18">
-                                                        <desc>
-                                                            Chess Knight Streamline Icon: https://streamlinehq.com
-                                                        </desc>
-                                                        <g id="chess-knight">
-                                                            <path id="Union" fill="#8fbffa" fill-rule="evenodd"
-                                                                d="m7.038 1.3215 -0.663 -0.12V3.1049999999999995L2.445 6.2490000000000006l1.41675 2.2657499999999997 2.694 -0.63375 -1.6425 6.931500000000001H13.02L11.8065 5.916l-0.0015 -0.00825c-0.20475000000000002 -1.23 -0.7215 -2.265 -1.545 -3.05325 -0.8205 -0.786 -1.9132500000000001 -1.2945 -3.2220000000000004 -1.533Z"
-                                                                clip-rule="evenodd" stroke-width="0.75"></path>
-                                                            <path id="Union_2" fill="#2859c5"
-                                                                d="M13.53 14.25H4.5l-1.155 2.8125h11.31L13.53 14.25Z"
-                                                                stroke-width="0.75"></path>
-                                                            <path id="Intersect" fill="#2859c5" fill-rule="evenodd"
-                                                                d="m6.257999999999999 9.1365 2.5215 -0.72 -0.309 -1.0822500000000002 -1.91475 0.5475 -0.29775 1.25475Z"
-                                                                clip-rule="evenodd" stroke-width="0.75"></path>
-                                                        </g>
+                                                    <svg width="16" height="18" viewBox="0 0 16 18"
+                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                            d="M9.32143 3.21429H6.10714C5.21954 3.21429 4.5 2.49475 4.5 1.60714C4.5 0.719542 5.21954 0 6.10714 0H9.32143C10.209 0 10.9286 0.719542 10.9286 1.60714C10.9286 2.49475 10.209 3.21429 9.32143 3.21429ZM6.10714 4.82143H9.32143C11.0966 4.82143 12.5357 3.38234 12.5357 1.60714C12.5357 1.49867 12.5303 1.39144 12.5199 1.28571H13.5C14.5651 1.28571 15.4286 2.14916 15.4286 3.21429V16.0714C15.4286 17.1365 14.5651 18 13.5 18H1.92857C0.863447 18 0 17.1365 0 16.0714V3.21429C0 2.14916 0.863447 1.28571 1.92857 1.28571H2.90872C2.89823 1.39144 2.89286 1.49867 2.89286 1.60714C2.89286 3.38234 4.33194 4.82143 6.10714 4.82143ZM4.39872 8.6183C4.39872 8.17451 4.75851 7.81473 5.2023 7.81473C5.6461 7.81473 6.00588 8.17451 6.00588 8.6183C6.00588 8.94865 5.80638 9.23424 5.51805 9.35769C5.42217 9.39874 5.31598 9.42187 5.2023 9.42187C4.75851 9.42187 4.39872 9.0621 4.39872 8.6183ZM5.2023 6.20758C3.8709 6.20758 2.79158 7.2869 2.79158 8.6183C2.79158 9.94971 3.8709 11.029 5.2023 11.029C5.5374 11.029 5.85851 10.9602 6.15063 10.8351C7.00907 10.4676 7.61302 9.61438 7.61302 8.6183C7.61302 7.2869 6.5337 6.20758 5.2023 6.20758ZM8.69212 11.4311C9.00594 11.1172 9.51474 11.1172 9.82855 11.4311L10.5469 12.1494L11.2652 11.4311C11.579 11.1172 12.0878 11.1172 12.4016 11.4311C12.7155 11.7449 12.7155 12.2537 12.4016 12.5675L11.6833 13.2858L12.3999 14.0025C12.7138 14.3163 12.7138 14.8251 12.3999 15.1389C12.0861 15.4527 11.5773 15.4527 11.2636 15.1389L10.5469 14.4222L9.83021 15.1389C9.51639 15.4527 9.0076 15.4527 8.69379 15.1389C8.37998 14.8251 8.37998 14.3163 8.69379 14.0025L9.41046 13.2858L8.69212 12.5675C8.37831 12.2537 8.37831 11.7449 8.69212 11.4311Z"
+                                                            fill="url(#paint0_linear_873_24)" />
+                                                        <defs>
+                                                            <linearGradient id="paint0_linear_873_24" x1="0.592714"
+                                                                y1="1.45414" x2="19.3796" y2="10.53"
+                                                                gradientUnits="userSpaceOnUse">
+                                                                <stop stop-color="#00D078" />
+                                                                <stop offset="1" stop-color="#007DF0" />
+                                                            </linearGradient>
+                                                        </defs>
                                                     </svg>
+
                                                 </div>
-                                                <p class="text-xs text-zinc-300">
-                                                    Trading Strategy: <span class="font-bold">Scalping</span>
+                                                <p class="text-xs text-zinc-300 font-bold">
+                                                    Trading Strategy: Scalping
                                                 </p>
                                             </div>
                                         </div>
@@ -355,10 +341,9 @@
                     </a>
                 </div>
 
-                <div x-cloak x-show="$store.robotPage.isStartRobotConfirmationModalOpen"
-                    class="fixed top-0 left-0 h-svh w-full px-4 lg:px-96 pt-6 z-20 bg-dashboard">
+                <div x-cloak x-show="$store.robotPage.isStartRobotConfirmationModalOpen" class="fixed top-0 left-0 h-svh w-full px-4 lg:px-96 pt-6 z-20 bg-[#0c0c0c]">
                     <div class="w-full h-full flex items-center justify-center">
-                        <div class="max-w-sm mx-auto bg-[#26252a] rounded-2xl pointer-events-auto">
+                        <div class="max-w-sm mx-auto bg-dashboard border border-[#26252a] rounded-2xl pointer-events-auto">
                             <div class="p-6 overflow-y-auto text-center">
                                 <div class="flex justify-center mb-8">
                                     <div
@@ -366,7 +351,7 @@
                                         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48"
                                             viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round"
-                                            class="lucide lucide-radio-icon lucide-radio">
+                                            class="animate-spin lucide lucide-radio-icon lucide-radio">
                                             <path d="M16.247 7.761a6 6 0 0 1 0 8.478" />
                                             <path d="M19.075 4.933a10 10 0 0 1 0 14.134" />
                                             <path d="M4.925 19.067a10 10 0 0 1 0-14.134" />
@@ -378,9 +363,9 @@
                                 <p class="text-white font-semibold text-xl mb-4">
                                     Robot is connecting to the markets...
                                 </p>
-                                <div class="w-full flex flex-col gap-y-2 justify-center items-center mb-4">
+                                <div class="w-full flex flex-col gap-y-2 justify-center items-center mb-5">
                                     <template x-if="$store.robotPage.isBrokerConnecting === true">
-                                        <div class="bg-[#1a1a1a] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
+                                        <div class="bg-[#242424] border border-[#3c3a43] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
                                             <div>
                                                 <i class="fa-solid fa-circle-notch fa-spin text-[#05df72]"></i>
                                             </div>
@@ -391,7 +376,7 @@
                                     </template>
 
                                     <template x-if="$store.robotPage.isBrokerConnecting === false">
-                                        <div class="bg-[#1a1a1a] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
+                                        <div class="bg-[#242424] border border-[#3c3a43] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
                                             <div>
                                                 <svg width="16" height="16" viewBox="0 0 16 16"
                                                     fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -418,7 +403,7 @@
                                     </template>
 
                                     <template x-if="$store.robotPage.isExchangeConnecting === true">
-                                        <div class="bg-[#1a1a1a] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
+                                        <div class="bg-[#242424] border border-[#3c3a43] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
                                             <div>
                                                 <i class="fa-solid fa-circle-notch fa-spin text-[#05df72]"></i>
                                             </div>
@@ -430,7 +415,7 @@
                                     </template>
 
                                     <template x-if="$store.robotPage.isExchangeConnecting === false">
-                                        <div class="bg-[#1a1a1a] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
+                                        <div class="bg-[#242424] border border-[#3c3a43] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
                                             <div>
                                                 <svg width="16" height="16" viewBox="0 0 16 16"
                                                     fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -449,21 +434,104 @@
                                             <div>
                                                 <p class="font-light text-xs text-white">Connected to </p>
                                             </div>
-                                            <div>
+                                            <div class="-mt-1">
                                                 <img class="inline" src="{{ asset('assets/icons/bybit.svg') }}"
                                                     alt="bybit-logo">
                                             </div>
                                         </div>
                                     </template>
                                 </div>
-                                <div class="mb-0">
-                                    <p class="text-white font-semibold text-xl mb-4">Opening with:</p>
-                                </div>
-                                <div>
-                                    <p class="text-white text-sm"><b>Amount</b>: @money(floatval($this->amount))</p>
-                                    <p class="text-white text-sm"><b>Account</b>: {{ $this->accountType }}</p>
-                                    <p class="text-white text-sm"><b>Trading Strategy</b>:
-                                        {{ $this->strategy['name'] }}</p>
+                                <div class="w-full flex justify-center items-center">
+                                    <div class="p-4 bg-[#242424] border border-[#3c3a43] w-full rounded-lg">
+                                        <p class="text-white font-semibold text-base mb-4 leading-4">Opening with:</p>
+
+                                        <div
+                                            class="flex items-center justify-center gap-x-1 pb-2 border-b border-[#26252a]">
+                                            <div class="flex-none">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                                                    viewBox="0 0 22 22" fill="none">
+                                                    <g clip-path="url(#clip0_51_44)">
+                                                        <path
+                                                            d="M15.3084 7.33333C15.126 6.81563 14.7927 6.36438 14.3517 6.03766C13.9106 5.71093 13.3818 5.52368 12.8334 5.5H9.16675C8.4374 5.5 7.73793 5.78973 7.2222 6.30546C6.70648 6.82118 6.41675 7.52065 6.41675 8.25C6.41675 8.97935 6.70648 9.67882 7.2222 10.1945C7.73793 10.7103 8.4374 11 9.16675 11H12.8334C13.5628 11 14.2622 11.2897 14.778 11.8055C15.2937 12.3212 15.5834 13.0207 15.5834 13.75C15.5834 14.4793 15.2937 15.1788 14.778 15.6945C14.2622 16.2103 13.5628 16.5 12.8334 16.5H9.16675C8.61835 16.4763 8.08958 16.2891 7.6485 15.9623C7.20742 15.6356 6.87421 15.1844 6.69175 14.6667"
+                                                            stroke="white" stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                        <path d="M11 2.75V5.5M11 16.5V19.25" stroke="white"
+                                                            stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_51_44">
+                                                            <rect width="22" height="22" fill="white" />
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </div>
+                                            <div class="flex-none">
+                                                <p class="text-zinc-300 text-xs">Amount</p>
+                                            </div>
+                                            <div class="flex-1 text-end text-white font-medium text-sm">
+                                                @money(floatval($this->amount))</div>
+                                        </div>
+
+                                        <div
+                                            class="flex items-center justify-center gap-x-1 pb-2 border-b border-[#26252a]">
+                                            <div class="flex-none">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                                                    viewBox="0 0 22 22" fill="none">
+                                                    <g clip-path="url(#clip0_52_49)">
+                                                        <path
+                                                            d="M3.66675 5.50008C3.66675 5.01385 3.8599 4.54754 4.20372 4.20372C4.54754 3.8599 5.01385 3.66675 5.50008 3.66675H16.5001C16.9863 3.66675 17.4526 3.8599 17.7964 4.20372C18.1403 4.54754 18.3334 5.01385 18.3334 5.50008V7.33341C18.3334 7.81965 18.1403 8.28596 17.7964 8.62978C17.4526 8.97359 16.9863 9.16675 16.5001 9.16675H5.50008C5.01385 9.16675 4.54754 8.97359 4.20372 8.62978C3.8599 8.28596 3.66675 7.81965 3.66675 7.33341V5.50008Z"
+                                                            stroke="white" stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                        <path
+                                                            d="M3.66675 14.6666C3.66675 14.1804 3.8599 13.714 4.20372 13.3702C4.54754 13.0264 5.01385 12.8333 5.50008 12.8333H16.5001C16.9863 12.8333 17.4526 13.0264 17.7964 13.3702C18.1403 13.714 18.3334 14.1804 18.3334 14.6666V16.4999C18.3334 16.9861 18.1403 17.4525 17.7964 17.7963C17.4526 18.1401 16.9863 18.3333 16.5001 18.3333H5.50008C5.01385 18.3333 4.54754 18.1401 4.20372 17.7963C3.8599 17.4525 3.66675 16.9861 3.66675 16.4999V14.6666Z"
+                                                            stroke="white" stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_52_49">
+                                                            <rect width="22" height="22" fill="white" />
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </div>
+                                            <div class="flex-none">
+                                                <p class="text-zinc-300 text-xs">Account</p>
+                                            </div>
+                                            <div class="flex-1 text-end text-white font-medium text-sm">
+                                                {{ $this->accountType }}</div>
+                                        </div>
+
+                                        <div
+                                            class="flex items-center justify-center gap-x-1 border-b border-[#26252a]">
+                                            <div class="flex-none">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                                                    viewBox="0 0 22 22" fill="none">
+                                                    <g clip-path="url(#clip0_52_54)">
+                                                        <path
+                                                            d="M14.6667 14.6667L15.9931 15.3304C16.1453 15.4065 16.2734 15.5234 16.3629 15.6682C16.4524 15.8129 16.4999 15.9797 16.5 16.1499V18.3334H5.5V16.1499C5.50009 15.9797 5.54756 15.8129 5.63709 15.6682C5.72662 15.5234 5.85468 15.4065 6.00692 15.3304L7.33333 14.6667H14.6667Z"
+                                                            stroke="white" stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                        <path
+                                                            d="M13.75 2.75L12.8334 5.5L16.0335 7.469C16.2036 7.57354 16.3349 7.73076 16.4075 7.91678C16.4801 8.1028 16.49 8.30743 16.4356 8.49956C16.3812 8.69169 16.2656 8.86082 16.1063 8.98123C15.947 9.10165 15.7528 9.16676 15.5531 9.16666H12.8334L14.7336 14.6667H7.43605L7.33338 10.0833C7.33338 7.33333 8.33254 4.59891 11 3.66666C12.7784 3.04516 13.695 2.73991 13.75 2.75Z"
+                                                            stroke="white" stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_52_54">
+                                                            <rect width="22" height="22" fill="white"
+                                                                transform="matrix(-1 0 0 1 22 0)" />
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </div>
+                                            <div class="flex-none">
+                                                <p class="text-zinc-300 text-xs">Trading Strategy</p>
+                                            </div>
+                                            <div class="flex-1 text-end text-white font-medium text-sm">
+                                                {{ $this->strategy['name'] }}</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -530,6 +598,15 @@
 
             isExchangeConnecting: true,
 
+            checkMinimumAmount(wire) {
+                if (parseFloat(wire.amount) < parseInt(wire.minimumAmount) && parseFloat(wire
+                        .amount) !== 0) {
+                    let message = `Minimum amount is $${wire.minimumAmount}`;
+                    toastRobotError(message);
+                    return;
+                }
+            },
+
             toggleStartRobotConfirmationModal(wire) {
                 if (wire.accountStatus === 'inactive') {
                     toastRobotError(
@@ -569,15 +646,15 @@
 
                 setTimeout(() => {
                     this.isBrokerConnecting = false;
-                }, 1500);
+                }, 4000);
 
                 setTimeout(() => {
                     this.isExchangeConnecting = false;
-                }, 3000);
+                }, 8000);
 
                 setTimeout(() => {
                     wire.startRobot();
-                }, 5000);
+                }, 10000);
             }
         })
     })

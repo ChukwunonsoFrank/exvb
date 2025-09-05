@@ -86,7 +86,7 @@
                                 </svg>
                             </div>
                             <div class="flex-1 grow">
-                                <p class="text-zinc-300 text-xs">Amount</p>
+                                <p class="text-zinc-300 text-xs">Trade Amount</p>
                             </div>
                             <div class="flex-none text-end text-white font-medium text-sm">@money($this->amount)</div>
                         </div>
@@ -142,7 +142,7 @@
                                 </svg>
                             </div>
                             <div class="flex-1 grow">
-                                <p class="text-zinc-300 text-xs">Strategy</p>
+                                <p class="text-zinc-300 text-xs">Trading Strategy</p>
                             </div>
                             <div class="flex-none text-end text-white font-medium text-sm">{{ $this->strategy }}</div>
                         </div>
@@ -176,9 +176,38 @@
                                 </svg>
                             </div>
                             <div class="flex-1 grow">
-                                <p class="text-zinc-300 text-xs">Profit limit</p>
+                                <p class="text-zinc-300 text-xs">Target Profit</p>
                             </div>
                             <div class="flex-none text-end text-white font-medium text-sm">{{ $this->profitLimit }}%
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-center space-x-2 py-2 border-b border-[#26252a]">
+                            <div class="flex-none">
+                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_875_27)">
+                                        <path
+                                            d="M18.2188 5.7475C18.8604 6.11233 19.2546 6.79525 19.25 7.53317V14.2102C19.25 14.9517 18.8439 15.6356 18.1885 15.9958L12.001 19.91C11.6942 20.0784 11.35 20.1667 11 20.1667C10.6501 20.1667 10.3058 20.0784 9.999 19.91L3.8115 15.9958C3.49082 15.8206 3.22311 15.5624 3.03638 15.2483C2.84964 14.9341 2.75073 14.5756 2.75 14.2102V7.53225C2.75 6.79067 3.15608 6.10775 3.8115 5.7475L9.999 2.09917C10.3148 1.92503 10.6696 1.83371 11.0303 1.83371C11.3909 1.83371 11.7457 1.92503 12.0615 2.09917L18.249 5.7475H18.2188Z"
+                                            stroke="white" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path d="M11 7.33333V11" stroke="white" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M11 14.6667H11.01" stroke="white" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_875_27">
+                                            <rect width="22" height="22" fill="white" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+
+                            </div>
+                            <div class="flex-1 grow">
+                                <p class="text-zinc-300 text-xs">Risk Level</p>
+                            </div>
+                            <div class="flex-none text-end text-white font-medium text-sm">Low Risk
                             </div>
                         </div>
 
@@ -215,18 +244,52 @@
 
                             </div>
                             <div class="flex-1 grow">
-                                <p class="text-zinc-300 text-xs">Fees - 1% (charged from profits)</p>
+                                <p class="text-zinc-300 text-xs">Trading Fee</p>
                             </div>
                             <div x-text="fee" class="flex-none text-end text-white font-medium text-sm">
                             </div>
                         </div>
                     </div>
 
-                    <div>
+                    <div class="mb-4">
                         <button x-on:click="toggleStopRobotConfirmationModal()" type="button"
                             class="py-2.5 cursor-pointer px-4 w-full md:px-6 text-center gap-x-2 text-sm font-semibold rounded-lg bg-accent text-white focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none">
                             Stop the robot
                         </button>
+                    </div>
+
+                    <div class="text-sm text-white rounded-lg bg-[#26252a] p-4" role="alert" tabindex="-1"
+                        aria-labelledby="hs-with-description-label">
+                        <div class="flex items-center">
+                            <div class="shrink-0 text-green-400">
+                                <div class="flex items-center justify-center size-8 rounded-full">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14"
+                                        id="Padlock-Square-1--Streamline-Core-Gradient" height="24"
+                                        width="24">
+                                        <g
+                                            id="Free Gradient/Interface Essential/padlock-square-1--combination-combo-lock-locked-padlock-secure-security-shield-keyhole">
+                                            <path id="Subtract" fill="url(#paint0_linear_14402_8150)"
+                                                fill-rule="evenodd"
+                                                d="M6.99997 1.99994c-1.10457 0-2 .89543-2 2v1h4v-1c0-1.10457-.89543-2-2-2Zm-4 2v1H2.5c-.82843 0-1.5.67157-1.5 1.5v5.99996c0 .8285.67157 1.5 1.5 1.5h9c.8284 0 1.5-.6715 1.5-1.5V6.49994c0-.82843-.6716-1.5-1.5-1.5H11v-1C11 1.7908 9.20911-.0000610352 6.99997-.0000610352c-2.20914 0-4 1.7908610352-4 4.0000010352ZM7 10.7499c.69036 0 1.25-.5596 1.25-1.24996s-.55964-1.25-1.25-1.25-1.25.55964-1.25 1.25S6.30964 10.7499 7 10.7499Z"
+                                                clip-rule="evenodd"></path>
+                                        </g>
+                                        <defs>
+                                            <linearGradient id="paint0_linear_14402_8150" x1="2.962"
+                                                x2="13.298" y1="2.692" y2="7.601"
+                                                gradientUnits="userSpaceOnUse">
+                                                <stop stop-color="#ffd600"></stop>
+                                                <stop offset="1" stop-color="#00d078"></stop>
+                                            </linearGradient>
+                                        </defs>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="ms-1">
+                                <div class="mt-1 text-zinc-300 text-[13px] font-bold">
+                                    Secure Trading | Capital Protection & Risk Management With AI Driven Strategies.
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
