@@ -258,7 +258,7 @@
                         </button>
                     </div>
 
-                    <div class="text-sm text-white rounded-lg bg-[#26252a] p-4" role="alert" tabindex="-1"
+                    <div class="text-sm text-white rounded-lg bg-[#242424] py-3 px-4" role="alert" tabindex="-1"
                         aria-labelledby="hs-with-description-label">
                         <div class="flex items-center">
                             <div class="shrink-0 text-green-400">
