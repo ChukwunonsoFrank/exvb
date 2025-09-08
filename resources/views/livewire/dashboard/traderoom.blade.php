@@ -208,7 +208,6 @@
                                         </clipPath>
                                     </defs>
                                 </svg>
-
                             </div>
                             <div class="flex-1 grow">
                                 <p class="text-zinc-300 text-xs">Account</p>

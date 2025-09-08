@@ -51,7 +51,7 @@ class Traderoom extends Component
 
         $this->activeBot = Bot::where(['user_id' => auth()->user()->id, 'status' => 'active'])->first();
 
-        $previousBot = Bot::find($this->activeBot['id'] - 1);
+        $previousBot = Bot::where(['user_id' => auth()->user()->id, 'id' => $this->activeBot['id'] - 1])->first();
 
         $this->previousBotProfit = $previousBot['profit'];
 
