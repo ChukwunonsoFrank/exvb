@@ -26,13 +26,19 @@ class Traderoom extends Component
 
     public string $strategy = '';
 
-    public string $profitLimit = '';
+    public string $minProfitLimit = '';
+
+    public string $maxProfitLimit = '';
 
     public string $profit = '';
+
+    public int $previousBotProfit;
 
     public string $asset = '';
 
     public string $assetIcon = '';
+
+    public string $assetClass = '';
 
     public string $sentiment = '';
 
@@ -45,6 +51,10 @@ class Traderoom extends Component
 
         $this->activeBot = Bot::where(['user_id' => auth()->user()->id, 'status' => 'active'])->first();
 
+        $previousBot = Bot::find($this->activeBot['id'] - 1);
+
+        $this->previousBotProfit = $previousBot['profit'];
+
         if (is_null($this->activeBot)) {
             $this->redirectRoute('dashboard.robot');
             return;
@@ -56,10 +66,12 @@ class Traderoom extends Component
         $strategy = Strategy::find($this->activeBot['strategy']);
 
         $this->strategy = $strategy['name'];
-        $this->profitLimit = $strategy['max_roi'];
+        $this->minProfitLimit = $strategy['min_roi'];
+        $this->maxProfitLimit = $strategy['max_roi'];
         $this->profit = $this->normalizeAmount($this->activeBot['profit']);
         $this->fee = $this->calculateFees();
         $this->asset = $this->activeBot['asset'];
+        $this->assetClass = $this->activeBot['asset_class'];
         $this->assetIcon = $this->activeBot['asset_image_url'];
         $this->sentiment = $this->activeBot['sentiment'];
         $this->timerCheckpoint = $this->activeBot['timer_checkpoint'];
@@ -88,6 +100,7 @@ class Traderoom extends Component
         $this->profit = $this->normalizeAmount($activeBot['profit']);
         $this->fee = $this->calculateFees();
         $this->asset = $activeBot['asset'];
+        $this->assetClass = $activeBot['asset_class'];
         $this->assetIcon = $activeBot['asset_image_url'];
         $this->sentiment = $activeBot['sentiment'];
         $data = [

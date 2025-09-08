@@ -725,40 +725,6 @@ class Robot extends Component
     public function startRobot(): void
     {
         try {
-            // if ($this->accountStatus === 'inactive') {
-            //     $this->dispatch('robot-error', message: 'This account has been disabled and unable to perform any transactions. Kindly contact support for more details.')->self();
-            //     return;
-            // }
-
-            // if ($this->amount === '') {
-            //     $this->dispatch('robot-error', message: 'Amount field is empty')->self();
-            //     return;
-            // }
-
-            // if (intval($this->amount) === 0) {
-            //     $this->dispatch('robot-error', message: 'Amount must be greater than 0')->self();
-            //     return;
-            // }
-
-            // if (floatval($this->amount) < intval($this->strategy['min_amount'])) {
-            //     $message = 'Minimum amount is $' . $this->strategy['min_amount'];
-            //     $this->dispatch('robot-error', message: $message)->self();
-            //     return;
-            // }
-
-            // $accountBalanceToCheck = $this->accountTypeSlug === 'demo' ? auth()->user()->demo_balance : auth()->user()->live_balance;
-            // $normalizedBalance = $this->normalizeAmount($accountBalanceToCheck);
-            // if (floatval($this->amount) > $normalizedBalance) {
-            //     $this->dispatch('robot-error', message: 'Insufficient balance')->self();
-            //     return;
-            // }
-
-            // $bot = Bot::where(['user_id' => auth()->user()->id, 'status' => 'active'])->get();
-            // if (! $bot->isEmpty()) {
-            //     $this->dispatch('robot-error', message: 'Bot is still trading')->self();
-            //     return;
-            // }
-
             $amount = floatval($this->amount);
             $assetToTrade = $this->generateAssetToTrade();
             $profitLimit = (intval($this->strategy['max_roi']) / 100) * $amount;

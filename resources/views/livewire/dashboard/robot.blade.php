@@ -89,7 +89,7 @@
                                 Amount</label>
                             <div class="relative">
                                 <input wire:model="amount" wire:keyup.debounce.300ms="calculateProfitExpected"
-                                    @input.debounce.1s="$store.robotPage.checkMinimumAmount($wire)" type="text"
+                                    @input.debounce.500ms="$store.robotPage.checkMinimumAmount($wire)" type="text"
                                     class="bg-transparent text-white border border-[#26252a] text-sm peer py-3 px-4 ps-11 block w-full rounded-lg sm:text-sm focus:outline-0"
                                     placeholder="">
                                 <div
@@ -257,55 +257,59 @@
                                 </div>
                                 <label for="hs-vertical-radio-in-form-{{ $strategy['id'] }}"
                                     wire:key="strategy-{{ $strategy['id'] }}"
-                                    class="flex relative px-3 py-3 pb-4 gap-x-4 items-start w-full bg-dashboard rounded-lg border-3 border-[#26252a] text-sm focus:border-blue-500 focus:ring-blue-500">
+                                    class="flex relative px-3 py-3 pb-4 gap-x-4 items-center w-full bg-dashboard rounded-lg border-3 border-[#26252a] text-sm focus:border-blue-500 focus:ring-blue-500">
                                     <div class="flex-none w-12">
                                         <img class="w-24" src="{{ asset('assets/images/robot-illustration.png') }}"
                                             alt="">
                                     </div>
                                     <div class="flex-1">
-                                        {{-- <h2 class="font-bold mb-1 text-base text-white">
-                                            {{ $strategy['name'] }}
-                                        </h2> --}}
-
+                                        <h2 class="font-bold mb-1 text-base text-white">
+                                            Trading Strategy: {{ $strategy['name'] }}
+                                        </h2>
                                         <div class="mb-1">
-                                            <div class="flex items-start gap-x-1">
+                                            <p class="text-xs text-[#a4a4a4] font-normal">
+                                                Estimated 24 hours returns range from
+                                                {{ $this->strategy['min_roi'] }}% to
+                                                {{ $this->strategy['max_roi'] }}%, depending on market
+                                                conditions.
+                                            </p>
+                                            {{-- <div class="flex items-center gap-x-1">
                                                 <div>
-                                                    <img class="w-8"
-                                                        src="{{ asset('assets/images/estimate-clock.png') }}"
-                                                        alt="">
-                                                </div>
-                                                <p class="text-xs text-zinc-300 font-bold">
-                                                    Estimated 24 hours returns range from
-                                                    {{ $this->strategy['min_roi'] }}% to
-                                                    {{ $this->strategy['max_roi'] }}%, depending on market
-                                                    conditions.
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <div class="flex items-center gap-x-1">
-                                                <div>
-                                                    <svg width="16" height="18" viewBox="0 0 16 18"
+                                                    <svg width="16" height="16" viewBox="0 0 16 16"
                                                         fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                                            d="M9.32143 3.21429H6.10714C5.21954 3.21429 4.5 2.49475 4.5 1.60714C4.5 0.719542 5.21954 0 6.10714 0H9.32143C10.209 0 10.9286 0.719542 10.9286 1.60714C10.9286 2.49475 10.209 3.21429 9.32143 3.21429ZM6.10714 4.82143H9.32143C11.0966 4.82143 12.5357 3.38234 12.5357 1.60714C12.5357 1.49867 12.5303 1.39144 12.5199 1.28571H13.5C14.5651 1.28571 15.4286 2.14916 15.4286 3.21429V16.0714C15.4286 17.1365 14.5651 18 13.5 18H1.92857C0.863447 18 0 17.1365 0 16.0714V3.21429C0 2.14916 0.863447 1.28571 1.92857 1.28571H2.90872C2.89823 1.39144 2.89286 1.49867 2.89286 1.60714C2.89286 3.38234 4.33194 4.82143 6.10714 4.82143ZM4.39872 8.6183C4.39872 8.17451 4.75851 7.81473 5.2023 7.81473C5.6461 7.81473 6.00588 8.17451 6.00588 8.6183C6.00588 8.94865 5.80638 9.23424 5.51805 9.35769C5.42217 9.39874 5.31598 9.42187 5.2023 9.42187C4.75851 9.42187 4.39872 9.0621 4.39872 8.6183ZM5.2023 6.20758C3.8709 6.20758 2.79158 7.2869 2.79158 8.6183C2.79158 9.94971 3.8709 11.029 5.2023 11.029C5.5374 11.029 5.85851 10.9602 6.15063 10.8351C7.00907 10.4676 7.61302 9.61438 7.61302 8.6183C7.61302 7.2869 6.5337 6.20758 5.2023 6.20758ZM8.69212 11.4311C9.00594 11.1172 9.51474 11.1172 9.82855 11.4311L10.5469 12.1494L11.2652 11.4311C11.579 11.1172 12.0878 11.1172 12.4016 11.4311C12.7155 11.7449 12.7155 12.2537 12.4016 12.5675L11.6833 13.2858L12.3999 14.0025C12.7138 14.3163 12.7138 14.8251 12.3999 15.1389C12.0861 15.4527 11.5773 15.4527 11.2636 15.1389L10.5469 14.4222L9.83021 15.1389C9.51639 15.4527 9.0076 15.4527 8.69379 15.1389C8.37998 14.8251 8.37998 14.3163 8.69379 14.0025L9.41046 13.2858L8.69212 12.5675C8.37831 12.2537 8.37831 11.7449 8.69212 11.4311Z"
-                                                            fill="url(#paint0_linear_873_24)" />
+                                                        <path
+                                                            d="M12.4443 0C14.408 0 16 1.59198 16 3.55566V12.4443C16 14.408 14.408 16 12.4443 16H3.55566C1.59198 16 0 14.408 0 12.4443V3.55566C0 1.59198 1.59198 0 3.55566 0H12.4443ZM8 2.66699C5.05448 2.66699 2.66699 5.05448 2.66699 8C2.66699 10.9455 5.05448 13.333 8 13.333C10.9455 13.333 13.333 10.9455 13.333 8C13.333 5.05448 10.9455 2.66699 8 2.66699Z"
+                                                            fill="url(#paint0_linear_896_32)" />
+                                                        <rect x="7.11108" y="5.33331" width="0.977778"
+                                                            height="3.37778" rx="0.488889" fill="#009CC2" />
+                                                        <rect x="7.11108" y="8.97778" width="0.977778"
+                                                            height="3.37778" rx="0.488889"
+                                                            transform="rotate(-90 7.11108 8.97778)" fill="#009CC2" />
                                                         <defs>
-                                                            <linearGradient id="paint0_linear_873_24" x1="0.592714"
-                                                                y1="1.45414" x2="19.3796" y2="10.53"
+                                                            <linearGradient id="paint0_linear_896_32" x1="0.614857"
+                                                                y1="1.29257" x2="18.8503" y2="11.5714"
                                                                 gradientUnits="userSpaceOnUse">
                                                                 <stop stop-color="#00D078" />
                                                                 <stop offset="1" stop-color="#007DF0" />
                                                             </linearGradient>
                                                         </defs>
                                                     </svg>
-
                                                 </div>
-                                                <p class="text-xs text-zinc-300 font-bold">
-                                                    Trading Strategy: Scalping
+                                                <p class="text-xs text-zinc-300 font-normal">
+                                                    Estimated 24 hours returns range from
+                                                    {{ $this->strategy['min_roi'] }}% to
+                                                    {{ $this->strategy['max_roi'] }}%, depending on market
+                                                    conditions.
                                                 </p>
-                                            </div>
+                                            </div> --}}
+                                            {{-- <div>
+                                                <ul class="list-disc list-inside text-xs text-zinc-300 font-normal">
+                                                    <li>Estimated 24 hours returns range from
+                                                    {{ $this->strategy['min_roi'] }}% to
+                                                    {{ $this->strategy['max_roi'] }}%, depending on market
+                                                    conditions.</li>
+                                                </ul>
+                                            </div> --}}
                                         </div>
                                     </div>
                                 </label>
@@ -332,7 +336,7 @@
                 </div>
 
                 <div class="sticky bottom-2">
-                    <a x-on:click="$store.robotPage.toggleStartRobotConfirmationModal($wire);">
+                    <a x-on:click="$store.robotPage.toggleTradeDetailsConfirmationModal();">
                         <button type="button" wire:loading.attr="disabled"
                             class="py-2.5 cursor-pointer px-4 w-full md:px-6 text-center gap-x-2 text-sm font-semibold rounded-lg bg-accent text-white focus:outline-hidden disabled:pointer-events-none">
                             <i wire:loading class="fa-solid fa-circle-notch fa-spin"></i>
@@ -341,9 +345,58 @@
                     </a>
                 </div>
 
-                <div x-cloak x-show="$store.robotPage.isStartRobotConfirmationModalOpen" class="fixed top-0 left-0 h-svh w-full px-4 lg:px-96 pt-6 z-20 bg-[#0c0c0c]">
+                <div x-cloak x-show="$store.robotPage.isTradeDetailsConfirmationModalOpen"
+                    class="fixed top-0 left-0 h-svh w-full px-4 lg:px-96 pt-6 z-20 bg-[#0c0c0c]">
                     <div class="w-full h-full flex items-center justify-center">
-                        <div class="max-w-sm mx-auto bg-dashboard border border-[#26252a] rounded-2xl pointer-events-auto">
+                        <div
+                            class="max-w-sm mx-auto flex flex-col bg-dashboard border border-[#26252a] rounded-2xl pointer-events-auto">
+                            <div class="p-6 overflow-y-auto text-center">
+                                <div class="flex justify-center mb-8">
+                                    <div
+                                        class="size-18 flex items-center justify-center rounded-full border-3 border-accent">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48"
+                                            viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-bot-icon lucide-bot">
+                                            <path d="M12 8V4H8" />
+                                            <rect width="16" height="12" x="4" y="8" rx="2" />
+                                            <path d="M2 14h2" />
+                                            <path d="M20 14h2" />
+                                            <path d="M15 13v2" />
+                                            <path d="M9 13v2" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <p class="text-white font-medium text-base">
+                                    Start Robot Now with @money(floatval($this->amount)) on {{ $this->accountType }}
+                                </p>
+                                <div class="mt-6 grid grid-cols-2 gap-x-2">
+                                    <div>
+                                        <button type="button"
+                                            x-on:click="$store.robotPage.toggleTradeDetailsConfirmationModal(); $store.robotPage.toggleStartRobotConfirmationModal($wire);"
+                                            type="button"
+                                            class="p-3 w-full text-center text-sm font-semibold rounded-lg border border-transparent bg-accent text-white cursor-pointer hover:bg-accent focus:outline-hidden focus:bg-accent disabled:opacity-50 disabled:pointer-events-none">
+                                            Yes
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <button x-on:click="$store.robotPage.toggleTradeDetailsConfirmationModal()"
+                                            type="button"
+                                            class="p-3 w-full text-center text-sm font-semibold rounded-lg border border-white text-white shadow-2xs cursor-pointer focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none">
+                                            No
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div x-cloak x-show="$store.robotPage.isStartRobotConfirmationModalOpen"
+                    class="fixed top-0 left-0 h-svh w-full px-4 lg:px-96 pt-6 z-20 bg-[#0c0c0c]">
+                    <div class="w-full h-full flex items-center justify-center">
+                        <div
+                            class="max-w-sm mx-auto bg-dashboard border border-[#26252a] rounded-2xl pointer-events-auto">
                             <div class="p-6 overflow-y-auto text-center">
                                 <div class="flex justify-center mb-8">
                                     <div
@@ -365,7 +418,8 @@
                                 </p>
                                 <div class="w-full flex flex-col gap-y-2 justify-center items-center mb-5">
                                     <template x-if="$store.robotPage.isBrokerConnecting === true">
-                                        <div class="bg-[#242424] border border-[#3c3a43] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
+                                        <div
+                                            class="bg-[#242424] border border-[#3c3a43] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
                                             <div>
                                                 <i class="fa-solid fa-circle-notch fa-spin text-[#05df72]"></i>
                                             </div>
@@ -376,7 +430,8 @@
                                     </template>
 
                                     <template x-if="$store.robotPage.isBrokerConnecting === false">
-                                        <div class="bg-[#242424] border border-[#3c3a43] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
+                                        <div
+                                            class="bg-[#242424] border border-[#3c3a43] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
                                             <div>
                                                 <svg width="16" height="16" viewBox="0 0 16 16"
                                                     fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -403,7 +458,8 @@
                                     </template>
 
                                     <template x-if="$store.robotPage.isExchangeConnecting === true">
-                                        <div class="bg-[#242424] border border-[#3c3a43] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
+                                        <div
+                                            class="bg-[#242424] border border-[#3c3a43] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
                                             <div>
                                                 <i class="fa-solid fa-circle-notch fa-spin text-[#05df72]"></i>
                                             </div>
@@ -415,7 +471,8 @@
                                     </template>
 
                                     <template x-if="$store.robotPage.isExchangeConnecting === false">
-                                        <div class="bg-[#242424] border border-[#3c3a43] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
+                                        <div
+                                            class="bg-[#242424] border border-[#3c3a43] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
                                             <div>
                                                 <svg width="16" height="16" viewBox="0 0 16 16"
                                                     fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -443,8 +500,7 @@
                                 </div>
                                 <div class="w-full flex justify-center items-center">
                                     <div class="p-4 bg-[#242424] border border-[#3c3a43] w-full rounded-lg">
-                                        <p class="text-white font-semibold text-base mb-4 leading-4">Opening with:</p>
-
+                                        <p class="text-white font-semibold text-base mb-4 leading-4">Trade Details</p>
                                         <div
                                             class="flex items-center justify-center gap-x-1 pb-2 border-b border-[#26252a]">
                                             <div class="flex-none">
@@ -467,7 +523,7 @@
                                                 </svg>
                                             </div>
                                             <div class="flex-none">
-                                                <p class="text-zinc-300 text-xs">Amount</p>
+                                                <p class="text-zinc-300 text-xs">Trade Amount</p>
                                             </div>
                                             <div class="flex-1 text-end text-white font-medium text-sm">
                                                 @money(floatval($this->amount))</div>
@@ -569,7 +625,13 @@
 
 
 <script>
+    let lastToast = null;
+
     function toastRobotError(message) {
+        if (lastToast) {
+            lastToast.hideToast();
+        }
+
         const robotErrorToastMarkup = `
             <div class="flex items-center p-4">
                 <div class="shrink-0">
@@ -581,18 +643,22 @@
             </div>
         `;
 
-        Toastify({
+        lastToast = Toastify({
             text: robotErrorToastMarkup,
             className: "hs-toastify-on:opacity-100 opacity-0 absolute top-0 start-1/2 -translate-x-1/2 z-90 w-4/5 md:w-1/2 lg:w-1/4 transition-all duration-300 bg-[#26252a] text-sm text-white rounded-xl shadow-lg [&>.toast-close]:hidden",
-            duration: 4000,
+            duration: 1500,
             close: true,
             escapeMarkup: false
-        }).showToast();
+        });
+
+        lastToast.showToast();
     }
 
     document.addEventListener('alpine:init', () => {
         Alpine.store('robotPage', {
             isStartRobotConfirmationModalOpen: false,
+
+            isTradeDetailsConfirmationModalOpen: false,
 
             isBrokerConnecting: true,
 
@@ -605,6 +671,10 @@
                     toastRobotError(message);
                     return;
                 }
+            },
+
+            toggleTradeDetailsConfirmationModal() {
+                this.isTradeDetailsConfirmationModalOpen = !this.isTradeDetailsConfirmationModalOpen;
             },
 
             toggleStartRobotConfirmationModal(wire) {

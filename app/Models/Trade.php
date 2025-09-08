@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Trade extends Model
 {
@@ -14,5 +15,10 @@ class Trade extends Model
     public function getCreatedAtFormattedAttribute()
     {
         return Carbon::parse($this->created_at)->format('d.m.y');
+    }
+
+    public function bot(): BelongsTo
+    {
+        return $this->belongsTo(Bot::class);
     }
 }

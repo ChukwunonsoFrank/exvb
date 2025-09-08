@@ -7,50 +7,50 @@
             </div>
             <div class="lg:h-full pb-14 lg:pb-24 lg:overflow-scroll scrollbar-hide">
                 @forelse ($bots as $bot)
-                    <a href="{{ route('dashboard.history.details', ['id' => $bot['id']]) }}">
-                        <div wire:key="bot-{{ $bot['id'] }}"
-                            class="bg-[#26252a] w-full rounded-lg flex flex-col space-y-2 p-3 px-4 mb-3">
-                            <div class="flex items-center gap-x-4">
-                                <div class="flex-none">
-                                    <img class="w-7" src="{{ asset('assets/images/robot-illustration.png') }}"
-                                        alt="">
-                                </div>
-                                <div class="flex-1">
-                                    <div class="flex items-center mb-1.5">
-                                        <div class="flex-1">
-                                            <span
-                                                class="inline-flex items-center gap-x-1.5 py-0.5 px-2.5 rounded-md text-[10px] bg-[#3b3a41] uppercase font-medium text-white">{{ ucfirst($bot['account_type']) }}</span>
-                                        </div>
-                                        <div class="flex-1 text-end">
-                                            <p class="text-[#8d8d8d] text-xs">{{ $bot['created_at_formatted'] }}</p>
-                                        </div>
+                    <div wire:key="bot-{{ $bot['id'] }}"
+                        class="bg-[#26252a] w-full rounded-lg flex flex-col space-y-2 p-3 px-4 mb-3">
+                        <div class="flex items-center gap-x-4">
+                            <div class="flex-none">
+                                <img class="w-7" src="{{ asset('assets/images/robot-illustration.png') }}"
+                                    alt="">
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center mb-1.5">
+                                    <div class="flex-1">
+                                        <span
+                                            class="inline-flex items-center gap-x-1.5 py-0.5 px-2.5 rounded-md text-[10px] bg-[#3b3a41] uppercase font-medium text-white">{{ ucfirst($bot['account_type']) }}</span>
                                     </div>
-                                    <div class="flex items-center">
-                                        <div class="flex-1 inline-flex items-center gap-x-1">
-                                            <p class="font-semibold text-xs inline text-white md:text-sm">
-                                                @money($bot['amount'] / 100)
-                                            </p>
-                                            <span
-                                                class="inline-flex items-center gap-x-1.5 py-0.5 px-1.5 rounded-md text-[9px] font-medium {{ $bot['status'] === 'active' ? 'bg-[ ]' : 'bg-[#e32d2d]' }} text-white">{{ ucfirst($bot['status']) }}</span>
-                                        </div>
-                                        <div class="flex-1 text-end">
-                                            <p class="font-semibold text-sm md:text-base text-green-500">
-                                                +@money($bot['profit'] / 100)
-                                            </p>
-                                        </div>
+                                    <div class="flex-1 text-end">
+                                        <p class="font-semibold text-sm md:text-base text-green-500">
+                                            +@money($bot['profit'] / 100)
+                                        </p>
                                     </div>
                                 </div>
-                                <div class="flex-none">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                        viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round"
-                                        class="lucide lucide-chevron-right-icon lucide-chevron-right">
-                                        <path d="m9 18 6-6-6-6" />
-                                    </svg>
+                                <div class="flex items-center">
+                                    <div class="flex-1 inline-flex items-center gap-x-1">
+                                        <p class="font-semibold text-xs inline text-white md:text-sm">
+                                            @money($bot['amount'] / 100)
+                                        </p>
+                                        <span
+                                            class="inline-flex items-center gap-x-1.5 py-0.5 px-1.5 rounded-md text-[9px] font-medium {{ $bot['status'] === 'active' ? 'bg-[#31865b]' : 'bg-[#e32d2d]' }} text-white">{{ ucfirst($bot['status']) }}</span>
+                                    </div>
+                                    <div class="flex-1 text-end">
+                                        <a href="{{ route('dashboard.history.details', ['id' => $bot['id']]) }}">
+                                            <button type="button"
+                                                class="px-2 py-1 inline-flex items-center gap-x-1 text-[11px] font-bold tracking-[0.15px] rounded-md bg-[#313131] border border-[#606060] text-white focus:outline-hidden">
+                                                View trades
+                                                <svg width="6" height="10" viewBox="0 0 6 10" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M1 9L5 5L1 1" stroke="white" stroke-width="1.33333"
+                                                        stroke-linecap="round" stroke-linejoin="round" />
+                                                </svg>
+                                            </button>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </a>
+                    </div>
                 @empty
                     <div class="flex justify-center items-center">
                         <div class="bg-[#26252a] w-full rounded-lg flex flex-col space-y-2 p-3 mb-3">

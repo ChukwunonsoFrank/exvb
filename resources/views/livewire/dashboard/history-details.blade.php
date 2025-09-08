@@ -11,7 +11,8 @@
                         class="bg-[#26252a] w-full rounded-lg flex flex-col space-y-2 p-3 px-4 mb-3">
                         <div class="flex items-center gap-x-4">
                             <div class="flex-none">
-                                <img class="md:w-7" src="{{ asset($trade['asset_image_url']) }}" alt="">
+                                <span
+                                    class="inline-flex items-center gap-x-1.5 py-0.5 px-1.5 rounded-md text-[9px] font-medium {{ $trade['sentiment'] === 'BUY' ? 'bg-[#31865b]' : 'bg-[#e32d2d]' }} text-white">{{ $trade['sentiment'] }}</span>
                             </div>
                             <div class="flex-1">
                                 <div class="flex items-center mb-1.5">
@@ -25,11 +26,18 @@
                                 </div>
                                 <div class="flex items-center">
                                     <div class="flex-1 inline-flex items-center gap-x-1">
+                                        <img class="md:w-7" src="{{ asset($trade['asset_image_url']) }}" alt="">
                                         <p class="font-semibold text-xs inline text-white md:text-sm">
-                                            Traded {{ $trade['asset'] }}
+                                            Traded {{ $trade['asset'] }} on
                                         </p>
-                                        <span
-                                            class="inline-flex items-center gap-x-1.5 py-0.5 px-1.5 rounded-md text-[9px] font-medium {{ $trade['sentiment'] === 'BUY' ? 'bg-[#31865b]' : 'bg-[#e32d2d]' }} text-white">{{ $trade['sentiment'] }}</span>
+                                        @if ($this->getAssetClass($trade['asset']) === 'crypto')
+                                            <img class="inline-block -mt-0.5 w-9" src="{{ asset('assets/icons/bybit.svg') }}"
+                                                alt="bybit-logo">
+                                        @endif
+                                        @if ($this->getAssetClass($trade['asset']) === 'forex')
+                                            <img class="inline" src="{{ asset('assets/icons/xtb.svg') }}"
+                                                alt="xtb-logo">
+                                        @endif
                                     </div>
                                     <div class="flex-none text-end">
                                         <p class="font-semibold text-sm md:text-base text-green-500">+@money($trade['profit'] / 100)
