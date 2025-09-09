@@ -8,7 +8,7 @@
             <div class="lg:h-full lg:pb-24 lg:overflow-scroll scrollbar-hide">
                 <div class="flex items-center space-x-4 mb-8">
                     <div class="flex justify-center mb-3 lg:justify-start">
-                        <div class="bg-[#26252a] size-16 rounded-full flex items-center justify-center lg:size-20">
+                        <div class="bg-dim size-16 rounded-full flex items-center justify-center lg:size-20">
                             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"
                                 fill="none">
                                 <g clip-path="url(#clip0_49_26)">
@@ -48,7 +48,7 @@
                 </div>
                 <div class="lg:grid lg:grid-cols-2 lg:gap-4">
                     <a href="{{ route('dashboard.deposithistory') }}">
-                        <div class="bg-[#26252a] w-full rounded-lg flex flex-col space-y-2 p-3 mb-3 lg:mb-0">
+                        <div class="bg-dim w-full rounded-lg flex flex-col space-y-2 p-3 mb-3 lg:mb-0">
                             <div class="flex items-center space-x-2">
                                 <div class="flex-none">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -77,7 +77,7 @@
                         </div>
                     </a>
                     <a href="{{ route('dashboard.withdrawhistory') }}">
-                        <div class="bg-[#26252a] w-full rounded-lg flex flex-col space-y-2 p-3 mb-3 lg:mb-0">
+                        <div class="bg-dim w-full rounded-lg flex flex-col space-y-2 p-3 mb-3 lg:mb-0">
                             <div class="flex items-center space-x-2">
                                 <div class="flex-none">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -106,7 +106,7 @@
                         </div>
                     </a>
                     <a href="{{ route('settings.profile') }}">
-                        <div class="bg-[#26252a] w-full rounded-lg flex flex-col space-y-2 p-3 mb-3 lg:mb-0">
+                        <div class="bg-dim w-full rounded-lg flex flex-col space-y-2 p-3 mb-3 lg:mb-0">
                             <div class="flex items-center space-x-2">
                                 <div class="flex-none">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -134,7 +134,7 @@
                         </div>
                     </a>
                     <a href="{{ route('dashboard.referrals') }}">
-                        <div class="bg-[#26252a] w-full rounded-lg flex flex-col space-y-2 p-3 mb-3 lg:mb-0">
+                        <div class="bg-dim w-full rounded-lg flex flex-col space-y-2 p-3 mb-3 lg:mb-0">
                             <div class="flex items-center space-x-2">
                                 <div class="flex-none">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -174,7 +174,7 @@
                     <form method="POST" action="{{ route('logout') }}" class="w-full">
                         @csrf
                         <a class="cursor-pointer" onclick="this.closest('form').submit()">
-                            <div class="bg-[#26252a] w-full rounded-lg flex flex-col space-y-2 p-3 mb-3 lg:mb-0">
+                            <div class="bg-dim w-full rounded-lg flex flex-col space-y-2 p-3 mb-3 lg:mb-0">
                                 <div class="flex items-center space-x-2">
                                     <div class="flex-none">
                                         <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="#FB2C36"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-logout"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" /><path d="M9 12h12l-3 -3" /><path d="M18 15l3 -3" /></svg>

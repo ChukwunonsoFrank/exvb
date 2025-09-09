@@ -13,7 +13,7 @@
                                 How to use the Exvb Robot
                             </h3>
                             <button type="button"
-                                class="size-8 inline-flex justify-center items-center gap-x-2 rounded-full border border-transparent bg-[#26252a] text-white  focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none"
+                                class="size-8 inline-flex justify-center items-center gap-x-2 rounded-full border border-transparent bg-dim text-white  focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none"
                                 aria-label="Close" data-hs-overlay="#hs-vertically-centered-modal">
                                 <span class="sr-only">Close</span>
                                 <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
@@ -605,7 +605,7 @@
 
             Toastify({
                 text: robotStoppedToastMarkup,
-                className: "hs-toastify-on:opacity-100 opacity-0 absolute top-0 start-1/2 -translate-x-1/2 z-90 w-4/5 md:w-1/2 lg:w-1/4 transition-all duration-300 bg-[#26252a] text-sm text-white rounded-xl shadow-lg [&>.toast-close]:hidden",
+                className: "hs-toastify-on:opacity-100 opacity-0 absolute top-0 start-1/2 -translate-x-1/2 z-90 w-4/5 md:w-1/2 lg:w-1/4 transition-all duration-300 bg-dim text-sm text-white rounded-xl shadow-lg [&>.toast-close]:hidden",
                 duration: 4000,
                 close: true,
                 escapeMarkup: false
@@ -636,7 +636,7 @@
 
         lastToast = Toastify({
             text: robotErrorToastMarkup,
-            className: "hs-toastify-on:opacity-100 opacity-0 absolute top-0 start-1/2 -translate-x-1/2 z-90 w-4/5 md:w-1/2 lg:w-1/4 transition-all duration-300 bg-[#26252a] text-sm text-white rounded-xl shadow-lg [&>.toast-close]:hidden",
+            className: "hs-toastify-on:opacity-100 opacity-0 absolute top-0 start-1/2 -translate-x-1/2 z-90 w-4/5 md:w-1/2 lg:w-1/4 transition-all duration-300 bg-dim text-sm text-white rounded-xl shadow-lg [&>.toast-close]:hidden",
             duration: 1500,
             close: true,
             escapeMarkup: false

@@ -31,7 +31,8 @@
     --color-zinc-900: #171717;
     --color-zinc-950: #0a0a0a;
 
-    --color-dashboard: #161616;
+    --color-dashboard: #000000;
+    --color-dim: #161616;
     --color-trade: #2D3139;
     --color-trade-badge: #3F4550;
     --color-asset-indicator: #2C303A;

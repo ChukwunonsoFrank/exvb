@@ -9,7 +9,7 @@
                     rewards
                     as your referrals trade.</p>
 
-                <div class="rounded-lg bg-[#26252a] border border-[#26252a] p-5 mt-5">
+                <div class="rounded-lg bg-dim border border-[#26252a] p-5 mt-5">
                     <div class="flex items-center gap-x-1">
                         <div>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -94,7 +94,7 @@
                     </div>
                 @empty
                     <div class="flex justify-center items-center">
-                        <div class="bg-[#26252a] w-full rounded-lg flex flex-col space-y-2 p-3 mb-3">
+                        <div class="bg-dim w-full rounded-lg flex flex-col space-y-2 p-3 mb-3">
                             <div class="text-center">
                                 <p class="text-xs text-zinc-300">No redeemed referrals yet.</p>
                             </div>
@@ -133,7 +133,7 @@
             `;
                 Toastify({
                     text: toastMarkup,
-                    className: "hs-toastify-on:opacity-100 opacity-0 absolute top-0 start-1/2 -translate-x-1/2 z-90 w-4/5 md:w-1/2 lg:w-1/4 transition-all duration-300 bg-[#26252a] text-sm text-white rounded-xl shadow-lg [&>.toast-close]:hidden",
+                    className: "hs-toastify-on:opacity-100 opacity-0 absolute top-0 start-1/2 -translate-x-1/2 z-90 w-4/5 md:w-1/2 lg:w-1/4 transition-all duration-300 bg-dim text-sm text-white rounded-xl shadow-lg [&>.toast-close]:hidden",
                     duration: 4000,
                     close: true,
                     escapeMarkup: false

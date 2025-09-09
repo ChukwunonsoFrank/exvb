@@ -8,7 +8,7 @@
             <div class="lg:h-full pb-14 lg:pb-24 lg:overflow-scroll scrollbar-hide">
                 @forelse ($trades as $trade)
                     <div wire:key="bot-trade-{{ $trade['id'] }}"
-                        class="bg-[#26252a] w-full rounded-lg flex flex-col space-y-2 p-3 px-4 mb-3">
+                        class="bg-dim w-full rounded-lg flex flex-col space-y-2 p-3 px-4 mb-3">
                         <div class="flex items-center gap-x-4">
                             <div class="flex-none">
                                 <span
@@ -49,7 +49,7 @@
                     </div>
                 @empty
                     <div class="flex justify-center items-center">
-                        <div class="bg-[#26252a] w-full rounded-lg flex flex-col space-y-2 p-3 mb-3">
+                        <div class="bg-dim w-full rounded-lg flex flex-col space-y-2 p-3 mb-3">
                             <div class="text-center">
                                 <p class="text-xs text-zinc-300">No trade activity yet.</p>
                             </div>

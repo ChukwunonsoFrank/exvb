@@ -44,7 +44,7 @@
                     <div class="relative">
                         <div x-cloak x-show="$store.depositPage.isPaymentMethodSelectOpen"
                             @click.outside="$store.depositPage.isPaymentMethodSelectOpen = false"
-                            class="border border-[#26252a] bg-[#26252a] absolute rounded-lg w-full overflow-scroll scrollbar-hide z-10 p-2 mt-1">
+                            class="border border-[#26252a] bg-dim absolute rounded-lg w-full overflow-scroll scrollbar-hide z-10 p-2 mt-1">
                             @foreach ($this->paymentMethods as $method)
                                 <div wire:key="payment-method-{{ $method['id'] }}" wire:click="selectPaymentMethod({{ $method['id'] }})"
                                     x-on:click="$store.depositPage.isPaymentMethodSelectOpen = false"
@@ -102,7 +102,7 @@
 
             Toastify({
                 text: toastMarkup,
-                className: "hs-toastify-on:opacity-100 opacity-0 absolute top-0 start-1/2 -translate-x-1/2 z-90 w-4/5 md:w-1/2 lg:w-1/4 transition-all duration-300 bg-[#26252a] text-sm text-white rounded-xl shadow-lg [&>.toast-close]:hidden",
+                className: "hs-toastify-on:opacity-100 opacity-0 absolute top-0 start-1/2 -translate-x-1/2 z-90 w-4/5 md:w-1/2 lg:w-1/4 transition-all duration-300 bg-dim text-sm text-white rounded-xl shadow-lg [&>.toast-close]:hidden",
                 duration: 4000,
                 close: true,
                 escapeMarkup: false

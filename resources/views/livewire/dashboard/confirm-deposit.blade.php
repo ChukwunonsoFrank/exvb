@@ -2,7 +2,7 @@
     <div class="lg:flex lg:h-full">
         <livewire:dashboard.partials.desktop-navbar />
         <div class="lg:h-full lg:flex-1 lg:px-96 lg:pt-6">
-            <div class="text-sm text-white rounded-lg bg-[#26252a] p-4 mb-5 mt-3" role="alert" tabindex="-1"
+            <div class="text-sm text-white rounded-lg bg-dim p-4 mb-5 mt-3" role="alert" tabindex="-1"
                 aria-labelledby="hs-with-description-label">
                 <div class="flex">
                     <div class="shrink-0 text-yellow-400">
@@ -144,7 +144,7 @@
 
             Toastify({
                 text: toastMarkup,
-                className: "hs-toastify-on:opacity-100 opacity-0 absolute top-0 start-1/2 -translate-x-1/2 z-90 w-4/5 md:w-1/2 lg:w-1/4 transition-all duration-300 bg-[#26252a] text-sm text-white rounded-xl shadow-lg [&>.toast-close]:hidden",
+                className: "hs-toastify-on:opacity-100 opacity-0 absolute top-0 start-1/2 -translate-x-1/2 z-90 w-4/5 md:w-1/2 lg:w-1/4 transition-all duration-300 bg-dim text-sm text-white rounded-xl shadow-lg [&>.toast-close]:hidden",
                 duration: 4000,
                 close: true,
                 escapeMarkup: false

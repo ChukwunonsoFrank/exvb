@@ -3,7 +3,7 @@
         'w-full' => true,
         'py-3' => true,
         'cursor-pointer' => true,
-        'hover:bg-[#26252a]' => true,
+        'hover:bg-dim' => true,
     ])>
         <a class="block" href="{{ route('dashboard') }}">
             <div class="mb-1">
@@ -35,7 +35,7 @@
         'w-full' => true,
         'py-3' => true,
         'cursor-pointer' => true,
-        'hover:bg-[#26252a]' => true,
+        'hover:bg-dim' => true,
     ])>
         <a class="block" href="{{ route('dashboard.history') }}">
             <div class="mb-1">
@@ -65,7 +65,7 @@
         'w-full' => true,
         'py-3' => true,
         'cursor-pointer' => true,
-        'hover:bg-[#26252a]' => true,
+        'hover:bg-dim' => true,
     ])>
         <a class="block" wire:click="robot()">
             <div class="mb-1">
@@ -89,7 +89,7 @@
         'w-full' => true,
         'py-3' => true,
         'cursor-pointer' => true,
-        'hover:bg-[#26252a]' => true,
+        'hover:bg-dim' => true,
     ])>
         <a class="block" href="{{ route('dashboard.support') }}">
             <div class="mb-1">
@@ -116,7 +116,7 @@
         'w-full' => true,
         'py-3' => true,
         'cursor-pointer' => true,
-        'hover:bg-[#26252a]' => true,
+        'hover:bg-dim' => true,
     ])>
         <a class="block" href="{{ route('dashboard.account') }}">
             <div class="mb-1">

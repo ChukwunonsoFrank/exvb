@@ -20,7 +20,7 @@
         <div class="relative z-20">
             <div x-cloak x-show="$store.balanceDropdown.isTradingAccountSelectOpen"
                 @click.outside="$store.balanceDropdown.isTradingAccountSelectOpen = false"
-                class="border border-[#26252a] bg-[#26252a] absolute rounded-lg w-full overflow-scroll p-1 scrollbar-hide mt-1">
+                class="border border-[#26252a] bg-dim absolute rounded-lg w-full overflow-scroll p-1 scrollbar-hide mt-1">
                 <div
                     class="hover:bg-gray-600 cursor-pointer flex items-center space-x-3 py-1.5 px-3 rounded-lg text-[#FFFFFF]">
                     <div class="flex-1">

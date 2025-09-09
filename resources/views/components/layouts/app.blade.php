@@ -40,7 +40,7 @@
 
 <body class="bg-dashboard font-dashboard">
     <main class="flex flex-col h-svh">
-        <header class="bg-[#1a1a1a] flex-none lg:mb-0 md:border-b md:border-[#26252a]">
+        <header class="bg-dim flex-none lg:mb-0 md:border-b md:border-[#26252a]">
             <div
                 class="flex items-center px-2 border-b border-[#26252a] justify-between gap-x-1 md:gap-x-16 md:border-none md:mb-0 md:order-2 md:flex-1">
                 <div class="flex-1 md:flex-none border py-2 border-[#26252a] rounded-lg text-center">

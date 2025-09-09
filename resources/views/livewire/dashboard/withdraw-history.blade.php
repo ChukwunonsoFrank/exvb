@@ -9,7 +9,7 @@
 
                 @forelse ($withdrawals as $withdrawal)
                     <div wire:key="withdrawal-{{ $withdrawal['id'] }}"
-                        class="bg-[#26252a] w-full rounded-lg flex flex-col space-y-2 p-3 px-4 mb-3">
+                        class="bg-dim w-full rounded-lg flex flex-col space-y-2 p-3 px-4 mb-3">
                         <div class="flex items-center gap-x-4">
                             <div class="flex-none">
                                 <img class="w-7"
@@ -44,7 +44,7 @@
                     </div>
                 @empty
                     <div class="flex justify-center items-center">
-                        <div class="bg-[#26252a] w-full rounded-lg flex flex-col space-y-2 p-3 mb-3">
+                        <div class="bg-dim w-full rounded-lg flex flex-col space-y-2 p-3 mb-3">
                             <div class="text-center">
                                 <p class="text-xs text-zinc-300">No withdrawal activity yet.</p>
                             </div>
@@ -82,7 +82,7 @@
 
             Toastify({
                 text: toastMarkup,
-                className: "hs-toastify-on:opacity-100 opacity-0  absolute top-0 start-1/2 -translate-x-1/2 z-90 w-4/5 md:w-1/2 lg:w-1/4 transition-all duration-300 bg-[#26252a] text-sm text-white rounded-xl shadow-lg [&>.toast-close]:hidden",
+                className: "hs-toastify-on:opacity-100 opacity-0  absolute top-0 start-1/2 -translate-x-1/2 z-90 w-4/5 md:w-1/2 lg:w-1/4 transition-all duration-300 bg-dim text-sm text-white rounded-xl shadow-lg [&>.toast-close]:hidden",
                 duration: 6000,
                 close: true,
                 escapeMarkup: false

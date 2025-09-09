@@ -52,7 +52,7 @@
                         <div class="flex-1 text-end">
                             <a href="{{ route('dashboard') }}">
                                 <button type="button"
-                                    class="relative px-2 py-1.5 inline-flex items-center gap-x-4 text-[11px] font-bold tracking-[0.15px] rounded-md bg-[#242424] border border-[#444444] text-white focus:outline-hidden">
+                                    class="relative px-2 py-1.5 inline-flex items-center gap-x-4 text-[11px] font-bold tracking-[0.15px] rounded-md bg-dim border border-[#26252a] text-white focus:outline-hidden">
                                     <div>
                                         <span class="flex absolute size-2 -mt-1 -me-1.5">
                                             <span
@@ -305,7 +305,7 @@
                         </button>
                     </div>
 
-                    <div class="text-sm text-white rounded-lg bg-[#242424] py-3 px-4" role="alert" tabindex="-1"
+                    <div class="text-sm text-white rounded-lg bg-dim py-3 px-4" role="alert" tabindex="-1"
                         aria-labelledby="hs-with-description-label">
                         <div class="flex items-center">
                             <div class="shrink-0 text-green-400">
@@ -337,10 +337,10 @@
             </div>
 
             <div x-cloak x-show="isStopRobotConfirmationModalOpen"
-                class="fixed top-0 left-0 h-svh w-full px-4 lg:px-96 pt-6 z-20 bg-[#0c0c0c]">
+                class="fixed top-0 left-0 h-svh w-full px-4 lg:px-96 pt-6 z-20 bg-dashboard">
                 <div class="w-full h-full flex items-center justify-center">
                     <div
-                        class="max-w-sm mx-auto flex flex-col bg-dashboard border border-[#26252a] rounded-2xl pointer-events-auto">
+                        class="max-w-sm mx-auto flex flex-col bg-dim border border-[#26252a] rounded-2xl pointer-events-auto">
                         <div class="p-6 overflow-y-auto text-center">
                             <div class="flex justify-center mb-8">
                                 <div
@@ -390,9 +390,9 @@
             </div>
 
             <div x-cloak x-show="isRobotDisconnectingModalOpen"
-                class="fixed top-0 left-0 h-svh w-full px-4 lg:px-96 pt-6 z-20 bg-[#0c0c0c]">
+                class="fixed top-0 left-0 h-svh w-full px-4 lg:px-96 pt-6 z-20 bg-dashboard">
                 <div class="w-full h-full flex items-center justify-center">
-                    <div class="max-w-sm mx-auto bg-dashboard border border-[#26252a] rounded-2xl pointer-events-auto">
+                    <div class="max-w-sm mx-auto bg-dim border border-[#26252a] rounded-2xl pointer-events-auto">
                         <div class="p-6 overflow-y-auto text-center">
                             <div class="flex justify-center mb-8">
                                 <div

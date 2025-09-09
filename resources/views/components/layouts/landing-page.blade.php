@@ -15,12 +15,12 @@
     <link rel="preload" href="{{ asset('wp-content/uploads/2024/06/space-cover.webp') }}" as="image">
     <link rel="preload" href="{{ asset('wp-content/uploads/2024/06/door-2.webp') }}" as="image">
     <link rel="preload" href="{{ asset('wp-content/uploads/2024/05/door-mobil.webp') }}" as="image">
-    <link rel="preload" href="{{ asset('wp-content/uploads/2023/03/EuclidSquare-Bold.ttf') }}" as="font" type="font/ttf"
-        crossorigin="anonymous">
-    <link rel="preload" href="{{ asset('wp-content/uploads/2023/03/EuclidSquare-Regular.ttf') }}" as="font" type="font/ttf"
-        crossorigin="anonymous">
-    <link rel="preload" href="{{ asset('wp-content/uploads/2023/03/EuclidSquare-Medium.ttf') }}" as="font" type="font/ttf"
-        crossorigin="anonymous">
+    <link rel="preload" href="{{ asset('wp-content/uploads/2023/03/EuclidSquare-Bold.ttf') }}" as="font"
+        type="font/ttf" crossorigin="anonymous">
+    <link rel="preload" href="{{ asset('wp-content/uploads/2023/03/EuclidSquare-Regular.ttf') }}" as="font"
+        type="font/ttf" crossorigin="anonymous">
+    <link rel="preload" href="{{ asset('wp-content/uploads/2023/03/EuclidSquare-Medium.ttf') }}" as="font"
+        type="font/ttf" crossorigin="anonymous">
     <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
 
     <link rel='dns-prefetch' href='http://code.jquery.com/' />
@@ -151,31 +151,31 @@
         @font-face {
             font-family: 'Source Code Pro';
             font-weight: 400;
-            src: url('{{ asset("wp-content/uploads/2024/07/Source-Code-Pro-for-Powerline.otf") }}') format('OpenType');
+            src: url('{{ asset('wp-content/uploads/2024/07/Source-Code-Pro-for-Powerline.otf') }}') format('OpenType');
         }
 
         @font-face {
             font-family: 'Menlo';
             font-weight: 400;
-            src: url('{{ asset("wp-content/uploads/2023/12/Menlo-Regular.woff") }}') format('woff');
+            src: url('{{ asset('wp-content/uploads/2023/12/Menlo-Regular.woff') }}') format('woff');
         }
 
         @font-face {
             font-family: 'Inter';
             font-weight: 700;
-            src: url('{{ asset("wp-content/uploads/2023/12/Inter-VariableFont_slntwght.ttf") }}') format('truetype');
+            src: url('{{ asset('wp-content/uploads/2023/12/Inter-VariableFont_slntwght.ttf') }}') format('truetype');
         }
 
         @font-face {
             font-family: 'Inter';
             font-weight: 600;
-            src: url('{{ asset("wp-content/uploads/2023/12/Inter-VariableFont_slntwght.ttf") }}') format('truetype');
+            src: url('{{ asset('wp-content/uploads/2023/12/Inter-VariableFont_slntwght.ttf') }}') format('truetype');
         }
 
         @font-face {
             font-family: 'Inter';
             font-weight: 500;
-            src: url('{{ asset("wp-content/uploads/2023/12/Inter-VariableFont_slntwght.ttf") }}') format('truetype');
+            src: url('{{ asset('wp-content/uploads/2023/12/Inter-VariableFont_slntwght.ttf') }}') format('truetype');
         }
 
         @font-face {
@@ -183,7 +183,7 @@
             font-weight: 400;
             font-display: auto;
             font-fallback: Helvetica;
-            src: url('{{ asset("wp-content/uploads/2023/03/EuclidSquare-Regular.ttf") }}') format('truetype');
+            src: url('{{ asset('wp-content/uploads/2023/03/EuclidSquare-Regular.ttf') }}') format('truetype');
         }
 
         @font-face {
@@ -191,7 +191,7 @@
             font-weight: 700;
             font-display: auto;
             font-fallback: Helvetica;
-            src: url('{{ asset("wp-content/uploads/2023/03/EuclidSquare-Bold.ttf") }}') format('truetype');
+            src: url('{{ asset('wp-content/uploads/2023/03/EuclidSquare-Bold.ttf') }}') format('truetype');
         }
 
         @font-face {
@@ -199,7 +199,7 @@
             font-weight: 300;
             font-display: auto;
             font-fallback: Helvetica;
-            src: url('{{ asset("wp-content/uploads/2023/03/EuclidSquare-Light.ttf") }}') format('truetype');
+            src: url('{{ asset('wp-content/uploads/2023/03/EuclidSquare-Light.ttf') }}') format('truetype');
         }
 
         @font-face {
@@ -207,7 +207,7 @@
             font-weight: 500;
             font-display: auto;
             font-fallback: Helvetica;
-            src: url('{{ asset("wp-content/uploads/2023/03/EuclidSquare-Medium.ttf") }}') format('truetype');
+            src: url('{{ asset('wp-content/uploads/2023/03/EuclidSquare-Medium.ttf') }}') format('truetype');
         }
 
         @font-face {
@@ -215,24 +215,27 @@
             font-weight: 600;
             font-display: auto;
             font-fallback: Helvetica;
-            src: url('{{ asset("wp-content/uploads/2023/03/EuclidSquare-SemiBold.ttf") }}') format('truetype');
+            src: url('{{ asset('wp-content/uploads/2023/03/EuclidSquare-SemiBold.ttf') }}') format('truetype');
         }
     </style>
-    <link rel='stylesheet' id='dashicons-css' href='{{ asset("wp-includes/css/dashicons.minb6a4.css") }}' media='all' />
+    <link rel='stylesheet' id='dashicons-css' href='{{ asset('wp-includes/css/dashicons.minb6a4.css') }}'
+        media='all' />
     <link rel='stylesheet' id='menu-icons-extra-css'
-        href='{{ asset("wp-content/plugins/menu-icons/css/extra.minc28c.css") }}' media='all' />
+        href='{{ asset('wp-content/plugins/menu-icons/css/extra.minc28c.css') }}' media='all' />
     <link rel='stylesheet' id='hello-elementor-style-css'
-        href='{{ asset("wp-content/themes/hello-elementor/style8a54.css") }}' media='all' />
+        href='{{ asset('wp-content/themes/hello-elementor/style8a54.css') }}' media='all' />
     <link rel='stylesheet' id='hello-elementor-child-style-css'
-        href='{{ asset("wp-content/uploads/wp-less/tradelocker-child/css/style-5430c549c4.css") }}' media='all' />
+        href='{{ asset('wp-content/uploads/wp-less/tradelocker-child/css/style-5430c549c4.css') }}' media='all' />
     <link rel='stylesheet' id='price-calc-style-css'
-        href='{{ asset("wp-content/uploads/wp-less/tradelocker-child/css/price-calc-a7036eb618.css") }}' media='all' />
+        href='{{ asset('wp-content/uploads/wp-less/tradelocker-child/css/price-calc-a7036eb618.css') }}'
+        media='all' />
     <link rel='stylesheet' id='elementor-widgets-css'
-        href='{{ asset("wp-content/uploads/wp-less/tradelocker-child/css/elementor-widgets-e4d9c83533.css") }}' media='all' />
+        href='{{ asset('wp-content/uploads/wp-less/tradelocker-child/css/elementor-widgets-e4d9c83533.css') }}'
+        media='all' />
     <link rel='stylesheet' id='prism-vs-code-css'
-        href='{{ asset("wp-content/themes/tradelocker-child/css/prism-vs-code39c0.css") }}' media='all' />
+        href='{{ asset('wp-content/themes/tradelocker-child/css/prism-vs-code39c0.css') }}' media='all' />
     <link rel='stylesheet' id='select2css-css'
-        href='{{ asset("wp-content/themes/tradelocker-child/css/select29cd0.css") }}' media='all' />
+        href='{{ asset('wp-content/themes/tradelocker-child/css/select29cd0.css') }}' media='all' />
 
     <style id='wp-emoji-styles-inline-css'>
         img.wp-smiley,
@@ -250,7 +253,7 @@
     </style>
 
     <link rel='stylesheet' id='wp-block-library-css'
-        href='{{ asset("wp-includes/css/dist/block-library/style.minb6a4.css") }}' media='all' />
+        href='{{ asset('wp-includes/css/dist/block-library/style.minb6a4.css') }}' media='all' />
     <style id='classic-theme-styles-inline-css'>
         /*! This file is auto-generated */
         .wp-block-button__link {
@@ -596,34 +599,38 @@
     </style>
 
     <link rel='stylesheet' id='hello-elementor-css'
-        href='{{ asset("wp-content/themes/hello-elementor/style.min41fe.css") }}' media='all' />
+        href='{{ asset('wp-content/themes/hello-elementor/style.min41fe.css') }}' media='all' />
     <link rel='stylesheet' id='hello-elementor-theme-style-css'
-        href='{{ asset("wp-content/themes/hello-elementor/theme.min41fe.css") }}' media='all' />
+        href='{{ asset('wp-content/themes/hello-elementor/theme.min41fe.css') }}' media='all' />
     <link rel='stylesheet' id='hello-elementor-header-footer-css'
-        href='{{ asset("wp-content/themes/hello-elementor/header-footer.min41fe.css") }}' media='all' />
+        href='{{ asset('wp-content/themes/hello-elementor/header-footer.min41fe.css') }}' media='all' />
     <link rel='stylesheet' id='elementor-frontend-css'
-        href='{{ asset("wp-content/plugins/elementor/assets/css/frontend-lite.mina44d.css") }}' media='all' />
+        href='{{ asset('wp-content/plugins/elementor/assets/css/frontend-lite.mina44d.css') }}' media='all' />
     <link rel='stylesheet' id='elementor-post-23-css'
-        href='{{ asset("wp-content/uploads/elementor/css/post-23578b.css") }}' media='all' />
+        href='{{ asset('wp-content/uploads/elementor/css/post-23578b.css') }}' media='all' />
     <link rel='stylesheet' id='elementor-icons-css'
-        href='{{ asset("wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.minfc13.css") }}'
+        href='{{ asset('wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.minfc13.css') }}'
         media='all' />
     <link rel='stylesheet' id='swiper-css'
-        href='{{ asset("wp-content/plugins/elementor/assets/lib/swiper/v8/css/swiper.min94a4.css") }}' media='all' />
+        href='{{ asset('wp-content/plugins/elementor/assets/lib/swiper/v8/css/swiper.min94a4.css') }}'
+        media='all' />
     <link rel='stylesheet' id='elementor-post-2264-css'
-        href='{{ asset("wp-content/uploads/elementor/css/post-22648455.css") }}' media='all' />
+        href='{{ asset('wp-content/uploads/elementor/css/post-22648455.css') }}' media='all' />
     <link rel='stylesheet' id='elementor-custom-widget-editor-css'
-        href='{{ asset("wp-content/plugins/elementor-custom-widgets/assets/css/editorb6a4.css") }}' media='all' />
+        href='{{ asset('wp-content/plugins/elementor-custom-widgets/assets/css/editorb6a4.css') }}' media='all' />
     <link rel='stylesheet' id='elementor-icons-shared-0-css'
-        href='{{ asset("wp-content/plugins/elementor/assets/lib/font-awesome/css/fontawesome.min52d5.css") }}'
+        href='{{ asset('wp-content/plugins/elementor/assets/lib/font-awesome/css/fontawesome.min52d5.css') }}'
         media='all' />
     <link rel='stylesheet' id='elementor-icons-fa-solid-css'
-        href='{{ asset("wp-content/plugins/elementor/assets/lib/font-awesome/css/solid.min52d5.css") }}' media='all' />
+        href='{{ asset('wp-content/plugins/elementor/assets/lib/font-awesome/css/solid.min52d5.css') }}'
+        media='all' />
 
-        <script data-cookieconsent="ignore" data-cookiecategory="essential" src="{{ asset('code.jquery.com/jquery-3.6.0.min.js') }}" id="jquery-js"></script>
+    <script data-cookieconsent="ignore" data-cookiecategory="essential"
+        src="{{ asset('code.jquery.com/jquery-3.6.0.min.js') }}" id="jquery-js"></script>
 
     <link rel="icon" href="{{ asset('wp-content/uploads/2023/04/cropped-Icon-3-32x32.png') }}" sizes="32x32" />
-    <link rel="icon" href="{{ asset('wp-content/uploads/2023/04/cropped-Icon-3-192x192.png') }}" sizes="192x192" />
+    <link rel="icon" href="{{ asset('wp-content/uploads/2023/04/cropped-Icon-3-192x192.png') }}"
+        sizes="192x192" />
     <link rel="apple-touch-icon" href="{{ asset('wp-content/uploads/2023/04/cropped-Icon-3-180x180.png') }}" />
 
     <script async src="https://www.google.com/recaptcha/api.js"></script>
@@ -647,8 +654,8 @@
                 <div class="site-logo show">
                     <a href="{{ route('home') }}" class="custom-logo-link" rel="home" aria-current="page"><img
                             width="646" height="196"
-                            src="{{ asset('wp-content/uploads/2023/05/cropped-Tradelockerlogo-1.png') }}" class="custom-logo"
-                            alt="TradeLocker" decoding="async" fetchpriority="high"
+                            src="{{ asset('wp-content/uploads/2023/05/cropped-Tradelockerlogo-1.png') }}"
+                            class="custom-logo" alt="TradeLocker" decoding="async" fetchpriority="high"
                             srcset="{{ asset('wp-content/uploads/2023/05/cropped-Tradelockerlogo-1.png') }} 646w, {{ asset('wp-content/uploads/2023/05/cropped-Tradelockerlogo-1-300x91.png') }} 300w"
                             sizes="(max-width: 646px) 100vw, 646px" /></a>
                 </div>
@@ -658,15 +665,20 @@
                 <div class="menu-primary-menu-container">
                     <ul id="menu-primary-menu" class="menu">
                         <li id='menu-item-1' class="menu-item menu-item-type-custom menu-item-object-custom"><a
-                                href="/#home-section" data-analytics-label="Start trading">Home<span class="menu-item-description"></span></a> </li>
+                                href="/#home-section" data-analytics-label="Start trading">Home<span
+                                    class="menu-item-description"></span></a> </li>
                         <li id='menu-item-2' class="menu-item menu-item-type-custom menu-item-object-custom"><a
-                                href="/#features-section" data-analytics-label="Start trading">Features<span class="menu-item-description"></span></a> </li>
+                                href="/#features-section" data-analytics-label="Start trading">Features<span
+                                    class="menu-item-description"></span></a> </li>
                         <li id='menu-item-3' class="menu-item menu-item-type-custom menu-item-object-custom"><a
-                                href="/#faqs-section" data-analytics-label="Start trading">FAQs<span class="menu-item-description"></span></a> </li>
+                                href="/#faqs-section" data-analytics-label="Start trading">FAQs<span
+                                    class="menu-item-description"></span></a> </li>
                         <li id='menu-item-4' class="menu-item menu-item-type-custom menu-item-object-custom"><a
-                                href="{{ route('register') }}" data-analytics-label="Start trading">Register<span class="menu-item-description"></span></a> </li>
+                                href="{{ route('register') }}" data-analytics-label="Start trading">Register<span
+                                    class="menu-item-description"></span></a> </li>
                         <li id='menu-item-5' class="menu-item menu-item-type-custom menu-item-object-custom"><a
-                                href="{{ route('login') }}" data-analytics-label="Start trading">Login<span class="menu-item-description"></span></a> </li>
+                                href="{{ route('login') }}" data-analytics-label="Start trading">Login<span
+                                    class="menu-item-description"></span></a> </li>
                     </ul>
                 </div>
             </nav>
@@ -689,15 +701,20 @@
                 <div class="menu-primary-menu-container">
                     <ul id="menu-primary-menu" class="menu">
                         <li id='menu-item-1' class="menu-item menu-item-type-custom menu-item-object-custom"><a
-                                href="#home-section" data-analytics-label="Start trading">Home<span class="menu-item-description"></span></a> </li>
+                                href="#home-section" data-analytics-label="Start trading">Home<span
+                                    class="menu-item-description"></span></a> </li>
                         <li id='menu-item-2' class="menu-item menu-item-type-custom menu-item-object-custom"><a
-                                href="#features-section" data-analytics-label="Start trading">Features<span class="menu-item-description"></span></a> </li>
+                                href="#features-section" data-analytics-label="Start trading">Features<span
+                                    class="menu-item-description"></span></a> </li>
                         <li id='menu-item-3' class="menu-item menu-item-type-custom menu-item-object-custom"><a
-                                href="#faqs-section" data-analytics-label="Start trading">FAQs<span class="menu-item-description"></span></a> </li>
+                                href="#faqs-section" data-analytics-label="Start trading">FAQs<span
+                                    class="menu-item-description"></span></a> </li>
                         <li id='menu-item-4' class="menu-item menu-item-type-custom menu-item-object-custom"><a
-                                href="{{ route('register') }}" data-analytics-label="Start trading">Register<span class="menu-item-description"></span></a> </li>
+                                href="{{ route('register') }}" data-analytics-label="Start trading">Register<span
+                                    class="menu-item-description"></span></a> </li>
                         <li id='menu-item-5' class="menu-item menu-item-type-custom menu-item-object-custom"><a
-                                href="{{ route('login') }}" data-analytics-label="Start trading">Login<span class="menu-item-description"></span></a> </li>
+                                href="{{ route('login') }}" data-analytics-label="Start trading">Login<span
+                                    class="menu-item-description"></span></a> </li>
                     </ul>
                 </div>
             </nav>
@@ -770,6 +787,13 @@
                             </svg>
                         </a>
                         <p>Unlock your potential.</p>
+                        <div class="system-status-wrapper flex-wrap">
+                            <div id="status-container"></div>
+                            <a rel="noreferrer noopener" href="status/index.html#live"
+                                class="status status-up">LIVE</a>
+                            <a rel="noreferrer noopener" href="status/index.html#demo"
+                                class="status status-up">DEMO</a>
+                        </div>
                     </div>
                     <div class="social-media-container">
                         <a class="social-icon" href="https://www.instagram.com/tradelockerofficial/"><svg
@@ -790,8 +814,7 @@
                                     d="M456.72,304.49c-83.89,0-152.34,68.46-152.34,152.34s68.45,152.35,152.34,152.35,152.34-68.46,152.34-152.35S540.61,304.49,456.72,304.49ZM913.63,456.83c0-63.08.58-125.6-3-188.57-3.54-73.14-20.23-138-73.71-191.54S718.55,6.55,645.41,3C582.32-.54,519.81,0,456.83,0S331.23-.54,268.26,3c-73.14,3.54-138,20.22-191.54,73.71S6.55,195.12,3,268.26c-3.55,63.09-3,125.6-3,188.57s-.57,125.6,3,188.58C6.55,718.55,23.23,783.46,76.72,837s118.4,70.17,191.54,73.71c63.09,3.55,125.6,3,188.57,3s125.6.58,188.58-3C718.55,907.12,783.46,890.43,837,837s70.17-118.4,73.71-191.54c3.66-63,3-125.49,3-188.58ZM456.72,691.23a234.4,234.4,0,1,1,234.4-234.4A234.07,234.07,0,0,1,456.72,691.23Zm244-423.65a54.67,54.67,0,1,1,.14,0Z" />
                             </svg></a>
                         <a class="social-icon" href="https://discord.gg/turkfvWHg2"><svg id="Layer_1"
-                                data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 619.52 430.78">
+                                data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 619.52 430.78">
                                 <defs>
                                     <style>
                                         .cls-1 {
@@ -910,16 +933,17 @@
         media='all' />
     <script data-cookieconsent="ignore" data-cookiecategory="essential"
         src="{{ asset('maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js') }}" id="scrollspy-js"></script>
-    <script data-cookieconsent="ignore" data-cookiecategory="essential" src="{{ asset('unpkg.com/typeit@8.7.1/dist/index.umd.js') }}"
-        id="typeit-js"></script>
+    <script data-cookieconsent="ignore" data-cookiecategory="essential"
+        src="{{ asset('unpkg.com/typeit@8.7.1/dist/index.umd.js') }}" id="typeit-js"></script>
     <script data-cookieconsent="ignore" data-cookiecategory="essential"
         src="{{ asset('cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min4819.js') }}" id="select2-js"></script>
     <script data-cookieconsent="ignore" data-cookiecategory="essential"
         src="{{ asset('cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.minb6a4.js') }}" id="gsap-js"></script>
     <script data-cookieconsent="ignore" data-cookiecategory="essential"
-        src="{{ asset('cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.minb6a4.js') }}" id="scroll-trigger-js"></script>
-    <script src="{{ asset('cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/CSSRulePlugin.minb6a4.js') }}" id="cssrule-plugin-js">
+        src="{{ asset('cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.minb6a4.js') }}" id="scroll-trigger-js">
     </script>
+    <script src="{{ asset('cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/CSSRulePlugin.minb6a4.js') }}"
+        id="cssrule-plugin-js"></script>
     <script data-cookieconsent="ignore" data-cookiecategory="essential"
         src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/SplitText.min.js') }}" id="split-text-js"></script>
     <script data-cookieconsent="ignore" data-cookiecategory="essential"
@@ -939,7 +963,8 @@
     <script src="{{ asset('wp-content/themes/tradelocker-child/js/utils6798.js') }}" id="utils-js-js"></script>
     <script src="{{ asset('wp-content/themes/tradelocker-child/js/gsap-activations290c.js') }}" id="gsap-activations-js">
     </script>
-    <script src="{{ asset('wp-content/themes/tradelocker-child/js/marqueec2dd.js') }}" id="marquee-activations-js"></script>
+    <script src="{{ asset('wp-content/themes/tradelocker-child/js/marqueec2dd.js') }}" id="marquee-activations-js">
+    </script>
     <script src="{{ asset('wp-content/themes/tradelocker-child/js/switch-tabs0ab2.js') }}" async defer
         data-cookieconsent="ignore" data-cookiecategory="essential"></script>
     <script src="{{ asset('wp-content/themes/tradelocker-child/js/platform-link69a7.js') }}" async defer
@@ -959,8 +984,7 @@
             "leadinPluginVersion": "11.3.6"
         };
     </script>
-    <script src="{{ asset('js-eu1.hs-scripts.com/1452689439a4a.js') }}"
-        id="leadin-script-loader-js-js"></script>
+    <script src="{{ asset('js-eu1.hs-scripts.com/1452689439a4a.js') }}" id="leadin-script-loader-js-js"></script>
     <script src="{{ asset('wp-content/plugins/maintainnance-plugin/js/campaign-bara20d.js') }}" id="campaign-bar-js">
     </script>
     <script src="{{ asset('cdn.jsdelivr.net/npm/js-cookie@2.2.1/src/js.cookie.min77e6.js') }}" id="js-cookie-js"></script>
@@ -1097,7 +1121,8 @@
             }
         };
     </script>
-    <script src="{{ asset('wp-content/plugins/elementor/assets/js/frontend.mina44d.js') }}" id="elementor-frontend-js"></script>
+    <script src="{{ asset('wp-content/plugins/elementor/assets/js/frontend.mina44d.js') }}" id="elementor-frontend-js">
+    </script>
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script>

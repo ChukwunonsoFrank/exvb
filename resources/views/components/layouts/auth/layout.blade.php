@@ -671,15 +671,20 @@
                 <div class="menu-primary-menu-container">
                     <ul id="menu-primary-menu" class="menu">
                         <li id='menu-item-1' class="menu-item menu-item-type-custom menu-item-object-custom"><a
-                                href="/#home-section" data-analytics-label="Start trading">Home<span class="menu-item-description"></span></a> </li>
+                                href="/#home-section" data-analytics-label="Start trading">Home<span
+                                    class="menu-item-description"></span></a> </li>
                         <li id='menu-item-2' class="menu-item menu-item-type-custom menu-item-object-custom"><a
-                                href="/#features-section" data-analytics-label="Start trading">Features<span class="menu-item-description"></span></a> </li>
+                                href="/#features-section" data-analytics-label="Start trading">Features<span
+                                    class="menu-item-description"></span></a> </li>
                         <li id='menu-item-3' class="menu-item menu-item-type-custom menu-item-object-custom"><a
-                                href="/#faqs-section" data-analytics-label="Start trading">FAQs<span class="menu-item-description"></span></a> </li>
+                                href="/#faqs-section" data-analytics-label="Start trading">FAQs<span
+                                    class="menu-item-description"></span></a> </li>
                         <li id='menu-item-4' class="menu-item menu-item-type-custom menu-item-object-custom"><a
-                                href="{{ route('register') }}" data-analytics-label="Start trading">Register<span class="menu-item-description"></span></a> </li>
+                                href="{{ route('register') }}" data-analytics-label="Start trading">Register<span
+                                    class="menu-item-description"></span></a> </li>
                         <li id='menu-item-5' class="menu-item menu-item-type-custom menu-item-object-custom"><a
-                                href="{{ route('login') }}" data-analytics-label="Start trading">Login<span class="menu-item-description"></span></a> </li>
+                                href="{{ route('login') }}" data-analytics-label="Start trading">Login<span
+                                    class="menu-item-description"></span></a> </li>
                     </ul>
                 </div>
             </nav>
@@ -702,15 +707,20 @@
                 <div class="menu-primary-menu-container">
                     <ul id="menu-primary-menu" class="menu">
                         <li id='menu-item-1' class="menu-item menu-item-type-custom menu-item-object-custom"><a
-                                href="/#home-section" data-analytics-label="Start trading">Home<span class="menu-item-description"></span></a> </li>
+                                href="/#home-section" data-analytics-label="Start trading">Home<span
+                                    class="menu-item-description"></span></a> </li>
                         <li id='menu-item-2' class="menu-item menu-item-type-custom menu-item-object-custom"><a
-                                href="/#features-section" data-analytics-label="Start trading">Features<span class="menu-item-description"></span></a> </li>
+                                href="/#features-section" data-analytics-label="Start trading">Features<span
+                                    class="menu-item-description"></span></a> </li>
                         <li id='menu-item-3' class="menu-item menu-item-type-custom menu-item-object-custom"><a
-                                href="/#faqs-section" data-analytics-label="Start trading">FAQs<span class="menu-item-description"></span></a> </li>
+                                href="/#faqs-section" data-analytics-label="Start trading">FAQs<span
+                                    class="menu-item-description"></span></a> </li>
                         <li id='menu-item-4' class="menu-item menu-item-type-custom menu-item-object-custom"><a
-                                href="{{ route('register') }}" data-analytics-label="Start trading">Register<span class="menu-item-description"></span></a> </li>
+                                href="{{ route('register') }}" data-analytics-label="Start trading">Register<span
+                                    class="menu-item-description"></span></a> </li>
                         <li id='menu-item-5' class="menu-item menu-item-type-custom menu-item-object-custom"><a
-                                href="{{ route('login') }}" data-analytics-label="Start trading">Login<span class="menu-item-description"></span></a> </li>
+                                href="{{ route('login') }}" data-analytics-label="Start trading">Login<span
+                                    class="menu-item-description"></span></a> </li>
                     </ul>
                 </div>
             </nav>
@@ -721,7 +731,7 @@
         {{ $slot }}
     </div>
 
-        <footer class="elementor-section elementor-section-boxed">
+    <footer class="elementor-section elementor-section-boxed">
         <div class="elementor-container">
             <div class="footer-grid">
                 <div class="footer-column">
@@ -783,6 +793,13 @@
                             </svg>
                         </a>
                         <p>Unlock your potential.</p>
+                        <div class="system-status-wrapper flex-wrap">
+                            <div id="status-container"></div>
+                            <a rel="noreferrer noopener" href="status/index.html#live"
+                                class="status status-up">LIVE</a>
+                            <a rel="noreferrer noopener" href="status/index.html#demo"
+                                class="status status-up">DEMO</a>
+                        </div>
                     </div>
                     <div class="social-media-container">
                         <a class="social-icon" href="https://www.instagram.com/tradelockerofficial/"><svg
@@ -803,8 +820,7 @@
                                     d="M456.72,304.49c-83.89,0-152.34,68.46-152.34,152.34s68.45,152.35,152.34,152.35,152.34-68.46,152.34-152.35S540.61,304.49,456.72,304.49ZM913.63,456.83c0-63.08.58-125.6-3-188.57-3.54-73.14-20.23-138-73.71-191.54S718.55,6.55,645.41,3C582.32-.54,519.81,0,456.83,0S331.23-.54,268.26,3c-73.14,3.54-138,20.22-191.54,73.71S6.55,195.12,3,268.26c-3.55,63.09-3,125.6-3,188.57s-.57,125.6,3,188.58C6.55,718.55,23.23,783.46,76.72,837s118.4,70.17,191.54,73.71c63.09,3.55,125.6,3,188.57,3s125.6.58,188.58-3C718.55,907.12,783.46,890.43,837,837s70.17-118.4,73.71-191.54c3.66-63,3-125.49,3-188.58ZM456.72,691.23a234.4,234.4,0,1,1,234.4-234.4A234.07,234.07,0,0,1,456.72,691.23Zm244-423.65a54.67,54.67,0,1,1,.14,0Z" />
                             </svg></a>
                         <a class="social-icon" href="https://discord.gg/turkfvWHg2"><svg id="Layer_1"
-                                data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 619.52 430.78">
+                                data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 619.52 430.78">
                                 <defs>
                                     <style>
                                         .cls-1 {

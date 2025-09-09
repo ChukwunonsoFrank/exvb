@@ -8,7 +8,7 @@
             <div class="lg:h-full pb-14 lg:pb-24 lg:overflow-scroll scrollbar-hide">
                 @forelse ($bots as $bot)
                     <div wire:key="bot-{{ $bot['id'] }}"
-                        class="bg-[#26252a] w-full rounded-lg flex flex-col space-y-2 p-3 px-4 mb-3">
+                        class="bg-dim w-full rounded-lg flex flex-col space-y-2 p-3 px-4 mb-3">
                         <div class="flex items-center gap-x-4">
                             <div class="flex-none">
                                 <img class="w-7" src="{{ asset('assets/images/robot-illustration.png') }}"
@@ -37,7 +37,7 @@
                                     <div class="flex-1 text-end">
                                         <a href="{{ route('dashboard.history.details', ['id' => $bot['id']]) }}">
                                             <button type="button"
-                                                class="px-2 py-1 inline-flex items-center gap-x-1 text-[11px] font-bold tracking-[0.15px] rounded-md bg-[#313131] border border-[#606060] text-white focus:outline-hidden">
+                                                class="px-2 py-1 inline-flex items-center gap-x-1 text-[11px] font-bold tracking-[0.15px] rounded-md bg-dim border border-[#26252a] text-white focus:outline-hidden">
                                                 View trades
                                                 <svg width="6" height="10" viewBox="0 0 6 10" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
@@ -53,7 +53,7 @@
                     </div>
                 @empty
                     <div class="flex justify-center items-center">
-                        <div class="bg-[#26252a] w-full rounded-lg flex flex-col space-y-2 p-3 mb-3">
+                        <div class="bg-dim w-full rounded-lg flex flex-col space-y-2 p-3 mb-3">
                             <div class="text-center">
                                 <p class="text-xs text-zinc-300">No trade activity yet.</p>
                             </div>

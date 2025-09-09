@@ -24,7 +24,7 @@
         @else
             <div class="px-12 flex items-center justify-center h-full">
                 <div
-                    class="max-w-sm mx-auto flex flex-col bg-dashboard border border-[#26252a] rounded-2xl pointer-events-auto">
+                    class="max-w-sm mx-auto flex flex-col bg-dim border border-[#26252a] rounded-2xl pointer-events-auto">
                     <div class="p-6 overflow-y-auto text-center">
                         <div class="flex justify-center mb-4">
                             <div class="size-18 flex items-center justify-center rounded-full border-3 border-accent">
@@ -37,7 +37,7 @@
                                 </svg>
                             </div>
                         </div>
-                        <h1 class="text-white font-medium text-base mb-3">
+                        <h1 class="text-white font-bold text-base mb-3">
                             No Active Trades
                         </h1>
                         <p class="text-sm text-[#a4a4a4] mb-6">Start a new trade trade to track the trade on live chart
@@ -83,7 +83,7 @@
         @else
             <div class="px-12 flex items-center justify-center h-full">
                 <div
-                    class="max-w-sm mx-auto flex flex-col bg-dashboard border border-[#26252a] rounded-2xl pointer-events-auto">
+                    class="max-w-sm mx-auto flex flex-col bg-dim border border-[#26252a] rounded-2xl pointer-events-auto">
                     <div class="p-6 overflow-y-auto text-center">
                         <div class="flex justify-center mb-4">
                             <div class="size-18 flex items-center justify-center rounded-full border-3 border-accent">
@@ -96,7 +96,7 @@
                                 </svg>
                             </div>
                         </div>
-                        <h1 class="text-white font-medium text-base mb-3">
+                        <h1 class="text-white font-bold text-base mb-3">
                             No Active Trades
                         </h1>
                         <p class="text-sm text-[#a4a4a4] mb-6">Start a new trade trade to track the trade on live chart
@@ -145,7 +145,7 @@
             @else
                 <div class="px-12 flex items-center justify-center h-full">
                     <div
-                        class="max-w-sm mx-auto flex flex-col bg-dashboard border border-[#26252a] rounded-2xl pointer-events-auto">
+                        class="max-w-sm mx-auto flex flex-col bg-dim border border-[#26252a] rounded-2xl pointer-events-auto">
                         <div class="p-6 overflow-y-auto text-center">
                             <div class="flex justify-center mb-4">
                                 <div
@@ -159,7 +159,7 @@
                                     </svg>
                                 </div>
                             </div>
-                            <h1 class="text-white font-medium text-base mb-3">
+                            <h1 class="text-white font-bold text-base mb-3">
                                 No Active Trades
                             </h1>
                             <p class="text-sm text-[#a4a4a4] mb-6">Start a new trade trade to track the trade on live
@@ -200,7 +200,7 @@
 
             Toastify({
                 text: toastMarkup,
-                className: "hs-toastify-on:opacity-100 opacity-0 absolute top-0 start-1/2 -translate-x-1/2 z-90 w-4/5 md:w-1/2 lg:w-1/4 transition-all duration-300 bg-[#26252a] text-sm text-white rounded-xl shadow-lg [&>.toast-close]:hidden",
+                className: "hs-toastify-on:opacity-100 opacity-0 absolute top-0 start-1/2 -translate-x-1/2 z-90 w-4/5 md:w-1/2 lg:w-1/4 transition-all duration-300 bg-dim text-sm text-white rounded-xl shadow-lg [&>.toast-close]:hidden",
                 duration: 6000,
                 close: true,
                 escapeMarkup: false
