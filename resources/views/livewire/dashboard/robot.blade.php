@@ -393,10 +393,10 @@
                 </div>
 
                 <div x-cloak x-show="$store.robotPage.isStartRobotConfirmationModalOpen"
-                    class="fixed top-0 left-0 h-svh w-full px-4 lg:px-96 pt-6 z-20 bg-[#0c0c0c]">
+                    class="fixed top-0 left-0 h-svh w-full px-4 lg:px-96 pt-6 z-20 bg-dashboard">
                     <div class="w-full h-full flex items-center justify-center">
                         <div
-                            class="max-w-sm mx-auto bg-dashboard border border-[#26252a] rounded-2xl pointer-events-auto">
+                            class="max-w-sm mx-auto bg-dim border border-[#26252a] rounded-2xl pointer-events-auto">
                             <div class="p-6 overflow-y-auto text-center">
                                 <div class="flex justify-center mb-8">
                                     <div
@@ -419,7 +419,7 @@
                                 <div class="w-full flex flex-col gap-y-2 justify-center items-center mb-5">
                                     <template x-if="$store.robotPage.isBrokerConnecting === true">
                                         <div
-                                            class="bg-[#242424] border border-[#3c3a43] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
+                                            class="bg-dim border border-[#26252a] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
                                             <div>
                                                 <i class="fa-solid fa-circle-notch fa-spin text-[#05df72]"></i>
                                             </div>
@@ -431,7 +431,7 @@
 
                                     <template x-if="$store.robotPage.isBrokerConnecting === false">
                                         <div
-                                            class="bg-[#242424] border border-[#3c3a43] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
+                                            class="bg-dim border border-[#26252a] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
                                             <div>
                                                 <svg width="16" height="16" viewBox="0 0 16 16"
                                                     fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -459,7 +459,7 @@
 
                                     <template x-if="$store.robotPage.isExchangeConnecting === true">
                                         <div
-                                            class="bg-[#242424] border border-[#3c3a43] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
+                                            class="bg-dim border border-[#26252a] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
                                             <div>
                                                 <i class="fa-solid fa-circle-notch fa-spin text-[#05df72]"></i>
                                             </div>
@@ -472,7 +472,7 @@
 
                                     <template x-if="$store.robotPage.isExchangeConnecting === false">
                                         <div
-                                            class="bg-[#242424] border border-[#3c3a43] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
+                                            class="bg-dim border border-[#26252a] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
                                             <div>
                                                 <svg width="16" height="16" viewBox="0 0 16 16"
                                                     fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -499,7 +499,7 @@
                                     </template>
                                 </div>
                                 <div class="w-full flex justify-center items-center">
-                                    <div class="p-4 bg-[#242424] border border-[#3c3a43] w-full rounded-lg">
+                                    <div class="p-4 bg-dim border border-[#3c3a43] w-full rounded-lg">
                                         <p class="text-white font-semibold text-base mb-4 leading-4">Trade Details</p>
                                         <div
                                             class="flex items-center justify-center gap-x-1 pb-2 border-b border-[#26252a]">
