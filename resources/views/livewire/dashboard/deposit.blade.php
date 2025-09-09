@@ -102,7 +102,7 @@
 
             Toastify({
                 text: toastMarkup,
-                className: "hs-toastify-on:opacity-100 opacity-0 absolute top-0 start-1/2 -translate-x-1/2 z-90 w-4/5 md:w-1/2 lg:w-1/4 transition-all duration-300 bg-dim text-sm text-white rounded-xl shadow-lg [&>.toast-close]:hidden",
+                className: "hs-toastify-on:opacity-100 opacity-0 absolute top-0 start-1/2 -translate-x-1/2 z-90 w-4/5 md:w-1/2 lg:w-1/4 transition-all duration-300 bg-dim border border-[#26252a] text-sm text-white rounded-xl shadow-lg [&>.toast-close]:hidden",
                 duration: 4000,
                 close: true,
                 escapeMarkup: false

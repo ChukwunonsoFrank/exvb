@@ -415,7 +415,7 @@
                             <div class="w-full flex flex-col gap-y-2 justify-center items-center">
                                 <template x-if="isBrokerDisconnecting === true">
                                     <div
-                                        class="bg-[#242424] border border-[#3c3a43] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
+                                        class="bg-dim border border-[#26252a] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
                                         <div>
                                             <i class="fa-solid fa-circle-notch fa-spin text-[#05df72]"></i>
                                         </div>
@@ -427,7 +427,7 @@
 
                                 <template x-if="isBrokerDisconnecting === false">
                                     <div
-                                        class="bg-[#242424] border border-[#3c3a43] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
+                                        class="bg-dim border border-[#26252a] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
                                         <div>
                                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -455,7 +455,7 @@
 
                                 <template x-if="isExchangeDisconnecting === true">
                                     <div
-                                        class="bg-[#242424] border border-[#3c3a43] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
+                                        class="bg-dim border border-[#26252a] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
                                         <div>
                                             <i class="fa-solid fa-circle-notch fa-spin text-[#05df72]"></i>
                                         </div>
@@ -468,7 +468,7 @@
 
                                 <template x-if="isExchangeDisconnecting === false">
                                     <div
-                                        class="bg-[#242424] border border-[#3c3a43] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
+                                        class="bg-dim border border-[#26252a] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
                                         <div>
                                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -520,7 +520,7 @@
 
             Toastify({
                 text: toastMarkup,
-                className: "hs-toastify-on:opacity-100 opacity-0 border border-gray-700 absolute top-0 start-1/2 -translate-x-1/2 z-90 w-4/5 md:w-1/2 lg:w-1/4 transition-all duration-300 bg-dim border border-[#26252a] text-sm text-white rounded-xl shadow-lg [&>.toast-close]:hidden",
+                className: "hs-toastify-on:opacity-100 opacity-0 absolute top-0 start-1/2 -translate-x-1/2 z-90 w-4/5 md:w-1/2 lg:w-1/4 transition-all duration-300 bg-dim border border-[#26252a] text-sm text-white rounded-xl shadow-lg [&>.toast-close]:hidden",
                 duration: 4000,
                 close: true,
                 escapeMarkup: false
@@ -541,7 +541,7 @@
 
             Toastify({
                 text: toastMarkup,
-                className: "hs-toastify-on:opacity-100 opacity-0 border border-gray-700 absolute top-0 start-1/2 -translate-x-1/2 z-90 w-4/5 md:w-1/2 lg:w-1/4 transition-all duration-300 bg-dim border border-[#26252a] text-sm text-white rounded-xl shadow-lg [&>.toast-close]:hidden",
+                className: "hs-toastify-on:opacity-100 opacity-0 absolute top-0 start-1/2 -translate-x-1/2 z-90 w-4/5 md:w-1/2 lg:w-1/4 transition-all duration-300 bg-dim border border-[#26252a] text-sm text-white rounded-xl shadow-lg [&>.toast-close]:hidden",
                 duration: 4000,
                 close: true,
                 escapeMarkup: false
@@ -564,7 +564,7 @@
 
             Toastify({
                 text: toastMarkup,
-                className: "hs-toastify-on:opacity-100 opacity-0 border border-gray-700 absolute top-0 start-1/2 -translate-x-1/2 z-90 w-4/5 md:w-1/2 lg:w-1/4 transition-all duration-300 bg-dim border border-[#26252a] text-sm text-white rounded-xl shadow-lg [&>.toast-close]:hidden",
+                className: "hs-toastify-on:opacity-100 opacity-0 absolute top-0 start-1/2 -translate-x-1/2 z-90 w-4/5 md:w-1/2 lg:w-1/4 transition-all duration-300 bg-dim border border-[#26252a] text-sm text-white rounded-xl shadow-lg [&>.toast-close]:hidden",
                 duration: 4000,
                 close: true,
                 escapeMarkup: false
