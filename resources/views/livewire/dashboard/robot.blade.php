@@ -106,16 +106,16 @@
                         <div class="grid grid-cols-2 gap-x-2">
                             <label for="hs-vertical-radio-in-form-demo"
                                 wire:click="selectAccountType('Demo account', 'demo')"
-                                class="px-4 py-2 w-full {{ $this->accountTypeSlug === 'demo' ? 'border-3 border-accent' : 'border border-[#26252a]' }} bg-transparent rounded-lg text-base focus:border-blue-500 focus:ring-blue-500">
-                                <div class="flex-1 text-center text-white">
-                                    <h2>Demo</h2>
+                                class="px-4 py-2 w-full {{ $this->accountTypeSlug === 'demo' ? 'border-3 border-accent' : 'border border-[#323335]' }} bg-[#1a1b20] rounded-lg text-base focus:border-[#1a1b20] focus:ring-[#1a1b20]">
+                                <div class="flex-1 text-center">
+                                    <h2 class="text-[#4ad9a5] uppercase font-semibold text-sm">Demo</h2>
                                 </div>
                             </label>
                             <label for="hs-vertical-radio-in-form-live"
                                 wire:click="selectAccountType('Live account', 'live')"
-                                class="px-4 py-2 w-full {{ $this->accountTypeSlug === 'live' ? 'border-3 border-accent' : 'border border-[#26252a]' }} bg-transparent rounded-lg text-base focus:border-blue-500 focus:ring-blue-500">
+                                class="px-4 py-2 w-full {{ $this->accountTypeSlug === 'live' ? 'border-3 border-accent' : 'border border-[#323335]' }} bg-[#1a1b20] rounded-lg text-base focus:border-[#1a1b20] focus:ring-[#1a1b20]">
                                 <div class="flex-1 text-center text-white">
-                                    <h2>Live</h2>
+                                    <h2 class="text-[#4ad9a5] uppercase font-semibold text-sm">Live</h2>
                                 </div>
                             </label>
                         </div>
@@ -336,7 +336,7 @@
                 </div>
 
                 <div class="sticky bottom-2">
-                    <a x-on:click="$store.robotPage.toggleTradeDetailsConfirmationModal();">
+                    <a x-on:click="$store.robotPage.toggleTradeDetailsConfirmationModal($wire);">
                         <button type="button" wire:loading.attr="disabled"
                             class="py-2.5 cursor-pointer px-4 w-full md:px-6 text-center gap-x-2 text-sm font-semibold rounded-lg bg-accent text-white focus:outline-hidden disabled:pointer-events-none">
                             <i wire:loading class="fa-solid fa-circle-notch fa-spin"></i>
@@ -346,10 +346,10 @@
                 </div>
 
                 <div x-cloak x-show="$store.robotPage.isTradeDetailsConfirmationModalOpen"
-                    class="fixed top-0 left-0 h-svh w-full px-4 lg:px-96 pt-6 z-20 bg-[#0c0c0c]">
+                    class="fixed top-0 left-0 h-svh w-full px-4 lg:px-96 pt-6 z-20 bg-dashboard">
                     <div class="w-full h-full flex items-center justify-center">
                         <div
-                            class="max-w-sm mx-auto flex flex-col bg-dashboard border border-[#26252a] rounded-2xl pointer-events-auto">
+                            class="max-w-sm mx-auto flex flex-col bg-dim border border-[#26252a] rounded-2xl pointer-events-auto">
                             <div class="p-6 overflow-y-auto text-center">
                                 <div class="flex justify-center mb-8">
                                     <div
@@ -373,14 +373,14 @@
                                 <div class="mt-6 grid grid-cols-2 gap-x-2">
                                     <div>
                                         <button type="button"
-                                            x-on:click="$store.robotPage.toggleTradeDetailsConfirmationModal(); $store.robotPage.toggleStartRobotConfirmationModal($wire);"
+                                            x-on:click="$store.robotPage.toggleTradeDetailsConfirmationModal($wire); $store.robotPage.toggleStartRobotConfirmationModal($wire);"
                                             type="button"
                                             class="p-3 w-full text-center text-sm font-semibold rounded-lg border border-transparent bg-accent text-white cursor-pointer hover:bg-accent focus:outline-hidden focus:bg-accent disabled:opacity-50 disabled:pointer-events-none">
                                             Yes
                                         </button>
                                     </div>
                                     <div>
-                                        <button x-on:click="$store.robotPage.toggleTradeDetailsConfirmationModal()"
+                                        <button x-on:click="$store.robotPage.toggleTradeDetailsConfirmationModal($wire)"
                                             type="button"
                                             class="p-3 w-full text-center text-sm font-semibold rounded-lg border border-white text-white shadow-2xs cursor-pointer focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none">
                                             No
@@ -664,7 +664,11 @@
                 }
             },
 
-            toggleTradeDetailsConfirmationModal() {
+            toggleTradeDetailsConfirmationModal(wire) {
+                if (wire.amount === '') {
+                    toastRobotError('Amount field is empty');
+                    return;
+                }
                 this.isTradeDetailsConfirmationModalOpen = !this.isTradeDetailsConfirmationModalOpen;
             },
 

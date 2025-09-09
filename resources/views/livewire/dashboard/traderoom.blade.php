@@ -2,12 +2,18 @@
     <div class="lg:flex lg:h-full">
         <livewire:dashboard.partials.desktop-navbar />
         <div class="lg:h-full lg:flex-1 lg:px-96 lg:pt-6">
-            <div class="my-3 sticky top-0 bg-dashboard z-10 pb-2 lg:pt-4">
+            <div class="my-3 sticky top-0 bg-dashboard z-10 lg:pt-4">
                 <h1 class="text-white text-lg md:text-xl lg:text-2xl font-semibold">Active Robot</h1>
             </div>
             <div class="lg:h-full lg:pb-24 lg:overflow-scroll scrollbar-hide">
                 <div class="w-full bg-dashboard border border-[#26252a] rounded-lg p-4 mb-4">
                     <div class="mb-4 flex items-center gap-x-2">
+                        <div class="flex-1">
+                            <p class="text-zinc-300 text-xs mt-1 mb-1.5">Trading Fee</p>
+                            <div>
+                                <p x-text="fee" class="text-[#fb2c36] text-xs font-bold"></p>
+                            </div>
+                        </div>
                         <div class="flex-1">
                             <h2 class="text-white font-bold text-xl">@money($this->profit)</h2>
                             <div class="flex items-center gap-x-1">
@@ -15,41 +21,35 @@
                                     <p class="text-zinc-300 text-xs">Total Profit</p>
                                 </div>
                                 <div><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                        viewBox="0 0 24 24" fill="none" stroke="#05df72" stroke-width="2"
+                                        viewBox="0 0 24 24" fill="none" stroke="#00732F" stroke-width="4"
                                         stroke-linecap="round" stroke-linejoin="round"
                                         class="lucide lucide-arrow-up-icon lucide-arrow-up">
                                         <path d="m5 12 7-7 7 7" />
                                         <path d="M12 19V5" />
                                     </svg></div>
                             </div>
-                            <div class="flex items-center gap-x-1">
-                                <div>
-                                    <p class="text-zinc-300 text-xs">Trading Fee</p>
-                                </div>
-                                <div>
-                                    <p x-text="fee" class="text-[#fb2c36] text-xs"></p>
-                                </div>
+                        </div>
+                        <div class="flex-none flex flex-col gap-y-2 items-center">
+                            <div>
+                                <svg width="73" height="23" viewBox="0 0 73 23" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M72.2429 21.8037V1.09814L67.1401 3.94394L62.1355 2.47197L55.6588 7.6729L49.6729 3.25702L41.6261 8.26169L34.4626 5.31777H29.9486L27.0047 4.63085L20.4299 8.26169H17.2897L12.5794 11.7944L5.02337 15.0327L1.09814 22L72.2429 21.8037Z"
+                                        fill="url(#paint0_linear_513_324)" />
+                                    <path
+                                        d="M1 21.2149L4.57936 15.0153C4.75631 14.7088 5.03161 14.4711 5.3606 14.3407L12.557 11.4885C12.702 11.4311 12.8376 11.3523 12.9594 11.2549L17.063 7.97199C17.4524 7.66049 17.9666 7.55246 18.4484 7.68095L19.9838 8.09039C20.3944 8.19988 20.8318 8.13827 21.1962 7.91965L26.7883 4.56436C27.231 4.29877 27.7759 4.26773 28.2459 4.48134L29.3446 4.98076C29.5486 5.07351 29.7701 5.12149 29.9943 5.12149H33.7568C33.9636 5.12149 34.1684 5.16235 34.3593 5.24171L40.8484 7.93847C41.3342 8.14034 41.8887 8.08555 42.3256 7.79254L48.6561 3.54644C49.2538 3.14554 50.0476 3.20235 50.5821 3.6843L54.5684 7.27853C55.1821 7.83185 56.1196 7.81483 56.7128 7.23961L61.3887 2.70545C61.8414 2.26649 62.5127 2.14093 63.0935 2.38662L66.4103 3.7899C66.9232 4.0069 67.5127 3.93596 67.9595 3.60348L71.4579 1"
+                                        stroke="#00732F" stroke-width="1.76635" stroke-linecap="round" />
+                                    <defs>
+                                        <linearGradient id="paint0_linear_513_324" x1="40.743" y1="8.16356"
+                                            x2="40.743" y2="30.0467" gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#0C2819" />
+                                            <stop offset="1" stop-color="#161616" stop-opacity="0" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
                             </div>
                         </div>
-                        <div class="flex-none">
-                            <svg width="73" height="23" viewBox="0 0 73 23" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M72.2429 21.8037V1.09814L67.1401 3.94394L62.1355 2.47197L55.6588 7.6729L49.6729 3.25702L41.6261 8.26169L34.4626 5.31777H29.9486L27.0047 4.63085L20.4299 8.26169H17.2897L12.5794 11.7944L5.02337 15.0327L1.09814 22L72.2429 21.8037Z"
-                                    fill="url(#paint0_linear_513_324)" />
-                                <path
-                                    d="M1 21.2149L4.57936 15.0153C4.75631 14.7088 5.03161 14.4711 5.3606 14.3407L12.557 11.4885C12.702 11.4311 12.8376 11.3523 12.9594 11.2549L17.063 7.97199C17.4524 7.66049 17.9666 7.55246 18.4484 7.68095L19.9838 8.09039C20.3944 8.19988 20.8318 8.13827 21.1962 7.91965L26.7883 4.56436C27.231 4.29877 27.7759 4.26773 28.2459 4.48134L29.3446 4.98076C29.5486 5.07351 29.7701 5.12149 29.9943 5.12149H33.7568C33.9636 5.12149 34.1684 5.16235 34.3593 5.24171L40.8484 7.93847C41.3342 8.14034 41.8887 8.08555 42.3256 7.79254L48.6561 3.54644C49.2538 3.14554 50.0476 3.20235 50.5821 3.6843L54.5684 7.27853C55.1821 7.83185 56.1196 7.81483 56.7128 7.23961L61.3887 2.70545C61.8414 2.26649 62.5127 2.14093 63.0935 2.38662L66.4103 3.7899C66.9232 4.0069 67.5127 3.93596 67.9595 3.60348L71.4579 1"
-                                    stroke="#00732F" stroke-width="1.76635" stroke-linecap="round" />
-                                <defs>
-                                    <linearGradient id="paint0_linear_513_324" x1="40.743" y1="8.16356"
-                                        x2="40.743" y2="30.0467" gradientUnits="userSpaceOnUse">
-                                        <stop stop-color="#0C2819" />
-                                        <stop offset="1" stop-color="#161616" stop-opacity="0" />
-                                    </linearGradient>
-                                </defs>
-                            </svg>
-                        </div>
-                        <div class="flex-1 text-end">
+                        {{-- <div class="flex-1 text-end">
                             <a href="{{ route('dashboard') }}">
                                 <button type="button"
                                     class="relative px-2 py-1.5 inline-flex items-center gap-x-4 text-[11px] font-bold tracking-[0.15px] rounded-md bg-dim border border-[#26252a] text-white focus:outline-hidden">
@@ -65,7 +65,7 @@
                                     </div>
                                 </button>
                             </a>
-                        </div>
+                        </div> --}}
                     </div>
 
                     <div class="flex items-start space-x-3 border border-[#26252a] rounded-lg p-4 mb-4">
@@ -73,12 +73,12 @@
                             <template x-if="isBotSearchingForSignal === false">
                                 <div class="flex flex-col items-center justify-center w-fit">
                                     <div class="mb-1.5">
-                                        <p class="text-zinc-300 text-[11px] text-center">Bot will take profit in</p>
+                                        <p class="text-zinc-300 text-[11px] text-center">Closing trade in</p>
                                     </div>
                                     <p x-text='timer' class="mb-1.5 text-white font-bold text-2xl"></p>
                                     <div>
-                                        <p class="text-zinc-300 text-[11px] text-center">Last Trade Profit <span
-                                                class="text-green-500">+@money($this->previousBotProfit / 100)</span></p>
+                                        <p class="text-zinc-300 text-[11px] text-center">Last Trade <span
+                                                x-text="previousBotProfit" class="text-green-500 font-bold"></span></p>
                                     </div>
                                 </div>
                             </template>
@@ -109,7 +109,7 @@
                                     </div>
                                     <div>
                                         <template x-if="assetClass === 'crypto'">
-                                            <div class="flex items-center gap-x-1">
+                                            {{-- <div class="flex items-center gap-x-1">
                                                 <div>
                                                     <p class="text-zinc-300 text-[11px] text-center">on Bybit(API)</p>
                                                 </div>
@@ -124,16 +124,74 @@
                                                             d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
                                                     </svg>
                                                 </div>
-                                            </div>
-                                        </template>
-                                        <template x-if="assetClass === 'forex'">
-                                            <div class="flex items-center gap-x-2 -mt-0.5">
+                                            </div> --}}
+                                            <div class="flex items-center gap-x-1 -mt-0.5">
                                                 <div>
                                                     <p class="text-zinc-300 text-[11px] text-center">on </p>
                                                 </div>
+                                                <div class="-mt-1">
+                                                    <img class="inline w-8" src="{{ asset('assets/icons/bybit.svg') }}"
+                                                        alt="bybit-logo">
+                                                </div>
                                                 <div class="-mt-0.5">
+                                                    <svg width="12" height="12" viewBox="0 0 12 12"
+                                                        class="inline" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <g clip-path="url(#clip0_1031_740)">
+                                                            <path
+                                                                d="M5 6.49998C5.21473 6.78705 5.48868 7.02457 5.80328 7.19645C6.11787 7.36833 6.46575 7.47054 6.82333 7.49615C7.1809 7.52176 7.53979 7.47017 7.87567 7.34487C8.21155 7.21958 8.51656 7.02352 8.77 6.76998L10.27 5.26998C10.7254 4.79848 10.9774 4.16697 10.9717 3.51148C10.966 2.85599 10.7031 2.22896 10.2395 1.76544C9.77603 1.30192 9.14899 1.03899 8.4935 1.0333C7.83801 1.0276 7.20651 1.27959 6.735 1.73498L5.875 2.58998"
+                                                                stroke="white" stroke-width="2" stroke-linecap="round"
+                                                                stroke-linejoin="round" />
+                                                            <path
+                                                                d="M7.0001 5.49999C6.78537 5.21293 6.51142 4.9754 6.19683 4.80352C5.88223 4.63164 5.53435 4.52943 5.17677 4.50382C4.8192 4.47822 4.46031 4.52981 4.12443 4.6551C3.78855 4.78039 3.48354 4.97646 3.2301 5.22999L1.7301 6.72999C1.2747 7.2015 1.02272 7.833 1.02841 8.48849C1.03411 9.14399 1.29703 9.77102 1.76055 10.2345C2.22407 10.6981 2.85111 10.961 3.5066 10.9667C4.16209 10.9724 4.79359 10.7204 5.2651 10.265L6.1201 9.40999"
+                                                                stroke="white" stroke-width="2" stroke-linecap="round"
+                                                                stroke-linejoin="round" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_1031_740">
+                                                                <rect width="12" height="12" fill="white" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                </div>
+                                                <div class="text-white text-[11px] font-semibold">
+                                                    API
+                                                </div>
+                                            </div>
+                                        </template>
+                                        <template x-if="assetClass === 'forex'">
+                                            <div class="flex items-center gap-x-1 -mt-0.5">
+                                                <div>
+                                                    <p class="text-zinc-300 text-[11px] text-center">on </p>
+                                                </div>
+                                                <div class="-mt-0.5 text-white">
                                                     <img class="inline w-8" src="{{ asset('assets/icons/xtb.svg') }}"
                                                         alt="xtb-logo">
+                                                </div>
+                                                <div class="-mt-0.5">
+                                                    <svg width="12" height="12" viewBox="0 0 12 12"
+                                                        class="inline" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <g clip-path="url(#clip0_1031_740)">
+                                                            <path
+                                                                d="M5 6.49998C5.21473 6.78705 5.48868 7.02457 5.80328 7.19645C6.11787 7.36833 6.46575 7.47054 6.82333 7.49615C7.1809 7.52176 7.53979 7.47017 7.87567 7.34487C8.21155 7.21958 8.51656 7.02352 8.77 6.76998L10.27 5.26998C10.7254 4.79848 10.9774 4.16697 10.9717 3.51148C10.966 2.85599 10.7031 2.22896 10.2395 1.76544C9.77603 1.30192 9.14899 1.03899 8.4935 1.0333C7.83801 1.0276 7.20651 1.27959 6.735 1.73498L5.875 2.58998"
+                                                                stroke="white" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                            <path
+                                                                d="M7.0001 5.49999C6.78537 5.21293 6.51142 4.9754 6.19683 4.80352C5.88223 4.63164 5.53435 4.52943 5.17677 4.50382C4.8192 4.47822 4.46031 4.52981 4.12443 4.6551C3.78855 4.78039 3.48354 4.97646 3.2301 5.22999L1.7301 6.72999C1.2747 7.2015 1.02272 7.833 1.02841 8.48849C1.03411 9.14399 1.29703 9.77102 1.76055 10.2345C2.22407 10.6981 2.85111 10.961 3.5066 10.9667C4.16209 10.9724 4.79359 10.7204 5.2651 10.265L6.1201 9.40999"
+                                                                stroke="white" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_1031_740">
+                                                                <rect width="12" height="12" fill="white" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                </div>
+                                                <div class="-mt-0.5 text-white">
+                                                    <img class="inline-block -mt-0.5 w-4"
+                                                        src="{{ asset('assets/images/mt5.png') }}" alt="mt5-logo">
                                                 </div>
                                             </div>
                                         </template>
@@ -143,7 +201,7 @@
                             <template x-if="isBotSearchingForSignal === true">
                                 <div class="flex flex-col space-y-1">
                                     <div>
-                                        <p class="text-zinc-300 text-[11px] text-center">Fetching signals...</p>
+                                        <p class="text-zinc-300 text-[11px] text-center">Searching for trade...</p>
                                     </div>
                                     <div class="flex items-center space-x-1 rounded-lg">
                                         <div class="flex-none animate-pulse-bg size-4 rounded-sm"></div>
@@ -305,7 +363,7 @@
                         </button>
                     </div>
 
-                    <div class="text-sm text-white rounded-lg bg-dim py-3 px-4" role="alert" tabindex="-1"
+                    <div class="text-sm text-white rounded-lg bg-dim py-2.5 px-2" role="alert" tabindex="-1"
                         aria-labelledby="hs-with-description-label">
                         <div class="flex items-center">
                             <div class="shrink-0 text-green-400">
@@ -315,7 +373,7 @@
                                         <g clip-path="url(#clip0_518_288)">
                                             <path fill-rule="evenodd" clip-rule="evenodd"
                                                 d="M12 3.42845C10.1065 3.42845 8.57145 4.96347 8.57145 6.85702V8.57131H15.4286V6.85702C15.4286 4.96347 13.8936 3.42845 12 3.42845ZM5.14288 6.85702V8.57131H4.28578C2.86562 8.57131 1.71436 9.72257 1.71436 11.1427V21.4284C1.71436 22.8487 2.86562 23.9998 4.28578 23.9998H19.7144C21.1345 23.9998 22.2858 22.8487 22.2858 21.4284V11.1427C22.2858 9.72257 21.1345 8.57131 19.7144 8.57131H18.8572V6.85702C18.8572 3.06993 15.7871 -0.00012207 12 -0.00012207C8.21292 -0.00012207 5.14288 3.06993 5.14288 6.85702ZM12.0001 18.4284C13.1835 18.4284 14.1429 17.4691 14.1429 16.2856C14.1429 15.1021 13.1835 14.1427 12.0001 14.1427C10.8166 14.1427 9.85721 15.1021 9.85721 16.2856C9.85721 17.4691 10.8166 18.4284 12.0001 18.4284Z"
-                                                fill="#5D606B" />
+                                                fill="#00C951" />
                                         </g>
                                         <defs>
                                             <clipPath id="clip0_518_288">
@@ -323,11 +381,10 @@
                                             </clipPath>
                                         </defs>
                                     </svg>
-
                                 </div>
                             </div>
                             <div class="ms-1">
-                                <div class="mt-1 text-zinc-300 text-[13px] font-bold">
+                                <div class="mt-1 text-zinc-300 text-xs font-bold">
                                     Secure Trading → Capital Protection & Risk Management With AI Driven Strategies.
                                 </div>
                             </div>
@@ -588,6 +645,7 @@
             assetClass: '',
             sentiment: '',
             fee: '',
+            previousBotProfit: '',
             isRobotDisconnectingModalOpen: false,
             isBrokerDisconnecting: true,
             isExchangeDisconnecting: true,
@@ -695,6 +753,7 @@
                 this.assetIcon = `/${this.$wire.assetIcon}`
                 this.sentiment = this.$wire.sentiment;
                 this.fee = `$${Number(this.$wire.fee).toFixed(2)}`;
+                this.previousBotProfit = `$${this.$wire.previousBotProfit}`;
 
                 if (Date.now() > this.$wire.timerCheckpoint) {
                     this.$wire.refreshAssetData();

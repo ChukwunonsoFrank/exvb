@@ -5,6 +5,7 @@ namespace App\Livewire\Dashboard;
 use App\Livewire\Dashboard\Partials\AssetIndicator;
 use App\Models\Bot;
 use App\Models\Strategy;
+use App\Models\Trade;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
@@ -32,7 +33,7 @@ class Traderoom extends Component
 
     public string $profit = '';
 
-    public int $previousBotProfit;
+    public $previousBotProfit;
 
     public string $asset = '';
 
@@ -50,13 +51,14 @@ class Traderoom extends Component
         }
 
         $this->activeBot = Bot::where(['user_id' => auth()->user()->id, 'status' => 'active'])->first();
-        
-        $previousBot = Bot::where('user_id', auth()->user()->id)
-            ->where('created_at', '<', $this->activeBot['created_at'])
-            ->latest()
-            ->first();
 
-        $this->previousBotProfit = $previousBot['id'] === $this->activeBot['id'] ? 0 : $previousBot['profit'];
+        $previousBotTrade = Trade::where('user_id', auth()->user()->id)->where('bot_id', $this->activeBot['id'])->latest()->first();
+
+        if ($previousBotTrade) {
+            $this->previousBotProfit = number_format($previousBotTrade['profit'] / 100, 2, '.', ',');
+        } else {
+            $this->previousBotProfit = 0;
+        }
 
         if (is_null($this->activeBot)) {
             $this->redirectRoute('dashboard.robot');
@@ -100,6 +102,14 @@ class Traderoom extends Component
     public function refreshAssetData(): void
     {
         $activeBot = Bot::where(['user_id' => auth()->user()->id, 'status' => 'active'])->first();
+        $previousBotTrade = Trade::where('user_id', auth()->user()->id)->where('bot_id', $this->activeBot['id'])->latest()->first();
+
+        if ($previousBotTrade) {
+            $this->previousBotProfit = number_format($previousBotTrade['profit'] / 100, 2, '.', ',');
+        } else {
+            $this->previousBotProfit = 0;
+        }
+
         $this->profit = $this->normalizeAmount($activeBot['profit']);
         $this->fee = $this->calculateFees();
         $this->asset = $activeBot['asset'];
