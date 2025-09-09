@@ -566,7 +566,7 @@
                                         </div>
 
                                         <div
-                                            class="flex items-center justify-center gap-x-1 py-2 border-b border-[#26252a]">
+                                            class="flex items-center justify-center gap-x-1 py-2">
                                             <div class="flex-none">
                                                 <img class="w-4.5"
                                                     src="{{ asset('assets/images/robot-illustration.png') }}"
