@@ -50,11 +50,11 @@ class Traderoom extends Component
         }
 
         $this->activeBot = Bot::where(['user_id' => auth()->user()->id, 'status' => 'active'])->first();
+        dd($this->activeBot);
 
         $previousBotId = $this->activeBot['id'] > 1 ? $this->activeBot['id'] - 1 : $this->activeBot['id'];
 
         $previousBot = Bot::where(['user_id' => auth()->user()->id, 'id' => $previousBotId])->first();
-        dd($previousBot);
 
         $this->previousBotProfit = $previousBotId === $this->activeBot['id'] ? 0 : $previousBot['profit'];
 
