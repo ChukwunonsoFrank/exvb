@@ -51,12 +51,12 @@ class Traderoom extends Component
 
         $this->activeBot = Bot::where(['user_id' => auth()->user()->id, 'status' => 'active'])->first();
         
-        $previousBotId = $this->activeBot['id'] > 1 ? $this->activeBot['id'] - 1 : $this->activeBot['id'];
-        
-        dd($this->activeBot['id'] - 1);
-        $previousBot = Bot::where(['user_id' => auth()->user()->id, 'id' => $previousBotId])->first();
+        $previousBot = Bot::where('user_id', auth()->user()->id)
+            ->where('created_at', '<', $this->activeBot['created_at'])
+            ->latest()
+            ->first();
 
-        $this->previousBotProfit = $previousBotId === $this->activeBot['id'] ? 0 : $previousBot['profit'];
+        $this->previousBotProfit = $previousBot['id'] === $this->activeBot['id'] ? 0 : $previousBot['profit'];
 
         if (is_null($this->activeBot)) {
             $this->redirectRoute('dashboard.robot');
@@ -99,7 +99,7 @@ class Traderoom extends Component
 
     public function refreshAssetData(): void
     {
-        $activeBot = Bot::where(['user_id' => auth()->user()->id, 'status' => 'active'])->first(); 
+        $activeBot = Bot::where(['user_id' => auth()->user()->id, 'status' => 'active'])->first();
         $this->profit = $this->normalizeAmount($activeBot['profit']);
         $this->fee = $this->calculateFees();
         $this->asset = $activeBot['asset'];
