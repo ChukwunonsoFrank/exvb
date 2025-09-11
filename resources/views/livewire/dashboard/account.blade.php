@@ -39,7 +39,25 @@
                         <div class="mt-3">
                             <a href="{{ route('dashboard.withdraw') }}">
                                 <button type="button"
-                                    class="py-1.5 px-6 lg:px-10 cursor-pointer inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg bg-accent text-white focus:outline-hidden">
+                                    class="py-1.5 px-4 lg:px-10 cursor-pointer inline-flex items-center gap-x-1 text-sm font-semibold rounded-lg bg-accent text-white focus:outline-hidden">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_536_290)">
+                                            <path
+                                                d="M2.6665 11.3334V12.6667C2.6665 13.0203 2.80698 13.3595 3.05703 13.6095C3.30708 13.8596 3.64622 14 3.99984 14H11.9998C12.3535 14 12.6926 13.8596 12.9426 13.6095C13.1927 13.3595 13.3332 13.0203 13.3332 12.6667V11.3334"
+                                                stroke="white" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                            <path d="M4.6665 5.99996L7.99984 2.66663L11.3332 5.99996" stroke="white"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M8 2.66663V10.6666" stroke="white" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_536_290">
+                                                <rect width="16" height="16" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
                                     Withdraw
                                 </button>
                             </a>
@@ -177,7 +195,16 @@
                             <div class="bg-dim w-full rounded-lg flex flex-col space-y-2 p-3 mb-3 lg:mb-0">
                                 <div class="flex items-center space-x-2">
                                     <div class="flex-none">
-                                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="#FB2C36"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-logout"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" /><path d="M9 12h12l-3 -3" /><path d="M18 15l3 -3" /></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="#FB2C36" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="icon icon-tabler icons-tabler-outline icon-tabler-logout">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path
+                                                d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                                            <path d="M9 12h12l-3 -3" />
+                                            <path d="M18 15l3 -3" />
+                                        </svg>
                                     </div>
                                     <div class="flex-1">
                                         <p class="font-semibold text-sm text-red-500">Sign Out</p>

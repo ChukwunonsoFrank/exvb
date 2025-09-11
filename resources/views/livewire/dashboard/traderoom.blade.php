@@ -7,22 +7,23 @@
             </div>
             <div class="lg:h-full lg:pb-24 lg:overflow-scroll scrollbar-hide">
                 <div class="w-full bg-dashboard border border-[#26252a] rounded-lg p-4 mb-4">
-                    <div class="mb-4 flex items-center gap-x-2">
-                        <div class="flex-1">
-                            <p class="text-zinc-300 text-xs mt-1 mb-1.5">Trading Fee</p>
+                    <div class="mb-4 flex items-start gap-x-2">
+                        <div class="flex-none text-center">
+                            <p class="text-zinc-300 text-xs mt-1 ">Commission – 10%</p>
+                            <p class="text-zinc-300 text-[10px] mb-1">(from profits only)</p>
                             <div>
                                 <p x-text="fee" class="text-[#fb2c36] text-xs font-bold"></p>
                             </div>
                         </div>
-                        <div class="flex-1">
-                            <h2 class="text-white font-bold text-xl">@money($this->profit)</h2>
-                            <div class="flex items-center gap-x-1">
+                        <div class="flex-1 text-center">
+                            <h2 class="text-white font-bold text-xl -ml-1.5">@money($this->profit)</h2>
+                            <div class="flex items-center justify-center gap-x-0.5">
                                 <div>
-                                    <p class="text-zinc-300 text-xs">Total Profit</p>
+                                    <p class="text-zinc-300 text-xs font-bold">Total Profit</p>
                                 </div>
-                                <div><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                        viewBox="0 0 24 24" fill="none" stroke="#00732F" stroke-width="4"
-                                        stroke-linecap="round" stroke-linejoin="round"
+                                <div class="-mt-1"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                        height="16" viewBox="0 0 24 24" fill="none" stroke="#00732F"
+                                        stroke-width="4" stroke-linecap="round" stroke-linejoin="round"
                                         class="lucide lucide-arrow-up-icon lucide-arrow-up">
                                         <path d="m5 12 7-7 7 7" />
                                         <path d="M12 19V5" />
@@ -77,8 +78,28 @@
                                     </div>
                                     <p x-text='timer' class="mb-1.5 text-white font-bold text-2xl"></p>
                                     <div>
-                                        <p class="text-zinc-300 text-[11px] text-center">Last Trade <span
-                                                x-text="previousBotProfit" class="text-green-500 font-bold"></span></p>
+                                        {{-- <p class="text-zinc-300 text-[11px] text-center">Last Trade <span
+                                                x-text="previousBotProfit" class="text-green-500 font-bold"></span></p> --}}
+                                        <div class="flex-1 text-end">
+                                            <a href="{{ route('dashboard') }}">
+                                                <button type="button"
+                                                    class="animate-pulse relative px-2 py-1.5 inline-flex items-center gap-x-1 text-[11px] font-bold tracking-[0.15px] rounded-md bg-dim border border-[#26252a] text-white focus:outline-hidden">
+                                                    <div>
+                                                        <p class="text-green-500">Live Chart</p>
+                                                    </div>
+                                                    <div>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                            height="16" viewBox="0 0 24 24" fill="none"
+                                                            stroke="#00c951" stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            class="lucide lucide-trending-up-icon lucide-trending-up">
+                                                            <path d="M16 7h6v6" />
+                                                            <path d="m22 7-8.5 8.5-5-5L2 17" />
+                                                        </svg>
+                                                    </div>
+                                                </button>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </template>
@@ -109,22 +130,6 @@
                                     </div>
                                     <div>
                                         <template x-if="assetClass === 'crypto'">
-                                            {{-- <div class="flex items-center gap-x-1">
-                                                <div>
-                                                    <p class="text-zinc-300 text-[11px] text-center">on Bybit(API)</p>
-                                                </div>
-                                                <div>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                        height="16" viewBox="0 0 24 24" fill="none" stroke="white"
-                                                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="lucide lucide-link-icon lucide-link">
-                                                        <path
-                                                            d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-                                                        <path
-                                                            d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
-                                                    </svg>
-                                                </div>
-                                            </div> --}}
                                             <div class="flex items-center gap-x-1 -mt-0.5">
                                                 <div>
                                                     <p class="text-zinc-300 text-[11px] text-center">on </p>
@@ -140,12 +145,12 @@
                                                         <g clip-path="url(#clip0_1031_740)">
                                                             <path
                                                                 d="M5 6.49998C5.21473 6.78705 5.48868 7.02457 5.80328 7.19645C6.11787 7.36833 6.46575 7.47054 6.82333 7.49615C7.1809 7.52176 7.53979 7.47017 7.87567 7.34487C8.21155 7.21958 8.51656 7.02352 8.77 6.76998L10.27 5.26998C10.7254 4.79848 10.9774 4.16697 10.9717 3.51148C10.966 2.85599 10.7031 2.22896 10.2395 1.76544C9.77603 1.30192 9.14899 1.03899 8.4935 1.0333C7.83801 1.0276 7.20651 1.27959 6.735 1.73498L5.875 2.58998"
-                                                                stroke="white" stroke-width="2" stroke-linecap="round"
-                                                                stroke-linejoin="round" />
+                                                                stroke="white" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round" />
                                                             <path
                                                                 d="M7.0001 5.49999C6.78537 5.21293 6.51142 4.9754 6.19683 4.80352C5.88223 4.63164 5.53435 4.52943 5.17677 4.50382C4.8192 4.47822 4.46031 4.52981 4.12443 4.6551C3.78855 4.78039 3.48354 4.97646 3.2301 5.22999L1.7301 6.72999C1.2747 7.2015 1.02272 7.833 1.02841 8.48849C1.03411 9.14399 1.29703 9.77102 1.76055 10.2345C2.22407 10.6981 2.85111 10.961 3.5066 10.9667C4.16209 10.9724 4.79359 10.7204 5.2651 10.265L6.1201 9.40999"
-                                                                stroke="white" stroke-width="2" stroke-linecap="round"
-                                                                stroke-linejoin="round" />
+                                                                stroke="white" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round" />
                                                         </g>
                                                         <defs>
                                                             <clipPath id="clip0_1031_740">
@@ -363,9 +368,9 @@
                         </button>
                     </div>
 
-                    <div class="text-sm text-white rounded-lg bg-dim py-2.5 px-2" role="alert" tabindex="-1"
+                    <div class="text-sm text-white rounded-lg bg-dim py-2.5 pb-3 px-2" role="alert" tabindex="-1"
                         aria-labelledby="hs-with-description-label">
-                        <div class="flex items-center">
+                        <div class="flex flex-col items-center justify-center">
                             <div class="shrink-0 text-green-400">
                                 <div class="flex items-center justify-center size-8 rounded-full">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -383,8 +388,8 @@
                                     </svg>
                                 </div>
                             </div>
-                            <div class="ms-1">
-                                <div class="mt-1 text-zinc-300 text-xs font-bold">
+                            <div class="w-full">
+                                <div class="mt-1 text-zinc-300 text-xs font-bold text-center">
                                     Secure Trading → Capital Protection & Risk Management With AI Driven Strategies.
                                 </div>
                             </div>
@@ -394,10 +399,11 @@
             </div>
 
             <div x-cloak x-show="isStopRobotConfirmationModalOpen"
-                class="fixed top-0 left-0 h-svh w-full px-4 lg:px-96 pt-6 z-20 bg-dashboard">
-                <div class="w-full h-full flex items-center justify-center">
+                class="fixed top-0 left-0 h-svh w-full px-4 lg:px-96 pt-6 z-20">
+                <div class="absolute inset-0 h-svh w-full px-4 lg:px-96 pt-6 z-20 bg-dashboard opacity-85"></div>
+                <div class="relative w-full h-full flex items-center justify-center z-30">
                     <div
-                        class="max-w-sm mx-auto flex flex-col bg-dim border border-[#26252a] rounded-2xl pointer-events-auto">
+                        class="max-w-sm mx-auto flex flex-col bg-dashboard border border-[#26252a] rounded-2xl pointer-events-auto">
                         <div class="p-6 overflow-y-auto text-center">
                             <div class="flex justify-center mb-8">
                                 <div
@@ -422,7 +428,7 @@
                                 </div>
                             </div>
                             <p class="text-white font-medium text-base">
-                                Are you sure you want to stop the robot at @money($this->profit) profit?
+                                Are you sure you want to stop the robot at <span x-text="netProfit"></span> profit?
                             </p>
                             <div class="mt-6 grid grid-cols-2 gap-x-2">
                                 <div>
@@ -447,9 +453,10 @@
             </div>
 
             <div x-cloak x-show="isRobotDisconnectingModalOpen"
-                class="fixed top-0 left-0 h-svh w-full px-4 lg:px-96 pt-6 z-20 bg-dashboard">
-                <div class="w-full h-full flex items-center justify-center">
-                    <div class="max-w-sm mx-auto bg-dim border border-[#26252a] rounded-2xl pointer-events-auto">
+                class="fixed top-0 left-0 h-svh w-full px-4 lg:px-96 pt-6 z-20">
+                <div class="absolute inset-0 h-svh w-full px-4 lg:px-96 pt-6 z-20 bg-dashboard opacity-85"></div>
+                <div class="relative w-full h-full flex items-center justify-center z-30">
+                    <div class="max-w-sm mx-auto bg-dashboard border border-[#26252a] rounded-2xl pointer-events-auto">
                         <div class="p-6 overflow-y-auto text-center">
                             <div class="flex justify-center mb-8">
                                 <div
@@ -470,9 +477,69 @@
                                 Robot is disconnecting from the markets...
                             </p>
                             <div class="w-full flex flex-col gap-y-2 justify-center items-center">
+                                <template x-if="isOpenPositionsClosing === true">
+                                    <div
+                                        class="bg-dashboard border border-[#26252a] py-2 px-2 flex items-center gap-x-1 rounded-full">
+                                        <div class="flex-none">
+                                            <i class="fa-solid fa-circle-notch fa-spin text-[#05df72]"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <p class="font-light text-xs text-white">Closing all opened positions on
+                                            </p>
+                                        </div>
+                                        <div class="flex-none">
+                                            <img class="inline w-7" src="{{ asset('assets/icons/xtb.svg') }}"
+                                                alt="xtb-logo">
+                                        </div>
+                                        <div class="flex-none">
+                                            <p class="font-light text-xs text-white"> and </p>
+                                        </div>
+                                        <div class="flex-none">
+                                            <img class="inline w-7" src="{{ asset('assets/icons/bybit.svg') }}"
+                                                alt="bybit-logo">
+                                        </div>
+                                    </div>
+                                </template>
+
+                                <template x-if="isOpenPositionsClosing === false">
+                                    <div
+                                        class="bg-dashboard border border-[#26252a] py-2 px-2 flex items-center gap-x-1 rounded-full">
+                                        <div>
+                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <g clip-path="url(#clip0_850_2)">
+                                                    <path
+                                                        d="M11.3335 2.22667C12.339 2.80724 13.1755 3.64035 13.76 4.64353C14.3446 5.64672 14.6571 6.78518 14.6664 7.94623C14.6758 9.10727 14.3818 10.2506 13.8135 11.2631C13.2452 12.2756 12.4223 13.1221 11.4263 13.7189C10.4303 14.3156 9.29574 14.6419 8.13489 14.6654C6.97405 14.6889 5.8272 14.4088 4.80787 13.8528C3.78854 13.2969 2.93208 12.4844 2.32327 11.4957C1.71447 10.507 1.37444 9.37647 1.33683 8.216L1.3335 8L1.33683 7.784C1.37416 6.63266 1.70919 5.51064 2.30926 4.52733C2.90932 3.54402 3.75393 2.73297 4.76076 2.17325C5.76758 1.61354 6.90226 1.32426 8.05417 1.33362C9.20607 1.34299 10.3359 1.65066 11.3335 2.22667ZM10.4715 6.19533C10.3567 6.08055 10.204 6.01159 10.0419 6.00141C9.87993 5.99122 9.71976 6.0405 9.5915 6.14L9.52883 6.19533L7.3335 8.39L6.4715 7.52867L6.40883 7.47333C6.28055 7.3739 6.12041 7.32468 5.95843 7.3349C5.79645 7.34512 5.64377 7.41408 5.529 7.52884C5.41424 7.6436 5.34528 7.79629 5.33506 7.95827C5.32485 8.12025 5.37407 8.28039 5.4735 8.40867L5.52883 8.47133L6.86216 9.80467L6.92483 9.86C7.04174 9.95071 7.18552 9.99994 7.3335 9.99994C7.48147 9.99994 7.62525 9.95071 7.74216 9.86L7.80483 9.80467L10.4715 7.138L10.5268 7.07533C10.6263 6.94706 10.6756 6.7869 10.6654 6.62488C10.6552 6.46286 10.5863 6.31013 10.4715 6.19533Z"
+                                                        fill="#05DF72" />
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip0_850_2">
+                                                        <rect width="16" height="16" fill="white" />
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <p class="font-light text-xs text-white">Closing all opened positions on
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <img class="inline w-7" src="{{ asset('assets/icons/xtb.svg') }}"
+                                                alt="xtb-logo">
+                                        </div>
+                                        <div>
+                                            <p class="font-light text-xs text-white"> and </p>
+                                        </div>
+                                        <div>
+                                            <img class="inline w-7" src="{{ asset('assets/icons/bybit.svg') }}"
+                                                alt="bybit-logo">
+                                        </div>
+                                    </div>
+                                </template>
+
                                 <template x-if="isBrokerDisconnecting === true">
                                     <div
-                                        class="bg-dim border border-[#26252a] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
+                                        class="bg-dashboard border border-[#26252a] py-2 px-2 flex items-center gap-x-1.5 rounded-full">
                                         <div>
                                             <i class="fa-solid fa-circle-notch fa-spin text-[#05df72]"></i>
                                         </div>
@@ -484,7 +551,7 @@
 
                                 <template x-if="isBrokerDisconnecting === false">
                                     <div
-                                        class="bg-dim border border-[#26252a] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
+                                        class="bg-dashboard border border-[#26252a] py-2 px-2 flex items-center gap-x-1.5 rounded-full">
                                         <div>
                                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -512,7 +579,7 @@
 
                                 <template x-if="isExchangeDisconnecting === true">
                                     <div
-                                        class="bg-dim border border-[#26252a] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
+                                        class="bg-dashboard border border-[#26252a] py-2 px-2 flex items-center gap-x-1.5 rounded-full">
                                         <div>
                                             <i class="fa-solid fa-circle-notch fa-spin text-[#05df72]"></i>
                                         </div>
@@ -525,7 +592,7 @@
 
                                 <template x-if="isExchangeDisconnecting === false">
                                     <div
-                                        class="bg-dim border border-[#26252a] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
+                                        class="bg-dashboard border border-[#26252a] py-2 px-2 flex items-center gap-x-1.5 rounded-full">
                                         <div>
                                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -547,6 +614,46 @@
                                         <div class="-mt-1">
                                             <img class="inline" src="{{ asset('assets/icons/bybit.svg') }}"
                                                 alt="bybit-logo">
+                                        </div>
+                                    </div>
+                                </template>
+
+                                <template x-if="isCapitalAndProfitReturning === true">
+                                    <div
+                                        class="bg-dashboard border border-[#26252a] py-2 px-2 flex items-center gap-x-1 rounded-full">
+                                        <div>
+                                            <i class="fa-solid fa-circle-notch fa-spin text-[#05df72]"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-light text-xs text-white">Returning capital and
+                                                @money($this->profit) profit to your {{ $this->accountType }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </template>
+
+                                <template x-if="isCapitalAndProfitReturning === false">
+                                    <div
+                                        class="bg-dashboard border border-[#26252a] py-2 px-2 flex items-center gap-x-1.5 rounded-full">
+                                        <div>
+                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <g clip-path="url(#clip0_850_2)">
+                                                    <path
+                                                        d="M11.3335 2.22667C12.339 2.80724 13.1755 3.64035 13.76 4.64353C14.3446 5.64672 14.6571 6.78518 14.6664 7.94623C14.6758 9.10727 14.3818 10.2506 13.8135 11.2631C13.2452 12.2756 12.4223 13.1221 11.4263 13.7189C10.4303 14.3156 9.29574 14.6419 8.13489 14.6654C6.97405 14.6889 5.8272 14.4088 4.80787 13.8528C3.78854 13.2969 2.93208 12.4844 2.32327 11.4957C1.71447 10.507 1.37444 9.37647 1.33683 8.216L1.3335 8L1.33683 7.784C1.37416 6.63266 1.70919 5.51064 2.30926 4.52733C2.90932 3.54402 3.75393 2.73297 4.76076 2.17325C5.76758 1.61354 6.90226 1.32426 8.05417 1.33362C9.20607 1.34299 10.3359 1.65066 11.3335 2.22667ZM10.4715 6.19533C10.3567 6.08055 10.204 6.01159 10.0419 6.00141C9.87993 5.99122 9.71976 6.0405 9.5915 6.14L9.52883 6.19533L7.3335 8.39L6.4715 7.52867L6.40883 7.47333C6.28055 7.3739 6.12041 7.32468 5.95843 7.3349C5.79645 7.34512 5.64377 7.41408 5.529 7.52884C5.41424 7.6436 5.34528 7.79629 5.33506 7.95827C5.32485 8.12025 5.37407 8.28039 5.4735 8.40867L5.52883 8.47133L6.86216 9.80467L6.92483 9.86C7.04174 9.95071 7.18552 9.99994 7.3335 9.99994C7.48147 9.99994 7.62525 9.95071 7.74216 9.86L7.80483 9.80467L10.4715 7.138L10.5268 7.07533C10.6263 6.94706 10.6756 6.7869 10.6654 6.62488C10.6552 6.46286 10.5863 6.31013 10.4715 6.19533Z"
+                                                        fill="#05DF72" />
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip0_850_2">
+                                                        <rect width="16" height="16" fill="white" />
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <p class="font-light text-xs text-white">Returning capital and
+                                                @money($this->profit) profit to your {{ $this->accountType }}
+                                            </p>
                                         </div>
                                     </div>
                                 </template>
@@ -646,9 +753,12 @@
             sentiment: '',
             fee: '',
             previousBotProfit: '',
+            netProfit: '',
             isRobotDisconnectingModalOpen: false,
             isBrokerDisconnecting: true,
             isExchangeDisconnecting: true,
+            isCapitalAndProfitReturning: true,
+            isOpenPositionsClosing: true,
 
             init() {
                 // Start the timer when the component initializes
@@ -677,16 +787,24 @@
                 this.isRobotDisconnectingModalOpen = !this.isRobotDisconnectingModalOpen;
 
                 setTimeout(() => {
-                    this.isBrokerDisconnecting = false;
+                    this.isOpenPositionsClosing = false;
                 }, 4000);
 
                 setTimeout(() => {
-                    this.isExchangeDisconnecting = false;
+                    this.isBrokerDisconnecting = false;
                 }, 8000);
 
                 setTimeout(() => {
+                    this.isExchangeDisconnecting = false;
+                }, 12000);
+
+                setTimeout(() => {
+                    this.isCapitalAndProfitReturning = false;
+                }, 14000);
+
+                setTimeout(() => {
                     this.$wire.stopRobot();
-                }, 10000);
+                }, 16000);
             },
 
             calculateTimeLeftTillNextCheckpoint(checkpoint) {
@@ -753,6 +871,8 @@
                 this.assetIcon = `/${this.$wire.assetIcon}`
                 this.sentiment = this.$wire.sentiment;
                 this.fee = `$${Number(this.$wire.fee).toFixed(2)}`;
+                this.netProfit =
+                    `$${(Number(this.$wire.profit) - Number(this.$wire.fee)).toFixed(2)}`;
                 this.previousBotProfit = `$${this.$wire.previousBotProfit}`;
 
                 if (Date.now() > this.$wire.timerCheckpoint) {
@@ -761,6 +881,8 @@
                     this.assetIcon = `/${this.$wire.assetIcon}`;
                     this.sentiment = this.$wire.sentiment;
                     this.fee = `$${Number(this.$wire.fee).toFixed(2)}`;
+                    this.netProfit = (Number(this.$wire.profit) - Number(this.$wire.fee)).toFixed(
+                        2);
                     let nextCheckpoint = new Date(Number(this.$wire.timerCheckpoint)).getTime() + (
                         5 * 60 + 8) * 1000;
                     this.timeLeft = this.calculateTimeLeftTillNextCheckpoint(nextCheckpoint);

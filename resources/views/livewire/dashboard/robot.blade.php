@@ -90,7 +90,7 @@
                             <div class="relative">
                                 <input wire:model="amount" wire:keyup.debounce.300ms="calculateProfitExpected"
                                     @input.debounce.500ms="$store.robotPage.checkMinimumAmount($wire)" type="text"
-                                    class="bg-transparent text-white border border-[#26252a] text-sm peer py-3 px-4 ps-11 block w-full rounded-lg sm:text-sm focus:outline-0"
+                                    class="bg-transparent text-white border border-[#26252a] text-sm peer py-2.5 px-4 ps-11 block w-full rounded-lg sm:text-sm focus:outline-0"
                                     placeholder="">
                                 <div
                                     class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-4 peer-disabled:opacity-50 peer-disabled:pointer-events-none">
@@ -106,23 +106,19 @@
                         <div class="grid grid-cols-2 gap-x-2">
                             <label for="hs-vertical-radio-in-form-demo"
                                 wire:click="selectAccountType('Demo account', 'demo')"
-                                class="px-4 py-2 w-full {{ $this->accountTypeSlug === 'demo' ? 'border-3 border-accent' : 'border border-[#323335]' }} bg-[#1a1b20] rounded-lg text-base focus:border-[#1a1b20] focus:ring-[#1a1b20]">
+                                class="px-4 py-2 w-full {{ $this->accountTypeSlug === 'demo' ? 'border-3 border-accent' : 'border border-[#323335]' }} bg-transparent rounded-lg text-base focus:border-[#1a1b20] focus:ring-[#1a1b20]">
                                 <div class="flex-1 text-center">
-                                    <h2 class="text-[#4ad9a5] uppercase font-semibold text-sm">Demo</h2>
+                                    <h2 class="text-white uppercase font-semibold text-sm">Demo</h2>
                                 </div>
                             </label>
                             <label for="hs-vertical-radio-in-form-live"
                                 wire:click="selectAccountType('Live account', 'live')"
-                                class="px-4 py-2 w-full {{ $this->accountTypeSlug === 'live' ? 'border-3 border-accent' : 'border border-[#323335]' }} bg-[#1a1b20] rounded-lg text-base focus:border-[#1a1b20] focus:ring-[#1a1b20]">
+                                class="px-4 py-2 w-full {{ $this->accountTypeSlug === 'live' ? 'border-3 border-accent' : 'border border-[#323335]' }} bg-transparent rounded-lg text-base focus:border-[#1a1b20] focus:ring-[#1a1b20]">
                                 <div class="flex-1 text-center text-white">
-                                    <h2 class="text-[#4ad9a5] uppercase font-semibold text-sm">Live</h2>
+                                    <h2 class="text-white uppercase font-semibold text-sm">Live</h2>
                                 </div>
                             </label>
                         </div>
-                        {{-- <label for="input-label" class="block text-sm font-medium mb-2 text-zinc-300">Markets</label>
-                        <input type="text" value="Forex & Crypto"
-                            class="border border-[#26252a] bg-transparent text-white text-start text-sm py-2.5 sm:py-3 px-4 block w-full rounded-lg sm:text-sm focus:outline-0"
-                            placeholder="" readonly> --}}
                     </div>
                 </div>
 
@@ -248,7 +244,7 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="input-label" class="block text-sm font-medium mb-2 text-zinc-300">Strategy</label>
+                    <label for="input-label" class="block text-sm font-medium mb-2 text-zinc-300">Trading Strategy</label>
                     <div class="grid space-y-2">
                         @foreach ($this->strategies as $strategy)
                             <div class="relative">
@@ -264,7 +260,7 @@
                                     </div>
                                     <div class="flex-1">
                                         <h2 class="font-bold mb-1 text-base text-white">
-                                            Trading Strategy: {{ $strategy['name'] }}
+                                            {{ $strategy['name'] }}
                                         </h2>
                                         <div class="mb-1">
                                             <p class="text-xs text-[#a4a4a4] font-normal">
@@ -346,10 +342,11 @@
                 </div>
 
                 <div x-cloak x-show="$store.robotPage.isTradeDetailsConfirmationModalOpen"
-                    class="fixed top-0 left-0 h-svh w-full px-4 lg:px-96 pt-6 z-20 bg-dashboard">
-                    <div class="w-full h-full flex items-center justify-center">
+                    class="fixed top-0 left-0 h-svh w-full px-4 lg:px-96 pt-6 z-20">
+                    <div class="absolute inset-0 h-svh w-full px-4 lg:px-96 pt-6 z-20 bg-dashboard opacity-85"></div>
+                    <div class="relative w-full h-full flex items-center justify-center z-30">
                         <div
-                            class="max-w-sm mx-auto flex flex-col bg-dim border border-[#26252a] rounded-2xl pointer-events-auto">
+                            class="max-w-sm mx-auto flex flex-col bg-dashboard border border-[#26252a] rounded-2xl pointer-events-auto">
                             <div class="p-6 overflow-y-auto text-center">
                                 <div class="flex justify-center mb-8">
                                     <div
@@ -393,10 +390,11 @@
                 </div>
 
                 <div x-cloak x-show="$store.robotPage.isStartRobotConfirmationModalOpen"
-                    class="fixed top-0 left-0 h-svh w-full px-4 lg:px-96 pt-6 z-20 bg-dashboard">
-                    <div class="w-full h-full flex items-center justify-center">
+                    class="fixed top-0 left-0 h-svh w-full px-4 lg:px-96 pt-6 z-20">
+                    <div class="absolute inset-0 h-svh w-full px-4 lg:px-96 pt-6 z-20 bg-dashboard opacity-85"></div>
+                    <div class="relative w-full h-full flex items-center justify-center z-30">
                         <div
-                            class="max-w-sm mx-auto bg-dim border border-[#26252a] rounded-2xl pointer-events-auto">
+                            class="max-w-sm mx-auto bg-dashboard border border-[#26252a] rounded-2xl pointer-events-auto">
                             <div class="p-6 overflow-y-auto text-center">
                                 <div class="flex justify-center mb-8">
                                     <div
@@ -419,7 +417,7 @@
                                 <div class="w-full flex flex-col gap-y-2 justify-center items-center mb-5">
                                     <template x-if="$store.robotPage.isBrokerConnecting === true">
                                         <div
-                                            class="bg-dim border border-[#26252a] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
+                                            class="bg-dashboard border border-[#26252a] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
                                             <div>
                                                 <i class="fa-solid fa-circle-notch fa-spin text-[#05df72]"></i>
                                             </div>
@@ -431,7 +429,7 @@
 
                                     <template x-if="$store.robotPage.isBrokerConnecting === false">
                                         <div
-                                            class="bg-dim border border-[#26252a] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
+                                            class="bg-dashboard border border-[#26252a] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
                                             <div>
                                                 <svg width="16" height="16" viewBox="0 0 16 16"
                                                     fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -459,7 +457,7 @@
 
                                     <template x-if="$store.robotPage.isExchangeConnecting === true">
                                         <div
-                                            class="bg-dim border border-[#26252a] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
+                                            class="bg-dashboard border border-[#26252a] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
                                             <div>
                                                 <i class="fa-solid fa-circle-notch fa-spin text-[#05df72]"></i>
                                             </div>
@@ -472,7 +470,7 @@
 
                                     <template x-if="$store.robotPage.isExchangeConnecting === false">
                                         <div
-                                            class="bg-dim border border-[#26252a] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
+                                            class="bg-dashboard border border-[#26252a] py-2 px-3 flex items-center gap-x-1.5 rounded-full">
                                             <div>
                                                 <svg width="16" height="16" viewBox="0 0 16 16"
                                                     fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -499,10 +497,10 @@
                                     </template>
                                 </div>
                                 <div class="w-full flex justify-center items-center">
-                                    <div class="p-4 bg-dim border border-[#3c3a43] w-full rounded-lg">
+                                    <div class="p-4 bg-dashboard border border-[#3c3a43] w-full rounded-lg">
                                         <p class="text-white font-semibold text-base mb-4 leading-4">Trade Details</p>
                                         <div
-                                            class="flex items-center justify-center gap-x-1 pb-2 border-b border-[#26252a]">
+                                            class="flex items-center justify-center gap-x-1 pb-2 border-b border-[#3c3a43]">
                                             <div class="flex-none">
                                                 <svg width="22" height="22" viewBox="0 0 22 22"
                                                     fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -537,7 +535,7 @@
                                         </div>
 
                                         <div
-                                            class="flex items-center justify-center gap-x-1 py-2 border-b border-[#26252a]">
+                                            class="flex items-center justify-center gap-x-1 py-2 border-b border-[#3c3a43]">
                                             <div class="flex-none">
                                                 <svg width="22" height="22" viewBox="0 0 22 22"
                                                     fill="none" xmlns="http://www.w3.org/2000/svg">

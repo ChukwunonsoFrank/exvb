@@ -52,7 +52,7 @@ class UsersDetails extends Component
             return 'bg-warning-50 text-warning-600';
         }
 
-        if ($status === 'stopped' || $status === 'expired' || $status === 'declined') {
+        if ($status === 'closed' || $status === 'expired' || $status === 'declined') {
             return 'bg-error-50 text-error-600';
         }
 

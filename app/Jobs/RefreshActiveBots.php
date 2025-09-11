@@ -120,7 +120,7 @@ class RefreshActiveBots implements ShouldQueue
 
     public function calculateFees(int $profit): float
     {
-        $fee = 0.01 * $profit;
+        $fee = 0.1 * $profit;
         return $fee;
     }
 

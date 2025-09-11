@@ -52,17 +52,17 @@ class Traderoom extends Component
 
         $this->activeBot = Bot::where(['user_id' => auth()->user()->id, 'status' => 'active'])->first();
 
+        if (is_null($this->activeBot)) {
+            $this->redirectRoute('dashboard.robot');
+            return;
+        }
+
         $previousBotTrade = Trade::where('user_id', auth()->user()->id)->where('bot_id', $this->activeBot['id'])->latest()->first();
 
         if ($previousBotTrade) {
             $this->previousBotProfit = number_format($previousBotTrade['profit'] / 100, 2, '.', ',');
         } else {
             $this->previousBotProfit = 0;
-        }
-
-        if (is_null($this->activeBot)) {
-            $this->redirectRoute('dashboard.robot');
-            return;
         }
 
         $this->amount = $this->normalizeAmount($this->activeBot['amount']);
@@ -85,7 +85,7 @@ class Traderoom extends Component
     public function calculateFees(): float
     {
         $profit = $this->normalizeAmount($this->activeBot['profit']);
-        $fee = 0.01 * $profit;
+        $fee = 0.1 * $profit;
         return $fee;
     }
 
@@ -140,7 +140,7 @@ class Traderoom extends Component
                 $serialized = $this->serializeAmount($newBalanceMinusFees);
 
                 DB::transaction(function () use ($serialized) {
-                    Bot::where('id', $this->activeBot['id'])->update(['status' => 'stopped']);
+                    Bot::where('id', $this->activeBot['id'])->update(['status' => 'closed']);
                     User::where('id', auth()->user()->id)->update(['demo_balance' => $serialized]);
                 });
             }
@@ -154,7 +154,7 @@ class Traderoom extends Component
                 $serialized = $this->serializeAmount($newBalanceMinusFees);
 
                 DB::transaction(function () use ($serialized) {
-                    Bot::where('id', $this->activeBot['id'])->update(['status' => 'stopped']);
+                    Bot::where('id', $this->activeBot['id'])->update(['status' => 'closed']);
                     User::where('id', auth()->user()->id)->update(['live_balance' => $serialized]);
                 });
             }

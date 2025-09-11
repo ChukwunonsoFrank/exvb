@@ -37,7 +37,7 @@
                                     <div class="flex-1 text-end">
                                         <a href="{{ route('dashboard.history.details', ['id' => $bot['id']]) }}">
                                             <button type="button"
-                                                class="px-2 py-1 inline-flex items-center gap-x-1 text-[11px] font-bold tracking-[0.15px] rounded-md bg-dim border border-[#26252a] text-white focus:outline-hidden">
+                                                class="px-2 py-1 inline-flex items-center gap-x-1 text-[11px] font-bold tracking-[0.15px] rounded-md bg-dim border border-accent text-white focus:outline-hidden">
                                                 View trades
                                                 <svg width="6" height="10" viewBox="0 0 6 10" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">

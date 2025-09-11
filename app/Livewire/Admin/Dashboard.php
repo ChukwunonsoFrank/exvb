@@ -35,7 +35,7 @@ class Dashboard extends Component
             return 'bg-success-50 text-success-600';
         }
 
-        if ($status === 'stopped') {
+        if ($status === 'closed') {
             return 'bg-error-50 text-error-600';
         }
 
@@ -92,7 +92,7 @@ class Dashboard extends Component
                 $serialized = $this->serializeAmount($newBalance);
 
                 DB::transaction(function () use ($serialized, $botId, $userId) {
-                    Bot::where('id', $botId)->update(['status' => 'stopped']);
+                    Bot::where('id', $botId)->update(['status' => 'closed']);
                     User::where('id', $userId)->update(['demo_balance' => $serialized]);
                 });
             }
@@ -103,7 +103,7 @@ class Dashboard extends Component
                 $serialized = $this->serializeAmount($newBalance);
 
                 DB::transaction(function () use ($serialized, $botId, $userId) {
-                    Bot::where('id', $botId)->update(['status' => 'stopped']);
+                    Bot::where('id', $botId)->update(['status' => 'closed']);
                     User::where('id', $userId)->update(['live_balance' => $serialized]);
                 });
             }
