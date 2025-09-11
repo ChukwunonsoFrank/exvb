@@ -367,7 +367,7 @@
                         </button>
                     </div>
 
-                    <div class="text-sm text-white rounded-lg bg-dim py-3 pb-4 px-2" role="alert" tabindex="-1"
+                    <div class="text-sm text-white rounded-lg bg-dim py-3 pb-4 px-2.5" role="alert" tabindex="-1"
                         aria-labelledby="hs-with-description-label">
                         <div class="flex flex-col items-center justify-center">
                             <div class="shrink-0 text-green-400">
