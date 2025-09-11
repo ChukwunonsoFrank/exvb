@@ -43,6 +43,8 @@ class Traderoom extends Component
 
     public string $sentiment = '';
 
+    public int $botExpirationInHrs;
+
     public function mount()
     {
         if (session()->has('message')) {
@@ -51,6 +53,35 @@ class Traderoom extends Component
         }
 
         $this->activeBot = Bot::where(['user_id' => auth()->user()->id, 'status' => 'active'])->first();
+
+        if ($this->activeBot && isset($this->activeBot['end'])) {
+            $endString = $this->activeBot['end'];
+            // If the timestamp is in milliseconds, convert to seconds
+            if (is_numeric($endString) && strlen($endString) >= 13) {
+                $endTimestamp = intval($endString) / 1000;
+                $endTime = \Carbon\Carbon::createFromTimestamp($endTimestamp);
+            } else {
+                // Try to parse as Y-m-d H:i:s, fallback to strtotime
+                try {
+                    $endTime = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $endString);
+                } catch (\Exception $e) {
+                    $endTimestamp = strtotime($endString);
+                    $endTime = $endTimestamp ? \Carbon\Carbon::createFromTimestamp($endTimestamp) : null;
+                }
+                // If parsing failed, try Carbon::parse as last resort
+                if (empty($endTime)) {
+                    try {
+                        $endTime = \Carbon\Carbon::parse($endString);
+                    } catch (\Exception $e) {
+                        $endTime = null;
+                    }
+                }
+            }
+            $now = \Carbon\Carbon::now();
+            $this->botExpirationInHrs = isset($endTime) ? max(0, $now->diffInHours($endTime, false)) : 0;
+        } else {
+            $this->botExpirationInHrs = 0;
+        }
 
         if (is_null($this->activeBot)) {
             $this->redirectRoute('dashboard.robot');

@@ -9,7 +9,7 @@
                 <div class="w-full bg-dashboard border border-[#26252a] rounded-lg p-4 mb-4">
                     <div class="mb-4 flex items-start gap-x-2">
                         <div class="flex-none text-center">
-                            <p class="text-zinc-300 text-xs mt-1 ">Commission – 10%</p>
+                            <p class="text-white text-xs mt-1 ">Commission – 10%</p>
                             <p class="text-zinc-300 text-[10px] mb-1">(from profits only)</p>
                             <div>
                                 <p x-text="fee" class="text-[#fb2c36] text-xs font-bold"></p>
@@ -17,7 +17,7 @@
                         </div>
                         <div class="flex-1 text-center">
                             <h2 class="text-white font-bold text-xl -ml-1.5">@money($this->profit)</h2>
-                            <div class="flex mt-2.5 items-center justify-center gap-x-0.5">
+                            <div class="flex items-center justify-center gap-x-0.5">
                                 <div>
                                     <p class="text-zinc-300 text-xs font-bold">Total Profit</p>
                                 </div>
@@ -52,13 +52,13 @@
                             <div>
                                 <a href="{{ route('dashboard') }}">
                                     <button type="button"
-                                        class="animate-pulse relative px-2 py-1 inline-flex items-center gap-x-1 text-[11px] font-bold tracking-[0.15px] rounded-md bg-dim border border-[#26252a] text-white focus:outline-hidden">
+                                        class="animate-pulse relative px-1 py-1 inline-flex items-center gap-x-[1px] text-[11px] font-bold tracking-[0.15px] rounded-md bg-dim border border-[#26252a] text-white focus:outline-hidden">
                                         <div>
-                                            <p class="text-green-500">Live Chart</p>
+                                            <p class="text-orange-500">Live Chart</p>
                                         </div>
                                         <div>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                viewBox="0 0 24 24" fill="none" stroke="#00c951" stroke-width="2"
+                                                viewBox="0 0 24 24" fill="none" stroke="#ff6900" stroke-width="2"
                                                 stroke-linecap="round" stroke-linejoin="round"
                                                 class="lucide lucide-trending-up-icon lucide-trending-up">
                                                 <path d="M16 7h6v6" />
@@ -69,23 +69,6 @@
                                 </a>
                             </div>
                         </div>
-                        {{-- <div class="flex-1 text-end">
-                            <a href="{{ route('dashboard') }}">
-                                <button type="button"
-                                    class="relative px-2 py-1.5 inline-flex items-center gap-x-4 text-[11px] font-bold tracking-[0.15px] rounded-md bg-dim border border-[#26252a] text-white focus:outline-hidden">
-                                    <div>
-                                        <span class="flex absolute size-2 -mt-1 -me-1.5">
-                                            <span
-                                                class="animate-ping absolute inline-flex size-full rounded-full bg-green-600 opacity-75"></span>
-                                            <span class="relative inline-flex rounded-full size-2 bg-green-500"></span>
-                                        </span>
-                                    </div>
-                                    <div>
-                                        <p class="text-green-500">Live Chart</p>
-                                    </div>
-                                </button>
-                            </a>
-                        </div> --}}
                     </div>
 
                     <div class="flex items-start space-x-3 border border-[#26252a] rounded-lg p-4 mb-4">
@@ -97,8 +80,12 @@
                                     </div>
                                     <p x-text='timer' class="mb-1.5 text-white font-bold text-2xl"></p>
                                     <div>
-                                        <p class="text-zinc-300 text-[11px] text-center">Last Trade <span
+                                        <p class="text-zinc-300 text-[11px] text-center">Last trade <span
                                                 x-text="previousBotProfit" class="text-green-500 font-bold"></span></p>
+                                    </div>
+                                    <div>
+                                        <p class="text-zinc-400 text-[10px] text-center">⏰ <span class="italic">Bot
+                                                runtime: {{ $this->botExpirationInHrs }}h left</span></p>
                                     </div>
                                 </div>
                             </template>
@@ -369,8 +356,8 @@
 
                     <div class="text-sm text-white rounded-lg bg-dim py-3 pb-4 px-2.5" role="alert" tabindex="-1"
                         aria-labelledby="hs-with-description-label">
-                        <div class="flex flex-col items-center justify-center">
-                            <div class="shrink-0 text-green-400">
+                        <div class="flex items-center justify-center">
+                            <div class="flex-none shrink-0 text-green-400">
                                 <div class="flex items-center justify-center size-8 rounded-full">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -387,10 +374,10 @@
                                     </svg>
                                 </div>
                             </div>
-                            <div class="w-full">
-                                <div class="mt-1 text-zinc-300 text-xs font-bold text-center">
+                            <div class="flex-none w-64">
+                                <p class="text-zinc-300 text-xs font-bold">
                                     Secure Trading → Capital Protection & Risk Management With AI Driven Strategies.
-                                </div>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -486,14 +473,14 @@
                                             <p class="font-light text-xs text-white">Closing all opened positions on
                                             </p>
                                         </div>
-                                        <div class="flex-none">
+                                        <div class="flex-none -mt-0.5">
                                             <img class="inline w-7" src="{{ asset('assets/icons/xtb.svg') }}"
                                                 alt="xtb-logo">
                                         </div>
                                         <div class="flex-none">
                                             <p class="font-light text-xs text-white"> and </p>
                                         </div>
-                                        <div class="flex-none">
+                                        <div class="flex-none -mt-1">
                                             <img class="inline w-7" src="{{ asset('assets/icons/bybit.svg') }}"
                                                 alt="bybit-logo">
                                         </div>
@@ -503,7 +490,7 @@
                                 <template x-if="isOpenPositionsClosing === false">
                                     <div
                                         class="bg-dashboard border border-[#26252a] py-2 px-2 flex items-center gap-x-1 rounded-full">
-                                        <div>
+                                        <div class="flex-none">
                                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <g clip-path="url(#clip0_850_2)">
@@ -518,100 +505,19 @@
                                                 </defs>
                                             </svg>
                                         </div>
-                                        <div>
+                                        <div class="flex-1">
                                             <p class="font-light text-xs text-white">Closing all opened positions on
                                             </p>
                                         </div>
-                                        <div>
+                                        <div class="flex-none -mt-0.5">
                                             <img class="inline w-7" src="{{ asset('assets/icons/xtb.svg') }}"
                                                 alt="xtb-logo">
                                         </div>
-                                        <div>
+                                        <div class="flex-none">
                                             <p class="font-light text-xs text-white"> and </p>
                                         </div>
-                                        <div>
+                                        <div class="flex-none -mt-1">
                                             <img class="inline w-7" src="{{ asset('assets/icons/bybit.svg') }}"
-                                                alt="bybit-logo">
-                                        </div>
-                                    </div>
-                                </template>
-
-                                <template x-if="isBrokerDisconnecting === true">
-                                    <div
-                                        class="bg-dashboard border border-[#26252a] py-2 px-2 flex items-center gap-x-1.5 rounded-full">
-                                        <div>
-                                            <i class="fa-solid fa-circle-notch fa-spin text-[#05df72]"></i>
-                                        </div>
-                                        <div>
-                                            <p class="font-light text-xs text-white">Disconnecting from broker</p>
-                                        </div>
-                                    </div>
-                                </template>
-
-                                <template x-if="isBrokerDisconnecting === false">
-                                    <div
-                                        class="bg-dashboard border border-[#26252a] py-2 px-2 flex items-center gap-x-1.5 rounded-full">
-                                        <div>
-                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <g clip-path="url(#clip0_850_2)">
-                                                    <path
-                                                        d="M11.3335 2.22667C12.339 2.80724 13.1755 3.64035 13.76 4.64353C14.3446 5.64672 14.6571 6.78518 14.6664 7.94623C14.6758 9.10727 14.3818 10.2506 13.8135 11.2631C13.2452 12.2756 12.4223 13.1221 11.4263 13.7189C10.4303 14.3156 9.29574 14.6419 8.13489 14.6654C6.97405 14.6889 5.8272 14.4088 4.80787 13.8528C3.78854 13.2969 2.93208 12.4844 2.32327 11.4957C1.71447 10.507 1.37444 9.37647 1.33683 8.216L1.3335 8L1.33683 7.784C1.37416 6.63266 1.70919 5.51064 2.30926 4.52733C2.90932 3.54402 3.75393 2.73297 4.76076 2.17325C5.76758 1.61354 6.90226 1.32426 8.05417 1.33362C9.20607 1.34299 10.3359 1.65066 11.3335 2.22667ZM10.4715 6.19533C10.3567 6.08055 10.204 6.01159 10.0419 6.00141C9.87993 5.99122 9.71976 6.0405 9.5915 6.14L9.52883 6.19533L7.3335 8.39L6.4715 7.52867L6.40883 7.47333C6.28055 7.3739 6.12041 7.32468 5.95843 7.3349C5.79645 7.34512 5.64377 7.41408 5.529 7.52884C5.41424 7.6436 5.34528 7.79629 5.33506 7.95827C5.32485 8.12025 5.37407 8.28039 5.4735 8.40867L5.52883 8.47133L6.86216 9.80467L6.92483 9.86C7.04174 9.95071 7.18552 9.99994 7.3335 9.99994C7.48147 9.99994 7.62525 9.95071 7.74216 9.86L7.80483 9.80467L10.4715 7.138L10.5268 7.07533C10.6263 6.94706 10.6756 6.7869 10.6654 6.62488C10.6552 6.46286 10.5863 6.31013 10.4715 6.19533Z"
-                                                        fill="#05DF72" />
-                                                </g>
-                                                <defs>
-                                                    <clipPath id="clip0_850_2">
-                                                        <rect width="16" height="16" fill="white" />
-                                                    </clipPath>
-                                                </defs>
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <p class="font-light text-xs text-white">Disconnected from </p>
-                                        </div>
-                                        <div>
-                                            <img class="inline" src="{{ asset('assets/icons/xtb.svg') }}"
-                                                alt="xtb-logo">
-                                        </div>
-                                    </div>
-                                </template>
-
-                                <template x-if="isExchangeDisconnecting === true">
-                                    <div
-                                        class="bg-dashboard border border-[#26252a] py-2 px-2 flex items-center gap-x-1.5 rounded-full">
-                                        <div>
-                                            <i class="fa-solid fa-circle-notch fa-spin text-[#05df72]"></i>
-                                        </div>
-                                        <div>
-                                            <p class="font-light text-xs text-white">Disconnecting from crypto exchange
-                                            </p>
-                                        </div>
-                                    </div>
-                                </template>
-
-                                <template x-if="isExchangeDisconnecting === false">
-                                    <div
-                                        class="bg-dashboard border border-[#26252a] py-2 px-2 flex items-center gap-x-1.5 rounded-full">
-                                        <div>
-                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <g clip-path="url(#clip0_850_2)">
-                                                    <path
-                                                        d="M11.3335 2.22667C12.339 2.80724 13.1755 3.64035 13.76 4.64353C14.3446 5.64672 14.6571 6.78518 14.6664 7.94623C14.6758 9.10727 14.3818 10.2506 13.8135 11.2631C13.2452 12.2756 12.4223 13.1221 11.4263 13.7189C10.4303 14.3156 9.29574 14.6419 8.13489 14.6654C6.97405 14.6889 5.8272 14.4088 4.80787 13.8528C3.78854 13.2969 2.93208 12.4844 2.32327 11.4957C1.71447 10.507 1.37444 9.37647 1.33683 8.216L1.3335 8L1.33683 7.784C1.37416 6.63266 1.70919 5.51064 2.30926 4.52733C2.90932 3.54402 3.75393 2.73297 4.76076 2.17325C5.76758 1.61354 6.90226 1.32426 8.05417 1.33362C9.20607 1.34299 10.3359 1.65066 11.3335 2.22667ZM10.4715 6.19533C10.3567 6.08055 10.204 6.01159 10.0419 6.00141C9.87993 5.99122 9.71976 6.0405 9.5915 6.14L9.52883 6.19533L7.3335 8.39L6.4715 7.52867L6.40883 7.47333C6.28055 7.3739 6.12041 7.32468 5.95843 7.3349C5.79645 7.34512 5.64377 7.41408 5.529 7.52884C5.41424 7.6436 5.34528 7.79629 5.33506 7.95827C5.32485 8.12025 5.37407 8.28039 5.4735 8.40867L5.52883 8.47133L6.86216 9.80467L6.92483 9.86C7.04174 9.95071 7.18552 9.99994 7.3335 9.99994C7.48147 9.99994 7.62525 9.95071 7.74216 9.86L7.80483 9.80467L10.4715 7.138L10.5268 7.07533C10.6263 6.94706 10.6756 6.7869 10.6654 6.62488C10.6552 6.46286 10.5863 6.31013 10.4715 6.19533Z"
-                                                        fill="#05DF72" />
-                                                </g>
-                                                <defs>
-                                                    <clipPath id="clip0_850_2">
-                                                        <rect width="16" height="16" fill="white" />
-                                                    </clipPath>
-                                                </defs>
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <p class="font-light text-xs text-white">Disconnected from </p>
-                                        </div>
-                                        <div class="-mt-1">
-                                            <img class="inline" src="{{ asset('assets/icons/bybit.svg') }}"
                                                 alt="bybit-logo">
                                         </div>
                                     </div>
@@ -620,12 +526,13 @@
                                 <template x-if="isCapitalAndProfitReturning === true">
                                     <div
                                         class="bg-dashboard border border-[#26252a] py-2 px-2 flex items-center gap-x-1 rounded-full">
-                                        <div>
+                                        <div class="flex-none">
                                             <i class="fa-solid fa-circle-notch fa-spin text-[#05df72]"></i>
                                         </div>
-                                        <div>
+                                        <div class="flex-1 text-left">
                                             <p class="font-light text-xs text-white">Returning capital and
-                                                @money($this->profit) profit to your {{ $this->accountType }}
+                                                <span x-text="netProfit"></span> profit to your
+                                                {{ $this->accountType }}
                                             </p>
                                         </div>
                                     </div>
@@ -634,7 +541,7 @@
                                 <template x-if="isCapitalAndProfitReturning === false">
                                     <div
                                         class="bg-dashboard border border-[#26252a] py-2 px-2 flex items-center gap-x-1.5 rounded-full">
-                                        <div>
+                                        <div class="flex-none">
                                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <g clip-path="url(#clip0_850_2)">
@@ -649,9 +556,10 @@
                                                 </defs>
                                             </svg>
                                         </div>
-                                        <div>
+                                        <div class="flex-1 text-left">
                                             <p class="font-light text-xs text-white">Returning capital and
-                                                @money($this->profit) profit to your {{ $this->accountType }}
+                                                <span x-text="netProfit"></span> profit to your
+                                                {{ $this->accountType }}
                                             </p>
                                         </div>
                                     </div>
@@ -754,8 +662,6 @@
             previousBotProfit: '',
             netProfit: '',
             isRobotDisconnectingModalOpen: false,
-            isBrokerDisconnecting: true,
-            isExchangeDisconnecting: true,
             isCapitalAndProfitReturning: true,
             isOpenPositionsClosing: true,
 
@@ -787,15 +693,7 @@
 
                 setTimeout(() => {
                     this.isOpenPositionsClosing = false;
-                }, 4000);
-
-                setTimeout(() => {
-                    this.isBrokerDisconnecting = false;
                 }, 8000);
-
-                setTimeout(() => {
-                    this.isExchangeDisconnecting = false;
-                }, 12000);
 
                 setTimeout(() => {
                     this.isCapitalAndProfitReturning = false;
@@ -869,10 +767,10 @@
                 this.assetClass = this.$wire.assetClass;
                 this.assetIcon = `/${this.$wire.assetIcon}`
                 this.sentiment = this.$wire.sentiment;
-                this.fee = `$${Number(this.$wire.fee).toFixed(2)}`;
+                this.fee = `-$${Number(this.$wire.fee).toFixed(2)}`;
                 this.netProfit =
                     `$${(Number(this.$wire.profit) - Number(this.$wire.fee)).toFixed(2)}`;
-                this.previousBotProfit = `$${this.$wire.previousBotProfit}`;
+                this.previousBotProfit = `+$${Number(this.$wire.previousBotProfit).toFixed(2)}`;
 
                 if (Date.now() > this.$wire.timerCheckpoint) {
                     this.$wire.refreshAssetData();

@@ -365,7 +365,7 @@
                                     </div>
                                 </div>
                                 <p class="text-white font-medium text-base">
-                                    Start Robot Now with @money(floatval($this->amount)) on {{ $this->accountType }}
+                                    Start robot now with @money(floatval($this->amount)) on {{ $this->accountType }}?
                                 </p>
                                 <div class="mt-6 grid grid-cols-2 gap-x-2">
                                     <div>

@@ -8,16 +8,16 @@
                         <div class="w-2 flex-none relative">
                             <span class="flex absolute size-2 -mt-1 -me-1.5">
                                 <span
-                                    class="animate-ping absolute inline-flex size-full rounded-full bg-green-600 opacity-75"></span>
-                                <span class="relative inline-flex rounded-full size-2 bg-green-500"></span>
+                                    class="animate-pulse absolute inline-flex size-full rounded-full bg-green-600 opacity-75"></span>
+                                <span class="animate-pulse relative inline-flex rounded-full size-2 bg-green-500"></span>
                             </span>
                         </div>
                     @endif
                     <div class="flex-none">
-                        <p class="text-[#aaaaaa] text-xs font-bold uppercase tracking-normal">Demo</p>
+                        <p class="text-white text-xs font-black uppercase tracking-normal">Demo</p>
                     </div>
                 </div>
-                <p class="text-white font-bold text-xs md:text-sm">@money(auth()->user()->demo_balance / 100)</p>
+                <p class="text-[#aaaaaa] font-bold text-xs md:text-sm">@money(auth()->user()->demo_balance / 100)</p>
             </div>
             <div class="flex-1 md:flex-none border py-2 border-[#323335] bg-transparent rounded-lg text-center">
                 <div class="flex items-center justify-center gap-x-1">
@@ -25,16 +25,16 @@
                         <div class="w-2 flex-none relative">
                             <span class="flex absolute size-2 -mt-1 -me-1.5">
                                 <span
-                                    class="animate-ping absolute inline-flex size-full rounded-full bg-green-600 opacity-75"></span>
-                                <span class="relative inline-flex rounded-full size-2 bg-green-500"></span>
+                                    class="animate-pulse absolute inline-flex size-full rounded-full bg-green-600 opacity-75"></span>
+                                <span class="animate-pulse relative inline-flex rounded-full size-2 bg-green-500"></span>
                             </span>
                         </div>
                     @endif
                     <div class="flex-none">
-                        <p class="text-[#aaaaaa] text-xs font-bold uppercase tracking-normal">Live</p>
+                        <p class="text-white text-xs font-black uppercase tracking-normal">Live</p>
                     </div>
                 </div>
-                <p class="text-white font-bold text-xs md:text-sm">@money(auth()->user()->live_balance / 100)</p>
+                <p class="text-[#aaaaaa] font-bold text-xs md:text-sm">@money(auth()->user()->live_balance / 100)</p>
             </div>
             <div class="flex-none text-end py-3">
                 <a href="{{ route('dashboard.deposit') }}">
