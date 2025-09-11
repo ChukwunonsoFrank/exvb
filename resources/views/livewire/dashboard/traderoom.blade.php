@@ -17,11 +17,11 @@
                         </div>
                         <div class="flex-1 text-center">
                             <h2 class="text-white font-bold text-xl -ml-1.5">@money($this->profit)</h2>
-                            <div class="flex items-center justify-center gap-x-0.5">
+                            <div class="flex mt-2.5 items-center justify-center gap-x-0.5">
                                 <div>
                                     <p class="text-zinc-300 text-xs font-bold">Total Profit</p>
                                 </div>
-                                <div class="-mt-1"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                <div class="-mt-0.5"><svg xmlns="http://www.w3.org/2000/svg" width="16"
                                         height="16" viewBox="0 0 24 24" fill="none" stroke="#00732F"
                                         stroke-width="4" stroke-linecap="round" stroke-linejoin="round"
                                         class="lucide lucide-arrow-up-icon lucide-arrow-up">
@@ -48,6 +48,25 @@
                                         </linearGradient>
                                     </defs>
                                 </svg>
+                            </div>
+                            <div>
+                                <a href="{{ route('dashboard') }}">
+                                    <button type="button"
+                                        class="animate-pulse relative px-2 py-1 inline-flex items-center gap-x-1 text-[11px] font-bold tracking-[0.15px] rounded-md bg-dim border border-[#26252a] text-white focus:outline-hidden">
+                                        <div>
+                                            <p class="text-green-500">Live Chart</p>
+                                        </div>
+                                        <div>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                viewBox="0 0 24 24" fill="none" stroke="#00c951" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-trending-up-icon lucide-trending-up">
+                                                <path d="M16 7h6v6" />
+                                                <path d="m22 7-8.5 8.5-5-5L2 17" />
+                                            </svg>
+                                        </div>
+                                    </button>
+                                </a>
                             </div>
                         </div>
                         {{-- <div class="flex-1 text-end">
@@ -78,28 +97,8 @@
                                     </div>
                                     <p x-text='timer' class="mb-1.5 text-white font-bold text-2xl"></p>
                                     <div>
-                                        {{-- <p class="text-zinc-300 text-[11px] text-center">Last Trade <span
-                                                x-text="previousBotProfit" class="text-green-500 font-bold"></span></p> --}}
-                                        <div class="flex-1 text-end">
-                                            <a href="{{ route('dashboard') }}">
-                                                <button type="button"
-                                                    class="animate-pulse relative px-2 py-1.5 inline-flex items-center gap-x-1 text-[11px] font-bold tracking-[0.15px] rounded-md bg-dim border border-[#26252a] text-white focus:outline-hidden">
-                                                    <div>
-                                                        <p class="text-green-500">Live Chart</p>
-                                                    </div>
-                                                    <div>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                            height="16" viewBox="0 0 24 24" fill="none"
-                                                            stroke="#00c951" stroke-width="2" stroke-linecap="round"
-                                                            stroke-linejoin="round"
-                                                            class="lucide lucide-trending-up-icon lucide-trending-up">
-                                                            <path d="M16 7h6v6" />
-                                                            <path d="m22 7-8.5 8.5-5-5L2 17" />
-                                                        </svg>
-                                                    </div>
-                                                </button>
-                                            </a>
-                                        </div>
+                                        <p class="text-zinc-300 text-[11px] text-center">Last Trade <span
+                                                x-text="previousBotProfit" class="text-green-500 font-bold"></span></p>
                                     </div>
                                 </div>
                             </template>
@@ -368,7 +367,7 @@
                         </button>
                     </div>
 
-                    <div class="text-sm text-white rounded-lg bg-dim py-2.5 pb-3 px-2" role="alert" tabindex="-1"
+                    <div class="text-sm text-white rounded-lg bg-dim py-3 pb-4 px-2" role="alert" tabindex="-1"
                         aria-labelledby="hs-with-description-label">
                         <div class="flex flex-col items-center justify-center">
                             <div class="shrink-0 text-green-400">
