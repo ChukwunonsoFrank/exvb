@@ -7,30 +7,32 @@
             </div>
             <div class="lg:h-full lg:pb-24 lg:overflow-scroll scrollbar-hide">
                 <div class="w-full bg-dashboard border border-[#26252a] rounded-lg p-4 mb-4">
-                    <div class="mb-4 flex items-start gap-x-2">
-                        <div class="flex-none text-center">
-                            <p class="text-white text-xs mt-1 ">Commission – 10%</p>
+                    <div class="mb-4 flex items-start gap-x-8">
+                        <div class="flex-1 text-center">
+                            <p class="text-white text-xs mt-1 ">Commission: 10%</p>
                             <p class="text-zinc-300 text-[10px] mb-1">(from profits only)</p>
                             <div>
                                 <p x-text="fee" class="text-[#fb2c36] text-xs font-bold"></p>
                             </div>
                         </div>
-                        <div class="flex-1 text-center">
-                            <h2 class="text-white font-bold text-xl -ml-1.5">@money($this->profit)</h2>
-                            <div class="flex items-center justify-center gap-x-0.5">
+                        <div class="flex-none text-start">
+                            <h2 class="text-white font-bold text-xl">@money($this->profit)</h2>
+                            <div class="flex items-center gap-x-0.5">
                                 <div>
                                     <p class="text-zinc-300 text-xs font-bold">Total Profit</p>
                                 </div>
-                                <div class="-mt-0.5"><svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" viewBox="0 0 24 24" fill="none" stroke="#00732F"
-                                        stroke-width="4" stroke-linecap="round" stroke-linejoin="round"
-                                        class="lucide lucide-arrow-up-icon lucide-arrow-up">
-                                        <path d="m5 12 7-7 7 7" />
-                                        <path d="M12 19V5" />
-                                    </svg></div>
+                                <div class="-mt-0.5">
+                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M2.5 6L6 2.5L9.5 6" stroke="#00C951" stroke-width="2.66667"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M6 9.5V2.5" stroke="#00C951" stroke-width="2.66667"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </div>
                             </div>
                         </div>
-                        <div class="flex-none flex flex-col gap-y-2 items-center">
+                        <div class="flex-1 flex flex-col gap-y-2 items-center">
                             <div>
                                 <svg width="73" height="23" viewBox="0 0 73 23" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -52,7 +54,7 @@
                             <div>
                                 <a href="{{ route('dashboard') }}">
                                     <button type="button"
-                                        class="animate-pulse relative px-1 py-1 inline-flex items-center gap-x-[1px] text-[11px] font-bold tracking-[0.15px] rounded-md bg-dim border border-[#26252a] text-white focus:outline-hidden">
+                                        class="animate-pulse relative px-2 py-1 inline-flex items-center gap-x-[1px] text-[11px] font-bold tracking-[0.15px] rounded-md bg-dim border border-[#26252a] text-white focus:outline-hidden">
                                         <div>
                                             <p class="text-orange-500">Live Chart</p>
                                         </div>
@@ -80,12 +82,8 @@
                                     </div>
                                     <p x-text='timer' class="mb-1.5 text-white font-bold text-2xl"></p>
                                     <div>
-                                        <p class="text-zinc-300 text-[11px] text-center">Last trade <span
+                                        <p class="text-zinc-300 text-[11px] text-center">Last trade: <span
                                                 x-text="previousBotProfit" class="text-green-500 font-bold"></span></p>
-                                    </div>
-                                    <div>
-                                        <p class="text-zinc-400 text-[10px] text-center">⏰ <span class="italic">Bot
-                                                runtime: {{ $this->botExpirationInHrs }}h left</span></p>
                                     </div>
                                 </div>
                             </template>
@@ -347,16 +345,41 @@
                         </div>
                     </div>
 
+                    <div class="text-right w-full flex items-center justify-end gap-x-0.5 mb-4">
+                        <div class="flex-none w-4">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_1191_3802)">
+                                    <path d="M7.00001 3.5V7L4.66667 8.16667" stroke="#A3A3A3" stroke-width="1.33333"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path
+                                        d="M7.00001 12.8333C10.2217 12.8333 12.8333 10.2216 12.8333 6.99996C12.8333 3.7783 10.2217 1.16663 7.00001 1.16663C3.77834 1.16663 1.16667 3.7783 1.16667 6.99996C1.16667 10.2216 3.77834 12.8333 7.00001 12.8333Z"
+                                        stroke="#A3A3A3" stroke-width="1.33333" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_1191_3802">
+                                        <rect width="14" height="14" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </div>
+                        <div class="flex-none">
+                            <p class="text-zinc-400 text-[10px]"><span class=""> Bot
+                                    runtime: {{ $this->botExpirationInHrs }}h left</span></p>
+                        </div>
+                    </div>
+
                     <div class="mb-4">
                         <button x-on:click="toggleStopRobotConfirmationModal()" type="button"
                             class="py-2.5 cursor-pointer px-4 w-full md:px-6 text-center gap-x-2 text-sm font-semibold rounded-lg bg-[#fb2c36] text-white focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none">
-                            Stop the robot
+                            Stop robot
                         </button>
                     </div>
 
                     <div class="text-sm text-white rounded-lg bg-dim py-3 pb-4 px-2.5" role="alert" tabindex="-1"
                         aria-labelledby="hs-with-description-label">
-                        <div class="flex items-center justify-center">
+                        <div class="flex items-center gap-x-1">
                             <div class="flex-none shrink-0 text-green-400">
                                 <div class="flex items-center justify-center size-8 rounded-full">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -374,7 +397,7 @@
                                     </svg>
                                 </div>
                             </div>
-                            <div class="flex-none w-64">
+                            <div class="flex-1">
                                 <p class="text-zinc-300 text-xs font-bold">
                                     Secure Trading → Capital Protection & Risk Management With AI Driven Strategies.
                                 </p>

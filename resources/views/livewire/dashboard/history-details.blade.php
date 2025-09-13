@@ -26,9 +26,12 @@
                                 </div>
                                 <div class="flex items-center">
                                     <div class="flex-1 inline-flex items-center gap-x-1">
+                                        <p class="font-semibold text-xs inline text-white md:text-sm">
+                                            Traded
+                                        </p>
                                         <img class="md:w-7" src="{{ asset($trade['asset_image_url']) }}" alt="">
                                         <p class="font-semibold text-xs inline text-white md:text-sm">
-                                            Traded {{ $trade['asset'] }} on
+                                            {{ $trade['asset'] }} on
                                         </p>
                                         @if ($this->getAssetClass($trade['asset']) === 'crypto')
                                             <img class="inline-block -mt-0.5 w-9" src="{{ asset('assets/icons/bybit.svg') }}"
