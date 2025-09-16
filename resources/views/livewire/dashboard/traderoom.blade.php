@@ -800,8 +800,7 @@
                     this.assetIcon = `/${this.$wire.assetIcon}`;
                     this.sentiment = this.$wire.sentiment;
                     this.fee = `-$${Number(this.$wire.fee).toFixed(2)}`;
-                    this.netProfit = (Number(this.$wire.profit) - Number(this.$wire.fee)).toFixed(
-                        2);
+                    this.netProfit = `$${(Number(this.$wire.profit) - Number(this.$wire.fee)).toFixed(2)}`;
                     let nextCheckpoint = new Date(Number(this.$wire.timerCheckpoint)).getTime() + (
                         5 * 60 + 8) * 1000;
                     this.timeLeft = this.calculateTimeLeftTillNextCheckpoint(nextCheckpoint);
