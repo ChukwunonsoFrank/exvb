@@ -17,7 +17,7 @@
                         <p class="text-white text-xs font-black tracking-normal">DEMO Account</p>
                     </div>
                 </div>
-                <p class="text-white font-bold text-xs md:text-sm">@money(auth()->user()->demo_balance / 100)</p>
+                <p class="text-[#aaaaaa] font-bold text-xs md:text-sm">@money(auth()->user()->demo_balance / 100)</p>
             </div>
             <div class="flex-1 md:flex-none border py-2 border-[#323335] bg-transparent rounded-lg text-center">
                 <div class="flex items-center justify-center gap-x-3">
@@ -31,7 +31,7 @@
                         </div>
                     @endif
                     <div class="flex-none">
-                        <p class="text-white text-xs font-black tracking-normal">LIVE Account</p>
+                        <p class="text-[#aaaaaa] text-xs font-black tracking-normal">LIVE Account</p>
                     </div>
                 </div>
                 <p class="text-white font-bold text-xs md:text-sm">@money(auth()->user()->live_balance / 100)</p>
