@@ -40,6 +40,10 @@ class Index extends Component
             $this->redirectRoute('dashboard.robot');
         }
 
+        if ($justLoggedIn) {
+            $this->redirectRoute('dashboard.robot');
+        }
+
         if ($justRegistered) {
             $this->redirectRoute('dashboard.robot');
         }
