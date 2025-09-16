@@ -32,7 +32,10 @@ use App\Livewire\Admin\PaymentMethodDetails;
 use App\Livewire\Terms;
 use App\Livewire\Privacy;
 use App\Livewire\About;
+use App\Livewire\Admin\AdminKyc;
+use App\Livewire\Admin\AdminKycDetails;
 use App\Livewire\Dashboard\HistoryDetails;
+use App\Livewire\Dashboard\Kyc;
 
 Route::get('/link-storage', function () {
     Artisan::call('storage:link');
@@ -69,6 +72,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard/deposithistory', DepositHistory::class)->middleware(['auth', 'verified'])->name('dashboard.deposithistory');
     Route::get('/dashboard/withdrawhistory', WithdrawHistory::class)->middleware(['auth', 'verified'])->name('dashboard.withdrawhistory');
     Route::get('/dashboard/referrals', ShowReferrals::class)->middleware(['auth', 'verified'])->name('dashboard.referrals');
+    Route::get('/dashboard/kyc', Kyc::class)->middleware(['auth', 'verified'])->name('dashboard.kyc');
 
     Route::redirect('settings', 'settings/profile');
     Route::get('settings/profile', Profile::class)->name('settings.profile');
@@ -87,6 +91,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/dashboard/withdrawals', AdminWithdrawals::class)->middleware(['auth', 'verified'])->name('dashboard.withdrawals');
     Route::get('/dashboard/paymentmethods', PaymentMethods::class)->middleware(['auth', 'verified'])->name('dashboard.paymentmethods');
     Route::get('/dashboard/paymentmethods/details', PaymentMethodDetails::class)->middleware(['auth', 'verified'])->name('dashboard.paymentmethods.details');
+    Route::get('/dashboard/kyc', AdminKyc::class)->middleware(['auth', 'verified'])->name('dashboard.kyc');
+    Route::get('/dashboard/kyc/details', AdminKycDetails::class)->middleware(['auth', 'verified'])->name('dashboard.kyc.details');
 });
 
 require __DIR__ . '/auth.php';

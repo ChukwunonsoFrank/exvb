@@ -42,7 +42,7 @@
 
                 <div class="flex items-center justify-center mb-5">
                     <div class="w-24 h-24 bg-[#FFFFFF] p-2 flex rounded-lg">
-                        <div class="w-36 h-36" id="qrcode"></div>
+                        <div wire:ignore class="w-36 h-36" id="qrcode"></div>
                     </div>
                 </div>
 
@@ -53,7 +53,7 @@
                                 <input id="address" type="text" id="hs-trailing-icon" name="hs-trailing-icon"
                                     class="py-2.5 sm:py-3 px-4 pe-11 block w-full border border-[#26252a] bg-transparent text-white rounded-lg font-mono font-semibold text-sm focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
                                     value="{{ $this->address }}" readonly>
-                                <div x-on:click="$store.confirmDepositPage.copyWalletAddress()"
+                                <div wire:click="sendDepositIntentNotification()" x-on:click="$store.confirmDepositPage.copyWalletAddress()"
                                     class="absolute inset-y-0 end-0 flex items-center cursor-pointer z-20 pe-4">
                                     <svg class="js-clipboard-default size-4 group-hover:rotate-6 transition"
                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24"

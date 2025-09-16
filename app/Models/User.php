@@ -87,6 +87,11 @@ class User extends Authenticatable
         return $this->hasMany(Withdrawal::class);
     }
 
+    public function kycs(): HasMany
+    {
+        return $this->hasMany(Kyc::class);
+    }
+
     public function scopeSearch(Builder $query, string $term): Builder
     {
         $preparedTerm = $this->prepareSearchTerm($term);

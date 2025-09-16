@@ -189,6 +189,41 @@
                             </div>
                         </div>
                     </a>
+                    <a href="{{ route('dashboard.kyc') }}">
+                        <div class="bg-dim w-full rounded-lg flex flex-col space-y-2 p-3 mb-3 lg:mb-0">
+                            <div class="flex items-center space-x-2">
+                                <div class="flex-none">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-id-card-icon lucide-id-card">
+                                        <path d="M16 10h2" />
+                                        <path d="M16 14h2" />
+                                        <path d="M6.17 15a3 3 0 0 1 5.66 0" />
+                                        <circle cx="9" cy="11" r="2" />
+                                        <rect x="2" y="5" width="20" height="14" rx="2" />
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="font-semibold text-sm text-white">KYC Verification</p>
+                                </div>
+                                @if ($this->kycStatus !== '')
+                                    <div class="flex-none text-end -mt-1">
+                                        <span
+                                            class="inline-flex items-center gap-x-1.5 py-0.5 px-1.5 rounded-md text-[9px] font-medium {{ $this->getStatusIndicatorColor($this->kycStatus) }} text-white">{{ ucfirst($this->kycStatus) }}</span>
+                                    </div>
+                                @endif
+                                <div class="flex-none text-end">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-chevron-right-icon lucide-chevron-right">
+                                        <path d="m9 18 6-6-6-6" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
                     <form method="POST" action="{{ route('logout') }}" class="w-full">
                         @csrf
                         <a class="cursor-pointer" onclick="this.closest('form').submit()">

@@ -202,6 +202,32 @@ $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(valu
                                 </a>
                             </li>
                             <!-- Menu Item Payment Methods -->
+
+                            <!-- Menu Item Payment Methods -->
+                            <li>
+                                <a href="{{ route('admin.dashboard.kyc') }}"
+                                    @click="selected = (selected === 'KYC' ? '':'KYC')"
+                                    class="menu-item group"
+                                    :class="(selected === 'KYC') && (page === 'kyc') ?
+                                    'menu-item-active' :
+                                    'menu-item-inactive'">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="#344054" stroke-width="1.5"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-id-card-icon lucide-id-card">
+                                        <path d="M16 10h2" />
+                                        <path d="M16 14h2" />
+                                        <path d="M6.17 15a3 3 0 0 1 5.66 0" />
+                                        <circle cx="9" cy="11" r="2" />
+                                        <rect x="2" y="5" width="20" height="14" rx="2" />
+                                    </svg>
+
+                                    <span class="menu-item-text" :class="sidebarToggle ? 'lg:hidden' : ''">
+                                        KYC
+                                    </span>
+                                </a>
+                            </li>
+                            <!-- Menu Item Payment Methods -->
                         </ul>
                     </div>
                 </nav>

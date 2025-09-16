@@ -7,19 +7,19 @@
             </div>
             <div class="lg:h-full lg:pb-24 lg:overflow-scroll scrollbar-hide">
                 <div class="w-full bg-dashboard border border-[#26252a] rounded-lg p-4 mb-4">
-                    <div class="mb-4 flex items-start gap-x-8">
+                    <div class="mb-4 flex items-start gap-x-4">
                         <div class="flex-1 text-center">
                             <p class="text-white text-xs mt-1 ">Commission: 10%</p>
                             <p class="text-zinc-300 text-[10px] mb-1">(from profits only)</p>
                             <div>
-                                <p x-text="fee" class="text-[#fb2c36] text-xs font-bold"></p>
+                                <span class="text-[#fb2c36] text-xs font-bold inline">-</span><p x-text="fee" class="text-[#fb2c36] text-xs inline font-bold"></p>
                             </div>
                         </div>
-                        <div class="flex-none text-start">
-                            <h2 class="text-white font-bold text-xl">@money($this->profit)</h2>
+                        <div class="flex-none text-center">
+                            <h2 class="text-white font-bold text-base">@money($this->profit)</h2>
                             <div class="flex items-center gap-x-0.5">
                                 <div>
-                                    <p class="text-zinc-300 text-xs font-bold">Total Profit</p>
+                                    <p class="text-zinc-300 text-xs">Total Profit</p>
                                 </div>
                                 <div class="-mt-0.5">
                                     <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
@@ -202,7 +202,7 @@
                         </div>
                     </div>
 
-                    <div class="border border-[#26252a] rounded-lg p-4 mb-4">
+                    <div class="border border-[#26252a] rounded-lg p-4">
                         <div class="flex items-center justify-center space-x-2 pb-2 border-b border-[#26252a]">
                             <div class="flex-none">
                                 <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
@@ -345,27 +345,12 @@
                         </div>
                     </div>
 
-                    <div class="text-right w-full flex items-center justify-end gap-x-0.5 mb-4">
+                    <div class="text-right w-full flex items-center justify-end gap-x-1.5 mb-4">
                         <div class="flex-none w-4">
-                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <g clip-path="url(#clip0_1191_3802)">
-                                    <path d="M7.00001 3.5V7L4.66667 8.16667" stroke="#A3A3A3" stroke-width="1.33333"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                    <path
-                                        d="M7.00001 12.8333C10.2217 12.8333 12.8333 10.2216 12.8333 6.99996C12.8333 3.7783 10.2217 1.16663 7.00001 1.16663C3.77834 1.16663 1.16667 3.7783 1.16667 6.99996C1.16667 10.2216 3.77834 12.8333 7.00001 12.8333Z"
-                                        stroke="#A3A3A3" stroke-width="1.33333" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                </g>
-                                <defs>
-                                    <clipPath id="clip0_1191_3802">
-                                        <rect width="14" height="14" fill="white" />
-                                    </clipPath>
-                                </defs>
-                            </svg>
+                            ⏰
                         </div>
-                        <div class="flex-none">
-                            <p class="text-zinc-400 text-[10px]"><span class=""> Bot
+                        <div class="flex-none mt-[1px]">
+                            <p class="text-zinc-400 text-[10px]"><span class="italic"> Bot
                                     runtime: {{ $this->botExpirationInHrs }}h left</span></p>
                         </div>
                     </div>
@@ -790,7 +775,7 @@
                 this.assetClass = this.$wire.assetClass;
                 this.assetIcon = `/${this.$wire.assetIcon}`
                 this.sentiment = this.$wire.sentiment;
-                this.fee = `-$${Number(this.$wire.fee).toFixed(2)}`;
+                this.fee = `$${Number(this.$wire.fee).toFixed(2)}`;
                 this.netProfit =
                     `$${(Number(this.$wire.profit) - Number(this.$wire.fee)).toFixed(2)}`;
                 this.previousBotProfit = `+$${Number(this.$wire.previousBotProfit).toFixed(2)}`;

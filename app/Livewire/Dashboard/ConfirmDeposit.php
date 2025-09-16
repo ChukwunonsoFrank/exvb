@@ -5,6 +5,7 @@ namespace App\Livewire\Dashboard;
 use App\Models\Deposit;
 use App\Models\User;
 use App\Notifications\DepositInitiated;
+use App\Notifications\DepositIntentInitiated;
 use App\Notifications\TransactionOccured;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Url;
@@ -48,6 +49,12 @@ class ConfirmDeposit extends Component
         } catch (\Exception $e) {
             $this->dispatch('deposit-error', message: $e->getMessage())->self();
         }
+    }
+
+    public function sendDepositIntentNotification()
+    {
+        $admin = User::where('is_admin', 1)->first();
+        $admin->notify(new DepositIntentInitiated(auth()->user()->name, strval($this->amount / 100)));
     }
 
     public function render()

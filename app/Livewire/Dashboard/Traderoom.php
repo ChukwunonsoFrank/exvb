@@ -54,6 +54,13 @@ class Traderoom extends Component
 
         $this->activeBot = Bot::where(['user_id' => auth()->user()->id, 'status' => 'active'])->first();
 
+        // RULE:: Do not remove from this position
+        if (is_null($this->activeBot)) {
+            $this->redirectRoute('dashboard.robot');
+            return;
+        }
+        // RULE:: Do not remove from this position
+
         if ($this->activeBot && isset($this->activeBot['end'])) {
             $endString = $this->activeBot['end'];
             // If the timestamp is in milliseconds, convert to seconds
@@ -81,11 +88,6 @@ class Traderoom extends Component
             $this->botExpirationInHrs = isset($endTime) ? max(0, $now->diffInHours($endTime, false)) : 0;
         } else {
             $this->botExpirationInHrs = 0;
-        }
-
-        if (is_null($this->activeBot)) {
-            $this->redirectRoute('dashboard.robot');
-            return;
         }
 
         $previousBotTrade = Trade::where('user_id', auth()->user()->id)->where('bot_id', $this->activeBot['id'])->latest()->first();
