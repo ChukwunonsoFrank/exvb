@@ -17,7 +17,7 @@
                             </div>
                         </div>
                         <div class="flex-none text-center">
-                            <h2 class="text-white font-bold text-base">@money($this->profit)</h2>
+                            <h2 class="text-white font-bold text-base -ml-1">@money($this->profit)</h2>
                             <div class="flex items-center gap-x-0.5">
                                 <div>
                                     <p class="text-zinc-300 text-xs">Total Profit</p>
@@ -74,7 +74,7 @@
                         </div>
                     </div>
 
-                    <div class="flex items-start space-x-3 border border-[#26252a] rounded-lg p-4 mb-4">
+                    <div class="flex items-start space-x-3 border border-[#26252a] rounded-lg px-4 py-2 mb-4">
                         <div class="flex-1">
                             <template x-if="isBotSearchingForSignal === false">
                                 <div class="flex flex-col items-center justify-center w-fit">
