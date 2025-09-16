@@ -217,6 +217,33 @@ class Kyc extends Component
         'PS' => 'Palestine'
     ];
 
+    protected $rules = [
+        'fullname' => 'required|string|min:2|max:255',
+        'selectedCountry' => 'required|string',
+        'id' => 'required|file|mimes:jpeg,jpg,png|max:5120',
+    ];
+
+    protected $messages = [
+        'fullname.required' => 'Full name is required.',
+        'fullname.min' => 'Full name must be at least 2 characters.',
+        'fullname.max' => 'Full name cannot exceed 255 characters.',
+        'selectedCountry.required' => 'Please select a country.',
+        'id.required' => 'Please upload your ID document.',
+        'id.file' => 'The uploaded file is not valid.',
+        'id.mimes' => 'ID document must be a JPEG, JPG or PNG file.',
+        'id.max' => 'ID document size cannot exceed 5MB.',
+    ];
+
+    public function updated($propertyName)
+    {
+        try {
+            $this->validateOnly($propertyName);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            $errors = $e->validator->errors()->all();
+            $this->dispatch('error-message', message: implode(' ', $errors))->self();
+        }
+    }
+
     public function selectCountry($country)
     {
         $this->selectedCountry = $country;
@@ -224,6 +251,14 @@ class Kyc extends Component
 
     public function submitKYCApplication()
     {
+        try {
+            $this->validate();
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            $errors = $e->validator->errors()->all();
+            $this->dispatch('error-message', message: implode(' ', $errors))->self();
+            return;
+        }
+
         try {
             ModelsKyc::create([
                 'user_id' => auth()->user()->id,
