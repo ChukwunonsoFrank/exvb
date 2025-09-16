@@ -57,7 +57,7 @@
 
                 <div class="mb-5">
                     <label for="input-label" class="block text-sm font-medium mb-2 text-zinc-300">Government-issued
-                        ID</label>
+                        ID(Passport, Driver's license)</label>
                     <div class="relative">
                         <div class="flex items-center gap-x-1">
                             <div>
