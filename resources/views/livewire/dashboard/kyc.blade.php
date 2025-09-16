@@ -59,10 +59,18 @@
                     <label for="input-label" class="block text-sm font-medium mb-2 text-zinc-300">Government-issued
                         ID</label>
                     <div class="relative">
-                        <label for="file-upload"
-                            class="inline-block bg-[#3b71ff] text-white text-xs p-2 rounded-lg cursor-pointer">
-                            Choose File
-                        </label>
+                        <div class="flex items-center gap-x-1">
+                            <div>
+                                <label for="file-upload"
+                                    class="inline-block bg-[#3b71ff] text-white text-xs p-2 rounded-lg cursor-pointer">
+                                    Choose File
+                                </label>
+                            </div>
+                            <div wire:loading wire:target="id">
+                                <i class="fa-solid fa-circle-notch fa-spin text-gray-400"></i>
+                                <span class="text-xs text-gray-400" wire:loading.remove>Uploading...</span>
+                            </div>
+                        </div>
 
                         <input id="file-upload" type="file" wire:model="id" class="hidden" placeholder="" />
 
