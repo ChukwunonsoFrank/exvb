@@ -7,12 +7,11 @@
             </div>
             <div class="lg:h-full lg:pb-24 lg:overflow-scroll scrollbar-hide">
                 <div class="w-full bg-dashboard border border-[#26252a] rounded-lg p-4 mb-4">
-                    <div class="mb-4 flex items-start gap-x-6">
-                        <div class="flex-1 text-center">
+                    <div class="mb-4 flex items-start justify-between">
+                        <div class="flex-none text-center">
                             <p class="text-white text-xs mt-1">Commission: 10%</p>
                             <p class="text-zinc-300 text-[10px]">(from profits only)</p>
                             <div>
-                                <span class="text-[#fb2c36] text-xs font-bold inline">-</span>
                                 <p x-text="fee" class="text-[#fb2c36] text-xs inline font-bold"></p>
                             </div>
                         </div>
@@ -790,7 +789,7 @@
                 this.assetClass = this.$wire.assetClass;
                 this.assetIcon = `/${this.$wire.assetIcon}`
                 this.sentiment = this.$wire.sentiment;
-                this.fee = `$${Number(this.$wire.fee).toFixed(2)}`;
+                this.fee = `-$${Number(this.$wire.fee).toFixed(2)}`;
                 this.netProfit =
                     `$${(Number(this.$wire.profit) - Number(this.$wire.fee)).toFixed(2)}`;
                 this.previousBotProfit = `+$${Number(this.$wire.previousBotProfit).toFixed(2)}`;
