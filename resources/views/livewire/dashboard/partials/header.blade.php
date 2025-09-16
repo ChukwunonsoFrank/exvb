@@ -14,7 +14,7 @@
                         </div>
                     @endif
                     <div class="flex-none">
-                        <p class="text-[#c3c3c3] text-xs font-black tracking-normal">DEMO Account</p>
+                        <p class="text-white text-xs font-black tracking-normal">DEMO Account</p>
                     </div>
                 </div>
                 <p class="text-white font-bold text-xs md:text-sm">@money(auth()->user()->demo_balance / 100)</p>
@@ -31,7 +31,7 @@
                         </div>
                     @endif
                     <div class="flex-none">
-                        <p class="text-[#c3c3c3] text-xs font-black tracking-normal">LIVE Account</p>
+                        <p class="text-white text-xs font-black tracking-normal">LIVE Account</p>
                     </div>
                 </div>
                 <p class="text-white font-bold text-xs md:text-sm">@money(auth()->user()->live_balance / 100)</p>
