@@ -9,14 +9,14 @@
                 <div class="w-full bg-dashboard border border-[#26252a] rounded-lg p-4 mb-4">
                     <div class="mb-4 flex items-start justify-between">
                         <div class="flex-none text-center">
-                            <p class="text-white text-xs mt-1">Commission: 10%</p>
+                            <p class="text-white font-bold text-xs mt-1">Commission: 10%</p>
                             <p class="text-zinc-300 text-[10px]">(from profits only)</p>
                             <div>
                                 <p x-text="fee" class="text-[#fb2c36] text-xs inline font-bold"></p>
                             </div>
                         </div>
                         <div class="flex-none text-center">
-                            <h2 class="text-white font-bold text-base -ml-1">@money($this->profit)</h2>
+                            <h2 class="text-white font-bold text-base -ml-1.5 mb-0.5">@money($this->profit)</h2>
                             <div class="flex items-center gap-x-0.5">
                                 <div>
                                     <p class="text-zinc-300 text-xs">Total Profit</p>
