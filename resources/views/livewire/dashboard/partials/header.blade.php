@@ -8,8 +8,8 @@
                         <div class="w-4 flex-none relative">
                             <div class="flex relative size-4 -mt-[1px] justify-center items-center">
                                 <span
-                                    class="absolute animate-pulse inset-0 inline-flex size-full rounded-full bg-[#4ad9a5] opacity-30"></span>
-                                <span class="relative inset-0 inline-flex rounded-full size-2 bg-[#4ad9a5]"></span>
+                                    class="absolute animate-pulse inset-0 inline-flex size-full rounded-full bg-[#00C951] opacity-30"></span>
+                                <span class="relative inset-0 inline-flex rounded-full size-2 bg-[#00C951]"></span>
                             </div>
                         </div>
                     @endif
@@ -25,8 +25,8 @@
                         <div class="w-4 flex-none relative">
                             <div class="flex relative size-4 -mt-[1px] justify-center items-center">
                                 <span
-                                    class="absolute animate-pulse inset-0 inline-flex size-full rounded-full bg-[#4ad9a5] opacity-30"></span>
-                                <span class="relative inset-0 inline-flex rounded-full size-2 bg-[#4ad9a5]"></span>
+                                    class="absolute animate-pulse inset-0 inline-flex size-full rounded-full bg-[#00C951] opacity-30"></span>
+                                <span class="relative inset-0 inline-flex rounded-full size-2 bg-[#00C951]"></span>
                             </div>
                         </div>
                     @endif
