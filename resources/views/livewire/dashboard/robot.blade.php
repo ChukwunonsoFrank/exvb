@@ -106,14 +106,14 @@
                         <div class="grid grid-cols-2 gap-x-2">
                             <label for="hs-vertical-radio-in-form-demo"
                                 wire:click="selectAccountType('Demo account', 'demo')"
-                                class="px-4 py-2 w-full {{ $this->accountTypeSlug === 'demo' ? 'border-3 border-accent' : 'border border-[#323335]' }} bg-transparent rounded-lg text-base focus:border-[#1a1b20] focus:ring-[#1a1b20]">
+                                class="px-4 py-2 w-full {{ $this->accountTypeSlug === 'demo' ? 'border-3 border-[#1E90FF]' : 'border border-[#323335]' }} bg-transparent rounded-lg text-base focus:border-[#1a1b20] focus:ring-[#1a1b20]">
                                 <div class="flex-1 text-center">
                                     <h2 class="text-white uppercase font-semibold text-sm">Demo</h2>
                                 </div>
                             </label>
                             <label for="hs-vertical-radio-in-form-live"
                                 wire:click="selectAccountType('Live account', 'live')"
-                                class="px-4 py-2 w-full {{ $this->accountTypeSlug === 'live' ? 'border-3 border-accent' : 'border border-[#323335]' }} bg-transparent rounded-lg text-base focus:border-[#1a1b20] focus:ring-[#1a1b20]">
+                                class="px-4 py-2 w-full {{ $this->accountTypeSlug === 'live' ? 'border-3 border-[#1E90FF]' : 'border border-[#323335]' }} bg-transparent rounded-lg text-base focus:border-[#1a1b20] focus:ring-[#1a1b20]">
                                 <div class="flex-1 text-center text-white">
                                     <h2 class="text-white uppercase font-semibold text-sm">Live</h2>
                                 </div>
