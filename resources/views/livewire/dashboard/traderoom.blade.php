@@ -345,7 +345,7 @@
                         </div>
                     </div>
 
-                    <div class="text-right w-full flex items-center justify-end gap-x-0.5">
+                    <div class="text-right w-full flex items-center justify-end gap-x-0.5 mb-1.5 pr-1.5">
                         <div class="flex-none text-[10px]">
                             <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
