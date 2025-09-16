@@ -799,7 +799,7 @@
                     this.asset = this.$wire.asset;
                     this.assetIcon = `/${this.$wire.assetIcon}`;
                     this.sentiment = this.$wire.sentiment;
-                    this.fee = `$${Number(this.$wire.fee).toFixed(2)}`;
+                    this.fee = `-$${Number(this.$wire.fee).toFixed(2)}`;
                     this.netProfit = (Number(this.$wire.profit) - Number(this.$wire.fee)).toFixed(
                         2);
                     let nextCheckpoint = new Date(Number(this.$wire.timerCheckpoint)).getTime() + (
