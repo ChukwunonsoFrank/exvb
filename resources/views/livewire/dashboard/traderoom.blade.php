@@ -12,7 +12,8 @@
                             <p class="text-white text-xs mt-1">Commission: 10%</p>
                             <p class="text-zinc-300 text-[10px]">(from profits only)</p>
                             <div>
-                                <span class="text-[#fb2c36] text-xs font-bold inline">-</span><p x-text="fee" class="text-[#fb2c36] text-xs inline font-bold"></p>
+                                <span class="text-[#fb2c36] text-xs font-bold inline">-</span>
+                                <p x-text="fee" class="text-[#fb2c36] text-xs inline font-bold"></p>
                             </div>
                         </div>
                         <div class="flex-none text-center">
@@ -345,9 +346,23 @@
                         </div>
                     </div>
 
-                    <div class="text-right w-full flex items-center justify-end gap-x-1 mb-4">
-                        <div class="flex-none text-[10px] w-4">
-                            ⏰
+                    <div class="text-right w-full flex items-center justify-end gap-x-0.5">
+                        <div class="flex-none text-[10px]">
+                            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_1307_434)">
+                                    <path d="M5 2.5V5L6.66667 5.83333" stroke="#A3A3A3" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path
+                                        d="M4.99992 9.16671C7.30111 9.16671 9.16658 7.30123 9.16658 5.00004C9.16658 2.69885 7.30111 0.833374 4.99992 0.833374C2.69873 0.833374 0.833252 2.69885 0.833252 5.00004C0.833252 7.30123 2.69873 9.16671 4.99992 9.16671Z"
+                                        stroke="#A3A3A3" stroke-linecap="round" stroke-linejoin="round" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_1307_434">
+                                        <rect width="10" height="10" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
                         </div>
                         <div class="flex-none mt-[1px]">
                             <p class="text-zinc-400 text-[10px]"><span class="italic"> Bot
