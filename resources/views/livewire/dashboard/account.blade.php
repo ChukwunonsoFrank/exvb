@@ -6,7 +6,7 @@
                 <h1 class="text-white text-lg md:text-xl lg:text-2xl font-semibold">Account</h1>
             </div>
             <div class="lg:h-full lg:pb-24 lg:overflow-scroll scrollbar-hide">
-                <div class="flex items-center space-x-4 mb-8">
+                <div class="flex items-start space-x-4 mb-8">
                     <div class="flex justify-center mb-3 lg:justify-start">
                         <div class="bg-dim size-16 rounded-full flex items-center justify-center lg:size-20">
                             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"
@@ -36,6 +36,7 @@
                     <div class="text-start">
                         <h1 class="text-white text-base font-semibold">{{ auth()->user()->name }}</h1>
                         <span class="text-xs text-white">{{ auth()->user()->email }}</span>
+                        <h1 class="text-white text-sm mt-3 font-semibold">Live Balance: @money(auth()->user()->live_balance / 100)</h1>
                         <div class="mt-3">
                             <a href="{{ route('dashboard.withdraw') }}">
                                 <button type="button"
