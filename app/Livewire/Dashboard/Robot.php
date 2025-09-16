@@ -46,6 +46,10 @@ class Robot extends Component
 
         $this->activeBotCount = Bot::where(['user_id' => auth()->user()->id, 'status' => 'active'])->count();
 
+        if ($this->activeBotCount > 0) {
+            $this->redirectRoute('dashboard.robot.traderoom');
+        }
+
         $this->strategies = Strategy::all();
         $this->strategy = $this->strategies[0];
         $this->expectedProfitMin = 0;
