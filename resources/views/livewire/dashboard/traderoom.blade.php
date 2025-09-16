@@ -7,7 +7,7 @@
             </div>
             <div class="lg:h-full lg:pb-24 lg:overflow-scroll scrollbar-hide">
                 <div class="w-full bg-dashboard border border-[#26252a] rounded-lg p-4 mb-4">
-                    <div class="mb-4 flex items-start gap-x-4">
+                    <div class="mb-4 flex items-start gap-x-6">
                         <div class="flex-1 text-center">
                             <p class="text-white text-xs mt-1">Commission: 10%</p>
                             <p class="text-zinc-300 text-[10px]">(from profits only)</p>
@@ -33,7 +33,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="flex-1 flex flex-col gap-y-2 items-center">
+                        <div class="flex-none flex flex-col gap-y-2 items-center">
                             <div>
                                 <svg width="73" height="23" viewBox="0 0 73 23" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -370,7 +370,7 @@
                         </div>
                     </div>
 
-                    <div class="mb-4">
+                    <div class="mb-2">
                         <button x-on:click="toggleStopRobotConfirmationModal()" type="button"
                             class="py-2.5 cursor-pointer px-4 w-full md:px-6 text-center gap-x-2 text-sm font-semibold rounded-lg bg-[#fb2c36] text-white focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none">
                             Stop robot
