@@ -16,12 +16,12 @@
                             </div>
                         </div>
                         <div class="flex-none text-center">
-                            <h2 class="text-white font-bold text-base -ml-1.5 mb-0.5">@money($this->profit)</h2>
-                            <div class="flex items-center gap-x-0.5">
+                            <h2 class="text-white font-bold text-base -ml-2 mb-1">@money($this->profit)</h2>
+                            <div class="flex items-center gap-x-0.5 -ml-1">
                                 <div>
                                     <p class="text-zinc-300 text-xs">Total Profit</p>
                                 </div>
-                                <div class="-mt-0.5">
+                                <div class="">
                                     <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path d="M2.5 6L6 2.5L9.5 6" stroke="#00C951" stroke-width="2.66667"
