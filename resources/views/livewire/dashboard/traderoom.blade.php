@@ -346,7 +346,7 @@
                     </div>
 
                     <div class="text-right w-full flex items-center justify-end gap-x-1.5 mb-4">
-                        <div class="flex-none w-4">
+                        <div class="flex-none text-[10px] w-4">
                             ⏰
                         </div>
                         <div class="flex-none mt-[1px]">
