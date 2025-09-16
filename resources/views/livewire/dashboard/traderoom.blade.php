@@ -21,7 +21,7 @@
                                 <div>
                                     <p class="text-zinc-300 text-xs">Total Profit</p>
                                 </div>
-                                <div class="">
+                                <div class="-mt-0.5">
                                     <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path d="M2.5 6L6 2.5L9.5 6" stroke="#00C951" stroke-width="2.66667"
@@ -552,7 +552,7 @@
                                             <i class="fa-solid fa-circle-notch fa-spin text-[#05df72]"></i>
                                         </div>
                                         <div class="flex-1 text-left">
-                                            <p class="font-light text-xs text-white">Returning capital and
+                                            <p class="font-light text-xs text-white">Returning capital +
                                                 <span x-text="netProfit"></span> profit to your
                                                 {{ $this->accountType }}
                                             </p>
@@ -579,7 +579,7 @@
                                             </svg>
                                         </div>
                                         <div class="flex-1 text-left">
-                                            <p class="font-light text-xs text-white">Returning capital and
+                                            <p class="font-light text-xs text-white">Returning capital +
                                                 <span x-text="netProfit"></span> profit to your
                                                 {{ $this->accountType }}
                                             </p>
