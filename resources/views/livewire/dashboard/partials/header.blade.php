@@ -3,7 +3,7 @@
         <div
             class="flex items-center px-2 border-b border-[#26252a] justify-between gap-x-1 md:gap-x-16 md:border-none md:mb-0 md:order-2 md:flex-1">
 
-            <div class="flex-1 md:flex-none border py-2 border-[#323335] bg-transparent rounded-lg text-center">
+            <div class="flex-1 relative md:flex-none border py-2 border-[#323335] bg-transparent rounded-lg text-center">
                 @if ($this->accountType === 'demo')
                     <div class="w-4 flex-none absolute top-1 left-1">
                         <div class="flex relative size-4 -mt-[1px] justify-center items-center">
