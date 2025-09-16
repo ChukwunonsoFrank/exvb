@@ -8,7 +8,7 @@
                         <div class="w-2 flex-none relative">
                             <div class="flex relative size-4 -mt-0.5 -me-1.5 justify-center items-center">
                                 <span
-                                    class="absolute inset-0 inline-flex size-full rounded-full bg-[#4ad9a5] opacity-40"></span>
+                                    class="absolute animate-ping inset-0 inline-flex size-full rounded-full bg-[#4ad9a5] opacity-40"></span>
                                 <span class="relative inset-0 inline-flex rounded-full size-2 bg-[#4ad9a5]"></span>
                             </div>
                         </div>
@@ -25,7 +25,7 @@
                         <div class="w-2 flex-none relative">
                             <div class="flex relative size-4 -mt-0.5 -me-1.5 justify-center items-center">
                                 <span
-                                    class="absolute inset-0 inline-flex size-full rounded-full bg-[#4ad9a5] opacity-40"></span>
+                                    class="absolute animate-ping inset-0 inline-flex size-full rounded-full bg-[#4ad9a5] opacity-40"></span>
                                 <span class="relative inset-0 inline-flex rounded-full size-2 bg-[#4ad9a5]"></span>
                             </div>
                         </div>
