@@ -9,8 +9,8 @@
                 <div class="w-full bg-dashboard border border-[#26252a] rounded-lg p-4 mb-4">
                     <div class="mb-4 flex items-start gap-x-4">
                         <div class="flex-1 text-center">
-                            <p class="text-white text-xs mt-1 ">Commission: 10%</p>
-                            <p class="text-zinc-300 text-[10px] mb-1">(from profits only)</p>
+                            <p class="text-white text-xs mt-1">Commission: 10%</p>
+                            <p class="text-zinc-300 text-[10px]">(from profits only)</p>
                             <div>
                                 <span class="text-[#fb2c36] text-xs font-bold inline">-</span><p x-text="fee" class="text-[#fb2c36] text-xs inline font-bold"></p>
                             </div>
