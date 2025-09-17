@@ -35,7 +35,7 @@
                     </div>
                     <div class="text-start">
                         <h1 class="text-white text-base font-semibold">{{ auth()->user()->name }}</h1>
-                        <span class="text-xs text-white">{{ auth()->user()->email }}</span>
+                        {{-- <span class="text-xs text-white">UID: {{ auth()->user()->uid }}</span> --}}
                         <h1 class="text-white text-sm mt-3 font-semibold">Live Balance: @money(auth()->user()->live_balance / 100)</h1>
                         <div class="mt-3">
                             <a href="{{ route('dashboard.withdraw') }}">

@@ -57,6 +57,15 @@ class Register extends Component
         return strtoupper($randomString);
     }
 
+    public function generateUid(): string
+    {
+        do {
+            $uid = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
+        } while (User::where('uid', $uid)->exists());
+
+        return $uid;
+    }
+
     /**
      * Handle an incoming registration request.
      */
@@ -90,6 +99,7 @@ class Register extends Component
                 $validated['demo_balance'] = 1000000;
                 $validated['account_status'] = 'active';
                 $validated['referral_code'] = $this->generateReferralCode();
+                $validated['uid'] = $this->generateUid();
 
                 if ($this->ref) {
                     $validated['referred_by'] = $this->ref;
