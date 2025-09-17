@@ -1,7 +1,12 @@
 <?php
 
+use App\Livewire\About;
+use App\Livewire\Terms;
+use App\Livewire\Privacy;
 use App\Livewire\Homepage;
 use App\Livewire\Admin\Users;
+use App\Livewire\Dashboard\Kyc;
+use App\Livewire\Admin\AdminKyc;
 use App\Livewire\Admin\Dashboard;
 use App\Livewire\Dashboard\Index;
 use App\Livewire\Dashboard\Robot;
@@ -21,21 +26,16 @@ use App\Livewire\Settings\Appearance;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Admin\EmailBroadcast;
 use App\Livewire\Admin\PaymentMethods;
+use App\Livewire\Admin\AdminKycDetails;
 use Illuminate\Support\Facades\Artisan;
 use App\Livewire\Admin\AdminWithdrawals;
 use App\Livewire\Dashboard\ShowReferrals;
 use App\Livewire\Dashboard\ConfirmDeposit;
 use App\Livewire\Dashboard\DepositHistory;
+use App\Livewire\Dashboard\HistoryDetails;
 use App\Livewire\Dashboard\WithdrawHistory;
 use App\Livewire\Admin\AdminStrategyDetails;
 use App\Livewire\Admin\PaymentMethodDetails;
-use App\Livewire\Terms;
-use App\Livewire\Privacy;
-use App\Livewire\About;
-use App\Livewire\Admin\AdminKyc;
-use App\Livewire\Admin\AdminKycDetails;
-use App\Livewire\Dashboard\HistoryDetails;
-use App\Livewire\Dashboard\Kyc;
 
 Route::get('/link-storage', function () {
     Artisan::call('storage:link');
@@ -57,7 +57,7 @@ Route::get('/about', About::class)->name('about');
 Route::get('/terms', Terms::class)->name('terms');
 Route::get('/privacy', Privacy::class)->name('privacy');
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'user'])->group(function () {
     Route::get('/dashboard', Index::class)->middleware(['auth', 'verified'])->name('dashboard');
     Route::get('/dashboard/history', History::class)->middleware(['auth', 'verified'])->name('dashboard.history');
     Route::get('/dashboard/history/details', HistoryDetails::class)->middleware(['auth', 'verified'])->name('dashboard.history.details');
