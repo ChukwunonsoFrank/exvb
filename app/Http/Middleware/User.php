@@ -16,7 +16,7 @@ class User
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::user() && Auth::user()->is_admin === 0) {
+        if (Auth::user() && ! Auth::user()->is_admin) {
             return $next($request);
         }
 
