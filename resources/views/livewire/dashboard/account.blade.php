@@ -52,7 +52,14 @@
                             </div>
                             <div class="flex items-center space-x-2 -mt-0.5">
                                 <div class="grow">
-                                    <p class="text-[10px] text-yellow-500">KYC: {{ $this->kycStatus }}</p>
+                                    @if ($this->kycStatus === 'Unverified')
+                                        <p class="text-[10px] text-white">KYC: <span
+                                                class="text-yellow-500">{{ $this->kycStatus }}</span></p>
+                                    @endif
+                                    @if ($this->kycStatus === 'Verified')
+                                        <p class="text-[10px] text-white">KYC: <span
+                                                class="text-green-500">{{ $this->kycStatus }}</span></p>
+                                    @endif
                                 </div>
                                 <div class="flex-none">
                                     @if ($this->kycStatus === 'Unverified')

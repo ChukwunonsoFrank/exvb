@@ -11,22 +11,22 @@
                         <div class="flex-none text-center">
                             <p class="text-white font-bold text-xs mt-1">Commission: 10%</p>
                             <p class="text-zinc-300 text-[10px]">(from profits only)</p>
-                            <div>
+                            <div class="-mt-0.5">
                                 <p x-text="fee" class="text-[#fb2c36] text-xs inline font-bold"></p>
                             </div>
                         </div>
                         <div class="flex-none text-center">
-                            <h2 class="text-white font-bold text-base -ml-6 mb-0.5">@money($this->profit)</h2>
+                            <h2 class="text-white font-bold text-xl -ml-6">@money($this->profit)</h2>
                             <div class="flex items-center gap-x-0.5 -ml-1">
                                 <div>
                                     <p class="text-zinc-300 text-xs">Total Profit</p>
                                 </div>
                                 <div class="-mt-0.5">
-                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2.5 6L6 2.5L9.5 6" stroke="#00C951" stroke-width="2.66667"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M6 9.5V2.5" stroke="#00C951" stroke-width="2.66667"
+                                        <path d="M2.91669 6.99996L7.00002 2.91663L11.0834 6.99996" stroke="#00C951"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M7 11.0833V2.91663" stroke="#00C951" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
                                 </div>
@@ -800,7 +800,8 @@
                     this.assetIcon = `/${this.$wire.assetIcon}`;
                     this.sentiment = this.$wire.sentiment;
                     this.fee = `-$${Number(this.$wire.fee).toFixed(2)}`;
-                    this.netProfit = `$${(Number(this.$wire.profit) - Number(this.$wire.fee)).toFixed(2)}`;
+                    this.netProfit =
+                        `$${(Number(this.$wire.profit) - Number(this.$wire.fee)).toFixed(2)}`;
                     let nextCheckpoint = new Date(Number(this.$wire.timerCheckpoint)).getTime() + (
                         5 * 60 + 8) * 1000;
                     this.timeLeft = this.calculateTimeLeftTillNextCheckpoint(nextCheckpoint);

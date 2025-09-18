@@ -336,7 +336,7 @@
                         <button type="button" wire:loading.attr="disabled"
                             class="py-2.5 cursor-pointer px-4 w-full md:px-6 text-center gap-x-2 text-sm font-semibold rounded-lg bg-accent text-white focus:outline-hidden disabled:pointer-events-none">
                             <i wire:loading class="fa-solid fa-circle-notch fa-spin"></i>
-                            <span wire:loading.remove>Start robot</span>
+                            <span wire:loading.remove>Start Robot</span>
                         </button>
                     </a>
                 </div>
