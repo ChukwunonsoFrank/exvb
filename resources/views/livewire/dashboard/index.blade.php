@@ -40,7 +40,7 @@
                         <h1 class="text-white font-bold text-base mb-3">
                             No Active Trades
                         </h1>
-                        <p class="text-sm text-[#a4a4a4] mb-6">Start a new trade trade to track the trade on live chart
+                        <p class="text-sm text-[#a4a4a4] mb-6">Start a trade and watch it on the live chart.
                         </p>
                         <div>
                             <div>
@@ -99,7 +99,7 @@
                         <h1 class="text-white font-bold text-base mb-3">
                             No Active Trades
                         </h1>
-                        <p class="text-sm text-[#a4a4a4] mb-6">Start a new trade trade to track the trade on live chart
+                        <p class="text-sm text-[#a4a4a4] mb-6">Start a trade and watch it on the live chart.
                         </p>
                         <div>
                             <div>
@@ -162,8 +162,7 @@
                             <h1 class="text-white font-bold text-base mb-3">
                                 No Active Trades
                             </h1>
-                            <p class="text-sm text-[#a4a4a4] mb-6">Start a new trade trade to track the trade on live
-                                chart
+                            <p class="text-sm text-[#a4a4a4] mb-6">Start a trade and watch it on the live chart.
                             </p>
                             <div>
                                 <div>

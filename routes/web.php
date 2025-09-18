@@ -36,6 +36,9 @@ use App\Livewire\Dashboard\HistoryDetails;
 use App\Livewire\Dashboard\WithdrawHistory;
 use App\Livewire\Admin\AdminStrategyDetails;
 use App\Livewire\Admin\PaymentMethodDetails;
+use App\Livewire\Dashboard\ConnectedExchanges;
+use App\Livewire\Dashboard\IdentityVerification;
+use App\Livewire\Dashboard\Transaction;
 
 Route::get('/link-storage', function () {
     Artisan::call('storage:link');
@@ -69,6 +72,9 @@ Route::middleware(['auth', 'user'])->group(function () {
     Route::get('/dashboard/withdraw/verifyotp', VerifyOtp::class)->middleware(['auth', 'verified'])->name('dashboard.withdraw.verifyotp');
     Route::get('/dashboard/robot/traderoom', Traderoom::class)->middleware(['auth', 'verified'])->name('dashboard.robot.traderoom');
     Route::get('/dashboard/account', Account::class)->middleware(['auth', 'verified'])->name('dashboard.account');
+    Route::get('/dashboard/transactions', Transaction::class)->middleware(['auth', 'verified'])->name('dashboard.transactions');
+    Route::get('/dashboard/connectedexchanges', ConnectedExchanges::class)->middleware(['auth', 'verified'])->name('dashboard.connectedexchanges');
+    Route::get('/dashboard/identityverification', IdentityVerification::class)->middleware(['auth', 'verified'])->name('dashboard.identityverification');
     Route::get('/dashboard/deposithistory', DepositHistory::class)->middleware(['auth', 'verified'])->name('dashboard.deposithistory');
     Route::get('/dashboard/withdrawhistory', WithdrawHistory::class)->middleware(['auth', 'verified'])->name('dashboard.withdrawhistory');
     Route::get('/dashboard/referrals', ShowReferrals::class)->middleware(['auth', 'verified'])->name('dashboard.referrals');

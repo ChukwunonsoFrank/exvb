@@ -16,7 +16,7 @@
                             </div>
                         </div>
                         <div class="flex-none text-center">
-                            <h2 class="text-white font-bold text-base -ml-2.5 mb-0.5">@money($this->profit)</h2>
+                            <h2 class="text-white font-bold text-base -ml-8 mb-0.5">@money($this->profit)</h2>
                             <div class="flex items-center gap-x-0.5 -ml-1">
                                 <div>
                                     <p class="text-zinc-300 text-xs">Total Profit</p>
@@ -372,7 +372,7 @@
                     <div class="mb-2">
                         <button x-on:click="toggleStopRobotConfirmationModal()" type="button"
                             class="py-2.5 cursor-pointer px-4 w-full md:px-6 text-center gap-x-2 text-sm font-semibold rounded-lg bg-[#fb2c36] text-white focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none">
-                            Stop robot
+                            Stop Robot
                         </button>
                     </div>
 

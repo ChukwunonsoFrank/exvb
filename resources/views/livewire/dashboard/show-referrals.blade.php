@@ -37,7 +37,7 @@
                     <div class="w-full space-y-3">
                         <div>
                             <div class="relative">
-                                <input id="referral_code" type="text" id="hs-trailing-icon" name="hs-trailing-icon"
+                                <input id="referral_code" type="text" name="hs-trailing-icon"
                                     class="py-3 px-4 pe-11 block w-full border border-dashed border-[#26252a] text-white bg-transparent rounded-lg font-mono font-bold text-xs focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
                                     value="{{ 'https://exvb.com/register?ref=' . auth()->user()->referral_code }}"
                                     readonly>

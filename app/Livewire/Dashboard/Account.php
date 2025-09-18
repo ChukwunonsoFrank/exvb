@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Dashboard;
 
-use App\Models\Kyc;
+use App\Models\User;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
@@ -14,11 +14,8 @@ class Account extends Component
 
     public function mount()
     {
-        $kycRequest = Kyc::where(['user_id' => auth()->user()->id])->latest()->first();
-
-        if($kycRequest) {
-            $this->kycStatus = $kycRequest['status'];
-        }
+        $user = User::where(['id' => auth()->user()->id])->latest()->first();
+        $this->kycStatus = $user['is_kyc_verified'] ? 'Verified' : 'Unverified';
     }
 
     public function getStatusIndicatorColor(string $status)
