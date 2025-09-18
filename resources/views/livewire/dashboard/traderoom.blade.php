@@ -16,7 +16,7 @@
                             </div>
                         </div>
                         <div class="flex-none text-center">
-                            <h2 class="text-white font-bold text-base -ml-8 mb-0.5">@money($this->profit)</h2>
+                            <h2 class="text-white font-bold text-base -ml-6 mb-0.5">@money($this->profit)</h2>
                             <div class="flex items-center gap-x-0.5 -ml-1">
                                 <div>
                                     <p class="text-zinc-300 text-xs">Total Profit</p>

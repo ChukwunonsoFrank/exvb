@@ -365,7 +365,7 @@
                                     </div>
                                 </div>
                                 <p class="text-white font-medium text-base">
-                                    Start robot now with @money(floatval($this->amount)) on {{ $this->accountType }}?
+                                    Start robot with @money(floatval($this->amount)) on {{ $this->accountType }}?
                                 </p>
                                 <div class="mt-6 grid grid-cols-2 gap-x-2">
                                     <div>
@@ -373,14 +373,14 @@
                                             x-on:click="$store.robotPage.toggleTradeDetailsConfirmationModal($wire); $store.robotPage.toggleStartRobotConfirmationModal($wire);"
                                             type="button"
                                             class="p-3 w-full text-center text-sm font-semibold rounded-lg border border-transparent bg-accent text-white cursor-pointer hover:bg-accent focus:outline-hidden focus:bg-accent disabled:opacity-50 disabled:pointer-events-none">
-                                            Yes
+                                            Start
                                         </button>
                                     </div>
                                     <div>
                                         <button x-on:click="$store.robotPage.toggleTradeDetailsConfirmationModal($wire)"
                                             type="button"
                                             class="p-3 w-full text-center text-sm font-semibold rounded-lg border border-white text-white shadow-2xs cursor-pointer focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none">
-                                            No
+                                            Cancel
                                         </button>
                                     </div>
                                 </div>
