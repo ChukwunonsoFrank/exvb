@@ -63,7 +63,7 @@
                             <div>
                                 <label for="file-upload"
                                     class="inline-block bg-[#3b71ff] text-white text-xs p-2 rounded-lg cursor-pointer">
-                                    Choose File
+                                    Upload
                                 </label>
                             </div>
                             <div wire:loading wire:target="id">
@@ -76,7 +76,7 @@
 
                         <div class="mt-2 text-xs text-gray-400">
                             <span
-                                x-text="document.getElementById('file-upload').files[0]?.name || 'No file chosen'"></span>
+                                x-text="document.getElementById('file-upload').files[0]?.name || ''"></span>
                         </div>
                     </div>
                 </div>
