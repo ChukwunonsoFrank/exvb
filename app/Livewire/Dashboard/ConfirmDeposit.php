@@ -45,7 +45,7 @@ class ConfirmDeposit extends Component
 
             session()->flash('message', 'Deposit successful. You will receive an email when deposit has been confirmed.');
 
-            $this->redirectRoute('dashboard.deposithistory');
+            $this->redirectRoute('dashboard.transactions');
         } catch (\Exception $e) {
             $this->dispatch('deposit-error', message: $e->getMessage())->self();
         }

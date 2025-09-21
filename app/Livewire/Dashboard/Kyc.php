@@ -14,6 +14,8 @@ class Kyc extends Component
 
     public string $fullname;
 
+    public string $dob;
+
     public string $selectedCountry = '';
 
     public $id;
@@ -217,6 +219,8 @@ class Kyc extends Component
         'PS' => 'Palestine'
     ];
 
+    public string $kycStatus = '';
+
     protected $rules = [
         'fullname' => 'required|string|min:2|max:255',
         'selectedCountry' => 'required|string',
@@ -263,6 +267,7 @@ class Kyc extends Component
             ModelsKyc::create([
                 'user_id' => auth()->user()->id,
                 'fullname' => $this->fullname,
+                'dob' => $this->dob,
                 'country' => $this->selectedCountry,
                 'id_image_path' => 'kyc/' . $this->id->getClientOriginalName(),
                 'status' => 'pending'
@@ -285,6 +290,8 @@ class Kyc extends Component
 
     public function render()
     {
+        $user = User::where(['id' => auth()->user()->id])->latest()->first();
+        $this->kycStatus = $user['is_kyc_verified'] ? 'Verified' : 'Unverified';
         return view('livewire.dashboard.kyc');
     }
 }

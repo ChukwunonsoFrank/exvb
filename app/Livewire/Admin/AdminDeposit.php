@@ -51,13 +51,13 @@ class AdminDeposit extends Component
                     $this->secondUpline = $this->firstUpline;
                     $this->firstUpline = $currentUpline;
                     $this->level += 1;
-                    $currentUpline = User::where('referral_code', $currentUpline['referred_by'])->first();
-                    if ($currentUpline !== null) {
-                        $this->thirdUpline = $this->secondUpline;
-                        $this->secondUpline = $this->firstUpline;
-                        $this->firstUpline = $currentUpline;
-                        $this->level += 1;
-                    }
+                    // $currentUpline = User::where('referral_code', $currentUpline['referred_by'])->first();
+                    // if ($currentUpline !== null) {
+                    //     $this->thirdUpline = $this->secondUpline;
+                    //     $this->secondUpline = $this->firstUpline;
+                    //     $this->firstUpline = $currentUpline;
+                    //     $this->level += 1;
+                    // }
                 }
             }
         } catch (\Exception $e) {
@@ -126,61 +126,61 @@ class AdminDeposit extends Component
                 $this->firstUpline->notify(new CommissionEarned($this->firstUpline['name'], $depositOwnerName, strval($commission)));
             }
 
-            if ($this->level === 3) {
-                /**
-                 * Top upline commission
-                 */
-                $commission = round(0.01 * floatval($depositAmount), 2);
-                $newFirstUplineBalance = (($this->firstUpline['live_balance'] / 100) + $commission) * 100;
+            // if ($this->level === 3) {
+            //     /**
+            //      * Top upline commission
+            //      */
+            //     $commission = round(0.01 * floatval($depositAmount), 2);
+            //     $newFirstUplineBalance = (($this->firstUpline['live_balance'] / 100) + $commission) * 100;
 
-                DB::transaction(function () use ($newFirstUplineBalance, $referralCode, $commission) {
-                    User::where('id', $this->firstUpline['id'])->update(['live_balance' => $newFirstUplineBalance]);
-                    Referral::create([
-                        'user_id' => $this->firstUpline['id'],
-                        'referral_code' => $referralCode,
-                        'amount' => $commission * 100,
-                        'level' => '3'
-                    ]);
-                });
+            //     DB::transaction(function () use ($newFirstUplineBalance, $referralCode, $commission) {
+            //         User::where('id', $this->firstUpline['id'])->update(['live_balance' => $newFirstUplineBalance]);
+            //         Referral::create([
+            //             'user_id' => $this->firstUpline['id'],
+            //             'referral_code' => $referralCode,
+            //             'amount' => $commission * 100,
+            //             'level' => '3'
+            //         ]);
+            //     });
 
-                $this->firstUpline->notify(new CommissionEarned($this->firstUpline['name'], $depositOwnerName, strval($commission)));
+            //     $this->firstUpline->notify(new CommissionEarned($this->firstUpline['name'], $depositOwnerName, strval($commission)));
 
-                /**
-                 * Middle upline commission
-                 */
-                $commission = round(0.02 * floatval($depositAmount), 2);
-                $newSecondUplineBalance = (($this->secondUpline['live_balance'] / 100) + $commission) * 100;
+            //     /**
+            //      * Middle upline commission
+            //      */
+            //     $commission = round(0.02 * floatval($depositAmount), 2);
+            //     $newSecondUplineBalance = (($this->secondUpline['live_balance'] / 100) + $commission) * 100;
 
-                DB::transaction(function () use ($newSecondUplineBalance, $referralCode, $commission) {
-                    User::where('id', $this->secondUpline['id'])->update(['live_balance' => $newSecondUplineBalance]);
-                    Referral::create([
-                        'user_id' => $this->secondUpline['id'],
-                        'referral_code' => $referralCode,
-                        'amount' => $commission * 100,
-                        'level' => '2'
-                    ]);
-                });
+            //     DB::transaction(function () use ($newSecondUplineBalance, $referralCode, $commission) {
+            //         User::where('id', $this->secondUpline['id'])->update(['live_balance' => $newSecondUplineBalance]);
+            //         Referral::create([
+            //             'user_id' => $this->secondUpline['id'],
+            //             'referral_code' => $referralCode,
+            //             'amount' => $commission * 100,
+            //             'level' => '2'
+            //         ]);
+            //     });
 
-                $this->secondUpline->notify(new CommissionEarned($this->secondUpline['name'], $depositOwnerName, strval($commission)));
+            //     $this->secondUpline->notify(new CommissionEarned($this->secondUpline['name'], $depositOwnerName, strval($commission)));
 
-                /**
-                 * Last upline commission
-                 */
-                $commission = round(0.05 * floatval($depositAmount), 2);
-                $newThirdUplineBalance = (($this->thirdUpline['live_balance'] / 100) + $commission) * 100;
+            //     /**
+            //      * Last upline commission
+            //      */
+            //     $commission = round(0.05 * floatval($depositAmount), 2);
+            //     $newThirdUplineBalance = (($this->thirdUpline['live_balance'] / 100) + $commission) * 100;
 
-                DB::transaction(function () use ($newThirdUplineBalance, $referralCode, $commission) {
-                    User::where('id', $this->thirdUpline['id'])->update(['live_balance' => $newThirdUplineBalance]);
-                    Referral::create([
-                        'user_id' => $this->thirdUpline['id'],
-                        'referral_code' => $referralCode,
-                        'amount' => $commission * 100,
-                        'level' => '1'
-                    ]);
-                });
+            //     DB::transaction(function () use ($newThirdUplineBalance, $referralCode, $commission) {
+            //         User::where('id', $this->thirdUpline['id'])->update(['live_balance' => $newThirdUplineBalance]);
+            //         Referral::create([
+            //             'user_id' => $this->thirdUpline['id'],
+            //             'referral_code' => $referralCode,
+            //             'amount' => $commission * 100,
+            //             'level' => '1'
+            //         ]);
+            //     });
 
-                $this->thirdUpline->notify(new CommissionEarned($this->thirdUpline['name'], $depositOwnerName, strval($commission)));
-            }
+            //     $this->thirdUpline->notify(new CommissionEarned($this->thirdUpline['name'], $depositOwnerName, strval($commission)));
+            // }
         } catch (\Exception $e) {
             session()->flash('error-message', $e->getMessage());
         }

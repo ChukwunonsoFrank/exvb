@@ -3,13 +3,34 @@
         <livewire:dashboard.partials.desktop-navbar />
         <div class="lg:h-full lg:flex-1 lg:px-96 lg:pt-6">
             <div class="my-3 sticky top-0 bg-dashboard z-10 pb-2 lg:pt-4">
-                <h1 class="text-white mb-2 text-lg md:text-xl lg:text-2xl font-semibold">Complete KYC Verification</h1>
-                <p class="text-zinc-300 text-xs">Upload your ID and complete the verification step to unlock higher
-                    transaction limits.</p>
+                <h1 class="text-white mb-2 text-lg md:text-xl lg:text-2xl font-semibold">Verify Your Identity</h1>
+                <p class="text-zinc-300 text-xs">For your security and to uniock full access, please complete your
+                    verification.</p>
             </div>
             <div class="lg:h-full lg:pb-24 lg:overflow-scroll scrollbar-hide">
+                <div class="mb-5 flex gap-x-3 items-center">
+                    <div class="flex-none">
+                        @if ($this->kycStatus === 'Unverified')
+                            <span
+                                class="inline-flex items-center gap-x-1.5 py-1 px-2 rounded-lg text-xs font-semibold bg-red-100 text-red-800">
+                                <div class="size-3 rounded-full bg-red-500"></div>Unverified
+                            </span>
+                        @endif
+                        @if ($this->kycStatus === 'Verified')
+                            <span
+                                class="inline-flex items-center gap-x-1.5 py-1 px-2 rounded-lg text-xs font-semibold bg-green-100 text-green-800">
+                                <div class="size-3 rounded-full bg-green-500"></div>Verified
+                            </span>
+                        @endif
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-xs text-white">Your current verification level: ({{ $this->kycStatus }})</p>
+                    </div>
+                </div>
+
                 <div class="mb-5">
-                    <label for="input-label" class="block text-sm font-medium mb-2 text-zinc-300">Fullname(as it appears
+                    <label for="input-label" class="block text-sm font-medium mb-2 text-zinc-300">Full name (as it
+                        appears
                         on your ID)</label>
                     <div class="relative">
                         <input wire:model="fullname" type="text"
@@ -19,7 +40,16 @@
                 </div>
 
                 <div class="mb-5">
-                    <label for="input-label" class="block text-sm font-medium mb-2 text-zinc-300">Country</label>
+                    <label for="input-label" class="block text-sm font-medium mb-2 text-zinc-300">Date of Birth</label>
+                    <div class="relative">
+                        <input wire:model="dob" type="date"
+                            class="text-white border border-[#26252a] bg-transparent text-sm peer py-2.5 sm:py-3 px-4 ps-4 block w-full rounded-lg sm:text-sm focus:outline-0"
+                            placeholder="">
+                    </div>
+                </div>
+
+                <div class="mb-5">
+                    <label for="input-label" class="block text-sm font-medium mb-2 text-zinc-300">Nationality</label>
                     <div class="flex-1 md:flex-none relative">
                         <div x-on:click="$store.kycPage.toggleCountrySelect()"
                             class="flex items-center space-x-3 py-3 px-4 border border-[#26252a] bg-transparent rounded-lg text-[#FFFFFF]">
@@ -56,14 +86,28 @@
                 </div>
 
                 <div class="mb-5">
-                    <label for="input-label" class="block text-sm font-medium mb-2 text-zinc-300">Government-issued
-                        ID(Passport, Driver's license)</label>
+                    <label for="input-label" class="block text-sm font-medium mb-2 text-zinc-300">Upload
+                        Government-Issued
+                        ID</label>
                     <div class="relative">
                         <div class="flex items-center gap-x-1">
                             <div>
                                 <label for="file-upload"
-                                    class="inline-block bg-[#3b71ff] text-white text-xs p-2 rounded-lg cursor-pointer">
-                                    Upload
+                                    class="inline-flex items-center gap-x-1 bg-[#3b71ff] text-white text-xs p-2 rounded-lg cursor-pointer">
+                                    <div class="-mt-0.5">
+                                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M8.16494 2.33337C8.3754 2.33337 8.58194 2.3903 8.76269 2.49813C8.94343 2.60596 9.09163 2.76067 9.1916 2.94587L9.4751 3.47087C9.57507 3.65608 9.72328 3.81079 9.90402 3.91862C10.0848 4.02645 10.2913 4.08338 10.5018 4.08337H11.6667C11.9761 4.08337 12.2729 4.20629 12.4916 4.42508C12.7104 4.64388 12.8334 4.94062 12.8334 5.25004V10.5C12.8334 10.8095 12.7104 11.1062 12.4916 11.325C12.2729 11.5438 11.9761 11.6667 11.6667 11.6667H2.33335C2.02393 11.6667 1.72719 11.5438 1.5084 11.325C1.2896 11.1062 1.16669 10.8095 1.16669 10.5V5.25004C1.16669 4.94062 1.2896 4.64388 1.5084 4.42508C1.72719 4.20629 2.02393 4.08337 2.33335 4.08337H3.49827C3.70852 4.08339 3.91486 4.02658 4.09548 3.91897C4.27609 3.81136 4.42428 3.65694 4.52435 3.47204L4.8096 2.94471C4.90968 2.75981 5.05786 2.60539 5.23848 2.49778C5.4191 2.39017 5.62544 2.33336 5.83569 2.33337H8.16494Z"
+                                            stroke="white" stroke-width="1.33333" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path
+                                            d="M7 9.33337C7.9665 9.33337 8.75 8.54987 8.75 7.58337C8.75 6.61688 7.9665 5.83337 7 5.83337C6.0335 5.83337 5.25 6.61688 5.25 7.58337C5.25 8.54987 6.0335 9.33337 7 9.33337Z"
+                                            stroke="white" stroke-width="1.33333" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                    </div>
+                                    <span>Upload ID</span>
                                 </label>
                             </div>
                             <div wire:loading wire:target="id">
@@ -75,8 +119,7 @@
                         <input id="file-upload" type="file" wire:model="id" class="hidden" placeholder="" />
 
                         <div class="mt-2 text-xs text-gray-400">
-                            <span
-                                x-text="document.getElementById('file-upload').files[0]?.name || ''"></span>
+                            <span x-text="document.getElementById('file-upload').files[0]?.name || ''"></span>
                         </div>
                     </div>
                 </div>
@@ -86,9 +129,26 @@
                         <button type="button" wire:loading.attr="disabled"
                             class="py-2.5 cursor-pointer px-4 w-full md:px-6 text-center gap-x-2 text-sm font-semibold rounded-lg bg-accent text-white focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none">
                             <i wire:loading class="fa-solid fa-circle-notch fa-spin"></i>
-                            <span wire:loading.remove>Submit</span>
+                            <span wire:loading.remove>Get Verified</span>
                         </button>
                     </a>
+                </div>
+
+                <div class="flex items-center gap-x-2 p-3 my-3 bg-dim rounded-lg border border-[#323335]">
+                    <div class="flex-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                            fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="lucide lucide-lock-keyhole-icon lucide-lock-keyhole">
+                            <circle cx="12" cy="16" r="1" />
+                            <rect x="3" y="10" width="18" height="12" rx="2" />
+                            <path d="M7 10V7a5 5 0 0 1 10 0v3" />
+                        </svg>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-xs text-[#a4a4a4]">
+                            Your data is encrypted and stored securely; Verification may take 24 hours.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>

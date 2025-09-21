@@ -1,7 +1,7 @@
 <div class="lg:px-0 h-full">
-    <div class="md:hidden h-full">
+    <div class="md:hidden h-full relative">
         @if ($this->activeBotTickerSymbol !== 'UNKNOWN:UNKNOWN')
-            <div class="tradingview-widget-container mb-2">
+            <div class="tradingview-widget-container absolute mb-2 z-10">
                 <div class="tradingview-widget-container__widget" style="height:100%;width:100%"></div>
                 <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
                     {
@@ -21,6 +21,17 @@
                     }
                 </script>
             </div>
+            <a class="absolute right-4 bottom-11 z-20" href="{{ route('dashboard.robot.traderoom') }}">
+                <button type="button"
+                    class="px-3 py-2 cursor-pointer inline-flex items-center justify-center gap-x-0.5 text-xs font-semibold rounded-lg bg-dashboard border border-[#323335] text-white focus:outline-hidden">
+                    Back to trade
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-chevron-right-icon lucide-chevron-right">
+                        <path d="m9 18 6-6-6-6" />
+                    </svg>
+                </button>
+            </a>
         @else
             <div class="px-12 flex items-center justify-center h-full">
                 <div
@@ -58,9 +69,9 @@
         @endif
     </div>
 
-    <div class="hidden md:block lg:hidden h-full">
+    <div class="hidden md:block lg:hidden h-full relative">
         @if ($this->activeBotTickerSymbol !== 'UNKNOWN:UNKNOWN')
-            <div class="tradingview-widget-container mb-2">
+            <div class="tradingview-widget-container absolute mb-2 z-10">
                 <div class="tradingview-widget-container__widget" style="height:100%;width:100%"></div>
                 <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
                     {
@@ -80,6 +91,17 @@
                     }
                 </script>
             </div>
+            <a class="absolute right-4 bottom-11 z-20" href="{{ route('dashboard.robot.traderoom') }}">
+                <button type="button"
+                    class="px-3 py-2 cursor-pointer inline-flex items-center justify-center gap-x-0.5 text-xs font-semibold rounded-lg bg-dashboard border border-[#323335] text-white focus:outline-hidden">
+                    Back to trade
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-chevron-right-icon lucide-chevron-right">
+                        <path d="m9 18 6-6-6-6" />
+                    </svg>
+                </button>
+            </a>
         @else
             <div class="px-12 flex items-center justify-center h-full">
                 <div
@@ -119,10 +141,9 @@
 
     <div class="hidden lg:flex h-full">
         <livewire:dashboard.partials.desktop-navbar />
-
-        <div class="h-full flex-1">
+        <div class="h-full flex-1 relative">
             @if ($this->activeBotTickerSymbol !== 'UNKNOWN:UNKNOWN')
-                <div class="tradingview-widget-container mb-2">
+                <div class="tradingview-widget-container absolute mb-2 z-10">
                     <div class="tradingview-widget-container__widget" style="height:100%;width:100%"></div>
                     <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
                         {
@@ -142,6 +163,17 @@
                         }
                     </script>
                 </div>
+                <a class="absolute right-4 bottom-11 z-20" href="{{ route('dashboard.robot.traderoom') }}">
+                    <button type="button"
+                        class="px-3 py-2 cursor-pointer inline-flex items-center justify-center gap-x-0.5 text-xs font-semibold rounded-lg bg-dashboard border border-[#323335] text-white focus:outline-hidden">
+                        Back to trade
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="lucide lucide-chevron-right-icon lucide-chevron-right">
+                            <path d="m9 18 6-6-6-6" />
+                        </svg>
+                    </button>
+                </a>
             @else
                 <div class="px-12 flex items-center justify-center h-full">
                     <div

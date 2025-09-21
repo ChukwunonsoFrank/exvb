@@ -4,7 +4,7 @@
         <div class="h-full flex-1">
             <div class="px-8 flex items-center justify-center h-full">
                 <div class="max-w-sm mx-auto px-4 py-8 pb-10 bg-dim rounded-2xl text-center border border-[#26252a]">
-                    <h1 class="text-white text-xl lg:text-2xl font-bold">Connected Exchanges</h1>
+                    <h1 class="text-white text-xl lg:text-2xl font-bold">Connected Broker & Exchanges</h1>
                     <div class="flex items-center justify-center gap-x-2 my-4">
                         <div class="flex-none">
                             <div
@@ -69,8 +69,8 @@
                     <div class="text-center">
                         <p class="text-xs leading-5 text-[#a4a4a4]">All trading accounts on our platform are
                             automatically connected to our trusted partners,
-                            <img class="inline w-8 align-middle" src="{{ asset('assets/icons/bybit.svg') }}" alt="bybit-logo"> and
-                            <img class="inline align-middle" src="{{ asset('assets/icons/xtb.svg') }}" alt="xtb-logo">.
+                            <img class="inline w-8 align-middle" src="{{ asset('assets/icons/bybit.svg') }}" alt="bybit-logo">(via API) and
+                            <img class="inline align-middle" src="{{ asset('assets/icons/xtb.svg') }}" alt="xtb-logo">(via <img class="inline-block -mt-0.5 w-4" src="{{ asset('assets/images/mt5.png') }}" alt="mt5-logo">).
                             You don’t need to set up anything manually.
 
                             Every trade runs seamlessly through these exchanges to ensure liquidity, reliability, and

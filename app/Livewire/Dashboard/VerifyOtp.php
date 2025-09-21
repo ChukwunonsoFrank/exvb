@@ -72,7 +72,7 @@ class VerifyOtp extends Component
 
             session()->flash('message', 'Withdrawal successful. You will receive an email when your withdrawal has been processed.');
 
-            $this->redirectRoute('dashboard.withdrawhistory');
+            $this->redirectRoute('dashboard.transactions');
         } catch (\Exception $e) {
             $this->dispatch('withdraw-error', message: $e->getMessage())->self();
         }

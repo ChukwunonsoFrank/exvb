@@ -2,17 +2,16 @@
     <div class="lg:flex lg:h-full">
         <livewire:dashboard.partials.desktop-navbar />
         <div class="lg:h-full lg:flex-1 lg:px-96 lg:pt-6">
-            <div class="my-3 sticky top-0 bg-dashboard pb-2 lg:pt-4">
+            {{-- <div class="my-3 sticky top-0 bg-dashboard pb-2 lg:pt-4">
                 <h1 class="text-white text-lg md:text-xl lg:text-2xl font-semibold">Account</h1>
-            </div>
+            </div> --}}
             <div class="lg:h-full lg:pb-24 lg:overflow-scroll scrollbar-hide">
-
                 <div class="flex flex-col gap-y-2 px-2 py-3 bg-dim rounded-lg border border-[#323335]">
                     <div class="flex items-start space-x-4">
                         <div class="flex-none flex justify-center mb-3 lg:justify-start">
                             <div class="bg-[#282828] size-16 rounded-full flex items-center justify-center lg:size-20">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48"
-                                    viewBox="0 0 48 48" fill="none">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"
+                                    fill="none">
                                     <g clip-path="url(#clip0_49_26)">
                                         <path
                                             d="M6 24C6 26.3638 6.46558 28.7044 7.37017 30.8883C8.27475 33.0722 9.60062 35.0565 11.2721 36.7279C12.9435 38.3994 14.9278 39.7252 17.1117 40.6298C19.2956 41.5344 21.6362 42 24 42C26.3638 42 28.7044 41.5344 30.8883 40.6298C33.0722 39.7252 35.0565 38.3994 36.7279 36.7279C38.3994 35.0565 39.7252 33.0722 40.6298 30.8883C41.5344 28.7044 42 26.3638 42 24C42 21.6362 41.5344 19.2956 40.6298 17.1117C39.7252 14.9278 38.3994 12.9435 36.7279 11.2721C35.0565 9.60062 33.0722 8.27475 30.8883 7.37017C28.7044 6.46558 26.3638 6 24 6C21.6362 6 19.2956 6.46558 17.1117 7.37017C14.9278 8.27475 12.9435 9.60062 11.2721 11.2721C9.60062 12.9435 8.27475 14.9278 7.37017 17.1117C6.46558 19.2956 6 21.6362 6 24Z"
@@ -36,8 +35,9 @@
                             </div>
                         </div>
                         <div class="text-start grow">
-                            <h1 class="text-white text-base font-bold">{{ auth()->user()->name }}</h1>
-                            <div class="flex items-center space-x-2 -mt-1">
+                            <p class="text-white text-base font-bold">{{ auth()->user()->name }}</p>
+                            <p class="text-xs text-[#a4a4a4]">{{ auth()->user()->email }}</p>
+                            <div class="flex items-center space-x-2">
                                 <div>
                                     <input id="uid" type="text" class="hidden"
                                         value="{{ auth()->user()->uid }}">
@@ -50,22 +50,32 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="flex items-center space-x-2 -mt-0.5">
+                            <div class="flex items-center space-x-2 mb-1">
                                 <div class="grow">
                                     @if ($this->kycStatus === 'Unverified')
                                         <p class="text-[10px] text-white">KYC: <span
-                                                class="text-yellow-500">{{ $this->kycStatus }}</span></p>
+                                                class="text-yellow-500 font-bold">{{ $this->kycStatus }}</span></p>
                                     @endif
                                     @if ($this->kycStatus === 'Verified')
                                         <p class="text-[10px] text-white">KYC: <span
-                                                class="text-green-500">{{ $this->kycStatus }}</span></p>
+                                                class="text-green-500 font-bold">{{ $this->kycStatus }}</span></p>
                                     @endif
                                 </div>
                                 <div class="flex-none">
                                     @if ($this->kycStatus === 'Unverified')
                                         <a href="{{ route('dashboard.identityverification') }}">
                                             <button type="button"
-                                                class="w-full px-3 py-1 cursor-pointer inline-flex items-center justify-center gap-x-1 text-xs font-semibold rounded-lg bg-accent text-white focus:outline-hidden">
+                                                class="w-full px-3 py-2 cursor-pointer inline-flex items-center justify-center gap-x-1 text-xs font-semibold rounded-lg bg-orange-500 text-white focus:outline-hidden">
+                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M13.3333 8.66664C13.3333 12 11 13.6666 8.22663 14.6333C8.0814 14.6825 7.92365 14.6802 7.77996 14.6266C4.99996 13.6666 2.66663 12 2.66663 8.66664V3.99997C2.66663 3.82316 2.73686 3.65359 2.86189 3.52857C2.98691 3.40355 3.15648 3.33331 3.33329 3.33331C4.66663 3.33331 6.33329 2.53331 7.49329 1.51997C7.63453 1.39931 7.8142 1.33301 7.99996 1.33301C8.18572 1.33301 8.36539 1.39931 8.50663 1.51997C9.67329 2.53997 11.3333 3.33331 12.6666 3.33331C12.8434 3.33331 13.013 3.40355 13.138 3.52857C13.2631 3.65359 13.3333 3.82316 13.3333 3.99997V8.66664Z"
+                                                        fill="white" stroke="white" stroke-width="1.33333"
+                                                        stroke-linecap="round" stroke-linejoin="round" />
+                                                    <path d="M6 8.00008L7.33333 9.33341L10 6.66675" stroke="#FF6900"
+                                                        stroke-width="1.33333" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
+                                                </svg>
                                                 Get verified
                                             </button>
                                         </a>
@@ -97,13 +107,22 @@
                 <div class="flex items-center gap-x-2 p-2 my-3 bg-dim rounded-lg border border-[#323335]">
                     <div class="grow">
                         <h2 class="text-white text-sm font-bold mb-1">Withdrawal Limits</h2>
-                        <p class="text-xs text-[#a4a4a4]">Current: Up to $1,000,000 in 24hrs</p>
+                        <p class="text-xs text-[#a4a4a4]">Current: $1,000,000 in 24hrs</p>
                     </div>
                     <div class="flex-none">
                         <a href="{{ route('dashboard.identityverification') }}">
                             <button type="button"
-                                class="w-full px-3 py-1 cursor-pointer inline-flex items-center justify-center gap-x-1 text-xs font-semibold rounded-lg bg-accent text-white focus:outline-hidden">
-                                Upgrade
+                                class="w-full px-3 py-2 cursor-pointer inline-flex items-center justify-center gap-x-1 text-xs font-semibold rounded-lg bg-orange-500 text-white focus:outline-hidden">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M13.3333 8.66664C13.3333 12 11 13.6666 8.22663 14.6333C8.0814 14.6825 7.92365 14.6802 7.77996 14.6266C4.99996 13.6666 2.66663 12 2.66663 8.66664V3.99997C2.66663 3.82316 2.73686 3.65359 2.86189 3.52857C2.98691 3.40355 3.15648 3.33331 3.33329 3.33331C4.66663 3.33331 6.33329 2.53331 7.49329 1.51997C7.63453 1.39931 7.8142 1.33301 7.99996 1.33301C8.18572 1.33301 8.36539 1.39931 8.50663 1.51997C9.67329 2.53997 11.3333 3.33331 12.6666 3.33331C12.8434 3.33331 13.013 3.40355 13.138 3.52857C13.2631 3.65359 13.3333 3.82316 13.3333 3.99997V8.66664Z"
+                                        fill="white" stroke="white" stroke-width="1.33333" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path d="M6 8.00008L7.33333 9.33341L10 6.66675" stroke="#FF6900"
+                                        stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                Get verified
                             </button>
                         </a>
                     </div>
@@ -189,7 +208,12 @@
                                 <p class="font-medium text-sm text-white">Identity Verification</p>
                             </div>
                             <div class="flex-none text-end">
-                                <p class="font-medium text-xs text-[#a4a4a4]">KYC</p>
+                                @if ($this->kycStatus === 'Unverified')
+                                    <p class="text-xs font-bold text-yellow-500">{{ $this->kycStatus }}</p>
+                                @endif
+                                @if ($this->kycStatus === 'Verified')
+                                    <p class="text-xs font-bold text-green-500">{{ $this->kycStatus }}</p>
+                                @endif
                             </div>
                             <div class="flex-none text-end">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -248,7 +272,7 @@
                                 </svg>
                             </div>
                             <div class="flex-1">
-                                <p class="font-medium text-sm text-white">Connected Exchanges</p>
+                                <p class="font-medium text-sm text-white">Connected Broker & Exchanges</p>
                             </div>
                             <div class="flex-none text-end">
                                 <p class="font-medium text-xs text-[#a4a4a4]">Bybit, XTB</p>
@@ -300,7 +324,14 @@
                             <div
                                 class="bg-dim w-full rounded-lg flex items-center space-x-2 p-3 mb-1 border border-[#323335] lg:mb-0">
                                 <div class="flex-none text-red-500">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out-icon lucide-log-out"><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-log-out-icon lucide-log-out">
+                                        <path d="m16 17 5-5-5-5" />
+                                        <path d="M21 12H9" />
+                                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                                    </svg>
                                 </div>
                                 <div class="flex-1">
                                     <p class="font-medium text-sm text-red-500">Sign Out</p>

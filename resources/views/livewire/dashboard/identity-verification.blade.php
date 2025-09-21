@@ -36,7 +36,7 @@
                             @if ($this->kycStatus === 'Unverified')
                                 <a href="{{ route('dashboard.kyc') }}">
                                     <button type="button"
-                                        class="w-full px-6 py-2 cursor-pointer inline-flex items-center justify-center gap-x-1 text-sm font-semibold rounded-lg bg-accent text-white focus:outline-hidden">
+                                        class="w-full px-6 py-2 cursor-pointer inline-flex items-center justify-center gap-x-1 text-sm font-semibold rounded-lg bg-orange-500 text-white focus:outline-hidden">
                                         Verify Now
                                     </button>
                                 </a>
@@ -52,13 +52,13 @@
                         <div class="flex-1">
                             <div class="w-full py-2 px-4 lg:px-10 bg-dim rounded-lg border border-[#323335]">
                                 <p class="text-[10px] text-yellow-500">Unverified</p>
-                                <p class="text-xs text-white">Up to $1,000,000</p>
+                                <p class="text-xs text-white">$1,000,000 in 24 hours</p>
                             </div>
                         </div>
                         <div class="flex-1">
                             <div class="w-full py-2 px-4 lg:px-10 bg-dim rounded-lg border border-[#323335]">
                                 <p class="text-[10px] text-green-500">Verified</p>
-                                <p class="text-xs text-white">Up to $2,000,000+</p>
+                                <p class="text-xs text-white">Unlimited</p>
                             </div>
                         </div>
                     </div>
@@ -75,29 +75,7 @@
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
                             <span class="text-white">
-                                Higher trading limits
-                            </span>
-                        </li>
-
-                        <li class="flex items-center gap-x-3">
-                            <svg class="shrink-0 size-4 mt-0.5 text-accent" xmlns="http://www.w3.org/2000/svg"
-                                width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                            <span class="text-white">
-                                Faster withdrawals
-                            </span>
-                        </li>
-
-                        <li class="flex items-center gap-x-3">
-                            <svg class="shrink-0 size-4 mt-0.5 text-accent" xmlns="http://www.w3.org/2000/svg"
-                                width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                            <span class="text-white">
-                                Enhanced account security
+                                Unlimited withdrawal & trading limits
                             </span>
                         </li>
 
@@ -119,7 +97,84 @@
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
                             <span class="text-white">
-                                Compliance with global standards
+                                Exclusive early access to new features
+                            </span>
+                        </li>
+
+                        <li class="flex items-center gap-x-3">
+                            <svg class="shrink-0 size-4 mt-0.5 text-accent" xmlns="http://www.w3.org/2000/svg"
+                                width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span class="text-white">
+                                Enhanced account security
+                            </span>
+                        </li>
+
+                        <li class="flex items-center gap-x-3">
+                            <svg class="shrink-0 size-4 mt-0.5 text-accent" xmlns="http://www.w3.org/2000/svg"
+                                width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span class="text-white">
+                                Higher daily profit potential
+                            </span>
+                        </li>
+
+                        <li class="flex items-center gap-x-3">
+                            <svg class="shrink-0 size-4 mt-0.5 text-accent" xmlns="http://www.w3.org/2000/svg"
+                                width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span class="text-white">
+                                Verified badge on your account
+                            </span>
+                        </li>
+
+                        <li class="flex items-center gap-x-3">
+                            <svg class="shrink-0 size-4 mt-0.5 text-accent" xmlns="http://www.w3.org/2000/svg"
+                                width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span class="text-white">
+                                Exclusive deposit promotions & loyalty perks
+                            </span>
+                        </li>
+
+                        <li class="flex items-center gap-x-3">
+                            <svg class="shrink-0 size-4 mt-0.5 text-accent" xmlns="http://www.w3.org/2000/svg"
+                                width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span class="text-white">
+                                24/7 priority support
+                            </span>
+                        </li>
+
+                        <li class="flex items-center gap-x-3">
+                            <svg class="shrink-0 size-4 mt-0.5 text-accent" xmlns="http://www.w3.org/2000/svg"
+                                width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span class="text-white">
+                                Regulatory protection
+                            </span>
+                        </li>
+
+                        <li class="flex items-center gap-x-3">
+                            <svg class="shrink-0 size-4 mt-0.5 text-accent" xmlns="http://www.w3.org/2000/svg"
+                                width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span class="text-white">
+                                Extra referral rewards and bonuses
                             </span>
                         </li>
                     </ul>
