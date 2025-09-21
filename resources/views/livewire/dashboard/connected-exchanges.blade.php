@@ -3,7 +3,7 @@
         <livewire:dashboard.partials.desktop-navbar />
         <div class="h-full flex-1">
             <div class="px-8 flex items-center justify-center h-full">
-                <div class="max-w-sm mx-auto p-6 bg-dim rounded-2xl text-center border border-[#26252a]">
+                <div class="max-w-sm mx-auto p-6 pb-8 bg-dim rounded-2xl text-center border border-[#26252a]">
                     <h1 class="text-white text-xl lg:text-2xl font-bold">Connected Broker & Exchanges</h1>
                     <div class="flex items-center justify-center gap-x-2 my-4">
                         <div class="flex-none">
