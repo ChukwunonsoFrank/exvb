@@ -317,23 +317,17 @@
                             </div>
                         </div>
                     </a>
-                    <a href="{{ route('dashboard.support') }}">
+                    <a href="{{ route('dashboard.faqs') }}">
                         <div
                             class="bg-dim w-full rounded-lg flex items-center space-x-2 p-3 mb-1 border border-[#323335] lg:mb-0">
                             <div class="flex-none">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                    viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round"
-                                    class="lucide lucide-message-square-icon lucide-message-square">
-                                    <path
-                                        d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" />
-                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle-question-mark-icon lucide-message-circle-question-mark"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
                             </div>
                             <div class="flex-1">
                                 <p class="font-medium text-sm text-white">FAQs</p>
                             </div>
                             <div class="flex-none text-end">
-                                <p class="font-medium text-xs text-[#a4a4a4]">Help Center & Chat</p>
+                                <p class="font-medium text-xs text-[#a4a4a4]"></p>
                             </div>
                             <div class="flex-none text-end">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"

@@ -37,6 +37,7 @@ use App\Livewire\Dashboard\WithdrawHistory;
 use App\Livewire\Admin\AdminStrategyDetails;
 use App\Livewire\Admin\PaymentMethodDetails;
 use App\Livewire\Dashboard\ConnectedExchanges;
+use App\Livewire\Dashboard\Faqs;
 use App\Livewire\Dashboard\IdentityVerification;
 use App\Livewire\Dashboard\Transaction;
 
@@ -79,6 +80,7 @@ Route::middleware(['auth', 'user'])->group(function () {
     Route::get('/dashboard/withdrawhistory', WithdrawHistory::class)->middleware(['auth', 'verified'])->name('dashboard.withdrawhistory');
     Route::get('/dashboard/referrals', ShowReferrals::class)->middleware(['auth', 'verified'])->name('dashboard.referrals');
     Route::get('/dashboard/kyc', Kyc::class)->middleware(['auth', 'verified'])->name('dashboard.kyc');
+    Route::get('/dashboard/faqs', Faqs::class)->middleware(['auth', 'verified'])->name('dashboard.faqs');
 
     Route::redirect('settings', 'settings/profile');
     Route::get('settings/profile', Profile::class)->name('settings.profile');
