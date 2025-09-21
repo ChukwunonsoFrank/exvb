@@ -317,6 +317,34 @@
                             </div>
                         </div>
                     </a>
+                    <a href="{{ route('dashboard.support') }}">
+                        <div
+                            class="bg-dim w-full rounded-lg flex items-center space-x-2 p-3 mb-1 border border-[#323335] lg:mb-0">
+                            <div class="flex-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="lucide lucide-message-square-icon lucide-message-square">
+                                    <path
+                                        d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" />
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <p class="font-medium text-sm text-white">FAQs</p>
+                            </div>
+                            <div class="flex-none text-end">
+                                <p class="font-medium text-xs text-[#a4a4a4]">Help Center & Chat</p>
+                            </div>
+                            <div class="flex-none text-end">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="lucide lucide-chevron-right-icon lucide-chevron-right">
+                                    <path d="m9 18 6-6-6-6" />
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
                 </div>
 
                 <div class="lg:grid lg:grid-cols-2 lg:gap-4">
