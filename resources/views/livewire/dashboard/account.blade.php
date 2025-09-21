@@ -5,7 +5,7 @@
             {{-- <div class="my-3 sticky top-0 bg-dashboard pb-2 lg:pt-4">
                 <h1 class="text-white text-lg md:text-xl lg:text-2xl font-semibold">Account</h1>
             </div> --}}
-            <div class="lg:h-full lg:pb-24 lg:overflow-scroll scrollbar-hide">
+            <div class="py-2 lg:h-full lg:pb-24 lg:overflow-scroll scrollbar-hide">
                 <div class="flex flex-col gap-y-2 px-2 py-3 bg-dim rounded-lg border border-[#323335]">
                     <div class="flex items-start space-x-4">
                         <div class="flex-none flex justify-center mb-3 lg:justify-start">
