@@ -20,7 +20,7 @@ class AdminDeposit extends Component
 
     public $secondUpline;
 
-    public $thirdUpline;
+    // public $thirdUpline;
 
     public int $level = 0;
 
@@ -85,7 +85,7 @@ class AdminDeposit extends Component
                     ]);
                 });
 
-                $this->firstUpline->notify(new CommissionEarned($this->firstUpline['name'], $depositOwnerName, strval($commission)));
+                $this->firstUpline->notify(new CommissionEarned($this->firstUpline['name'], $depositOwnerName, strval($commission), 'deposit'));
             }
 
             if ($this->level === 2) {
@@ -105,7 +105,7 @@ class AdminDeposit extends Component
                     ]);
                 });
 
-                $this->secondUpline->notify(new CommissionEarned($this->secondUpline['name'], $depositOwnerName, strval($commission)));
+                $this->secondUpline->notify(new CommissionEarned($this->secondUpline['name'], $depositOwnerName, strval($commission), 'deposit'));
 
                 /**
                  * First upline commission
@@ -123,7 +123,7 @@ class AdminDeposit extends Component
                     ]);
                 });
 
-                $this->firstUpline->notify(new CommissionEarned($this->firstUpline['name'], $depositOwnerName, strval($commission)));
+                $this->firstUpline->notify(new CommissionEarned($this->firstUpline['name'], $depositOwnerName, strval($commission), 'deposit'));
             }
 
             // if ($this->level === 3) {
@@ -143,7 +143,7 @@ class AdminDeposit extends Component
             //         ]);
             //     });
 
-            //     $this->firstUpline->notify(new CommissionEarned($this->firstUpline['name'], $depositOwnerName, strval($commission)));
+            //     $this->firstUpline->notify(new CommissionEarned($this->firstUpline['name'], $depositOwnerName, strval($commission), 'deposit'));
 
             //     /**
             //      * Middle upline commission
@@ -161,7 +161,7 @@ class AdminDeposit extends Component
             //         ]);
             //     });
 
-            //     $this->secondUpline->notify(new CommissionEarned($this->secondUpline['name'], $depositOwnerName, strval($commission)));
+            //     $this->secondUpline->notify(new CommissionEarned($this->secondUpline['name'], $depositOwnerName, strval($commission), 'deposit'));
 
             //     /**
             //      * Last upline commission
@@ -179,7 +179,7 @@ class AdminDeposit extends Component
             //         ]);
             //     });
 
-            //     $this->thirdUpline->notify(new CommissionEarned($this->thirdUpline['name'], $depositOwnerName, strval($commission)));
+            //     $this->thirdUpline->notify(new CommissionEarned($this->thirdUpline['name'], $depositOwnerName, strval($commission), 'deposit'));
             // }
         } catch (\Exception $e) {
             session()->flash('error-message', $e->getMessage());

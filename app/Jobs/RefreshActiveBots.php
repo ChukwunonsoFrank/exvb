@@ -3,8 +3,10 @@
 namespace App\Jobs;
 
 use App\Models\Bot;
+use App\Models\Referral;
 use App\Models\Trade;
 use App\Models\User;
+use App\Notifications\CommissionEarned;
 use Carbon\Carbon;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
@@ -67,6 +69,10 @@ class RefreshActiveBots implements ShouldQueue
                             $bot->update(['status' => 'expired']);
                             User::where('id', $bot->user->id)->update(['live_balance' => $serialized]);
                         });
+
+                        if ($bot->user->referred_by) {
+                            $this->processReferralPayouts($netProfit, $bot->user->referral_code, $bot->user->referred_by, $bot->user->name);
+                        }
                     }
                 }
 
@@ -91,7 +97,7 @@ class RefreshActiveBots implements ShouldQueue
                             'profit' => $this->serializeAmount($profit),
                             'sentiment' => $bot['sentiment']
                         ]);
-                        
+
                         $bot->update([
                             'asset' => $assetToTrade['display_name'],
                             'asset_class' => $assetToTrade['asset_class'],
@@ -710,6 +716,87 @@ class RefreshActiveBots implements ShouldQueue
                 'image_url' => "assets/icons/dashboard/" . $weekendTradingPair[$asset]['image'],
                 'sentiment' => $sentiment,
             ];
+        }
+    }
+
+    public function processReferralPayouts(float $robotProfit, string $referralCode, string $referredBy, string $botOwnerName)
+    {
+        try {
+            $firstUpline = null;
+            $secondUpline = null;
+            $level = 0;
+            $currentUpline = User::where('referral_code', $referredBy)->first();
+
+            if ($currentUpline !== null) {
+                $firstUpline = $currentUpline;
+                $level = 1;
+                $currentUpline = User::where('referral_code', $currentUpline['referred_by'])->first();
+                if ($currentUpline !== null) {
+                    $secondUpline = $firstUpline;
+                    $firstUpline = $currentUpline;
+                    $level = 2;
+                }
+            }
+
+            if ($level === 1) {
+                /**
+                 * Top upline commission(8% on trade profits)
+                 */
+                $commission = round(0.08 * floatval($robotProfit), 2);
+                $newFirstUplineBalance = (($firstUpline['live_balance'] / 100) + $commission) * 100;
+
+                DB::transaction(function () use ($newFirstUplineBalance, $firstUpline, $referralCode, $commission) {
+                    User::where('id', $firstUpline['id'])->update(['live_balance' => $newFirstUplineBalance]);
+                    Referral::create([
+                        'user_id' => $firstUpline['id'],
+                        'referral_code' => $referralCode,
+                        'amount' => $commission * 100,
+                        'level' => '1'
+                    ]);
+                });
+
+                $firstUpline->notify(new CommissionEarned($firstUpline['name'], $botOwnerName, strval($commission), 'trade profit'));
+            }
+
+            if ($level === 2) {
+                /**
+                 * Middle upline commission(8% on trade profits)
+                 */
+                $commission = round(0.08 * floatval($robotProfit), 2);
+                $newSecondUplineBalance = (($secondUpline['live_balance'] / 100) + $commission) * 100;
+
+                DB::transaction(function () use ($newSecondUplineBalance, $secondUpline, $referralCode, $commission) {
+                    User::where('id', $secondUpline['id'])->update(['live_balance' => $newSecondUplineBalance]);
+                    Referral::create([
+                        'user_id' => $secondUpline['id'],
+                        'referral_code' => $referralCode,
+                        'amount' => $commission * 100,
+                        'level' => '1'
+                    ]);
+                });
+
+                $secondUpline->notify(new CommissionEarned($secondUpline['name'], $botOwnerName, strval($commission), 'trade profit'));
+
+                /**
+                 * First upline commission(4% on trade profits)
+                 */
+                $commission = round(0.04 * floatval($robotProfit), 2);
+                $newFirstUplineBalance = (($firstUpline['live_balance'] / 100) + $commission) * 100;
+
+                DB::transaction(function () use ($newFirstUplineBalance, $firstUpline, $referralCode, $commission) {
+                    User::where('id', $firstUpline['id'])->update(['live_balance' => $newFirstUplineBalance]);
+                    Referral::create([
+                        'user_id' => $firstUpline['id'],
+                        'referral_code' => $referralCode,
+                        'amount' => $commission * 100,
+                        'level' => '2'
+                    ]);
+                });
+
+                $firstUpline->notify(new CommissionEarned($firstUpline['name'], $botOwnerName, strval($commission), 'trade profit'));
+            }
+        } catch (\Exception $e) {
+            session()->flash('error-message', $e->getMessage());
         }
     }
 }

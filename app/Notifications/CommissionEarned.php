@@ -16,7 +16,7 @@ class CommissionEarned extends Notification implements ShouldQueue
     /**
      * Create a new notification instance.
      */
-    public function __construct(public string $name, public string $owner, public string $amount)
+    public function __construct(public string $name, public string $owner, public string $amount, public string $comissionType)
     {
         //
     }
@@ -50,7 +50,7 @@ class CommissionEarned extends Notification implements ShouldQueue
     {
         return (new MailMessage)
             ->greeting("Hi " . $this->name . ',')
-            ->line("You just earned $" . $this->amount . " from " . $this->owner . "'s deposit.");
+            ->line("You just earned $" . $this->amount . " from " . $this->owner . "'s " . $this->comissionType . ".");
     }
 
     /**

@@ -22,6 +22,13 @@ class History extends Component
         $this->visibleCount = min($this->perPage, $this->totalBots);
     }
 
+    public function displayProfitMinusFee($profit)
+    {
+        $fee = 0.1 * ($profit / 100);
+        $displayProfit = ($profit / 100) - $fee;
+        return $displayProfit;
+    }
+
     public function loadMore(): void
     {
         $this->visibleCount = min($this->visibleCount + $this->perPage, $this->totalBots);

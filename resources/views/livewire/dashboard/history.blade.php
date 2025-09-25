@@ -22,7 +22,7 @@
                                     </div>
                                     <div class="flex-1 text-end">
                                         <p class="font-semibold text-sm md:text-base text-green-500">
-                                            +@money($bot['profit'] / 100)
+                                            +@money($this->displayProfitMinusFee($bot['profit']))
                                         </p>
                                     </div>
                                 </div>

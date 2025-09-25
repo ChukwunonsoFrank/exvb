@@ -56,23 +56,31 @@ class VerifyOtp extends Component
                 return;
             }
 
-            Withdrawal::create([
-                'user_id' => auth()->user()->id,
-                'amount' => $this->amount,
-                'payment_method' => $this->method,
-                'address' => $this->address,
-                'status' => 'pending'
-            ]);
+            if (auth()->user()->two_factor_enabled) {
+                $this->redirectRoute('dashboard.withdraw.verifywithdrawtwofa', [
+                    'amount' => $this->amount,
+                    'method' => $this->method,
+                    'address' => $this->address
+                ]);
+            } else {
+                Withdrawal::create([
+                    'user_id' => auth()->user()->id,
+                    'amount' => $this->amount,
+                    'payment_method' => $this->method,
+                    'address' => $this->address,
+                    'status' => 'pending'
+                ]);
 
-            $user = User::find(auth()->user()->id);
-            $user->notify(new WithdrawalInitiated(auth()->user()->name, strval($this->amount / 100)));
+                $user = User::find(auth()->user()->id);
+                $user->notify(new WithdrawalInitiated(auth()->user()->name, strval($this->amount / 100)));
 
-            $admin = User::where('is_admin', 1)->first();
-            $admin->notify(new TransactionOccured('withdrawal', $user['name'], strval($this->amount / 100)));
+                $admin = User::where('is_admin', 1)->first();
+                $admin->notify(new TransactionOccured('withdrawal', $user['name'], strval($this->amount / 100)));
 
-            session()->flash('message', 'Withdrawal successful. You will receive an email when your withdrawal has been processed.');
+                session()->flash('message', 'Withdrawal successful. You will receive an email when your withdrawal has been processed.');
 
-            $this->redirectRoute('dashboard.transactions');
+                $this->redirectRoute('dashboard.transactions');
+            }
         } catch (\Exception $e) {
             $this->dispatch('withdraw-error', message: $e->getMessage())->self();
         }

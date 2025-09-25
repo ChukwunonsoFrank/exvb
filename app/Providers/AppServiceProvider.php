@@ -36,6 +36,19 @@ class AppServiceProvider extends ServiceProvider
             return "<?php echo '$' . number_format($amount, 2, '.', ','); ?>";
         });
 
+        Blade::directive('maskEmail', function ($email) {
+            return "<?php
+            // Remove quotes from the email variable
+            \$email = trim($email, \"'\");
+            \$atPosition = strpos(\$email, '@');
+            \$name = substr(\$email, 0, \$atPosition);
+            \$domain = substr(\$email, \$atPosition);
+            \$firstChar = substr(\$name, 0, 1);
+            \$maskedName = \$firstChar . str_repeat('*', strlen(\$name) - 1);
+            echo \$maskedName . \$domain;
+        ?>";
+        });
+
         Gate::define('viewPulse', function (User $user) {
             return $user->isAdmin();
         });

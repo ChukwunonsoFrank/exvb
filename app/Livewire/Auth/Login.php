@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Auth;
 
+use App\Models\User;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -36,18 +37,26 @@ class Login extends Component
     public function login()
     {
         try {
-            if (is_null($this->gRecaptchaResponse)) {
-                $this->dispatch('login-error', message: 'Please confirm you are not a robot.')->self();
-            }
+            // if (is_null($this->gRecaptchaResponse)) {
+            //     $this->dispatch('login-error', message: 'Please confirm you are not a robot.')->self();
+            // }
 
-            $recatpchaResponse = Http::get("https://www.google.com/recaptcha/api/siteverify", [
-                'secret' => config('services.recaptcha.secret'),
-                'response' => $this->gRecaptchaResponse
-            ]);
+            // $recatpchaResponse = Http::get("https://www.google.com/recaptcha/api/siteverify", [
+            //     'secret' => config('services.recaptcha.secret'),
+            //     'response' => $this->gRecaptchaResponse
+            // ]);
 
-            $result = $recatpchaResponse->json();
+            // $result = $recatpchaResponse->json();
 
-            if ($recatpchaResponse->successful() && $result['success'] == true) {
+            // if ($recatpchaResponse->successful() && $result['success'] == true) {
+            $user = User::where('email', $this->email)->first();
+
+            if ($user && $user['two_factor_enabled']) {
+                $this->redirectRoute('login.verifylogintwofa', [
+                    'email' => $this->email,
+                    'password' => $this->password
+                ]);
+            } else {
                 $this->validate();
 
                 $this->ensureIsNotRateLimited();
@@ -65,14 +74,33 @@ class Login extends Component
 
                 session()->flash('just_logged_in', true);
 
+                $loggedInUser = User::find(Auth::id());
+
+                $ipApiEndpoint = "http://ip-api.com/json/" . request()->ip();
+
+                $ipApiResponse = Http::get($ipApiEndpoint);
+
+                $ipApiResult = $ipApiResponse->json();
+
+                if ($ipApiResponse->successful() && $ipApiResult['status'] === 'success') {
+                    $loggedInUser->country = $ipApiResult['country'] ;
+                } else {
+                    $loggedInUser->country = 'N/A';
+                }
+
+                $loggedInUser->last_login_at = now();
+                $loggedInUser->ip_address = request()->ip();
+                $loggedInUser->save();
+
                 if (Auth::user()->is_admin) {
                     return redirect('/admin/dashboard');
                 }
 
                 $this->redirectIntended(default: route('dashboard.robot', absolute: false));
-            } else {
-                $this->dispatch('login-error', message: 'Please confirm you are not a robot.')->self();
             }
+            // } else {
+            //     $this->dispatch('login-error', message: 'Please confirm you are not a robot.')->self();
+            // }
         } catch (\Exception $e) {
             $this->dispatch('login-error', message: $e->getMessage())->self();
         }

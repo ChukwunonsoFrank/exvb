@@ -4,9 +4,11 @@ namespace App\Livewire\Dashboard;
 
 use App\Livewire\Dashboard\Partials\AssetIndicator;
 use App\Models\Bot;
+use App\Models\Referral;
 use App\Models\Strategy;
 use App\Models\Trade;
 use App\Models\User;
+use App\Notifications\CommissionEarned;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -44,6 +46,12 @@ class Traderoom extends Component
     public string $sentiment = '';
 
     public int $botExpirationInHrs;
+
+    public $firstUpline;
+
+    public $secondUpline;
+
+    public int $level = 0;
 
     public function mount()
     {
@@ -159,6 +167,86 @@ class Traderoom extends Component
         $this->timerCheckpoint = $activeBot['timer_checkpoint'];
     }
 
+    public function computeUpline(string $referredBy)
+    {
+        $currentUpline = User::where('referral_code', $referredBy)->first();
+        if ($currentUpline !== null) {
+            $this->firstUpline = $currentUpline;
+            $this->level += 1;
+            $currentUpline = User::where('referral_code', $currentUpline['referred_by'])->first();
+            if ($currentUpline !== null) {
+                $this->secondUpline = $this->firstUpline;
+                $this->firstUpline = $currentUpline;
+                $this->level += 1;
+            }
+        }
+    }
+
+    public function processReferralPayouts(float $robotProfit, string $referralCode, string $botOwnerName)
+    {
+        try {
+            if ($this->level === 1) {
+                /**
+                 * Top upline commission(8% on trade profits)
+                 */
+                $commission = round(0.08 * floatval($robotProfit), 2);
+                $newFirstUplineBalance = (($this->firstUpline['live_balance'] / 100) + $commission) * 100;
+
+                DB::transaction(function () use ($newFirstUplineBalance, $referralCode, $commission) {
+                    User::where('id', $this->firstUpline['id'])->update(['live_balance' => $newFirstUplineBalance]);
+                    Referral::create([
+                        'user_id' => $this->firstUpline['id'],
+                        'referral_code' => $referralCode,
+                        'amount' => $commission * 100,
+                        'level' => '1'
+                    ]);
+                });
+
+                $this->firstUpline->notify(new CommissionEarned($this->firstUpline['name'], $botOwnerName, strval($commission), 'trade profit'));
+            }
+
+            if ($this->level === 2) {
+                /**
+                 * Middle upline commission(8% on trade profits)
+                 */
+                $commission = round(0.08 * floatval($robotProfit), 2);
+                $newSecondUplineBalance = (($this->secondUpline['live_balance'] / 100) + $commission) * 100;
+
+                DB::transaction(function () use ($newSecondUplineBalance, $referralCode, $commission) {
+                    User::where('id', $this->secondUpline['id'])->update(['live_balance' => $newSecondUplineBalance]);
+                    Referral::create([
+                        'user_id' => $this->secondUpline['id'],
+                        'referral_code' => $referralCode,
+                        'amount' => $commission * 100,
+                        'level' => '1'
+                    ]);
+                });
+
+                $this->secondUpline->notify(new CommissionEarned($this->secondUpline['name'], $botOwnerName, strval($commission), 'trade profit'));
+
+                /**
+                 * First upline commission(4% on trade profits)
+                 */
+                $commission = round(0.04 * floatval($robotProfit), 2);
+                $newFirstUplineBalance = (($this->firstUpline['live_balance'] / 100) + $commission) * 100;
+
+                DB::transaction(function () use ($newFirstUplineBalance, $referralCode, $commission) {
+                    User::where('id', $this->firstUpline['id'])->update(['live_balance' => $newFirstUplineBalance]);
+                    Referral::create([
+                        'user_id' => $this->firstUpline['id'],
+                        'referral_code' => $referralCode,
+                        'amount' => $commission * 100,
+                        'level' => '2'
+                    ]);
+                });
+
+                $this->firstUpline->notify(new CommissionEarned($this->firstUpline['name'], $botOwnerName, strval($commission), 'trade profit'));
+            }
+        } catch (\Exception $e) {
+            session()->flash('error-message', $e->getMessage());
+        }
+    }
+
     public function stopRobot(): void
     {
         try {
@@ -190,6 +278,12 @@ class Traderoom extends Component
                     Bot::where('id', $this->activeBot['id'])->update(['status' => 'closed']);
                     User::where('id', auth()->user()->id)->update(['live_balance' => $serialized]);
                 });
+
+                if (auth()->user()->referred_by) {
+                    $profitMinusFees = $profit - $this->fee;
+                    $this->computeUpline(auth()->user()->referred_by);
+                    $this->processReferralPayouts($profitMinusFees, auth()->user()->referral_code, auth()->user()->name);
+                }
             }
 
             session()->flash('message', 'Robot has stopped trading');

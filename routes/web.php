@@ -36,10 +36,17 @@ use App\Livewire\Dashboard\HistoryDetails;
 use App\Livewire\Dashboard\WithdrawHistory;
 use App\Livewire\Admin\AdminStrategyDetails;
 use App\Livewire\Admin\PaymentMethodDetails;
+use App\Livewire\Dashboard\AccountInformation;
 use App\Livewire\Dashboard\ConnectedExchanges;
 use App\Livewire\Dashboard\Faqs;
 use App\Livewire\Dashboard\IdentityVerification;
+use App\Livewire\Dashboard\Security\ChangeEmail;
+use App\Livewire\Dashboard\Security\Setup;
+use App\Livewire\Dashboard\Security\Twofa\DisableTwofa;
+use App\Livewire\Dashboard\Security\Twofa\Secret;
+use App\Livewire\Dashboard\Security\Twofa\VerifyTwofa;
 use App\Livewire\Dashboard\Transaction;
+use App\Livewire\Dashboard\VerifyWithdrawTwofa;
 
 Route::get('/link-storage', function () {
     Artisan::call('storage:link');
@@ -71,10 +78,17 @@ Route::middleware(['auth', 'user'])->group(function () {
     Route::get('/dashboard/deposit/confirm', ConfirmDeposit::class)->middleware(['auth', 'verified'])->name('dashboard.deposit.confirm');
     Route::get('/dashboard/withdraw', Withdraw::class)->middleware(['auth', 'verified'])->name('dashboard.withdraw');
     Route::get('/dashboard/withdraw/verifyotp', VerifyOtp::class)->middleware(['auth', 'verified'])->name('dashboard.withdraw.verifyotp');
+    Route::get('/dashboard/withdraw/verifywithdrawtwofa', VerifyWithdrawTwofa::class)->middleware(['auth', 'verified'])->name('dashboard.withdraw.verifywithdrawtwofa');
     Route::get('/dashboard/robot/traderoom', Traderoom::class)->middleware(['auth', 'verified'])->name('dashboard.robot.traderoom');
     Route::get('/dashboard/account', Account::class)->middleware(['auth', 'verified'])->name('dashboard.account');
+    Route::get('/dashboard/accountinformation', AccountInformation::class)->middleware(['auth', 'verified'])->name('dashboard.accountinformation');
     Route::get('/dashboard/transactions', Transaction::class)->middleware(['auth', 'verified'])->name('dashboard.transactions');
     Route::get('/dashboard/connectedexchanges', ConnectedExchanges::class)->middleware(['auth', 'verified'])->name('dashboard.connectedexchanges');
+    Route::get('/dashboard/security/changeemail', ChangeEmail::class)->middleware(['auth', 'verified'])->name('dashboard.security.changeemail');
+    Route::get('/dashboard/security/setup', Setup::class)->middleware(['auth', 'verified'])->name('dashboard.security.setup');
+    Route::get('/dashboard/security/2fa/secret', Secret::class)->middleware(['auth', 'verified'])->name('dashboard.security.2fa.secret');
+    Route::get('/dashboard/security/2fa/verifytwofa', VerifyTwofa::class)->middleware(['auth', 'verified'])->name('dashboard.security.2fa.verifytwofa');
+    Route::get('/dashboard/security/2fa/disabletwofa', DisableTwofa::class)->middleware(['auth', 'verified'])->name('dashboard.security.2fa.disabletwofa');
     Route::get('/dashboard/identityverification', IdentityVerification::class)->middleware(['auth', 'verified'])->name('dashboard.identityverification');
     Route::get('/dashboard/deposithistory', DepositHistory::class)->middleware(['auth', 'verified'])->name('dashboard.deposithistory');
     Route::get('/dashboard/withdrawhistory', WithdrawHistory::class)->middleware(['auth', 'verified'])->name('dashboard.withdrawhistory');

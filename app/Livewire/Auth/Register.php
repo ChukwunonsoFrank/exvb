@@ -60,7 +60,7 @@ class Register extends Component
     public function generateUid(): string
     {
         do {
-            $uid = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
+            $uid = str_pad(random_int(0, 9999999999), 10, '0', STR_PAD_LEFT);
         } while (User::where('uid', $uid)->exists());
 
         return $uid;
@@ -100,9 +100,23 @@ class Register extends Component
                 $validated['account_status'] = 'active';
                 $validated['referral_code'] = $this->generateReferralCode();
                 $validated['uid'] = $this->generateUid();
+                $validated['last_login_at'] = now();
+                $validated['ip_address'] = request()->ip();
 
                 if ($this->ref) {
                     $validated['referred_by'] = $this->ref;
+                }
+
+                $ipApiEndpoint = "http://ip-api.com/json/" . request()->ip();
+
+                $ipApiResponse = Http::get($ipApiEndpoint);
+
+                $ipApiResult = $ipApiResponse->json();
+
+                if ($ipApiResponse->successful() && $ipApiResult['status'] === 'success') {
+                    $validated['country'] = $ipApiResult['country'] ;
+                } else {
+                    $validated['country'] = 'N/A';
                 }
 
                 event(new Registered(($user = User::create($validated))));

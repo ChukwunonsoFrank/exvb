@@ -221,6 +221,8 @@ class Kyc extends Component
 
     public string $kycStatus = '';
 
+    public bool $isKycPending = false;
+
     protected $rules = [
         'fullname' => 'required|string|min:2|max:255',
         'selectedCountry' => 'required|string',
@@ -290,8 +292,12 @@ class Kyc extends Component
 
     public function render()
     {
-        $user = User::where(['id' => auth()->user()->id])->latest()->first();
-        $this->kycStatus = $user['is_kyc_verified'] ? 'Verified' : 'Unverified';
+        $this->kycStatus = auth()->user()->is_kyc_verified ? 'Verified' : 'Not verified';
+        $kycRequest = ModelsKyc::where('user_id', auth()->user()->id)->latest()->first();
+
+        if($kycRequest && $kycRequest['status'] === 'pending') {
+            $this->isKycPending = true;
+        }
         return view('livewire.dashboard.kyc');
     }
 }

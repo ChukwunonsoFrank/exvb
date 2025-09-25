@@ -10,8 +10,8 @@
                     <div class="flex items-center space-x-2 -mt-0.5">
                         <div class="grow">
                             <p class="text-[10px] text-[#a4a4a4]">Current Status </p>
-                            @if ($this->kycStatus === 'Unverified')
-                                <p class="text-sm text-yellow-500 font-bold">Unverified</p>
+                            @if ($this->kycStatus === 'Not verified')
+                                <p class="text-sm text-yellow-500 font-bold">Not verified</p>
                             @endif
                             @if ($this->kycStatus === 'Verified')
                                 <div class="flex items-center gap-x-0.5">
@@ -33,10 +33,10 @@
                             @endif
                         </div>
                         <div class="flex-none">
-                            @if ($this->kycStatus === 'Unverified')
+                            @if ($this->kycStatus === 'Not verified')
                                 <a href="{{ route('dashboard.kyc') }}">
                                     <button type="button"
-                                        class="w-full px-6 py-2 cursor-pointer inline-flex items-center justify-center gap-x-1 text-sm font-semibold rounded-lg bg-orange-500 text-white focus:outline-hidden">
+                                        class="w-full px-6 py-2 cursor-pointer inline-flex items-center justify-center gap-x-1 text-sm font-semibold rounded-lg bg-[#F59E0B] text-white focus:outline-hidden">
                                         Verify Now
                                     </button>
                                 </a>
@@ -45,14 +45,14 @@
                     </div>
                 </div>
 
-                @if ($this->kycStatus === 'Unverified')
+                @if ($this->kycStatus === 'Not verified')
                 <div class="p-3 mt-3 bg-dim rounded-lg border border-[#323335]">
                     <h2 class="text-white text-sm font-bold mb-2">Withdrawal Limits</h2>
                     <div class="flex items-center gap-x-2">
                         <div class="flex-1">
                             <div class="w-full py-2 px-4 lg:px-10 bg-dim rounded-lg border border-[#323335]">
-                                <p class="text-[10px] text-yellow-500">Unverified</p>
-                                <p class="text-xs text-white">$1,000,000 in 24 hours</p>
+                                <p class="text-[10px] text-yellow-500">Not verified</p>
+                                <p class="text-xs text-white">$10,000 in 24 hours</p>
                             </div>
                         </div>
                         <div class="flex-1">
@@ -97,17 +97,6 @@
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
                             <span class="text-white">
-                                Exclusive early access to new features
-                            </span>
-                        </li>
-
-                        <li class="flex items-center gap-x-3">
-                            <svg class="shrink-0 size-4 mt-0.5 text-accent" xmlns="http://www.w3.org/2000/svg"
-                                width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                            <span class="text-white">
                                 Enhanced account security
                             </span>
                         </li>
@@ -141,17 +130,6 @@
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
                             <span class="text-white">
-                                Exclusive deposit promotions & loyalty perks
-                            </span>
-                        </li>
-
-                        <li class="flex items-center gap-x-3">
-                            <svg class="shrink-0 size-4 mt-0.5 text-accent" xmlns="http://www.w3.org/2000/svg"
-                                width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                            <span class="text-white">
                                 24/7 priority support
                             </span>
                         </li>
@@ -164,17 +142,6 @@
                             </svg>
                             <span class="text-white">
                                 Regulatory protection
-                            </span>
-                        </li>
-
-                        <li class="flex items-center gap-x-3">
-                            <svg class="shrink-0 size-4 mt-0.5 text-accent" xmlns="http://www.w3.org/2000/svg"
-                                width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                            <span class="text-white">
-                                Extra referral rewards and bonuses
                             </span>
                         </li>
                     </ul>

@@ -664,8 +664,6 @@
             }).showToast();
         });
     </script>
-
-    <script></script>
 @endscript
 
 <script>

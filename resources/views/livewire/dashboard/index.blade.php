@@ -23,7 +23,7 @@
             </div>
             <a class="absolute right-4 bottom-11 z-20" href="{{ route('dashboard.robot.traderoom') }}">
                 <button type="button"
-                    class="px-3 py-2 cursor-pointer inline-flex items-center justify-center gap-x-0.5 text-xs font-semibold rounded-lg bg-dashboard border border-[#323335] text-white focus:outline-hidden">
+                    class="px-3 py-2 cursor-pointer inline-flex items-center justify-center gap-x-0.5 text-xs font-semibold rounded-lg bg-dashboard border border-accent text-white focus:outline-hidden">
                     Back to trade
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -93,7 +93,7 @@
             </div>
             <a class="absolute right-4 bottom-11 z-20" href="{{ route('dashboard.robot.traderoom') }}">
                 <button type="button"
-                    class="px-3 py-2 cursor-pointer inline-flex items-center justify-center gap-x-0.5 text-xs font-semibold rounded-lg bg-dashboard border border-[#323335] text-white focus:outline-hidden">
+                    class="px-3 py-2 cursor-pointer inline-flex items-center justify-center gap-x-0.5 text-xs font-semibold rounded-lg bg-dashboard border border-accent text-white focus:outline-hidden">
                     Back to trade
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -165,7 +165,7 @@
                 </div>
                 <a class="absolute right-4 bottom-11 z-20" href="{{ route('dashboard.robot.traderoom') }}">
                     <button type="button"
-                        class="px-3 py-2 cursor-pointer inline-flex items-center justify-center gap-x-0.5 text-xs font-semibold rounded-lg bg-dashboard border border-[#323335] text-white focus:outline-hidden">
+                        class="px-3 py-2 cursor-pointer inline-flex items-center justify-center gap-x-0.5 text-xs font-semibold rounded-lg bg-dashboard border border-accent text-white focus:outline-hidden">
                         Back to trade
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"

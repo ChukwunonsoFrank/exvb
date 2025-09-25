@@ -5,6 +5,7 @@ namespace App\Livewire\Dashboard;
 use App\Models\OtpToken;
 use App\Models\PaymentMethod;
 use App\Models\User;
+use App\Models\Withdrawal;
 use App\Notifications\TokenRequested;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -52,6 +53,13 @@ class Withdraw extends Component
     public function generateOTP()
     {
         try {
+            $pendingWithdrawals = Withdrawal::where(['user_id' => auth()->user()->id, 'status' => 'pending'])->first();
+
+            if ($pendingWithdrawals) {
+                $this->dispatch('withdraw-error', message: 'You have a pending withdrawal. Please wait for confirmation before requesting another.')->self();
+                return;
+            }
+
             if ($this->accountStatus === 'inactive') {
                 $this->dispatch('withdraw-error', message: 'This account has been disabled and unable to perform any transactions. Kindly contact support for more details.')->self();
                 return;

@@ -12,7 +12,7 @@ class IdentityVerification extends Component
     public function mount()
     {
         $user = User::where(['id' => auth()->user()->id])->latest()->first();
-        $this->kycStatus = $user['is_kyc_verified'] ? 'Verified' : 'Unverified';
+        $this->kycStatus = $user['is_kyc_verified'] ? 'Verified' : 'Not verified';
     }
 
     public function render()

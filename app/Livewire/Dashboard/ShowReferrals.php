@@ -54,17 +54,27 @@ class ShowReferrals extends Component
         $level1Downlines = collect();
         $level2Downlines = collect();
 
+        $seenReferralCodes = [];
         if ($level1Referrals) {
             foreach ($level1Referrals as $lv1Ref) {
+                if (in_array($lv1Ref->referral_code, $seenReferralCodes)) {
+                    continue;
+                }
                 $users = User::where('referral_code', $lv1Ref->referral_code)->get();
                 $level1Downlines = $level1Downlines->merge($users);
+                $seenReferralCodes[] = $lv1Ref->referral_code;
             }
         }
 
+        $seenReferralCodes = [];
         if ($level2Referrals) {
             foreach ($level2Referrals as $lv2Ref) {
+                if (in_array($lv2Ref->referral_code, $seenReferralCodes)) {
+                    continue;
+                }
                 $users = User::where('referral_code', $lv2Ref->referral_code)->get();
                 $level2Downlines = $level2Downlines->merge($users);
+                $seenReferralCodes[] = $lv2Ref->referral_code;
             }
         }
 

@@ -10,21 +10,35 @@
             <div class="lg:h-full lg:pb-24 lg:overflow-scroll scrollbar-hide">
                 <div class="mb-5 flex gap-x-3 items-center">
                     <div class="flex-none">
-                        @if ($this->kycStatus === 'Unverified')
+                        @if (!$this->isKycPending && $this->kycStatus === 'Not verified')
                             <span
-                                class="inline-flex items-center gap-x-1.5 py-1 px-2 rounded-lg text-xs font-semibold bg-red-100 text-red-800">
-                                <div class="size-3 rounded-full bg-red-500"></div>Unverified
+                                class="inline-flex items-center gap-x-1.5 py-1 px-2 rounded-lg text-xs font-semibold bg-[#282828] text-white">
+                                Not verified
+                            </span>
+                        @endif
+                        @if ($this->isKycPending && $this->kycStatus === 'Not verified')
+                            <span
+                                class="inline-flex items-center gap-x-1.5 py-1 px-2 rounded-lg text-xs font-semibold bg-[#F59E0B] text-white">
+                                Pending Review
                             </span>
                         @endif
                         @if ($this->kycStatus === 'Verified')
                             <span
                                 class="inline-flex items-center gap-x-1.5 py-1 px-2 rounded-lg text-xs font-semibold bg-green-100 text-green-800">
-                                <div class="size-3 rounded-full bg-green-500"></div>Verified
+                                Verified
                             </span>
                         @endif
                     </div>
                     <div class="flex-1">
-                        <p class="text-xs text-white">Your current verification level: ({{ $this->kycStatus }})</p>
+                        @if (!$this->isKycPending && $this->kycStatus === 'Not verified')
+                            <p class="text-xs text-white">Your current verification level: (Not verified)</p>
+                        @endif
+                        @if ($this->isKycPending && $this->kycStatus === 'Not verified')
+                            <p class="text-xs text-white">Your current verification level: (Pending review)</p>
+                        @endif
+                        @if ($this->kycStatus === 'Verified')
+                            <p class="text-xs text-white">Your current verification level: (Verified)</p>
+                        @endif
                     </div>
                 </div>
 
@@ -96,18 +110,18 @@
                                     class="inline-flex items-center gap-x-1 bg-[#3b71ff] text-white text-xs p-2 rounded-lg cursor-pointer">
                                     <div class="-mt-0.5">
                                         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M8.16494 2.33337C8.3754 2.33337 8.58194 2.3903 8.76269 2.49813C8.94343 2.60596 9.09163 2.76067 9.1916 2.94587L9.4751 3.47087C9.57507 3.65608 9.72328 3.81079 9.90402 3.91862C10.0848 4.02645 10.2913 4.08338 10.5018 4.08337H11.6667C11.9761 4.08337 12.2729 4.20629 12.4916 4.42508C12.7104 4.64388 12.8334 4.94062 12.8334 5.25004V10.5C12.8334 10.8095 12.7104 11.1062 12.4916 11.325C12.2729 11.5438 11.9761 11.6667 11.6667 11.6667H2.33335C2.02393 11.6667 1.72719 11.5438 1.5084 11.325C1.2896 11.1062 1.16669 10.8095 1.16669 10.5V5.25004C1.16669 4.94062 1.2896 4.64388 1.5084 4.42508C1.72719 4.20629 2.02393 4.08337 2.33335 4.08337H3.49827C3.70852 4.08339 3.91486 4.02658 4.09548 3.91897C4.27609 3.81136 4.42428 3.65694 4.52435 3.47204L4.8096 2.94471C4.90968 2.75981 5.05786 2.60539 5.23848 2.49778C5.4191 2.39017 5.62544 2.33336 5.83569 2.33337H8.16494Z"
-                                            stroke="white" stroke-width="1.33333" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                        <path
-                                            d="M7 9.33337C7.9665 9.33337 8.75 8.54987 8.75 7.58337C8.75 6.61688 7.9665 5.83337 7 5.83337C6.0335 5.83337 5.25 6.61688 5.25 7.58337C5.25 8.54987 6.0335 9.33337 7 9.33337Z"
-                                            stroke="white" stroke-width="1.33333" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                    </svg>
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M8.16494 2.33337C8.3754 2.33337 8.58194 2.3903 8.76269 2.49813C8.94343 2.60596 9.09163 2.76067 9.1916 2.94587L9.4751 3.47087C9.57507 3.65608 9.72328 3.81079 9.90402 3.91862C10.0848 4.02645 10.2913 4.08338 10.5018 4.08337H11.6667C11.9761 4.08337 12.2729 4.20629 12.4916 4.42508C12.7104 4.64388 12.8334 4.94062 12.8334 5.25004V10.5C12.8334 10.8095 12.7104 11.1062 12.4916 11.325C12.2729 11.5438 11.9761 11.6667 11.6667 11.6667H2.33335C2.02393 11.6667 1.72719 11.5438 1.5084 11.325C1.2896 11.1062 1.16669 10.8095 1.16669 10.5V5.25004C1.16669 4.94062 1.2896 4.64388 1.5084 4.42508C1.72719 4.20629 2.02393 4.08337 2.33335 4.08337H3.49827C3.70852 4.08339 3.91486 4.02658 4.09548 3.91897C4.27609 3.81136 4.42428 3.65694 4.52435 3.47204L4.8096 2.94471C4.90968 2.75981 5.05786 2.60539 5.23848 2.49778C5.4191 2.39017 5.62544 2.33336 5.83569 2.33337H8.16494Z"
+                                                stroke="white" stroke-width="1.33333" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                            <path
+                                                d="M7 9.33337C7.9665 9.33337 8.75 8.54987 8.75 7.58337C8.75 6.61688 7.9665 5.83337 7 5.83337C6.0335 5.83337 5.25 6.61688 5.25 7.58337C5.25 8.54987 6.0335 9.33337 7 9.33337Z"
+                                                stroke="white" stroke-width="1.33333" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </svg>
                                     </div>
-                                    <span>Upload ID</span>
+                                    <span>Upload Valid ID</span>
                                 </label>
                             </div>
                             <div wire:loading wire:target="id">
