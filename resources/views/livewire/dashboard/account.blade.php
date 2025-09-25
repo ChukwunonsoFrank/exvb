@@ -159,10 +159,10 @@
                         </div>
                     </div>
                     <div class="flex items-center space-x-2">
-                        <div class="flex-1">
+                        <div class="flex-none">
                             <a href="{{ route('dashboard.withdraw') }}">
                                 <button type="button"
-                                    class="w-full py-2 px-4 lg:px-10 cursor-pointer inline-flex items-center justify-center gap-x-1 text-sm font-semibold rounded-lg bg-accent text-white focus:outline-hidden">
+                                    class="py-2 px-4 lg:px-10 cursor-pointer inline-flex items-center justify-center gap-x-1 text-sm font-semibold rounded-lg bg-accent text-white focus:outline-hidden">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round"
