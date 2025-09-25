@@ -101,20 +101,20 @@ class Register extends Component
                 $validated['referral_code'] = $this->generateReferralCode();
                 $validated['uid'] = $this->generateUid();
                 $validated['last_login_at'] = now();
-                $validated['ip_address'] = request()->ip();
+                $validated['ip_address'] = $this->getClientIPv4();
 
                 if ($this->ref) {
                     $validated['referred_by'] = $this->ref;
                 }
 
-                $ipApiEndpoint = "http://ip-api.com/json/" . request()->ip();
+                $ipApiEndpoint = "http://ip-api.com/json/" . $this->getClientIPv4();
 
                 $ipApiResponse = Http::get($ipApiEndpoint);
 
                 $ipApiResult = $ipApiResponse->json();
 
                 if ($ipApiResponse->successful() && $ipApiResult['status'] === 'success') {
-                    $validated['country'] = $ipApiResult['country'] ;
+                    $validated['country'] = $ipApiResult['country'];
                 } else {
                     $validated['country'] = 'N/A';
                 }
@@ -143,5 +143,35 @@ class Register extends Component
         } catch (\Exception $e) {
             $this->dispatch('signup-error', message: $e->getMessage())->self();
         }
+    }
+
+    public function getClientIPv4()
+    {
+        $ip = request()->ip();
+
+        // If it's already IPv4, return it
+        if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+            return $ip;
+        }
+
+        // Try to get IPv4 from X-Forwarded-For header
+        $forwarded = request()->header('X-Forwarded-For');
+        if ($forwarded) {
+            $ips = explode(',', $forwarded);
+            foreach ($ips as $forwardedIp) {
+                $forwardedIp = trim($forwardedIp);
+                if (filter_var($forwardedIp, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+                    return $forwardedIp;
+                }
+            }
+        }
+
+        // Fallback for localhost
+        if ($ip === '::1') {
+            return '127.0.0.1';
+        }
+
+        // Otherwise, return original IP
+        return $ip;
     }
 }

@@ -76,7 +76,7 @@ class Login extends Component
 
                     $loggedInUser = User::find(Auth::id());
 
-                    $ipApiEndpoint = "http://ip-api.com/json/" . request()->ip();
+                    $ipApiEndpoint = "http://ip-api.com/json/" . $this->getClientIPv4();
 
                     $ipApiResponse = Http::get($ipApiEndpoint);
 
@@ -89,7 +89,7 @@ class Login extends Component
                     }
 
                     $loggedInUser->last_login_at = now();
-                    $loggedInUser->ip_address = request()->ip();
+                    $loggedInUser->ip_address = $this->getClientIPv4();
                     $loggedInUser->save();
 
                     if (Auth::user()->is_admin) {
@@ -105,6 +105,38 @@ class Login extends Component
             $this->dispatch('login-error', message: $e->getMessage())->self();
         }
     }
+
+
+    public function getClientIPv4()
+    {
+        $ip = request()->ip();
+
+        // If it's already IPv4, return it
+        if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+            return $ip;
+        }
+
+        // Try to get IPv4 from X-Forwarded-For header
+        $forwarded = request()->header('X-Forwarded-For');
+        if ($forwarded) {
+            $ips = explode(',', $forwarded);
+            foreach ($ips as $forwardedIp) {
+                $forwardedIp = trim($forwardedIp);
+                if (filter_var($forwardedIp, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+                    return $forwardedIp;
+                }
+            }
+        }
+
+        // Fallback for localhost
+        if ($ip === '::1') {
+            return '127.0.0.1';
+        }
+
+        // Otherwise, return original IP
+        return $ip;
+    }
+
 
     /**
      * Ensure the authentication request is not rate limited.

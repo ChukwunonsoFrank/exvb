@@ -81,7 +81,7 @@
                                 @endif
                             </div>
                             <p class="text-xs text-[#a4a4a4] mb-2">@maskEmail(auth()->user()->email)</p>
-                            <div class="flex items-start gap-x-1 mb-3">
+                            <div class="flex items-center gap-x-1 mb-3">
                                 <div class="flex-none">
                                     <p class="text-xs text-white font-bold">Referral Link:</p>
                                 </div>
