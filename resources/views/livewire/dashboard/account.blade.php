@@ -163,25 +163,39 @@
                             <a href="{{ route('dashboard.withdraw') }}">
                                 <button type="button"
                                     class="w-full py-2 px-6 lg:px-10 cursor-pointer inline-flex items-center justify-center gap-x-1 text-sm font-semibold rounded-lg bg-accent text-white focus:outline-hidden">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                        viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round"
-                                        class="lucide lucide-upload-icon lucide-upload">
-                                        <path d="M12 3v12" />
-                                        <path d="m17 8-5-5-5 5" />
-                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8 2V10" stroke="white" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path d="M11.3332 5.33333L7.99984 2L4.6665 5.33333" stroke="white"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path
+                                            d="M14 10V12.6667C14 13.0203 13.8595 13.3594 13.6095 13.6095C13.3594 13.8595 13.0203 14 12.6667 14H3.33333C2.97971 14 2.64057 13.8595 2.39052 13.6095C2.14048 13.3594 2 13.0203 2 12.6667V10"
+                                            stroke="white" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
                                     </svg>
                                     Withdraw
                                 </button>
                             </a>
                         </div>
                         <div class="flex-1">
-                            <p class="text-[10px] text-[#a4a4a4] leading-3"><span class="font-bold">Last Login:</span>
-                                {{ auth()->user()->last_login_at }}</p>
-                            <p class="text-[10px] text-[#a4a4a4] leading-3"><span class="font-bold">IP:</span>
-                                {{ auth()->user()->ip_address }}</p>
-                            <p class="text-[10px] text-[#a4a4a4] leading-3"><span class="font-bold">Location: </span>
-                                {{ auth()->user()->country }}</p>
+                            <a href="{{ route('dashboard.deposit') }}">
+                                <button type="button"
+                                    class="w-full py-2 px-6 lg:px-10 cursor-pointer inline-flex items-center justify-center gap-x-1 text-sm font-semibold rounded-lg bg-accent text-white focus:outline-hidden">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M12.6667 4.66667V2.66667C12.6667 2.48986 12.5964 2.32028 12.4714 2.19526C12.3464 2.07024 12.1768 2 12 2H3.33333C2.97972 2 2.64057 2.14048 2.39052 2.39052C2.14048 2.64057 2 2.97972 2 3.33333C2 3.68695 2.14048 4.0261 2.39052 4.27614C2.64057 4.52619 2.97972 4.66667 3.33333 4.66667H13.3333C13.5101 4.66667 13.6797 4.73691 13.8047 4.86193C13.9298 4.98695 14 5.15652 14 5.33333V8M14 8H12C11.6464 8 11.3072 8.14048 11.0572 8.39052C10.8071 8.64057 10.6667 8.97973 10.6667 9.33333C10.6667 9.68693 10.8071 10.0261 11.0572 10.2762C11.3072 10.5262 11.6464 10.6667 12 10.6667H14C14.1768 10.6667 14.3464 10.5964 14.4714 10.4714C14.5964 10.3464 14.6667 10.1768 14.6667 10V8.66667C14.6667 8.48986 14.5964 8.32028 14.4714 8.19526C14.3464 8.07024 14.1768 8 14 8Z"
+                                            stroke="white" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path
+                                            d="M2 3.33334V12.6667C2 13.0203 2.14048 13.3595 2.39052 13.6095C2.64057 13.8596 2.97972 14 3.33333 14H13.3333C13.5101 14 13.6797 13.9298 13.8047 13.8047C13.9298 13.6797 14 13.5101 14 13.3333V10.6667"
+                                            stroke="white" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                    Deposit
+                                </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -582,8 +596,7 @@
                                     </a>
                                 </div>
                                 <div>
-                                    <button x-on:click="$store.accountPage.toggleProfilePictureModal()"
-                                        type="button"
+                                    <button x-on:click="$store.accountPage.toggleProfilePictureModal()" type="button"
                                         class="py-2 px-4 w-full text-center text-sm font-semibold rounded-lg border border-white text-white shadow-2xs cursor-pointer focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none">
                                         Cancel
                                     </button>

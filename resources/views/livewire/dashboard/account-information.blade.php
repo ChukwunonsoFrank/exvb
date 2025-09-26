@@ -55,6 +55,11 @@
                                 style="display:inline-block;width:0.8em;">&#8226;</span>
                             <span class="flex-1">Last Login: {{ auth()->user()->last_login_at }}({{ auth()->user()->country }})</span>
                         </li>
+                        <li class="text-white flex items-center gap-x-1 pl-0">
+                            <span class="list-disc list-inside mr-1"
+                                style="display:inline-block;width:0.8em;">&#8226;</span>
+                            <span class="flex-1">IP: {{ auth()->user()->ip_address }}</span>
+                        </li>
                     </ul>
                 </div>
                 <div class="p-3 mt-3 bg-dim rounded-lg border border-[#323335]">
