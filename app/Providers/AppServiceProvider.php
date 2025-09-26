@@ -43,7 +43,7 @@ class AppServiceProvider extends ServiceProvider
             \$atPosition = strpos(\$email, '@');
             \$name = substr(\$email, 0, \$atPosition);
             \$domain = substr(\$email, \$atPosition);
-            \$firstChar = substr(\$name, 0, 1);
+            \$firstChar = substr(\$name, 0, 2);
             \$maskedName = \$firstChar . str_repeat('*', strlen(\$name) - 1);
             echo \$maskedName . \$domain;
         ?>";

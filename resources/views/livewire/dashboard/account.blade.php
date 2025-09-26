@@ -195,11 +195,11 @@
                 <div class="flex items-center gap-x-2 p-3 my-3 bg-dim rounded-lg border border-[#323335]">
                     <div class="grow">
                         <h2 class="text-white text-sm font-bold mb-1">Withdrawal Limits</h2>
-                        <p class="text-xs text-[#a4a4a4]">Current Limit:
+                        <p class="text-xs text-[#a4a4a4]">Daily Withdrawal Limit:
                             @if (auth()->user()->is_kyc_verified)
-                                <span>Unlimited</span>
+                                <span>$10,000,000</span>
                             @else
-                                <span>$10,000 in 24hrs</span>
+                                <span>$10,000</span>
                             @endif
                         </p>
                     </div>

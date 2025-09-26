@@ -44,13 +44,13 @@
                             <div class="flex-1">
                                 <div class="w-full py-2 px-4 lg:px-10 bg-dim rounded-lg border border-[#323335]">
                                     <p class="text-[10px] text-yellow-500">Not verified</p>
-                                    <p class="text-xs text-white">$10,000 in 24 hours</p>
+                                    <p class="text-xs text-white">$10,000 daily</p>
                                 </div>
                             </div>
                             <div class="flex-1">
                                 <div class="w-full py-2 px-4 lg:px-10 bg-dim rounded-lg border border-[#323335]">
                                     <p class="text-[10px] text-green-500">Verified</p>
-                                    <p class="text-xs text-white">Unlimited</p>
+                                    <p class="text-xs text-white">$10,000,000 daily</p>
                                 </div>
                             </div>
                         </div>

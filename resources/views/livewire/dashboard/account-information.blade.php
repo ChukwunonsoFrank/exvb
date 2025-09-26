@@ -78,7 +78,7 @@
                             @endif
                             @if ($this->kycStatus === 'Verified')
                                 <span
-                                    class="inline-flex items-center gap-x-1.5 py-1 px-2 rounded-lg text-xs font-semibold bg-green-100 text-green-800">Verified
+                                    class="inline-flex items-center gap-x-1.5 py-1 px-2 rounded-lg text-xs font-semibold bg-[#282828] text-white">Verified
                                 </span>
                             @endif
                         </div>
