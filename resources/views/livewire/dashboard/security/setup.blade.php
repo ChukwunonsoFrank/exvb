@@ -21,7 +21,7 @@
                     <div class="flex-1">
                         <p class="font-medium text-sm text-white">2FA</p>
                     </div>
-                    <div class="flex-none text-end">
+                    <div class="flex-none mt-0.5 text-end">
                         @if ($this->is2faEnabled)
                             <p class="font-semibold text-xs text-green-500">Enabled</p>
                         @else

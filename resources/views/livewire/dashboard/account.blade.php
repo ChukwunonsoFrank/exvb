@@ -81,7 +81,7 @@
                                 @endif
                             </div>
                             <p class="text-xs text-[#a4a4a4] mb-2">@maskEmail(auth()->user()->email)</p>
-                            <div class="flex items-center gap-x-1 mb-3">
+                            <div class="flex items-start gap-x-1 mb-3">
                                 <div class="flex-none">
                                     <p class="text-xs text-white font-bold">Referral Link:</p>
                                 </div>
@@ -159,10 +159,10 @@
                         </div>
                     </div>
                     <div class="flex items-center space-x-2">
-                        <div class="flex-none">
+                        <div class="flex-1">
                             <a href="{{ route('dashboard.withdraw') }}">
                                 <button type="button"
-                                    class="py-2 px-4 lg:px-10 cursor-pointer inline-flex items-center justify-center gap-x-1 text-sm font-semibold rounded-lg bg-accent text-white focus:outline-hidden">
+                                    class="w-full py-2 px-6 lg:px-10 cursor-pointer inline-flex items-center justify-center gap-x-1 text-sm font-semibold rounded-lg bg-accent text-white focus:outline-hidden">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round"
@@ -186,7 +186,7 @@
                     </div>
                 </div>
 
-                <div class="flex items-center gap-x-2 p-2 my-3 bg-dim rounded-lg border border-[#323335]">
+                <div class="flex items-center gap-x-2 p-3 my-3 bg-dim rounded-lg border border-[#323335]">
                     <div class="grow">
                         <h2 class="text-white text-sm font-bold mb-1">Withdrawal Limits</h2>
                         <p class="text-xs text-[#a4a4a4]">Current Limit: $10,000 in 24hrs</p>
@@ -361,7 +361,7 @@
                             <div class="flex-1">
                                 <p class="font-medium text-sm text-white">Connected Brokers & Exchanges</p>
                             </div>
-                            <div class="flex-none text-end"><img class="inline w-8 align-middle"
+                            <div class="flex-none -mt-0.5 text-end"><img class="inline w-8 align-middle"
                                     src="{{ asset('assets/icons/bybit.svg') }}" alt="bybit-logo"> <img
                                     class="inline align-middle" src="{{ asset('assets/icons/xtb.svg') }}"
                                     alt="xtb-logo">
