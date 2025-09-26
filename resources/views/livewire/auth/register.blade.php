@@ -33,7 +33,7 @@
                                 <!-- Name -->
                                 <input wire:model="name" type="text"
                                     class="py-3 px-4 block w-full border font-medium text-gray-600 border-gray-200 rounded-sm text-sm disabled:opacity-50 disabled:pointer-events-none"
-                                    autocomplete="name" required placeholder="Fullname">
+                                    autocomplete="name" required placeholder="Full Name">
 
                                 <!-- Email Address -->
                                 <input wire:model="email" type="email"
