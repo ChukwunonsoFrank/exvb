@@ -10,7 +10,8 @@
                     <div class="elementor-element elementor-element-f3b0803 elementor-widget elementor-widget-heading"
                         data-id="f3b0803" data-element_type="widget" data-widget_type="heading.default">
                         <div class="elementor-widget-container" style="text-align: center;">
-                            <h2 class="elementor-heading-title elementor-size-default" style="margin-bottom: 0 !important;">Login</h2>
+                            <h2 class="elementor-heading-title elementor-size-default"
+                                style="margin-bottom: 0 !important;">Login</h2>
                         </div>
                     </div>
                     <div class="elementor-element elementor-element-23adb73 elementor-widget__width-initial elementor-widget elementor-widget-text-editor"
@@ -47,7 +48,8 @@
                                 </div>
 
                                 <div class="w-full">
-                                    <flux:button variant="primary" type="submit" class="w-full! rounded-md! bg-accent!">
+                                    <flux:button variant="primary" type="submit"
+                                        class="w-full! h-12! rounded-md! p-2! bg-accent!">
                                         {{ __('Log In') }}</flux:button>
                                 </div>
                             </form>

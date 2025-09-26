@@ -1,5 +1,5 @@
-<div class="px-4">
-    <section
+<div>
+    <section style="padding-top: 1rem !important;"
         class="elementor-section elementor-top-section elementor-element elementor-element-a126101 tl-section-padding  elementor-section-boxed elementor-section-height-default elementor-section-height-default"
         data-id="a126101" data-element_type="section" id="contact"
         data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
@@ -9,8 +9,8 @@
                 <div class="elementor-widget-wrap elementor-element-populated">
                     <div class="elementor-element elementor-element-f3b0803 elementor-widget elementor-widget-heading"
                         data-id="f3b0803" data-element_type="widget" data-widget_type="heading.default">
-                        <div class="elementor-widget-container">
-                            <h2 class="elementor-heading-title elementor-size-default">Verify 2FA</h2>
+                        <div class="elementor-widget-container" style="text-align: center;">
+                            <h2 class="elementor-heading-title elementor-size-default" style="margin-bottom: 0 !important;">Verify 2FA</h2>
                         </div>
                     </div>
                     <div class="elementor-element elementor-element-23adb73 elementor-widget__width-initial elementor-widget elementor-widget-text-editor"
@@ -36,7 +36,7 @@
                             </div>
                             <div class="w-full">
                                 <a wire:click="verify2fa()">
-                                    <flux:button variant="primary" class="w-full! rounded-md! bg-accent!">
+                                    <flux:button variant="primary" class="w-full! h-12! rounded-md! p-2! bg-accent!">
                                         {{ __('Log In') }}</flux:button>
                                 </a>
                             </div>

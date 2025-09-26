@@ -101,7 +101,7 @@
 
                 <div class="mb-5">
                     <label for="input-label" class="block text-sm font-medium mb-2 text-zinc-300">Upload
-                        Government-Issued
+                        Valid
                         ID</label>
                     <div class="relative">
                         <div class="flex items-center gap-x-1">
@@ -121,7 +121,7 @@
                                                 stroke-linejoin="round" />
                                         </svg>
                                     </div>
-                                    <span>Upload Valid ID</span>
+                                    <span>Upload ID</span>
                                 </label>
                             </div>
                             <div wire:loading wire:target="id">

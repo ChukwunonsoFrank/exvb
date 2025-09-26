@@ -10,7 +10,8 @@
                     <div class="elementor-element elementor-element-f3b0803 elementor-widget elementor-widget-heading"
                         data-id="f3b0803" data-element_type="widget" data-widget_type="heading.default">
                         <div class="elementor-widget-container" style="text-align: center;">
-                            <h2 class="elementor-heading-title elementor-size-default"  style="margin-bottom: 0 !important;">Forgot Password</h2>
+                            <h2 class="elementor-heading-title elementor-size-default"
+                                style="margin-bottom: 0 !important;">Forgot Password</h2>
                         </div>
                     </div>
                     <div class="elementor-element elementor-element-23adb73 elementor-widget__width-initial elementor-widget elementor-widget-text-editor"
@@ -37,12 +38,13 @@
 
                                 <div class="w-full">
                                     <flux:button variant="primary" type="submit"
-                                        class="w-full! rounded-md! bg-accent!">
+                                        class="w-full! h-12! rounded-md! p-2! bg-accent!">
                                         {{ __('Email Password Reset Link') }}</flux:button>
                                 </div>
                             </form>
 
-                            <div class="space-x-1 rtl:space-x-reverse mt-8 text-center text-sm text-zinc-500 font-medium">
+                            <div
+                                class="space-x-1 rtl:space-x-reverse mt-8 text-center text-sm text-zinc-500 font-medium">
                                 {{ __('Or, return to') }}
                                 <flux:link class="text-accent" :href="route('login')">{{ __('log in') }}</flux:link>
                             </div>

@@ -10,7 +10,8 @@
                     <div class="elementor-element elementor-element-f3b0803 elementor-widget elementor-widget-heading"
                         data-id="f3b0803" data-element_type="widget" data-widget_type="heading.default">
                         <div class="elementor-widget-container" style="text-align: center;">
-                            <h2 class="elementor-heading-title elementor-size-default" style="margin-bottom: 0 !important;">Create account</h2>
+                            <h2 class="elementor-heading-title elementor-size-default"
+                                style="margin-bottom: 0 !important;">Create account</h2>
                         </div>
                     </div>
                     <div class="elementor-element elementor-element-23adb73 elementor-widget__width-initial elementor-widget elementor-widget-text-editor"
@@ -57,7 +58,8 @@
                                             id="hs-default-checkbox">
                                     </div>
                                     <div class="flex-1">
-                                        <p class="text-xs text-zinc-500 font-medium" style="margin-bottom: 0 !important;">I confirm that I am 18 years old or
+                                        <p class="text-xs text-zinc-500 font-medium"
+                                            style="margin-bottom: 0 !important;">I confirm that I am 18 years old or
                                             older and accept the <a class="text-accent font-semibold"
                                                 href="{{ route('terms') }}">Terms & Conditions</a> and <a
                                                 class="text-accent font-semibold" href="{{ route('privacy') }}">Privacy
@@ -73,7 +75,7 @@
 
                                 <div class="w-full">
                                     <flux:button variant="primary" type="submit"
-                                        class="w-full! rounded-md! bg-accent!">
+                                        class="w-full! h-12! rounded-md! p-2! bg-accent!">
                                         {{ __('Create Account') }}</flux:button>
                                 </div>
                             </form>
