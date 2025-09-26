@@ -116,7 +116,7 @@
                                     @if ($this->kycStatus === 'Verified')
                                         <div
                                             class="px-1.5 py-1 cursor-pointer inline-flex items-center justify-center gap-x-1 text-[10px] rounded-lg bg-[#282828] text-white">
-                                            <span class="text-green-500 font-bold">Verified</span>
+                                            <span class="text-white font-bold">Verified</span>
                                         </div>
                                     @endif
                                 </div>
@@ -311,7 +311,7 @@
                                     <p class="text-xs font-bold text-[#F59E0B]">Pending Review</p>
                                 @endif
                                 @if ($this->kycStatus === 'Verified')
-                                    <p class="text-xs font-bold text-green-500">Verified</p>
+                                    <p class="text-xs font-bold text-[#a4a4a4]">Verified</p>
                                 @endif
                             </div>
                             <div class="flex-none text-end">
