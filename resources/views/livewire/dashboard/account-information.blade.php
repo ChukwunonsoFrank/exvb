@@ -28,7 +28,7 @@
                         <li class="text-white flex items-center gap-x-1 pl-0">
                             <span class="list-disc list-inside mr-1"
                                 style="display:inline-block;width:0.8em;">&#8226;</span>
-                            <span class="flex-1">Country: {{ auth()->user()->name }}</span>
+                            <span class="flex-1">Country: {{ auth()->user()->country }}</span>
                         </li>
                     </ul>
                 </div>

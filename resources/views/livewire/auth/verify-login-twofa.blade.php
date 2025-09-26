@@ -1,5 +1,5 @@
 <div>
-    <section style="padding-top: 1rem !important;"
+    <section style="padding-top: 0 !important;"
         class="elementor-section elementor-top-section elementor-element elementor-element-a126101 tl-section-padding  elementor-section-boxed elementor-section-height-default elementor-section-height-default"
         data-id="a126101" data-element_type="section" id="contact"
         data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">

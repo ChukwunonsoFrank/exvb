@@ -1,5 +1,5 @@
 <div>
-    <section style="padding-top: 1rem !important;"
+    <section style="padding-top: 0 !important;"
         class="elementor-section elementor-top-section elementor-element elementor-element-a126101 tl-section-padding  elementor-section-boxed elementor-section-height-default elementor-section-height-default"
         data-id="a126101" data-element_type="section" id="contact"
         data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
@@ -49,13 +49,13 @@
 
                                 <div class="w-full">
                                     <flux:button variant="primary" type="submit"
-                                        class="w-full! h-12! rounded-md! p-2! bg-accent!">
+                                        class="w-full! h-12! mt-4! rounded-md! p-2! bg-accent!">
                                         {{ __('Log In') }}</flux:button>
                                 </div>
                             </form>
 
                             @if (Route::has('password.request'))
-                                <div class="space-x-1 rtl:space-x-reverse mt-8 text-center text-sm font-medium">
+                                <div class="space-x-1 rtl:space-x-reverse mt-6 text-center text-sm font-medium">
                                     <flux:link class="text-accent" :href="route('password.request')">
                                         {{ __('Forgot your password?') }}</flux:link>
                                 </div>
