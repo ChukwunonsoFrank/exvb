@@ -217,7 +217,7 @@
                                         <path d="M6 8.00008L7.33333 9.33341L10 6.66675" stroke="#FF6900"
                                             stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg> --}}
-                                    Increase limits
+                                    Increase Limits
                                 </button>
                             @endif
                         </a>
@@ -273,7 +273,7 @@
                                 <p class="font-medium text-sm text-white">Security</p>
                             </div>
                             <div class="flex-none text-end">
-                                <p class="font-medium text-xs text-[#a4a4a4]">2FA</p>
+                                <p class="font-medium text-xs text-[#a4a4a4]">2fa Authenticator</p>
                             </div>
                             <div class="flex-none text-end">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"

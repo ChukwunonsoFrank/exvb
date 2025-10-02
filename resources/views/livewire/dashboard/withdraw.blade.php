@@ -1,7 +1,7 @@
 <div x-data class="px-4 lg:px-0 h-full">
     <div class="lg:flex lg:h-full">
         <livewire:dashboard.partials.desktop-navbar />
-        <div class="lg:h-full lg:flex-1 lg:px-96 lg:pt-6">
+        <div class="pb-6 lg:h-full lg:flex-1 lg:px-96 lg:pt-6">
             <div class="my-3 sticky top-0 bg-dashboard z-10 pb-2 lg:pt-4">
                 <h1 class="text-white text-lg md:text-xl lg:text-2xl font-semibold">Make a withdrawal</h1>
             </div>
@@ -10,7 +10,9 @@
                     <label for="input-label" class="block text-xs font-medium mb-2 text-zinc-300">Amount</label>
                     <div class="relative">
                         <input wire:model="amount" type="text"
-                            class="text-white border border-[#26252a] bg-transparent text-sm peer py-2.5 sm:py-3 px-4 ps-11 block w-full rounded-lg sm:text-sm focus:outline-0"
+                            @input.debounce.1000ms="$store.withdrawPage.togglePaymentMethodSelect()"
+                            x-model="$store.withdrawPage.amount"
+                            class="text-white border border-[#26252a] bg-transparent text-sm peer py-3.5 px-4 ps-11 block w-full rounded-lg sm:text-sm focus:outline-0"
                             placeholder="">
                         <div
                             class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-4 peer-disabled:opacity-50 peer-disabled:pointer-events-none">
@@ -19,79 +21,372 @@
                     </div>
                 </div>
 
-                <div class="mb-4">
-                    <label for="input-label" class="block text-xs font-medium mb-2 text-zinc-300">Payment method</label>
-                    <div class="flex-1 md:flex-none relative">
-                        <div x-on:click="$store.withdrawPage.togglePaymentMethodSelect()"
-                            class="flex items-center space-x-3 py-2.5 sm:py-3 px-4 border border-[#26252a] bg-transparent rounded-lg text-[#FFFFFF]">
+                <div x-cloak x-show="$store.withdrawPage.isPaymentMethodSelectVisible" class="mb-5">
+                    <label for="input-label" class="block text-xs font-medium mb-2 text-zinc-300">Crypto</label>
+
+                    <div class="w-full overflow-scroll scrollbar-hide">
+                        <div wire:click="selectPaymentMethod('bitcoin')"
+                            @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                            class="{{ $this->selectedPaymentMethodSlug === 'bitcoin' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 p-4 mb-1.5 rounded-md text-[#FFFFFF]">
                             <div class="flex-none">
-                                <img src="{{ asset('storage/' . $this->paymentMethod['icon_url']) }}">
+                                <div
+                                    class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'bitcoin' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
+                                </div>
+                            </div>
+                            <div class="flex-none">
+                                <img src="{{ asset('storage/payment-method-icon/btc.svg') }}">
                             </div>
                             <div class="flex-1">
-                                <p class="text-sm">{{ $this->paymentMethod['name'] }}</p>
-                            </div>
-                            <div class="flex-none justify-self-end">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round"
-                                    class="lucide lucide-chevron-down-icon lucide-chevron-down">
-                                    <path d="m6 9 6 6 6-6" />
-                                </svg>
+                                <p class="text-sm">BTC</p>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="relative">
-                        <div x-cloak x-show="$store.withdrawPage.isPaymentMethodSelectOpen"
-                            @click.outside="$store.withdrawPage.isPaymentMethodSelectOpen = false"
-                            class="border border-[#26252a] bg-dim absolute rounded-lg w-full overflow-scroll scrollbar-hide z-10 p-2 mt-1">
-                            @foreach ($this->paymentMethods as $method)
-                                <div wire:key="payment-method-{{ $method['id'] }}" wire:click="selectPaymentMethod({{ $method['id'] }})"
-                                    x-on:click="$store.withdrawPage.isPaymentMethodSelectOpen = false"
-                                    class="hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-3 px-4 py-2 rounded-md text-[#FFFFFF]">
-                                    <div class="flex-none">
-                                        <img src="{{ asset('storage/' . $method['icon_url']) }}">
-                                    </div>
-                                    <div class="flex-1">
-                                        <p class="text-sm">{{ $method['name'] }}</p>
+                        <div wire:click="selectPaymentMethod('ethereum')"
+                            @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                            class="{{ $this->selectedPaymentMethodSlug === 'ethereum' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 p-4 mb-1.5 rounded-md text-[#FFFFFF]">
+                            <div class="flex-none">
+                                <div
+                                    class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'ethereum' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
+                                </div>
+                            </div>
+                            <div class="flex-none">
+                                <img src="{{ asset('storage/payment-method-icon/eth.svg') }}">
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm">ETH</p>
+                            </div>
+                        </div>
+
+                        {{-- USDT --}}
+                        <div class="relative">
+                            <div x-on:click="$store.withdrawPage.toggleUSDTNetworksDropdown()"
+                                class="border border-[#26252a] bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 p-4 mb-1.5 rounded-md text-[#FFFFFF]">
+                                <div class="flex-none">
+                                    <template x-if="!$store.withdrawPage.isUSDTNetworksDropdownOpen">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-chevron-down-icon lucide-chevron-down">
+                                            <path d="m6 9 6 6 6-6" />
+                                        </svg>
+                                    </template>
+                                    <template x-if="$store.withdrawPage.isUSDTNetworksDropdownOpen">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-chevron-up-icon lucide-chevron-up">
+                                            <path d="m18 15-6-6-6 6" />
+                                        </svg>
+                                    </template>
+                                </div>
+                                <div class="flex-none">
+                                    <img src="{{ asset('storage/payment-method-icon/usdt.svg') }}">
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm">USDT</p>
+                                </div>
+                                <div class="flex-none">
+                                    <img class="inline-block"
+                                        src="{{ asset('storage/payment-method-icon/an-trc20.svg') }}">
+                                    <img class="inline-block -ml-1.5"
+                                        src="{{ asset('storage/payment-method-icon/an-erc20.svg') }}">
+                                    <img class="inline-block -ml-1.5"
+                                        src="{{ asset('storage/payment-method-icon/an-bep20.svg') }}">
+                                    <img class="inline-block -ml-1.5"
+                                        src="{{ asset('storage/payment-method-icon/an-sol.svg') }}">
+                                    <img class="inline-block -ml-1.5"
+                                        src="{{ asset('storage/payment-method-icon/an-polygon.svg') }}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="relative pl-3" x-cloak x-show="$store.withdrawPage.isUSDTNetworksDropdownOpen">
+                            <div wire:click="selectPaymentMethod('usdt-trc20')"
+                                @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                                class="{{ $this->selectedPaymentMethodSlug === 'usdt-trc20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-2 mb-1.5 rounded-md text-[#FFFFFF]">
+                                <div class="flex-none">
+                                    <div
+                                        class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'usdt-trc20' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
                                     </div>
                                 </div>
-                            @endforeach
+                                <div class="flex-none">
+                                    <img src="{{ asset('storage/payment-method-icon/usdt-trc20.svg') }}">
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm">USDT</p>
+                                    <p class="text-[10px] text-[#a4a4a4]">Tron(TRC20)</p>
+                                </div>
+                            </div>
+                            <div wire:click="selectPaymentMethod('usdt-bep20')"
+                                @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                                class="{{ $this->selectedPaymentMethodSlug === 'usdt-bep20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-2 mb-1.5 rounded-md text-[#FFFFFF]">
+                                <div class="flex-none">
+                                    <div
+                                        class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'usdt-bep20' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
+                                    </div>
+                                </div>
+                                <div class="flex-none">
+                                    <img src="{{ asset('storage/payment-method-icon/usdt-bep20.svg') }}">
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm">USDT</p>
+                                    <p class="text-[10px] text-[#a4a4a4]">BNB(BEP20)</p>
+                                </div>
+                            </div>
+                            <div wire:click="selectPaymentMethod('usdt-erc20')"
+                                @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                                class="{{ $this->selectedPaymentMethodSlug === 'usdt-erc20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-2 mb-1.5 rounded-md text-[#FFFFFF]">
+                                <div class="flex-none">
+                                    <div
+                                        class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'usdt-erc20' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
+                                    </div>
+                                </div>
+                                <div class="flex-none">
+                                    <img src="{{ asset('storage/payment-method-icon/usdt-erc20.svg') }}">
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm">USDT</p>
+                                    <p class="text-[10px] text-[#a4a4a4]">ETH(ERC20)</p>
+                                </div>
+                            </div>
+                            <div wire:click="selectPaymentMethod('usdt-polygon')"
+                                @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                                class="{{ $this->selectedPaymentMethodSlug === 'usdt-polygon' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-2 mb-1.5 rounded-md text-[#FFFFFF]">
+                                <div class="flex-none">
+                                    <div
+                                        class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'usdt-polygon' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
+                                    </div>
+                                </div>
+                                <div class="flex-none">
+                                    <img src="{{ asset('storage/payment-method-icon/usdt-polygon.svg') }}">
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm">USDT</p>
+                                    <p class="text-[10px] text-[#a4a4a4]">Polygon(Polygon)</p>
+                                </div>
+                            </div>
+                            <div wire:click="selectPaymentMethod('usdt-sol')"
+                                @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                                class="{{ $this->selectedPaymentMethodSlug === 'usdt-sol' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-2 mb-1.5 rounded-md text-[#FFFFFF]">
+                                <div class="flex-none">
+                                    <div
+                                        class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'usdt-sol' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
+                                    </div>
+                                </div>
+                                <div class="flex-none">
+                                    <img src="{{ asset('storage/payment-method-icon/usdt-sol.svg') }}">
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm">USDT</p>
+                                    <p class="text-[10px] text-[#a4a4a4]">Solana(SOL)</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- USDC --}}
+                        <div class="relative">
+                            <div x-on:click="$store.withdrawPage.toggleUSDCNetworksDropdown()"
+                                class="border border-[#26252a] bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 p-4 mb-1.5 rounded-md text-[#FFFFFF]">
+                                <div class="flex-none">
+                                    <template x-if="!$store.withdrawPage.isUSDCNetworksDropdownOpen">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-chevron-down-icon lucide-chevron-down">
+                                            <path d="m6 9 6 6 6-6" />
+                                        </svg>
+                                    </template>
+                                    <template x-if="$store.withdrawPage.isUSDCNetworksDropdownOpen">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-chevron-up-icon lucide-chevron-up">
+                                            <path d="m18 15-6-6-6 6" />
+                                        </svg>
+                                    </template>
+                                </div>
+                                <div class="flex-none">
+                                    <img src="{{ asset('storage/payment-method-icon/usdc.svg') }}">
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm">USDC</p>
+                                </div>
+                                <div class="flex-none">
+                                    <img class="inline-block"
+                                        src="{{ asset('storage/payment-method-icon/an-trc20.svg') }}">
+                                    <img class="inline-block -ml-1.5"
+                                        src="{{ asset('storage/payment-method-icon/an-erc20.svg') }}">
+                                    <img class="inline-block -ml-1.5"
+                                        src="{{ asset('storage/payment-method-icon/an-bep20.svg') }}">
+                                    <img class="inline-block -ml-1.5"
+                                        src="{{ asset('storage/payment-method-icon/an-sol.svg') }}">
+                                    <img class="inline-block -ml-1.5"
+                                        src="{{ asset('storage/payment-method-icon/an-polygon.svg') }}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="relative pl-3" x-cloak x-show="$store.withdrawPage.isUSDCNetworksDropdownOpen">
+                            <div wire:click="selectPaymentMethod('usdc-erc20')"
+                                @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                                class="{{ $this->selectedPaymentMethodSlug === 'usdc-erc20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-2 mb-1.5 rounded-md text-[#FFFFFF]">
+                                <div class="flex-none">
+                                    <div
+                                        class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'usdc-erc20' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
+                                    </div>
+                                </div>
+                                <div class="flex-none">
+                                    <img src="{{ asset('storage/payment-method-icon/usdc-erc20.svg') }}">
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm">USDC</p>
+                                    <p class="text-[10px] text-[#a4a4a4]">ETH(ERC20)</p>
+                                </div>
+                            </div>
+                            <div wire:click="selectPaymentMethod('usdc-bep20')"
+                                @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                                class="{{ $this->selectedPaymentMethodSlug === 'usdc-bep20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-2 mb-1.5 rounded-md text-[#FFFFFF]">
+                                <div class="flex-none">
+                                    <div
+                                        class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'usdc-bep20' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
+                                    </div>
+                                </div>
+                                <div class="flex-none">
+                                    <img src="{{ asset('storage/payment-method-icon/usdc-bep20.svg') }}">
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm">USDC</p>
+                                    <p class="text-[10px] text-[#a4a4a4]">BNB(BEP20)</p>
+                                </div>
+                            </div>
+                            <div wire:click="selectPaymentMethod('usdc-sol')"
+                                @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                                class="{{ $this->selectedPaymentMethodSlug === 'usdc-sol' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-2 mb-1.5 rounded-md text-[#FFFFFF]">
+                                <div class="flex-none">
+                                    <div
+                                        class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'usdc-sol' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
+                                    </div>
+                                </div>
+                                <div class="flex-none">
+                                    <img src="{{ asset('storage/payment-method-icon/usdc-sol.svg') }}">
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm">USDC</p>
+                                    <p class="text-[10px] text-[#a4a4a4]">Solana(SOL)</p>
+                                </div>
+                            </div>
+                            <div wire:click="selectPaymentMethod('usdc-trc20')"
+                                @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                                class="{{ $this->selectedPaymentMethodSlug === 'usdc-trc20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-2 mb-1.5 rounded-md text-[#FFFFFF]">
+                                <div class="flex-none">
+                                    <div
+                                        class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'usdc-trc20' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
+                                    </div>
+                                </div>
+                                <div class="flex-none">
+                                    <img src="{{ asset('storage/payment-method-icon/usdc-trc20.svg') }}">
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm">USDC</p>
+                                    <p class="text-[10px] text-[#a4a4a4]">Tron(TRC20)</p>
+                                </div>
+                            </div>
+                            <div wire:click="selectPaymentMethod('usdc-polygon')"
+                                @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                                class="{{ $this->selectedPaymentMethodSlug === 'usdc-polygon' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-2 mb-1.5 rounded-md text-[#FFFFFF]">
+                                <div class="flex-none">
+                                    <div
+                                        class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'usdc-polygon' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
+                                    </div>
+                                </div>
+                                <div class="flex-none">
+                                    <img src="{{ asset('storage/payment-method-icon/usdc-polygon.svg') }}">
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm">USDC</p>
+                                    <p class="text-[10px] text-[#a4a4a4]">Polygon(Polygon)</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div wire:click="selectPaymentMethod('solana')"
+                            @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                            class="{{ $this->selectedPaymentMethodSlug === 'solana' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 p-4 mb-1.5 rounded-md text-[#FFFFFF]">
+                            <div class="flex-none">
+                                <div
+                                    class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'solana' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
+                                </div>
+                            </div>
+                            <div class="flex-none">
+                                <img src="{{ asset('storage/payment-method-icon/sol.svg') }}">
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm">SOL</p>
+                            </div>
+                        </div>
+
+                        <div wire:click="selectPaymentMethod('litecoin')"
+                            @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                            class="{{ $this->selectedPaymentMethodSlug === 'litecoin' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 p-4 mb-1.5 rounded-md text-[#FFFFFF]">
+                            <div class="flex-none">
+                                <div
+                                    class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'litecoin' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
+                                </div>
+                            </div>
+                            <div class="flex-none">
+                                <img src="{{ asset('storage/payment-method-icon/ltc.svg') }}">
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm">LTC</p>
+                            </div>
+                        </div>
+
+                        <div wire:click="selectPaymentMethod('binance-coin')"
+                            @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                            class="{{ $this->selectedPaymentMethodSlug === 'binance-coin' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 p-4 mb-1.5 rounded-md text-[#FFFFFF]">
+                            <div class="flex-none">
+                                <div
+                                    class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'binance-coin' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
+                                </div>
+                            </div>
+                            <div class="flex-none">
+                                <img src="{{ asset('storage/payment-method-icon/bnb.svg') }}">
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm">BNB</p>
+                            </div>
+                        </div>
+
+                        <div wire:click="selectPaymentMethod('tron')"
+                            @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                            class="{{ $this->selectedPaymentMethodSlug === 'tron' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 p-4 mb-1.5 rounded-md text-[#FFFFFF]">
+                            <div class="flex-none">
+                                <div
+                                    class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'tron' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
+                                </div>
+                            </div>
+                            <div class="flex-none">
+                                <img src="{{ asset('storage/payment-method-icon/tron.svg') }}">
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm">TRX</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="mb-5">
-                    <label for="input-label" class="block text-xs font-medium mb-2 text-zinc-300">Wallet address</label>
+                <div x-cloak x-show="$store.withdrawPage.isWalletAddressInputVisible"
+                    @input.debounce.1000ms="$store.withdrawPage.proceedToWithdrawConfirmation($wire)" class="mb-5">
+                    <label for="input-label" class="block text-xs font-medium mb-2 text-zinc-300">Wallet
+                        address</label>
                     <input wire:model="address" type="text"
-                        class="text-white border border-[#26252a] bg-transparent text-sm py-2.5 sm:py-3 px-2 ps-4 block w-full rounded-lg sm:text-sm focus:outline-0"
+                        class="text-white border border-[#26252a] bg-transparent text-sm py-3.5 px-2 ps-4 block w-full rounded-lg sm:text-sm focus:outline-0"
                         placeholder="">
-                </div>
-
-                <div>
-                    <a wire:click="generateOTP()">
-                        <button type="button" wire:loading.attr="disabled"
-                            class="py-2.5 cursor-pointer px-4 w-full md:px-6 md:py-3 text-center gap-x-2 text-sm font-semibold rounded-lg bg-accent text-white focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none">
-                            Proceed
-                        </button>
-                    </a>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<script>
-    document.addEventListener('alpine:init', () => {
-        Alpine.store('withdrawPage', {
-            isPaymentMethodSelectOpen: false,
-
-            togglePaymentMethodSelect() {
-                this.isPaymentMethodSelectOpen = !this.isPaymentMethodSelectOpen
-            }
-        })
-    })
-</script>
 
 @script
     <script>
@@ -117,3 +412,49 @@
         });
     </script>
 @endscript
+
+<script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.store('withdrawPage', {
+            isPaymentMethodSelectVisible: false,
+
+            amount: '',
+
+            isUSDTNetworksDropdownOpen: false,
+
+            isUSDCNetworksDropdownOpen: false,
+
+            isPaymentMethodSelectVisible: false,
+
+            isWalletAddressInputVisible: false,
+
+            togglePaymentMethodSelect() {
+                if (this.amount === '' || this.amount === 0) {
+                    this.isPaymentMethodSelectVisible = false
+                    return
+                }
+                this.isPaymentMethodSelectVisible = true
+            },
+
+            toggleWalletAddressInput() {
+                if (this.amount === '' || this.amount === 0) {
+                    this.isWalletAddressInputVisible = false
+                    return
+                }
+                this.isWalletAddressInputVisible = true
+            },
+
+            toggleUSDTNetworksDropdown() {
+                this.isUSDTNetworksDropdownOpen = !this.isUSDTNetworksDropdownOpen
+            },
+
+            toggleUSDCNetworksDropdown() {
+                this.isUSDCNetworksDropdownOpen = !this.isUSDCNetworksDropdownOpen
+            },
+
+            proceedToWithdrawConfirmation(wire) {
+                wire.confirmWithdraw();
+            }
+        })
+    })
+</script>

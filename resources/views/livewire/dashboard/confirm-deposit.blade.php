@@ -2,83 +2,180 @@
     <div class="lg:flex lg:h-full">
         <livewire:dashboard.partials.desktop-navbar />
         <div class="lg:h-full lg:flex-1 lg:px-96 lg:pt-6">
-            <div class="text-sm text-white rounded-lg bg-dim p-4 mb-5 mt-3" role="alert" tabindex="-1"
-                aria-labelledby="hs-with-description-label">
-                <div class="flex">
-                    <div class="shrink-0 text-yellow-400">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="lucide lucide-triangle-alert-icon lucide-triangle-alert">
-                            <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" />
-                            <path d="M12 9v4" />
-                            <path d="M12 17h.01" />
-                        </svg>
-                    </div>
-                    <div class="ms-2">
-                        <h3 id="hs-with-description-label" class="text-xs font-semibold">
-                            Send only {{ $this->method }} to this address
-                        </h3>
-                        <div class="mt-1 text-[11px] text-zinc-300">
-                            Sending coins or tokens other than {{ $this->method }} to this address may result in the
-                            loss of your deposit
+            <div class="pt-4 lg:h-full lg:pb-24 lg:overflow-scroll scrollbar-hide">
+                <div class="p-4 bg-dim rounded-lg border border-[#323335]">
+                    <div class="flex items-center gap-x-2 mb-3 text-left pb-2 lg:pt-4">
+                        <div class="-mt-0.5">
+                            <img class="inline" src="{{ asset('storage/' . $this->iconUrl) }}">
+                        </div>
+                        <div>
+                            <h1 class="inline text-white text-lg md:text-xl lg:text-2xl font-bold">Pay with
+                                {{ $this->method }}
+                            </h1>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="my-3 sticky top-0 text-center bg-dashboard z-10 pb-2 lg:pt-4">
-                <h1 class="text-white text-lg md:text-xl lg:text-2xl font-bold">Make a deposit</h1>
-            </div>
-            
-            <div class="lg:h-full lg:pb-24 lg:overflow-scroll scrollbar-hide">
-                <div class="mb-8 text-center">
-                    <p class="block text-sm font-medium mb-2 text-white">Pay the exact amount of @money($this->amount / 100) in
-                        {{ $this->method }} to the address below</p>
-                </div>
-
-                <div class="mb-4 text-center">
-                    <p class="block text-xs font-medium mb-2 text-zinc-300">Scan QR code to make payment</p>
-                </div>
-
-                <div class="flex items-center justify-center mb-5">
-                    <div class="w-24 h-24 bg-[#FFFFFF] p-2 flex rounded-lg">
-                        <div wire:ignore class="w-36 h-36" id="qrcode"></div>
+                    <div class="mb-3 text-left">
+                        <p class="text-base font-medium text-[#a4a4a4]">Payment Details</p>
                     </div>
-                </div>
 
-                <div class="flex items-center justify-center mb-10">
-                    <div class="w-full md:w-1/2 space-y-3">
-                        <div>
-                            <div class="relative">
+                    <div class="mb-8">
+                        <p class="text-sm font-semibold text-white mb-2">Amount to pay</p>
+                        <div class="flex items-center gap-x-16">
+                            <div class="flex-1 text-wrap">
+                                <p class="text-white font-light break-words">{{ $this->formatAmountToPay() }}</p>
+                                <input id="amount" type="text" id="hs-trailing-icon" name="hs-trailing-icon"
+                                    class="hidden" value="{{ $this->amountToPay }}">
+                            </div>
+                            <div x-on:click="$store.confirmDepositPage.copyAmountToPay()"
+                                class="flex-none flex items-center gap-x-1.5 cursor-pointer">
+                                <span class="text-sm font-light text-white">Copy</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="js-clipboard-default size-4 group-hover:rotate-6 transition lucide lucide-copy-icon lucide-copy">
+                                    <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                                    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-8">
+                        <p class="text-sm font-semibold text-white mb-2">Payment unique address</p>
+                        <div class="flex items-center gap-x-16">
+                            <div class="flex-1 overflow-x-auto">
                                 <input id="address" type="text" id="hs-trailing-icon" name="hs-trailing-icon"
-                                    class="py-2.5 sm:py-3 px-4 pe-11 block w-full border border-[#26252a] bg-transparent text-white rounded-lg font-mono font-semibold text-sm focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
-                                    value="{{ $this->address }}" readonly>
-                                <div wire:click="sendDepositIntentNotification()" x-on:click="$store.confirmDepositPage.copyWalletAddress()"
-                                    class="absolute inset-y-0 end-0 flex items-center cursor-pointer z-20 pe-4">
-                                    <svg class="js-clipboard-default size-4 group-hover:rotate-6 transition"
-                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round">
-                                        <rect width="8" height="4" x="8" y="2" rx="1" ry="1">
-                                        </rect>
-                                        <path
-                                            d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2">
-                                        </path>
+                                    class="hidden" value="{{ $this->address }}">
+                                <p class="text-white font-light break-words whitespace-normal"
+                                    style="word-break: break-all;">{{ $this->address }}</p>
+                            </div>
+                            <div wire:click="sendDepositIntentNotification()"
+                                x-on:click="$store.confirmDepositPage.copyWalletAddress()"
+                                class="flex-none flex items-center gap-x-1.5 cursor-pointer">
+                                <span class="text-sm text-white font-light">Copy</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="js-clipboard-default size-4 group-hover:rotate-6 transition lucide lucide-copy-icon lucide-copy">
+                                    <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                                    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-8">
+                        <a x-on:click="$store.confirmDepositPage.toggleQRModal();">
+                            <div class="w-full py-3 rounded-full flex items-center justify-center bg-dashboard gap-x-2">
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                        viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-qr-code-icon lucide-qr-code">
+                                        <rect width="5" height="5" x="3" y="3" rx="1" />
+                                        <rect width="5" height="5" x="16" y="3" rx="1" />
+                                        <rect width="5" height="5" x="3" y="16" rx="1" />
+                                        <path d="M21 16h-3a2 2 0 0 0-2 2v3" />
+                                        <path d="M21 21v.01" />
+                                        <path d="M12 7v3a2 2 0 0 1-2 2H7" />
+                                        <path d="M3 12h.01" />
+                                        <path d="M12 3h.01" />
+                                        <path d="M12 16v.01" />
+                                        <path d="M16 12h1" />
+                                        <path d="M21 12v.01" />
+                                        <path d="M12 21v-1" />
                                     </svg>
+                                </div>
+                                <div>
+                                    <p class="text-white text-sm">Scan QR with another device</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div x-cloak x-show="$store.confirmDepositPage.isQRModalOpen"
+                        x-on:click="$store.confirmDepositPage.toggleQRModal()"
+                        class="fixed top-0 left-0 h-svh w-full px-4 lg:px-96 pt-6 z-20">
+                        <div class="absolute inset-0 h-svh w-full px-4 lg:px-96 pt-6 z-20 bg-dashboard opacity-85">
+                        </div>
+                        <div class="relative w-full h-full flex items-center justify-center z-30">
+                            <div
+                                class="max-w-sm mx-auto flex items-center justify-center bg-dashboard border border-[#26252a] rounded-2xl pointer-events-auto">
+                                <div class="p-6">
+                                    <div class="w-24 h-24 bg-[#FFFFFF] p-2 flex rounded-lg">
+                                        <div wire:ignore class="w-36 h-36" id="qrcode"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <div class="text-sm text-white rounded-lg bg-dashboard p-4 mb-2 mt-3" role="alert"
+                        tabindex="-1" aria-labelledby="hs-with-description-label">
+                        <div class="flex items-center">
+                            <div class="shrink-0">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_1668_24)">
+                                        <path
+                                            d="M9.99984 1.66675C14.6023 1.66675 18.3332 5.39758 18.3332 10.0001C18.3332 14.6026 14.6023 18.3334 9.99984 18.3334C5.39734 18.3334 1.6665 14.6026 1.6665 10.0001C1.6665 5.39758 5.39734 1.66675 9.99984 1.66675ZM9.9915 8.33341H9.1665C8.9541 8.33365 8.74981 8.41498 8.59536 8.56079C8.44092 8.7066 8.34797 8.90588 8.33553 9.11791C8.32308 9.32994 8.39207 9.53873 8.52839 9.70161C8.66472 9.86449 8.85809 9.96916 9.069 9.99425L9.1665 10.0001V14.1584C9.1665 14.5917 9.49484 14.9501 9.9165 14.9951L10.0082 15.0001H10.4165C10.5918 15.0001 10.7626 14.9448 10.9046 14.8422C11.0467 14.7395 11.1527 14.5947 11.2077 14.4283C11.2628 14.2619 11.2639 14.0824 11.211 13.9153C11.1581 13.7482 11.0539 13.602 10.9132 13.4976L10.8332 13.4451V9.17508C10.8332 8.74175 10.5048 8.38341 10.0832 8.33841L9.9915 8.33341ZM9.99984 5.83341C9.77882 5.83341 9.56686 5.92121 9.41058 6.07749C9.2543 6.23377 9.1665 6.44573 9.1665 6.66675C9.1665 6.88776 9.2543 7.09972 9.41058 7.256C9.56686 7.41228 9.77882 7.50008 9.99984 7.50008C10.2209 7.50008 10.4328 7.41228 10.5891 7.256C10.7454 7.09972 10.8332 6.88776 10.8332 6.66675C10.8332 6.44573 10.7454 6.23377 10.5891 6.07749C10.4328 5.92121 10.2209 5.83341 9.99984 5.83341Z"
+                                            fill="white" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_1668_24">
+                                            <rect width="20" height="20" fill="white" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+
+                            </div>
+                            <div class="ms-3">
+                                <div class="mt-1 text-sm text-zinc-300">
+                                    Only send {{ $this->method }} to this wallet address.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-sm text-white rounded-lg bg-dashboard p-4 mb-8" role="alert" tabindex="-1"
+                        aria-labelledby="hs-with-description-label">
+                        <div class="flex items-center">
+                            <div class="shrink-0">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_1668_24)">
+                                        <path
+                                            d="M9.99984 1.66675C14.6023 1.66675 18.3332 5.39758 18.3332 10.0001C18.3332 14.6026 14.6023 18.3334 9.99984 18.3334C5.39734 18.3334 1.6665 14.6026 1.6665 10.0001C1.6665 5.39758 5.39734 1.66675 9.99984 1.66675ZM9.9915 8.33341H9.1665C8.9541 8.33365 8.74981 8.41498 8.59536 8.56079C8.44092 8.7066 8.34797 8.90588 8.33553 9.11791C8.32308 9.32994 8.39207 9.53873 8.52839 9.70161C8.66472 9.86449 8.85809 9.96916 9.069 9.99425L9.1665 10.0001V14.1584C9.1665 14.5917 9.49484 14.9501 9.9165 14.9951L10.0082 15.0001H10.4165C10.5918 15.0001 10.7626 14.9448 10.9046 14.8422C11.0467 14.7395 11.1527 14.5947 11.2077 14.4283C11.2628 14.2619 11.2639 14.0824 11.211 13.9153C11.1581 13.7482 11.0539 13.602 10.9132 13.4976L10.8332 13.4451V9.17508C10.8332 8.74175 10.5048 8.38341 10.0832 8.33841L9.9915 8.33341ZM9.99984 5.83341C9.77882 5.83341 9.56686 5.92121 9.41058 6.07749C9.2543 6.23377 9.1665 6.44573 9.1665 6.66675C9.1665 6.88776 9.2543 7.09972 9.41058 7.256C9.56686 7.41228 9.77882 7.50008 9.99984 7.50008C10.2209 7.50008 10.4328 7.41228 10.5891 7.256C10.7454 7.09972 10.8332 6.88776 10.8332 6.66675C10.8332 6.44573 10.7454 6.23377 10.5891 6.07749C10.4328 5.92121 10.2209 5.83341 9.99984 5.83341Z"
+                                            fill="white" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_1668_24">
+                                            <rect width="20" height="20" fill="white" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+
+                            </div>
+                            <div class="ms-3">
+                                <div class="mt-1 text-sm text-zinc-300">
+                                    After making your payment, click on the "<span class="font-bold">I have
+                                        paid</span>" button below.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="md:px-52">
+                        <a wire:click="createDeposit()">
+                            <button type="button"
+                                class="py-3 cursor-pointer px-4 w-full md:px-6 md:py-3 text-center gap-x-2 text-sm md:text-base font-semibold rounded-lg bg-accent text-white focus:outline-hidden">
+                                I have paid
+                            </button>
+                        </a>
+                    </div>
                 </div>
 
-                <div class="md:px-52">
-                    <a wire:click="createDeposit()">
-                        <button type="button"
-                            class="py-3 cursor-pointer px-4 w-full md:px-6 md:py-3 text-center gap-x-2 text-sm md:text-base font-semibold rounded-lg bg-accent text-white focus:outline-hidden">
-                            Confirm payment
-                        </button>
-                    </a>
-                </div>
             </div>
         </div>
     </div>
@@ -87,6 +184,7 @@
 <script>
     document.addEventListener('alpine:init', () => {
         Alpine.store('confirmDepositPage', {
+            isQRModalOpen: false,
             init() {
                 this.generateQRCode()
             },
@@ -99,8 +197,7 @@
                 const toastMarkup = `
                 <div class="flex items-center p-4">
                     <div class="shrink-0">
-                        <svg class="shrink-0 size-4 text-teal-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
+                        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-info-icon lucide-info"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
                         </svg>
                     </div>
                     <div class="ms-3 flex-1">
@@ -123,7 +220,17 @@
                 copyText.setSelectionRange(0, 99999); // For mobile devices
                 navigator.clipboard.writeText(copyText.value);
                 this.toast();
-            }
+            },
+            copyAmountToPay() {
+                var copyText = document.getElementById("amount");
+                copyText.select();
+                copyText.setSelectionRange(0, 99999); // For mobile devices
+                navigator.clipboard.writeText(copyText.value);
+                this.toast();
+            },
+            toggleQRModal() {
+                this.isQRModalOpen = !this.isQRModalOpen;
+            },
         })
     })
 </script>

@@ -37,6 +37,7 @@ use App\Livewire\Dashboard\WithdrawHistory;
 use App\Livewire\Admin\AdminStrategyDetails;
 use App\Livewire\Admin\PaymentMethodDetails;
 use App\Livewire\Dashboard\AccountInformation;
+use App\Livewire\Dashboard\ConfirmWithdraw;
 use App\Livewire\Dashboard\ConnectedExchanges;
 use App\Livewire\Dashboard\Faqs;
 use App\Livewire\Dashboard\IdentityVerification;
@@ -49,18 +50,18 @@ use App\Livewire\Dashboard\Transaction;
 use App\Livewire\Dashboard\VerifyWithdrawTwofa;
 
 Route::get('/link-storage', function () {
-    Artisan::call('storage:link');
-    dd('storage linked');
+  Artisan::call('storage:link');
+  dd('storage linked');
 });
 
 Route::get('/clear-cache', function () {
-    Artisan::call('optimize:clear');
-    dd('cleared cache');
+  Artisan::call('optimize:clear');
+  dd('cleared cache');
 });
 
 Route::get('/cache', function () {
-    Artisan::call('optimize');
-    dd('cached');
+  Artisan::call('optimize');
+  dd('cached');
 });
 
 Route::get('/', Homepage::class)->name('home');
@@ -69,52 +70,53 @@ Route::get('/terms', Terms::class)->name('terms');
 Route::get('/privacy', Privacy::class)->name('privacy');
 
 Route::middleware(['auth', 'user'])->group(function () {
-    Route::get('/dashboard', Index::class)->middleware(['auth', 'verified'])->name('dashboard');
-    Route::get('/dashboard/history', History::class)->middleware(['auth', 'verified'])->name('dashboard.history');
-    Route::get('/dashboard/history/details', HistoryDetails::class)->middleware(['auth', 'verified'])->name('dashboard.history.details');
-    Route::get('/dashboard/robot', Robot::class)->middleware(['auth', 'verified'])->name('dashboard.robot');
-    Route::get('/dashboard/support', Support::class)->middleware(['auth', 'verified'])->name('dashboard.support');
-    Route::get('/dashboard/deposit', Deposit::class)->middleware(['auth', 'verified'])->name('dashboard.deposit');
-    Route::get('/dashboard/deposit/confirm', ConfirmDeposit::class)->middleware(['auth', 'verified'])->name('dashboard.deposit.confirm');
-    Route::get('/dashboard/withdraw', Withdraw::class)->middleware(['auth', 'verified'])->name('dashboard.withdraw');
-    Route::get('/dashboard/withdraw/verifyotp', VerifyOtp::class)->middleware(['auth', 'verified'])->name('dashboard.withdraw.verifyotp');
-    Route::get('/dashboard/withdraw/verifywithdrawtwofa', VerifyWithdrawTwofa::class)->middleware(['auth', 'verified'])->name('dashboard.withdraw.verifywithdrawtwofa');
-    Route::get('/dashboard/robot/traderoom', Traderoom::class)->middleware(['auth', 'verified'])->name('dashboard.robot.traderoom');
-    Route::get('/dashboard/account', Account::class)->middleware(['auth', 'verified'])->name('dashboard.account');
-    Route::get('/dashboard/accountinformation', AccountInformation::class)->middleware(['auth', 'verified'])->name('dashboard.accountinformation');
-    Route::get('/dashboard/transactions', Transaction::class)->middleware(['auth', 'verified'])->name('dashboard.transactions');
-    Route::get('/dashboard/connectedexchanges', ConnectedExchanges::class)->middleware(['auth', 'verified'])->name('dashboard.connectedexchanges');
-    Route::get('/dashboard/security/changeemail', ChangeEmail::class)->middleware(['auth', 'verified'])->name('dashboard.security.changeemail');
-    Route::get('/dashboard/security/setup', Setup::class)->middleware(['auth', 'verified'])->name('dashboard.security.setup');
-    Route::get('/dashboard/security/2fa/secret', Secret::class)->middleware(['auth', 'verified'])->name('dashboard.security.2fa.secret');
-    Route::get('/dashboard/security/2fa/verifytwofa', VerifyTwofa::class)->middleware(['auth', 'verified'])->name('dashboard.security.2fa.verifytwofa');
-    Route::get('/dashboard/security/2fa/disabletwofa', DisableTwofa::class)->middleware(['auth', 'verified'])->name('dashboard.security.2fa.disabletwofa');
-    Route::get('/dashboard/identityverification', IdentityVerification::class)->middleware(['auth', 'verified'])->name('dashboard.identityverification');
-    Route::get('/dashboard/deposithistory', DepositHistory::class)->middleware(['auth', 'verified'])->name('dashboard.deposithistory');
-    Route::get('/dashboard/withdrawhistory', WithdrawHistory::class)->middleware(['auth', 'verified'])->name('dashboard.withdrawhistory');
-    Route::get('/dashboard/referrals', ShowReferrals::class)->middleware(['auth', 'verified'])->name('dashboard.referrals');
-    Route::get('/dashboard/kyc', Kyc::class)->middleware(['auth', 'verified'])->name('dashboard.kyc');
-    Route::get('/dashboard/faqs', Faqs::class)->middleware(['auth', 'verified'])->name('dashboard.faqs');
+  Route::get('/dashboard', Index::class)->middleware(['auth', 'verified'])->name('dashboard');
+  Route::get('/dashboard/history', History::class)->middleware(['auth', 'verified'])->name('dashboard.history');
+  Route::get('/dashboard/history/details', HistoryDetails::class)->middleware(['auth', 'verified'])->name('dashboard.history.details');
+  Route::get('/dashboard/robot', Robot::class)->middleware(['auth', 'verified'])->name('dashboard.robot');
+  Route::get('/dashboard/support', Support::class)->middleware(['auth', 'verified'])->name('dashboard.support');
+  Route::get('/dashboard/deposit', Deposit::class)->middleware(['auth', 'verified'])->name('dashboard.deposit');
+  Route::get('/dashboard/deposit/confirm', ConfirmDeposit::class)->middleware(['auth', 'verified'])->name('dashboard.deposit.confirm');
+  Route::get('/dashboard/withdraw', Withdraw::class)->middleware(['auth', 'verified'])->name('dashboard.withdraw');
+  Route::get('/dashboard/withdraw/confirm', ConfirmWithdraw::class)->middleware(['auth', 'verified'])->name('dashboard.withdraw.confirm');
+  Route::get('/dashboard/withdraw/verifyotp', VerifyOtp::class)->middleware(['auth', 'verified'])->name('dashboard.withdraw.verifyotp');
+  Route::get('/dashboard/withdraw/verifywithdrawtwofa', VerifyWithdrawTwofa::class)->middleware(['auth', 'verified'])->name('dashboard.withdraw.verifywithdrawtwofa');
+  Route::get('/dashboard/robot/traderoom', Traderoom::class)->middleware(['auth', 'verified'])->name('dashboard.robot.traderoom');
+  Route::get('/dashboard/account', Account::class)->middleware(['auth', 'verified'])->name('dashboard.account');
+  Route::get('/dashboard/accountinformation', AccountInformation::class)->middleware(['auth', 'verified'])->name('dashboard.accountinformation');
+  Route::get('/dashboard/transactions', Transaction::class)->middleware(['auth', 'verified'])->name('dashboard.transactions');
+  Route::get('/dashboard/connectedexchanges', ConnectedExchanges::class)->middleware(['auth', 'verified'])->name('dashboard.connectedexchanges');
+  Route::get('/dashboard/security/changeemail', ChangeEmail::class)->middleware(['auth', 'verified'])->name('dashboard.security.changeemail');
+  Route::get('/dashboard/security/setup', Setup::class)->middleware(['auth', 'verified'])->name('dashboard.security.setup');
+  Route::get('/dashboard/security/2fa/secret', Secret::class)->middleware(['auth', 'verified'])->name('dashboard.security.2fa.secret');
+  Route::get('/dashboard/security/2fa/verifytwofa', VerifyTwofa::class)->middleware(['auth', 'verified'])->name('dashboard.security.2fa.verifytwofa');
+  Route::get('/dashboard/security/2fa/disabletwofa', DisableTwofa::class)->middleware(['auth', 'verified'])->name('dashboard.security.2fa.disabletwofa');
+  Route::get('/dashboard/identityverification', IdentityVerification::class)->middleware(['auth', 'verified'])->name('dashboard.identityverification');
+  Route::get('/dashboard/deposithistory', DepositHistory::class)->middleware(['auth', 'verified'])->name('dashboard.deposithistory');
+  Route::get('/dashboard/withdrawhistory', WithdrawHistory::class)->middleware(['auth', 'verified'])->name('dashboard.withdrawhistory');
+  Route::get('/dashboard/referrals', ShowReferrals::class)->middleware(['auth', 'verified'])->name('dashboard.referrals');
+  Route::get('/dashboard/kyc', Kyc::class)->middleware(['auth', 'verified'])->name('dashboard.kyc');
+  Route::get('/dashboard/faqs', Faqs::class)->middleware(['auth', 'verified'])->name('dashboard.faqs');
 
-    Route::redirect('settings', 'settings/profile');
-    Route::get('settings/profile', Profile::class)->name('settings.profile');
-    Route::get('settings/password', Password::class)->name('settings.password');
-    Route::get('settings/appearance', Appearance::class)->name('settings.appearance');
+  Route::redirect('settings', 'settings/profile');
+  Route::get('settings/profile', Profile::class)->name('settings.profile');
+  Route::get('settings/password', Password::class)->name('settings.password');
+  Route::get('settings/appearance', Appearance::class)->name('settings.appearance');
 });
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
-    Route::get('/dashboard', Dashboard::class)->middleware(['auth', 'verified'])->name('dashboard');
-    Route::get('/dashboard/users', Users::class)->middleware(['auth', 'verified'])->name('dashboard.users');
-    Route::get('/dashboard/users/details', UsersDetails::class)->middleware(['auth', 'verified'])->name('dashboard.users.details');
-    Route::get('/dashboard/broadcast', EmailBroadcast::class)->middleware(['auth', 'verified'])->name('dashboard.broadcast');
-    Route::get('/dashboard/strategy', AdminStrategy::class)->middleware(['auth', 'verified'])->name('dashboard.strategy');
-    Route::get('/dashboard/strategy/details', AdminStrategyDetails::class)->middleware(['auth', 'verified'])->name('dashboard.strategy.details');
-    Route::get('/dashboard/deposits', AdminDeposit::class)->middleware(['auth', 'verified'])->name('dashboard.deposits');
-    Route::get('/dashboard/withdrawals', AdminWithdrawals::class)->middleware(['auth', 'verified'])->name('dashboard.withdrawals');
-    Route::get('/dashboard/paymentmethods', PaymentMethods::class)->middleware(['auth', 'verified'])->name('dashboard.paymentmethods');
-    Route::get('/dashboard/paymentmethods/details', PaymentMethodDetails::class)->middleware(['auth', 'verified'])->name('dashboard.paymentmethods.details');
-    Route::get('/dashboard/kyc', AdminKyc::class)->middleware(['auth', 'verified'])->name('dashboard.kyc');
-    Route::get('/dashboard/kyc/details', AdminKycDetails::class)->middleware(['auth', 'verified'])->name('dashboard.kyc.details');
+  Route::get('/dashboard', Dashboard::class)->middleware(['auth', 'verified'])->name('dashboard');
+  Route::get('/dashboard/users', Users::class)->middleware(['auth', 'verified'])->name('dashboard.users');
+  Route::get('/dashboard/users/details', UsersDetails::class)->middleware(['auth', 'verified'])->name('dashboard.users.details');
+  Route::get('/dashboard/broadcast', EmailBroadcast::class)->middleware(['auth', 'verified'])->name('dashboard.broadcast');
+  Route::get('/dashboard/strategy', AdminStrategy::class)->middleware(['auth', 'verified'])->name('dashboard.strategy');
+  Route::get('/dashboard/strategy/details', AdminStrategyDetails::class)->middleware(['auth', 'verified'])->name('dashboard.strategy.details');
+  Route::get('/dashboard/deposits', AdminDeposit::class)->middleware(['auth', 'verified'])->name('dashboard.deposits');
+  Route::get('/dashboard/withdrawals', AdminWithdrawals::class)->middleware(['auth', 'verified'])->name('dashboard.withdrawals');
+  Route::get('/dashboard/paymentmethods', PaymentMethods::class)->middleware(['auth', 'verified'])->name('dashboard.paymentmethods');
+  Route::get('/dashboard/paymentmethods/details', PaymentMethodDetails::class)->middleware(['auth', 'verified'])->name('dashboard.paymentmethods.details');
+  Route::get('/dashboard/kyc', AdminKyc::class)->middleware(['auth', 'verified'])->name('dashboard.kyc');
+  Route::get('/dashboard/kyc/details', AdminKycDetails::class)->middleware(['auth', 'verified'])->name('dashboard.kyc.details');
 });
 
 require __DIR__ . '/auth.php';

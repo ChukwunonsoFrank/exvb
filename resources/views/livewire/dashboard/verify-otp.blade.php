@@ -9,7 +9,7 @@
             <div class="lg:h-full lg:pb-24 lg:overflow-scroll scrollbar-hide">
                 <div class="mb-5">
                     <input wire:model="token" type="text"
-                        class="border border-[#26252a] bg-transparent text-white text-sm py-2.5 sm:py-3 px-2 ps-4 block w-full rounded-lg sm:text-sm focus:outline-0"
+                        class="border border-[#26252a] bg-transparent text-white text-sm py-3.5 sm:py-3 px-2 ps-4 block w-full rounded-lg sm:text-sm focus:outline-0"
                         placeholder="">
                 </div>
 

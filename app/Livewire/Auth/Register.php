@@ -3,12 +3,9 @@
 namespace App\Livewire\Auth;
 
 use App\Models\User;
-use App\Notifications\ReferralLinkApplied;
-use App\Notifications\UserRegistered;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Support\Facades\Auth;
+use App\Notifications\LoginCodeRequested;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Validation\Rules;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -21,157 +18,77 @@ use Livewire\Component;
 
 class Register extends Component
 {
-    #[Url]
-    public $ref;
+  #[Url]
+  public $ref;
 
-    public string $name = '';
+  public string $name = '';
 
-    public string $email = '';
+  public string $email = '';
 
-    public string $password = '';
+  public string $password = '';
 
-    public string $password_confirmation = '';
+  public string $password_confirmation = '';
 
-    public bool $termsAndPrivacyPolicyAccepted = false;
+  public bool $termsAndPrivacyPolicyAccepted = false;
 
-    public $gRecaptchaResponse;
+  public $gRecaptchaResponse;
 
-    /**
-     * Custom validation error messages.
-     */
-    protected function messages(): array
-    {
-        return [
-            'termsAndPrivacyPolicyAccepted.accepted' => 'Please accept the Terms & Conditions and Privacy Policy to proceed.',
-        ];
+  /**
+   * Custom validation error messages.
+   */
+  protected function messages(): array
+  {
+    return [
+      'termsAndPrivacyPolicyAccepted.accepted' => 'Please accept the Terms & Conditions and Privacy Policy to proceed.',
+    ];
+  }
+
+  /**
+   * Handle an incoming registration request.
+   */
+  public function register()
+  {
+    try {
+      if (is_null($this->gRecaptchaResponse)) {
+        $this->dispatch('login-error', message: 'Please confirm you are not a robot.')->self();
+      }
+
+      $recatpchaResponse = Http::get("https://www.google.com/recaptcha/api/siteverify", [
+        'secret' => config('services.recaptcha.secret'),
+        'response' => $this->gRecaptchaResponse
+      ]);
+
+      $result = $recatpchaResponse->json();
+
+      if ($recatpchaResponse->successful() && $result['success'] == true) {
+        $validated = $this->validate([
+          'name' => ['required', 'string', 'max:255'],
+          'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+          'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
+          'termsAndPrivacyPolicyAccepted' => 'accepted',
+        ]);
+
+        unset($validated['termsAndPrivacyPolicyAccepted']);
+
+        /**
+         * Attempt to send login code to user's email.
+         */
+        $loginCode = substr(str_shuffle('0123456789'), 0, 6);
+        Notification::route('mail', $validated['email'])->notify(new LoginCodeRequested($loginCode));
+
+        $this->redirectRoute('register.verifylogincode', [
+          'name' => $validated['name'],
+          'email' => $validated['email'],
+          'password' => $validated['password'],
+          'hash' => Hash::make($loginCode),
+          'ref' => $this->ref
+        ]);
+      } else {
+        $this->dispatch('login-error', message: 'Please confirm you are not a robot.')->self();
+        return redirect()->back();
+      }
+    } catch (\Exception $e) {
+      $this->dispatch('signup-error', message: $e->getMessage())->self();
     }
-
-    public function generateReferralCode(): string
-    {
-        $length = 9;
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $randomString = '';
-        for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[rand(0, strlen($characters) - 1)];
-        }
-        return strtoupper($randomString);
-    }
-
-    public function generateUid(): string
-    {
-        do {
-            $uid = str_pad(random_int(0, 9999999999), 10, '0', STR_PAD_LEFT);
-        } while (User::where('uid', $uid)->exists());
-
-        return $uid;
-    }
-
-    /**
-     * Handle an incoming registration request.
-     */
-    public function register()
-    {
-        try {
-            if (is_null($this->gRecaptchaResponse)) {
-                $this->dispatch('login-error', message: 'Please confirm you are not a robot.')->self();
-            }
-
-            $recatpchaResponse = Http::get("https://www.google.com/recaptcha/api/siteverify", [
-                'secret' => config('services.recaptcha.secret'),
-                'response' => $this->gRecaptchaResponse
-            ]);
-
-            $result = $recatpchaResponse->json();
-
-            if ($recatpchaResponse->successful() && $result['success'] == true) {
-                $validated = $this->validate([
-                    'name' => ['required', 'string', 'max:255'],
-                    'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-                    'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
-                    'termsAndPrivacyPolicyAccepted' => 'accepted',
-                ]);
-
-                unset($validated['termsAndPrivacyPolicyAccepted']);
-
-                $validated['unhashed_password'] = $validated['password'];
-                $validated['password'] = Hash::make($validated['password']);
-                $validated['live_balance'] = 0;
-                $validated['demo_balance'] = 1000000;
-                $validated['account_status'] = 'active';
-                $validated['referral_code'] = $this->generateReferralCode();
-                $validated['uid'] = $this->generateUid();
-                $validated['last_login_at'] = now();
-                $validated['ip_address'] = $this->getClientIPv4();
-
-                if ($this->ref) {
-                    $validated['referred_by'] = $this->ref;
-                }
-
-                $ipApiEndpoint = "http://ip-api.com/json/" . $this->getClientIPv4();
-
-                $ipApiResponse = Http::get($ipApiEndpoint);
-
-                $ipApiResult = $ipApiResponse->json();
-
-                if ($ipApiResponse->successful() && $ipApiResult['status'] === 'success') {
-                    $validated['country'] = $ipApiResult['country'];
-                } else {
-                    $validated['country'] = 'N/A';
-                }
-
-                event(new Registered(($user = User::create($validated))));
-
-                /**
-                 * Send notifications to respective correspondents.
-                 */
-                $admin = User::where('is_admin', 1)->first();
-                $admin->notify(new UserRegistered($validated['email']));
-
-                $referralCodeOwner = User::where('referral_code', $this->ref)->first();
-
-                if ($referralCodeOwner) {
-                    $referralCodeOwner->notify(new ReferralLinkApplied($referralCodeOwner->name, $user->name));
-                }
-
-                Auth::login($user);
-
-                $this->redirect(route('verification.notice', absolute: false), navigate: false);
-            } else {
-                $this->dispatch('login-error', message: 'Please confirm you are not a robot.')->self();
-                return redirect()->back();
-            }
-        } catch (\Exception $e) {
-            $this->dispatch('signup-error', message: $e->getMessage())->self();
-        }
-    }
-
-    public function getClientIPv4()
-    {
-        $ip = request()->ip();
-
-        // If it's already IPv4, return it
-        if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
-            return $ip;
-        }
-
-        // Try to get IPv4 from X-Forwarded-For header
-        $forwarded = request()->header('X-Forwarded-For');
-        if ($forwarded) {
-            $ips = explode(',', $forwarded);
-            foreach ($ips as $forwardedIp) {
-                $forwardedIp = trim($forwardedIp);
-                if (filter_var($forwardedIp, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
-                    return $forwardedIp;
-                }
-            }
-        }
-
-        // Fallback for localhost
-        if ($ip === '::1') {
-            return '127.0.0.1';
-        }
-
-        // Otherwise, return original IP
-        return $ip;
-    }
+  }
 }

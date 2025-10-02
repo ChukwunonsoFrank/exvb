@@ -2,11 +2,8 @@
 
 namespace App\Livewire\Dashboard;
 
-use App\Models\OtpToken;
 use App\Models\PaymentMethod;
-use App\Models\User;
 use App\Models\Withdrawal;
-use App\Notifications\TokenRequested;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
@@ -14,104 +11,94 @@ use Livewire\Component;
 
 class Withdraw extends Component
 {
-    public string $accountStatus = '';
+  public string $accountStatus = '';
 
-    public string $amount = '';
+  public string $amount = '';
 
-    public string $address = '';
+  public string $address = '';
 
-    public $paymentMethod;
+  public $paymentMethod;
 
-    public $paymentMethods;
+  public $paymentMethods;
 
-    public function mount()
-    {
-        $this->paymentMethods = PaymentMethod::all();
-        $this->paymentMethod = $this->paymentMethods[0];
-        $this->accountStatus = auth()->user()->account_status;
+  public $selectedPaymentMethodSlug = '';
+
+  public function mount()
+  {
+    $this->paymentMethods = PaymentMethod::all();
+    $this->accountStatus = auth()->user()->account_status;
+  }
+
+  public function selectPaymentMethod(string $slug): void
+  {
+    $filtered = $this->paymentMethods->filter(function (PaymentMethod $value, $key) use ($slug) {
+      return $value['slug'] === $slug;
+    });
+
+    $this->paymentMethod = $filtered->first();
+    $this->selectedPaymentMethodSlug = $slug;
+  }
+
+  public function normalizeAmount(int $amount): int | float
+  {
+    return $amount / 100;
+  }
+
+  public function serializeAmount(float $amount): int
+  {
+    return $amount * 100;
+  }
+
+  public function confirmWithdraw()
+  {
+    try {
+      $pendingWithdrawals = Withdrawal::where(['user_id' => auth()->user()->id, 'status' => 'pending'])->first();
+
+      if ($pendingWithdrawals) {
+        $this->dispatch('withdraw-error', message: 'You have a pending withdrawal. Please wait for confirmation before requesting another.')->self();
+        return;
+      }
+
+      if ($this->accountStatus === 'inactive') {
+        $this->dispatch('withdraw-error', message: 'This account has been disabled and unable to perform any transactions. Kindly contact support for more details.')->self();
+        return;
+      }
+
+      if ($this->amount === '') {
+        $this->dispatch('withdraw-error', message: 'Amount field is empty')->self();
+        return;
+      }
+
+      if (intval($this->amount) === 0) {
+        $this->dispatch('withdraw-error', message: 'Amount must be greater than 0')->self();
+        return;
+      }
+
+      if ($this->address === '') {
+        $this->dispatch('withdraw-error', message: 'Wallet address field is empty')->self();
+        return;
+      }
+
+      $balance = $this->normalizeAmount(auth()->user()->live_balance);
+      if (floatval($this->amount) > $balance) {
+        $this->dispatch('withdraw-error', message: 'Insufficient balance')->self();
+        return false;
+      }
+
+      $this->redirectRoute('dashboard.withdraw.confirm', [
+        'amount' => $this->serializeAmount($this->amount),
+        'method' => $this->paymentMethod['name'],
+        'address' => $this->address,
+        'iconUrl' => $this->paymentMethod['icon_url'],
+        'slug' => $this->paymentMethod['slug'],
+      ]);
+    } catch (\Exception $e) {
+      $this->dispatch('withdraw-error', message: $e->getMessage())->self();
     }
+  }
 
-    public function selectPaymentMethod(string $methodId): void
-    {
-        $filtered = $this->paymentMethods->filter(function (PaymentMethod $value, $key) use ($methodId) {
-            return $value['id'] === intval($methodId);
-        });
-
-        $this->paymentMethod = $filtered->first();
-    }
-
-    public function normalizeAmount(int $amount): int | float
-    {
-        return $amount / 100;
-    }
-
-    public function serializeAmount(float $amount): int
-    {
-        return $amount * 100;
-    }
-
-    public function generateOTP()
-    {
-        try {
-            $pendingWithdrawals = Withdrawal::where(['user_id' => auth()->user()->id, 'status' => 'pending'])->first();
-
-            if ($pendingWithdrawals) {
-                $this->dispatch('withdraw-error', message: 'You have a pending withdrawal. Please wait for confirmation before requesting another.')->self();
-                return;
-            }
-
-            if ($this->accountStatus === 'inactive') {
-                $this->dispatch('withdraw-error', message: 'This account has been disabled and unable to perform any transactions. Kindly contact support for more details.')->self();
-                return;
-            }
-
-            if ($this->amount === '') {
-                $this->dispatch('withdraw-error', message: 'Amount field is empty')->self();
-                return;
-            }
-
-            if (intval($this->amount) === 0) {
-                $this->dispatch('withdraw-error', message: 'Amount must be greater than 0')->self();
-                return;
-            }
-
-            if ($this->address === '') {
-                $this->dispatch('withdraw-error', message: 'Wallet address field is empty')->self();
-                return;
-            }
-
-            $balance = $this->normalizeAmount(auth()->user()->live_balance);
-            if (floatval($this->amount) > $balance) {
-                $this->dispatch('withdraw-error', message: 'Insufficient balance')->self();
-                return false;
-            }
-
-            $token = OtpToken::updateOrCreate(
-                [
-                    'user_id' => auth()->user()->id
-                ],
-                [
-                    'token' => substr(str_shuffle('0123456789'), 0, 6),
-                    'expires_at' => now()->addMinutes(10)->getTimestampMs()
-                ]
-            );
-
-            $user = User::find(auth()->user()->id);
-
-            $user->notify(new TokenRequested(auth()->user()->name, $token['token']));
-
-            $this->redirectRoute('dashboard.withdraw.verifyotp', [
-                'amount' => $this->serializeAmount($this->amount),
-                'method' => $this->paymentMethod['name'],
-                'address' => $this->address
-            ]);
-        } catch (\Exception $e) {
-            $this->dispatch('withdraw-error', message: $e->getMessage())->self();
-        }
-    }
-
-    public function render()
-    {
-        return view('livewire.dashboard.withdraw');
-    }
+  public function render()
+  {
+    return view('livewire.dashboard.withdraw');
+  }
 }

@@ -2,18 +2,16 @@
 
 namespace App\Livewire\Dashboard;
 
-use App\Models\Deposit;
-use App\Models\User;
-use App\Notifications\DepositInitiated;
-use App\Notifications\DepositIntentInitiated;
-use App\Notifications\TransactionOccured;
-use Livewire\Attributes\Layout;
 use Livewire\Attributes\Url;
 use Livewire\Component;
+use App\Models\OtpToken;
+use App\Models\User;
+use App\Notifications\TokenRequested;
+use Livewire\Attributes\Layout;
 
 #[Layout('components.layouts.app')]
 
-class ConfirmDeposit extends Component
+class ConfirmWithdraw extends Component
 {
   #[Url]
   public $amount;
@@ -35,39 +33,6 @@ class ConfirmDeposit extends Component
   public function mount()
   {
     $this->amountToPay = $this->amount / 100;
-  }
-
-  public function createDeposit()
-  {
-    try {
-      Deposit::create([
-        'user_id' => auth()->user()->id,
-        'payment_method' => $this->method,
-        'amount' => $this->amount,
-        'status' => 'pending'
-      ]);
-
-      /**
-       * Send notifications to respective correspondents.
-       */
-      $user = User::find(auth()->user()->id);
-      $user->notify(new DepositInitiated(auth()->user()->name, strval($this->amount / 100)));
-
-      $admin = User::where('is_admin', 1)->first();
-      $admin->notify(new TransactionOccured('deposit', $user['name'], strval($this->amount / 100)));
-
-      session()->flash('message', 'Deposit successful. You will receive an email when deposit has been confirmed.');
-
-      $this->redirectRoute('dashboard.transactions');
-    } catch (\Exception $e) {
-      $this->dispatch('deposit-error', message: $e->getMessage())->self();
-    }
-  }
-
-  public function sendDepositIntentNotification()
-  {
-    $admin = User::where('is_admin', 1)->first();
-    $admin->notify(new DepositIntentInitiated(auth()->user()->name, strval($this->amount / 100)));
   }
 
   public function formatAmountToPay()
@@ -117,8 +82,50 @@ class ConfirmDeposit extends Component
     }
   }
 
+  public function generateOTP()
+  {
+    try {
+      // Pass query parameters by appending them to the URL string:
+      $twoFAQueryParams = http_build_query([
+        'amount' => $this->amount,
+        'method' => $this->method,
+        'address' => $this->address,
+      ]);
+
+      $otpQueryParams = http_build_query([
+        'amount' => $this->amount,
+        'method' => $this->method,
+        'address' => $this->address,
+        'iconUrl' => $this->iconUrl,
+        'slug' => $this->slug,
+      ]);
+
+      if (auth()->user()->two_factor_enabled) {
+        $this->redirect('/dashboard/withdraw/verifywithdrawtwofa?' . $twoFAQueryParams);
+      } else {
+        $token = OtpToken::updateOrCreate(
+          [
+            'user_id' => auth()->user()->id
+          ],
+          [
+            'token' => substr(str_shuffle('0123456789'), 0, 6),
+            'expires_at' => now()->addMinutes(10)->getTimestampMs()
+          ]
+        );
+
+        $user = User::find(auth()->user()->id);
+
+        $user->notify(new TokenRequested(auth()->user()->name, $token['token']));
+
+        $this->redirect('/dashboard/withdraw/verifyotp?' . $otpQueryParams);
+      }
+    } catch (\Exception $e) {
+      $this->dispatch('withdraw-error', message: $e->getMessage())->self();
+    }
+  }
+
   public function render()
   {
-    return view('livewire.dashboard.confirm-deposit');
+    return view('livewire.dashboard.confirm-withdraw');
   }
 }
