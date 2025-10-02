@@ -36,7 +36,7 @@
                                 <img src="{{ asset('storage/payment-method-icon/btc.svg') }}">
                             </div>
                             <div class="flex-1">
-                                <p class="text-sm">BTC</p>
+                                <p class="text-sm">Bitcoin</p>
                             </div>
                         </div>
 
@@ -52,7 +52,7 @@
                                 <img src="{{ asset('storage/payment-method-icon/eth.svg') }}">
                             </div>
                             <div class="flex-1">
-                                <p class="text-sm">ETH</p>
+                                <p class="text-sm">Ethereum</p>
                             </div>
                         </div>
 
@@ -113,7 +113,7 @@
                                 </div>
                                 <div class="flex-1">
                                     <p class="text-sm">USDT</p>
-                                    <p class="text-[10px] text-[#a4a4a4]">Tron(TRC20)</p>
+                                    <p class="text-[10px] text-[#a4a4a4]">Tron (TRC20)</p>
                                 </div>
                             </div>
                             <div wire:click="selectPaymentMethod('usdt-bep20')"
@@ -129,7 +129,7 @@
                                 </div>
                                 <div class="flex-1">
                                     <p class="text-sm">USDT</p>
-                                    <p class="text-[10px] text-[#a4a4a4]">BNB(BEP20)</p>
+                                    <p class="text-[10px] text-[#a4a4a4]">BNB (BEP20)</p>
                                 </div>
                             </div>
                             <div wire:click="selectPaymentMethod('usdt-erc20')"
@@ -145,7 +145,7 @@
                                 </div>
                                 <div class="flex-1">
                                     <p class="text-sm">USDT</p>
-                                    <p class="text-[10px] text-[#a4a4a4]">ETH(ERC20)</p>
+                                    <p class="text-[10px] text-[#a4a4a4]">Eth (ERC20)</p>
                                 </div>
                             </div>
                             <div wire:click="selectPaymentMethod('usdt-polygon')"
@@ -161,7 +161,7 @@
                                 </div>
                                 <div class="flex-1">
                                     <p class="text-sm">USDT</p>
-                                    <p class="text-[10px] text-[#a4a4a4]">Polygon(Polygon)</p>
+                                    <p class="text-[10px] text-[#a4a4a4]">Polygon (Polygon)</p>
                                 </div>
                             </div>
                             <div wire:click="selectPaymentMethod('usdt-sol')"
@@ -177,7 +177,7 @@
                                 </div>
                                 <div class="flex-1">
                                     <p class="text-sm">USDT</p>
-                                    <p class="text-[10px] text-[#a4a4a4]">Solana(SOL)</p>
+                                    <p class="text-[10px] text-[#a4a4a4]">Solana (SOL)</p>
                                 </div>
                             </div>
                         </div>
@@ -239,7 +239,7 @@
                                 </div>
                                 <div class="flex-1">
                                     <p class="text-sm">USDC</p>
-                                    <p class="text-[10px] text-[#a4a4a4]">ETH(ERC20)</p>
+                                    <p class="text-[10px] text-[#a4a4a4]">Eth (ERC20)</p>
                                 </div>
                             </div>
                             <div wire:click="selectPaymentMethod('usdc-bep20')"
@@ -255,7 +255,7 @@
                                 </div>
                                 <div class="flex-1">
                                     <p class="text-sm">USDC</p>
-                                    <p class="text-[10px] text-[#a4a4a4]">BNB(BEP20)</p>
+                                    <p class="text-[10px] text-[#a4a4a4]">BNB (BEP20)</p>
                                 </div>
                             </div>
                             <div wire:click="selectPaymentMethod('usdc-sol')"
@@ -271,7 +271,7 @@
                                 </div>
                                 <div class="flex-1">
                                     <p class="text-sm">USDC</p>
-                                    <p class="text-[10px] text-[#a4a4a4]">Solana(SOL)</p>
+                                    <p class="text-[10px] text-[#a4a4a4]">Solana (SOL)</p>
                                 </div>
                             </div>
                             <div wire:click="selectPaymentMethod('usdc-trc20')"
@@ -287,7 +287,7 @@
                                 </div>
                                 <div class="flex-1">
                                     <p class="text-sm">USDC</p>
-                                    <p class="text-[10px] text-[#a4a4a4]">Tron(TRC20)</p>
+                                    <p class="text-[10px] text-[#a4a4a4]">Tron (TRC20)</p>
                                 </div>
                             </div>
                             <div wire:click="selectPaymentMethod('usdc-polygon')"
@@ -303,7 +303,7 @@
                                 </div>
                                 <div class="flex-1">
                                     <p class="text-sm">USDC</p>
-                                    <p class="text-[10px] text-[#a4a4a4]">Polygon(Polygon)</p>
+                                    <p class="text-[10px] text-[#a4a4a4]">Polygon (Polygon)</p>
                                 </div>
                             </div>
                         </div>
@@ -320,7 +320,7 @@
                                 <img src="{{ asset('storage/payment-method-icon/sol.svg') }}">
                             </div>
                             <div class="flex-1">
-                                <p class="text-sm">SOL</p>
+                                <p class="text-sm">Solana</p>
                             </div>
                         </div>
 
@@ -336,7 +336,7 @@
                                 <img src="{{ asset('storage/payment-method-icon/ltc.svg') }}">
                             </div>
                             <div class="flex-1">
-                                <p class="text-sm">LTC</p>
+                                <p class="text-sm">Litecoin</p>
                             </div>
                         </div>
 
@@ -368,7 +368,7 @@
                                 <img src="{{ asset('storage/payment-method-icon/tron.svg') }}">
                             </div>
                             <div class="flex-1">
-                                <p class="text-sm">TRX</p>
+                                <p class="text-sm">Tron</p>
                             </div>
                         </div>
                     </div>
