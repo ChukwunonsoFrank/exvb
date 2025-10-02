@@ -103,7 +103,7 @@
                         <div class="relative pl-3" x-cloak x-show="$store.withdrawPage.isUSDTNetworksDropdownOpen">
                             <div wire:click="selectPaymentMethod('usdt-trc20')"
                                 @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
-                                class="{{ $this->selectedPaymentMethodSlug === 'usdt-trc20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-5.5 mb-1.5 rounded-md text-[#FFFFFF]">
+                                class="{{ $this->selectedPaymentMethodSlug === 'usdt-trc20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-4.5 mb-1.5 rounded-md text-[#FFFFFF]">
                                 <div class="flex-none">
                                     <div
                                         class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'usdt-trc20' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
@@ -119,7 +119,7 @@
                             </div>
                             <div wire:click="selectPaymentMethod('usdt-bep20')"
                                 @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
-                                class="{{ $this->selectedPaymentMethodSlug === 'usdt-bep20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-5.5 mb-1.5 rounded-md text-[#FFFFFF]">
+                                class="{{ $this->selectedPaymentMethodSlug === 'usdt-bep20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-4.5 mb-1.5 rounded-md text-[#FFFFFF]">
                                 <div class="flex-none">
                                     <div
                                         class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'usdt-bep20' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
@@ -135,7 +135,7 @@
                             </div>
                             <div wire:click="selectPaymentMethod('usdt-erc20')"
                                 @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
-                                class="{{ $this->selectedPaymentMethodSlug === 'usdt-erc20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-5.5 mb-1.5 rounded-md text-[#FFFFFF]">
+                                class="{{ $this->selectedPaymentMethodSlug === 'usdt-erc20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-4.5 mb-1.5 rounded-md text-[#FFFFFF]">
                                 <div class="flex-none">
                                     <div
                                         class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'usdt-erc20' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
@@ -151,7 +151,7 @@
                             </div>
                             <div wire:click="selectPaymentMethod('usdt-polygon')"
                                 @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
-                                class="{{ $this->selectedPaymentMethodSlug === 'usdt-polygon' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-5.5 mb-1.5 rounded-md text-[#FFFFFF]">
+                                class="{{ $this->selectedPaymentMethodSlug === 'usdt-polygon' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-4.5 mb-1.5 rounded-md text-[#FFFFFF]">
                                 <div class="flex-none">
                                     <div
                                         class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'usdt-polygon' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
@@ -167,7 +167,7 @@
                             </div>
                             <div wire:click="selectPaymentMethod('usdt-sol')"
                                 @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
-                                class="{{ $this->selectedPaymentMethodSlug === 'usdt-sol' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-5.5 mb-1.5 rounded-md text-[#FFFFFF]">
+                                class="{{ $this->selectedPaymentMethodSlug === 'usdt-sol' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-4.5 mb-1.5 rounded-md text-[#FFFFFF]">
                                 <div class="flex-none">
                                     <div
                                         class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'usdt-sol' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
@@ -229,7 +229,7 @@
                         <div class="relative pl-3" x-cloak x-show="$store.withdrawPage.isUSDCNetworksDropdownOpen">
                             <div wire:click="selectPaymentMethod('usdc-erc20')"
                                 @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
-                                class="{{ $this->selectedPaymentMethodSlug === 'usdc-erc20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-5.5 mb-1.5 rounded-md text-[#FFFFFF]">
+                                class="{{ $this->selectedPaymentMethodSlug === 'usdc-erc20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-4.5 mb-1.5 rounded-md text-[#FFFFFF]">
                                 <div class="flex-none">
                                     <div
                                         class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'usdc-erc20' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
@@ -245,7 +245,7 @@
                             </div>
                             <div wire:click="selectPaymentMethod('usdc-bep20')"
                                 @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
-                                class="{{ $this->selectedPaymentMethodSlug === 'usdc-bep20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-5.5 mb-1.5 rounded-md text-[#FFFFFF]">
+                                class="{{ $this->selectedPaymentMethodSlug === 'usdc-bep20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-4.5 mb-1.5 rounded-md text-[#FFFFFF]">
                                 <div class="flex-none">
                                     <div
                                         class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'usdc-bep20' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
@@ -261,7 +261,7 @@
                             </div>
                             <div wire:click="selectPaymentMethod('usdc-sol')"
                                 @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
-                                class="{{ $this->selectedPaymentMethodSlug === 'usdc-sol' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-5.5 mb-1.5 rounded-md text-[#FFFFFF]">
+                                class="{{ $this->selectedPaymentMethodSlug === 'usdc-sol' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-4.5 mb-1.5 rounded-md text-[#FFFFFF]">
                                 <div class="flex-none">
                                     <div
                                         class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'usdc-sol' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
@@ -277,7 +277,7 @@
                             </div>
                             <div wire:click="selectPaymentMethod('usdc-trc20')"
                                 @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
-                                class="{{ $this->selectedPaymentMethodSlug === 'usdc-trc20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-5.5 mb-1.5 rounded-md text-[#FFFFFF]">
+                                class="{{ $this->selectedPaymentMethodSlug === 'usdc-trc20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-4.5 mb-1.5 rounded-md text-[#FFFFFF]">
                                 <div class="flex-none">
                                     <div
                                         class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'usdc-trc20' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
@@ -293,7 +293,7 @@
                             </div>
                             <div wire:click="selectPaymentMethod('usdc-polygon')"
                                 @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
-                                class="{{ $this->selectedPaymentMethodSlug === 'usdc-polygon' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-5.5 mb-1.5 rounded-md text-[#FFFFFF]">
+                                class="{{ $this->selectedPaymentMethodSlug === 'usdc-polygon' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-4.5 mb-1.5 rounded-md text-[#FFFFFF]">
                                 <div class="flex-none">
                                     <div
                                         class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'usdc-polygon' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">

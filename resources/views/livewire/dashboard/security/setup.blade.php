@@ -44,32 +44,23 @@
                         @endif
                     </div>
                 </div>
-                {{-- <a href="{{ route('dashboard.security.setup') }}">
-                    <div
-                        class="bg-dim w-full rounded-lg flex items-center space-x-2 px-3 py-4 mb-1 border border-[#323335] lg:mb-0">
-                        <div class="flex-none">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                                fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="lucide lucide-rectangle-ellipsis-icon lucide-rectangle-ellipsis">
-                                <rect width="20" height="12" x="2" y="6" rx="2" />
-                                <path d="M12 12h.01" />
-                                <path d="M17 12h.01" />
-                                <path d="M7 12h.01" />
-                            </svg>
-                        </div>
-                        <div class="flex-1">
-                            <p class="font-medium text-sm text-white">Passwords</p>
-                        </div>
-                        <div class="flex-none text-end">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                                fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="lucide lucide-chevron-right-icon lucide-chevron-right">
-                                <path d="m9 18 6-6-6-6" />
-                            </svg>
-                        </div>
-                    </div>
-                </a> --}}
+
+                <div class="p-3 mt-3 bg-dim rounded-lg border border-[#323335]">
+                    <h2 class="text-white text-sm font-bold mb-2">Login Activity</h2>
+                    <ul class="space-y-3 list-disc list-inside text-xs">
+                        <li class="text-white flex items-center gap-x-1 pl-0">
+                            <span class="list-disc list-inside mr-1"
+                                style="display:inline-block;width:0.8em;">&#8226;</span>
+                            <span class="flex-1">Last Login:
+                                {{ auth()->user()->last_login_at }}({{ auth()->user()->country }})</span>
+                        </li>
+                        <li class="text-white flex items-center gap-x-1 pl-0">
+                            <span class="list-disc list-inside mr-1"
+                                style="display:inline-block;width:0.8em;">&#8226;</span>
+                            <span class="flex-1">IP: {{ auth()->user()->ip_address }}</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

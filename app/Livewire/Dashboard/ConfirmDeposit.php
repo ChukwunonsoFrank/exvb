@@ -72,49 +72,7 @@ class ConfirmDeposit extends Component
 
   public function formatAmountToPay()
   {
-    if (
-      $this->slug === 'usdt-trc20'
-      || $this->slug === 'usdt-erc20'
-      || $this->slug === 'usdt-bep20'
-      || $this->slug === 'usdt-sol'
-      || $this->slug === 'usdt-polygon'
-    ) {
-      return strval($this->amountToPay) . ' USDT';
-    }
-
-    if (
-      $this->slug === 'usdc-trc20'
-      || $this->slug === 'usdc-erc20'
-      || $this->slug === 'usdc-bep20'
-      || $this->slug === 'usdc-sol'
-      || $this->slug === 'usdc-polygon'
-    ) {
-      return strval($this->amountToPay) . ' USDC';
-    }
-
-    if ($this->slug === 'bitcoin') {
-      return strval($this->amountToPay) . ' BTC';
-    }
-
-    if ($this->slug === 'ethereum') {
-      return strval($this->amountToPay) . ' ETH';
-    }
-
-    if ($this->slug === 'solana') {
-      return strval($this->amountToPay) . ' SOL';
-    }
-
-    if ($this->slug === 'litecoin') {
-      return strval($this->amountToPay) . ' LTC';
-    }
-
-    if ($this->slug === 'binance-coin') {
-      return strval($this->amountToPay) . ' BNB';
-    }
-
-    if ($this->slug === 'tron') {
-      return strval($this->amountToPay) . ' TRX';
-    }
+    return '$' . strval($this->amountToPay) . ' USD';
   }
 
   public function render()

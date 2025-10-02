@@ -28,7 +28,8 @@
                 </nav>
 
                 <div class="mt-3">
-                    <div id="pills-with-brand-color-1" class="{{ $this->activeTab === 'all' ? '' : 'hidden' }}" role="tabpanel" aria-labelledby="pills-with-brand-color-item-1">
+                    <div id="pills-with-brand-color-1" class="{{ $this->activeTab === 'all' ? '' : 'hidden' }}"
+                        role="tabpanel" aria-labelledby="pills-with-brand-color-item-1">
                         @forelse ($transactions as $transaction)
                             <div wire:key="transaction-{{ $transaction['id'] }}"
                                 class="bg-dim w-full rounded-lg flex flex-col space-y-2 p-3 px-4 mb-3">
@@ -40,8 +41,8 @@
                                                 </p>
                                             </div>
                                             <div class="flex-1 text-end">
-                                                <p class="font-semibold text-sm md:text-base text-green-500">
-                                                    +@money($transaction['amount'] / 100)
+                                                <p class="font-semibold text-sm md:text-base text-white">
+                                                    @money($transaction['amount'] / 100)
                                                 </p>
                                             </div>
                                         </div>
@@ -82,8 +83,8 @@
                         @endif
                     </div>
 
-                    <div id="pills-with-brand-color-2" class="{{ $this->activeTab === 'deposits' ? '' : 'hidden' }}" role="tabpanel"
-                        aria-labelledby="pills-with-brand-color-item-2">
+                    <div id="pills-with-brand-color-2" class="{{ $this->activeTab === 'deposits' ? '' : 'hidden' }}"
+                        role="tabpanel" aria-labelledby="pills-with-brand-color-item-2">
                         @forelse ($deposits as $deposit)
                             <div wire:key="deposit-{{ $deposit['id'] }}"
                                 class="bg-dim w-full rounded-lg flex flex-col space-y-2 p-3 px-4 mb-3">
@@ -95,15 +96,16 @@
                                                 </p>
                                             </div>
                                             <div class="flex-1 text-end">
-                                                <p class="font-semibold text-sm md:text-base text-green-500">
-                                                    +@money($deposit['amount'] / 100)
+                                                <p class="font-semibold text-sm md:text-base text-white">
+                                                    @money($deposit['amount'] / 100)
                                                 </p>
                                             </div>
                                         </div>
                                         <div class="flex items-center">
                                             <div class="flex-1">
                                                 <p class="font-semibold text-xs inline text-white md:text-sm">
-                                                <p class="text-[#a4a4a4] text-xs">{{ $deposit['created_at_formatted'] }}
+                                                <p class="text-[#a4a4a4] text-xs">
+                                                    {{ $deposit['created_at_formatted'] }}
                                                 </p>
                                             </div>
                                             <div class="flex-1 text-end">
@@ -136,8 +138,8 @@
                         @endif
                     </div>
 
-                    <div id="pills-with-brand-color-3" class="{{ $this->activeTab === 'withdrawals' ? '' : 'hidden' }}" role="tabpanel"
-                        aria-labelledby="pills-with-brand-color-item-3">
+                    <div id="pills-with-brand-color-3" class="{{ $this->activeTab === 'withdrawals' ? '' : 'hidden' }}"
+                        role="tabpanel" aria-labelledby="pills-with-brand-color-item-3">
                         @forelse ($withdrawals as $withdrawal)
                             <div wire:key="withdrawal-{{ $withdrawal['id'] }}"
                                 class="bg-dim w-full rounded-lg flex flex-col space-y-2 p-3 px-4 mb-3">
@@ -149,8 +151,8 @@
                                                 </p>
                                             </div>
                                             <div class="flex-1 text-end">
-                                                <p class="font-semibold text-sm md:text-base text-green-500">
-                                                    +@money($withdrawal['amount'] / 100)
+                                                <p class="font-semibold text-sm md:text-base text-white">
+                                                    @money($withdrawal['amount'] / 100)
                                                 </p>
                                             </div>
                                         </div>

@@ -19,30 +19,19 @@
                         <p class="text-base font-medium text-[#a4a4a4]">Payment Details</p>
                     </div>
 
-                    <div class="mb-8">
+                    <div class="mb-8 text-center">
                         <p class="text-sm font-semibold text-white mb-2">Amount to pay</p>
-                        <div class="flex items-center gap-x-16">
-                            <div class="flex-1 text-wrap">
+                        <div class="flex items-center justify-center">
+                            <div class="flex-none text-wrap">
                                 <p class="text-white font-light break-words">{{ $this->formatAmountToPay() }}</p>
                                 <input id="amount" type="text" id="hs-trailing-icon" name="hs-trailing-icon"
                                     class="hidden" value="{{ $this->amountToPay }}">
-                            </div>
-                            <div x-on:click="$store.confirmDepositPage.copyAmountToPay()"
-                                class="flex-none flex items-center gap-x-1.5 cursor-pointer">
-                                <span class="text-sm font-light text-white">Copy</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round"
-                                    class="js-clipboard-default size-4 group-hover:rotate-6 transition lucide lucide-copy-icon lucide-copy">
-                                    <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
-                                    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
-                                </svg>
                             </div>
                         </div>
                     </div>
 
                     <div class="mb-8">
-                        <p class="text-sm font-semibold text-white mb-2">Payment unique address</p>
+                        <p class="text-sm font-semibold text-white mb-2">Payment address</p>
                         <div class="flex items-center gap-x-16">
                             <div class="flex-1 overflow-x-auto">
                                 <input id="address" type="text" id="hs-trailing-icon" name="hs-trailing-icon"
@@ -88,7 +77,7 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <p class="text-white text-sm">Scan QR with another device</p>
+                                    <p class="text-white text-sm">Scan QR Code</p>
                                 </div>
                             </div>
                         </a>
@@ -111,34 +100,7 @@
                         </div>
                     </div>
 
-                    <div class="text-sm text-white rounded-lg bg-dashboard p-4 mb-2 mt-3" role="alert"
-                        tabindex="-1" aria-labelledby="hs-with-description-label">
-                        <div class="flex items-center">
-                            <div class="shrink-0">
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <g clip-path="url(#clip0_1668_24)">
-                                        <path
-                                            d="M9.99984 1.66675C14.6023 1.66675 18.3332 5.39758 18.3332 10.0001C18.3332 14.6026 14.6023 18.3334 9.99984 18.3334C5.39734 18.3334 1.6665 14.6026 1.6665 10.0001C1.6665 5.39758 5.39734 1.66675 9.99984 1.66675ZM9.9915 8.33341H9.1665C8.9541 8.33365 8.74981 8.41498 8.59536 8.56079C8.44092 8.7066 8.34797 8.90588 8.33553 9.11791C8.32308 9.32994 8.39207 9.53873 8.52839 9.70161C8.66472 9.86449 8.85809 9.96916 9.069 9.99425L9.1665 10.0001V14.1584C9.1665 14.5917 9.49484 14.9501 9.9165 14.9951L10.0082 15.0001H10.4165C10.5918 15.0001 10.7626 14.9448 10.9046 14.8422C11.0467 14.7395 11.1527 14.5947 11.2077 14.4283C11.2628 14.2619 11.2639 14.0824 11.211 13.9153C11.1581 13.7482 11.0539 13.602 10.9132 13.4976L10.8332 13.4451V9.17508C10.8332 8.74175 10.5048 8.38341 10.0832 8.33841L9.9915 8.33341ZM9.99984 5.83341C9.77882 5.83341 9.56686 5.92121 9.41058 6.07749C9.2543 6.23377 9.1665 6.44573 9.1665 6.66675C9.1665 6.88776 9.2543 7.09972 9.41058 7.256C9.56686 7.41228 9.77882 7.50008 9.99984 7.50008C10.2209 7.50008 10.4328 7.41228 10.5891 7.256C10.7454 7.09972 10.8332 6.88776 10.8332 6.66675C10.8332 6.44573 10.7454 6.23377 10.5891 6.07749C10.4328 5.92121 10.2209 5.83341 9.99984 5.83341Z"
-                                            fill="white" />
-                                    </g>
-                                    <defs>
-                                        <clipPath id="clip0_1668_24">
-                                            <rect width="20" height="20" fill="white" />
-                                        </clipPath>
-                                    </defs>
-                                </svg>
-
-                            </div>
-                            <div class="ms-3">
-                                <div class="mt-1 text-sm text-zinc-300">
-                                    Only send {{ $this->method }} to this wallet address.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="text-sm text-white rounded-lg bg-dashboard p-4 mb-8" role="alert" tabindex="-1"
+                    <div class="text-sm text-white rounded-lg bg-dashboard p-4 mb-2" role="alert" tabindex="-1"
                         aria-labelledby="hs-with-description-label">
                         <div class="flex items-center">
                             <div class="shrink-0">
@@ -147,7 +109,7 @@
                                     <g clip-path="url(#clip0_1668_24)">
                                         <path
                                             d="M9.99984 1.66675C14.6023 1.66675 18.3332 5.39758 18.3332 10.0001C18.3332 14.6026 14.6023 18.3334 9.99984 18.3334C5.39734 18.3334 1.6665 14.6026 1.6665 10.0001C1.6665 5.39758 5.39734 1.66675 9.99984 1.66675ZM9.9915 8.33341H9.1665C8.9541 8.33365 8.74981 8.41498 8.59536 8.56079C8.44092 8.7066 8.34797 8.90588 8.33553 9.11791C8.32308 9.32994 8.39207 9.53873 8.52839 9.70161C8.66472 9.86449 8.85809 9.96916 9.069 9.99425L9.1665 10.0001V14.1584C9.1665 14.5917 9.49484 14.9501 9.9165 14.9951L10.0082 15.0001H10.4165C10.5918 15.0001 10.7626 14.9448 10.9046 14.8422C11.0467 14.7395 11.1527 14.5947 11.2077 14.4283C11.2628 14.2619 11.2639 14.0824 11.211 13.9153C11.1581 13.7482 11.0539 13.602 10.9132 13.4976L10.8332 13.4451V9.17508C10.8332 8.74175 10.5048 8.38341 10.0832 8.33841L9.9915 8.33341ZM9.99984 5.83341C9.77882 5.83341 9.56686 5.92121 9.41058 6.07749C9.2543 6.23377 9.1665 6.44573 9.1665 6.66675C9.1665 6.88776 9.2543 7.09972 9.41058 7.256C9.56686 7.41228 9.77882 7.50008 9.99984 7.50008C10.2209 7.50008 10.4328 7.41228 10.5891 7.256C10.7454 7.09972 10.8332 6.88776 10.8332 6.66675C10.8332 6.44573 10.7454 6.23377 10.5891 6.07749C10.4328 5.92121 10.2209 5.83341 9.99984 5.83341Z"
-                                            fill="white" />
+                                            fill="#3b71ff" />
                                     </g>
                                     <defs>
                                         <clipPath id="clip0_1668_24">
@@ -155,12 +117,37 @@
                                         </clipPath>
                                     </defs>
                                 </svg>
-
                             </div>
                             <div class="ms-3">
                                 <div class="mt-1 text-sm text-zinc-300">
                                     After making your payment, click on the "<span class="font-bold">I have
                                         paid</span>" button below.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-sm text-white rounded-lg bg-dashboard p-4 mb-8 mt-3" role="alert"
+                        tabindex="-1" aria-labelledby="hs-with-description-label">
+                        <div class="flex items-center">
+                            <div class="shrink-0">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_1668_24)">
+                                        <path
+                                            d="M9.99984 1.66675C14.6023 1.66675 18.3332 5.39758 18.3332 10.0001C18.3332 14.6026 14.6023 18.3334 9.99984 18.3334C5.39734 18.3334 1.6665 14.6026 1.6665 10.0001C1.6665 5.39758 5.39734 1.66675 9.99984 1.66675ZM9.9915 8.33341H9.1665C8.9541 8.33365 8.74981 8.41498 8.59536 8.56079C8.44092 8.7066 8.34797 8.90588 8.33553 9.11791C8.32308 9.32994 8.39207 9.53873 8.52839 9.70161C8.66472 9.86449 8.85809 9.96916 9.069 9.99425L9.1665 10.0001V14.1584C9.1665 14.5917 9.49484 14.9501 9.9165 14.9951L10.0082 15.0001H10.4165C10.5918 15.0001 10.7626 14.9448 10.9046 14.8422C11.0467 14.7395 11.1527 14.5947 11.2077 14.4283C11.2628 14.2619 11.2639 14.0824 11.211 13.9153C11.1581 13.7482 11.0539 13.602 10.9132 13.4976L10.8332 13.4451V9.17508C10.8332 8.74175 10.5048 8.38341 10.0832 8.33841L9.9915 8.33341ZM9.99984 5.83341C9.77882 5.83341 9.56686 5.92121 9.41058 6.07749C9.2543 6.23377 9.1665 6.44573 9.1665 6.66675C9.1665 6.88776 9.2543 7.09972 9.41058 7.256C9.56686 7.41228 9.77882 7.50008 9.99984 7.50008C10.2209 7.50008 10.4328 7.41228 10.5891 7.256C10.7454 7.09972 10.8332 6.88776 10.8332 6.66675C10.8332 6.44573 10.7454 6.23377 10.5891 6.07749C10.4328 5.92121 10.2209 5.83341 9.99984 5.83341Z"
+                                            fill="#3b71ff" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_1668_24">
+                                            <rect width="20" height="20" fill="white" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </div>
+                            <div class="ms-3">
+                                <div class="mt-1 text-sm text-zinc-300">
+                                    Only send {{ $this->method }} to this wallet address.
                                 </div>
                             </div>
                         </div>
