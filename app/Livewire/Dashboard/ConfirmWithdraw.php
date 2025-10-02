@@ -35,6 +35,11 @@ class ConfirmWithdraw extends Component
     $this->amountToPay = $this->amount / 100;
   }
 
+  public function back()
+  {
+    $this->redirect('/dashboard/withdraw');
+  }
+
   public function formatAmountToPay()
   {
     return '$' . strval($this->amountToPay) . ' USD';

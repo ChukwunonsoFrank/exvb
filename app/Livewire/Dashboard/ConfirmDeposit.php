@@ -37,6 +37,11 @@ class ConfirmDeposit extends Component
     $this->amountToPay = $this->amount / 100;
   }
 
+  public function back()
+  {
+    $this->redirect('/dashboard/deposit');
+  }
+
   public function createDeposit()
   {
     try {

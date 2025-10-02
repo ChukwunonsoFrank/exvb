@@ -372,6 +372,70 @@
                                 <p class="text-sm">Tron</p>
                             </div>
                         </div>
+
+                        <div wire:click="selectPaymentMethod('ripple')"
+                            @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                            class="{{ $this->selectedPaymentMethodSlug === 'ripple' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-7 mb-1.5 rounded-md text-[#FFFFFF]">
+                            <div class="flex-none">
+                                <div
+                                    class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'ripple' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
+                                </div>
+                            </div>
+                            <div class="flex-none">
+                                <img src="{{ asset('storage/payment-method-icon/xrp.svg') }}">
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm">XRP</p>
+                            </div>
+                        </div>
+
+                        <div wire:click="selectPaymentMethod('bitcoin-cash')"
+                            @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                            class="{{ $this->selectedPaymentMethodSlug === 'bitcoin-cash' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-7 mb-1.5 rounded-md text-[#FFFFFF]">
+                            <div class="flex-none">
+                                <div
+                                    class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'bitcoin-cash' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
+                                </div>
+                            </div>
+                            <div class="flex-none">
+                                <img src="{{ asset('storage/payment-method-icon/bch.svg') }}">
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm">BCH</p>
+                            </div>
+                        </div>
+
+                        <div wire:click="selectPaymentMethod('dogecoin')"
+                            @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                            class="{{ $this->selectedPaymentMethodSlug === 'dogecoin' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-7 mb-1.5 rounded-md text-[#FFFFFF]">
+                            <div class="flex-none">
+                                <div
+                                    class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'dogecoin' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
+                                </div>
+                            </div>
+                            <div class="flex-none">
+                                <img src="{{ asset('storage/payment-method-icon/doge.svg') }}">
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm">Dogecoin</p>
+                            </div>
+                        </div>
+
+                        <div wire:click="selectPaymentMethod('dash')"
+                            @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                            class="{{ $this->selectedPaymentMethodSlug === 'dash' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-7 mb-1.5 rounded-md text-[#FFFFFF]">
+                            <div class="flex-none">
+                                <div
+                                    class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'dash' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
+                                </div>
+                            </div>
+                            <div class="flex-none">
+                                <img src="{{ asset('storage/payment-method-icon/dash.svg') }}">
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm">DASH</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
