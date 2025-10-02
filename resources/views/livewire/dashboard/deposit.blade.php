@@ -26,7 +26,7 @@
                     <div class="w-full overflow-scroll scrollbar-hide">
                         <div wire:click="selectPaymentMethod('bitcoin')"
                             @click.debounce.1000ms="$store.depositPage.proceedToDepositConfirmation($wire)"
-                            class="{{ $this->selectedPaymentMethodSlug === 'bitcoin' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 p-4 mb-1.5 rounded-md text-[#FFFFFF]">
+                            class="{{ $this->selectedPaymentMethodSlug === 'bitcoin' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-7 mb-1.5 rounded-md text-[#FFFFFF]">
                             <div class="flex-none">
                                 <div
                                     class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'bitcoin' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
@@ -42,7 +42,7 @@
 
                         <div wire:click="selectPaymentMethod('ethereum')"
                             @click.debounce.1000ms="$store.depositPage.proceedToDepositConfirmation($wire)"
-                            class="{{ $this->selectedPaymentMethodSlug === 'ethereum' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 p-4 mb-1.5 rounded-md text-[#FFFFFF]">
+                            class="{{ $this->selectedPaymentMethodSlug === 'ethereum' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-7 mb-1.5 rounded-md text-[#FFFFFF]">
                             <div class="flex-none">
                                 <div
                                     class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'ethereum' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
@@ -59,7 +59,7 @@
                         {{-- USDT --}}
                         <div class="relative">
                             <div x-on:click="$store.depositPage.toggleUSDTNetworksDropdown()"
-                                class="border border-[#26252a] bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 p-4 mb-1.5 rounded-md text-[#FFFFFF]">
+                                class="border border-[#26252a] bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-7 mb-1.5 rounded-md text-[#FFFFFF]">
                                 <div class="flex-none">
                                     <template x-if="!$store.depositPage.isUSDTNetworksDropdownOpen">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -102,7 +102,7 @@
                         <div class="relative pl-3" x-cloak x-show="$store.depositPage.isUSDTNetworksDropdownOpen">
                             <div wire:click="selectPaymentMethod('usdt-trc20')"
                                 @click.debounce.1000ms="$store.depositPage.proceedToDepositConfirmation($wire)"
-                                class="{{ $this->selectedPaymentMethodSlug === 'usdt-trc20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-2 mb-1.5 rounded-md text-[#FFFFFF]">
+                                class="{{ $this->selectedPaymentMethodSlug === 'usdt-trc20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-5.5 mb-1.5 rounded-md text-[#FFFFFF]">
                                 <div class="flex-none">
                                     <div
                                         class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'usdt-trc20' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
@@ -118,7 +118,7 @@
                             </div>
                             <div wire:click="selectPaymentMethod('usdt-bep20')"
                                 @click.debounce.1000ms="$store.depositPage.proceedToDepositConfirmation($wire)"
-                                class="{{ $this->selectedPaymentMethodSlug === 'usdt-bep20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-2 mb-1.5 rounded-md text-[#FFFFFF]">
+                                class="{{ $this->selectedPaymentMethodSlug === 'usdt-bep20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-5.5 mb-1.5 rounded-md text-[#FFFFFF]">
                                 <div class="flex-none">
                                     <div
                                         class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'usdt-bep20' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
@@ -134,7 +134,7 @@
                             </div>
                             <div wire:click="selectPaymentMethod('usdt-erc20')"
                                 @click.debounce.1000ms="$store.depositPage.proceedToDepositConfirmation($wire)"
-                                class="{{ $this->selectedPaymentMethodSlug === 'usdt-erc20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-2 mb-1.5 rounded-md text-[#FFFFFF]">
+                                class="{{ $this->selectedPaymentMethodSlug === 'usdt-erc20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-5.5 mb-1.5 rounded-md text-[#FFFFFF]">
                                 <div class="flex-none">
                                     <div
                                         class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'usdt-erc20' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
@@ -150,7 +150,7 @@
                             </div>
                             <div wire:click="selectPaymentMethod('usdt-polygon')"
                                 @click.debounce.1000ms="$store.depositPage.proceedToDepositConfirmation($wire)"
-                                class="{{ $this->selectedPaymentMethodSlug === 'usdt-polygon' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-2 mb-1.5 rounded-md text-[#FFFFFF]">
+                                class="{{ $this->selectedPaymentMethodSlug === 'usdt-polygon' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-5.5 mb-1.5 rounded-md text-[#FFFFFF]">
                                 <div class="flex-none">
                                     <div
                                         class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'usdt-polygon' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
@@ -166,7 +166,7 @@
                             </div>
                             <div wire:click="selectPaymentMethod('usdt-sol')"
                                 @click.debounce.1000ms="$store.depositPage.proceedToDepositConfirmation($wire)"
-                                class="{{ $this->selectedPaymentMethodSlug === 'usdt-sol' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-2 mb-1.5 rounded-md text-[#FFFFFF]">
+                                class="{{ $this->selectedPaymentMethodSlug === 'usdt-sol' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-5.5 mb-1.5 rounded-md text-[#FFFFFF]">
                                 <div class="flex-none">
                                     <div
                                         class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'usdt-sol' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
@@ -185,7 +185,7 @@
                         {{-- USDC --}}
                         <div class="relative">
                             <div x-on:click="$store.depositPage.toggleUSDCNetworksDropdown()"
-                                class="border border-[#26252a] bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 p-4 mb-1.5 rounded-md text-[#FFFFFF]">
+                                class="border border-[#26252a] bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-7 mb-1.5 rounded-md text-[#FFFFFF]">
                                 <div class="flex-none">
                                     <template x-if="!$store.depositPage.isUSDCNetworksDropdownOpen">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -228,7 +228,7 @@
                         <div class="relative pl-3" x-cloak x-show="$store.depositPage.isUSDCNetworksDropdownOpen">
                             <div wire:click="selectPaymentMethod('usdc-erc20')"
                                 @click.debounce.1000ms="$store.depositPage.proceedToDepositConfirmation($wire)"
-                                class="{{ $this->selectedPaymentMethodSlug === 'usdc-erc20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-2 mb-1.5 rounded-md text-[#FFFFFF]">
+                                class="{{ $this->selectedPaymentMethodSlug === 'usdc-erc20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-5.5 mb-1.5 rounded-md text-[#FFFFFF]">
                                 <div class="flex-none">
                                     <div
                                         class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'usdc-erc20' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
@@ -244,7 +244,7 @@
                             </div>
                             <div wire:click="selectPaymentMethod('usdc-bep20')"
                                 @click.debounce.1000ms="$store.depositPage.proceedToDepositConfirmation($wire)"
-                                class="{{ $this->selectedPaymentMethodSlug === 'usdc-bep20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-2 mb-1.5 rounded-md text-[#FFFFFF]">
+                                class="{{ $this->selectedPaymentMethodSlug === 'usdc-bep20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-5.5 mb-1.5 rounded-md text-[#FFFFFF]">
                                 <div class="flex-none">
                                     <div
                                         class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'usdc-bep20' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
@@ -260,7 +260,7 @@
                             </div>
                             <div wire:click="selectPaymentMethod('usdc-sol')"
                                 @click.debounce.1000ms="$store.depositPage.proceedToDepositConfirmation($wire)"
-                                class="{{ $this->selectedPaymentMethodSlug === 'usdc-sol' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-2 mb-1.5 rounded-md text-[#FFFFFF]">
+                                class="{{ $this->selectedPaymentMethodSlug === 'usdc-sol' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-5.5 mb-1.5 rounded-md text-[#FFFFFF]">
                                 <div class="flex-none">
                                     <div
                                         class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'usdc-sol' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
@@ -276,7 +276,7 @@
                             </div>
                             <div wire:click="selectPaymentMethod('usdc-trc20')"
                                 @click.debounce.1000ms="$store.depositPage.proceedToDepositConfirmation($wire)"
-                                class="{{ $this->selectedPaymentMethodSlug === 'usdc-trc20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-2 mb-1.5 rounded-md text-[#FFFFFF]">
+                                class="{{ $this->selectedPaymentMethodSlug === 'usdc-trc20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-5.5 mb-1.5 rounded-md text-[#FFFFFF]">
                                 <div class="flex-none">
                                     <div
                                         class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'usdc-trc20' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
@@ -292,7 +292,7 @@
                             </div>
                             <div wire:click="selectPaymentMethod('usdc-polygon')"
                                 @click.debounce.1000ms="$store.depositPage.proceedToDepositConfirmation($wire)"
-                                class="{{ $this->selectedPaymentMethodSlug === 'usdc-polygon' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-2 mb-1.5 rounded-md text-[#FFFFFF]">
+                                class="{{ $this->selectedPaymentMethodSlug === 'usdc-polygon' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-5.5 mb-1.5 rounded-md text-[#FFFFFF]">
                                 <div class="flex-none">
                                     <div
                                         class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'usdc-polygon' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
@@ -310,7 +310,7 @@
 
                         <div wire:click="selectPaymentMethod('solana')"
                             @click.debounce.1000ms="$store.depositPage.proceedToDepositConfirmation($wire)"
-                            class="{{ $this->selectedPaymentMethodSlug === 'solana' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 p-4 mb-1.5 rounded-md text-[#FFFFFF]">
+                            class="{{ $this->selectedPaymentMethodSlug === 'solana' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-7 mb-1.5 rounded-md text-[#FFFFFF]">
                             <div class="flex-none">
                                 <div
                                     class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'solana' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
@@ -326,7 +326,7 @@
 
                         <div wire:click="selectPaymentMethod('litecoin')"
                             @click.debounce.1000ms="$store.depositPage.proceedToDepositConfirmation($wire)"
-                            class="{{ $this->selectedPaymentMethodSlug === 'litecoin' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 p-4 mb-1.5 rounded-md text-[#FFFFFF]">
+                            class="{{ $this->selectedPaymentMethodSlug === 'litecoin' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-7 mb-1.5 rounded-md text-[#FFFFFF]">
                             <div class="flex-none">
                                 <div
                                     class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'litecoin' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
@@ -342,7 +342,7 @@
 
                         <div wire:click="selectPaymentMethod('binance-coin')"
                             @click.debounce.1000ms="$store.depositPage.proceedToDepositConfirmation($wire)"
-                            class="{{ $this->selectedPaymentMethodSlug === 'binance-coin' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 p-4 mb-1.5 rounded-md text-[#FFFFFF]">
+                            class="{{ $this->selectedPaymentMethodSlug === 'binance-coin' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-7 mb-1.5 rounded-md text-[#FFFFFF]">
                             <div class="flex-none">
                                 <div
                                     class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'binance-coin' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
@@ -358,7 +358,7 @@
 
                         <div wire:click="selectPaymentMethod('tron')"
                             @click.debounce.1000ms="$store.depositPage.proceedToDepositConfirmation($wire)"
-                            class="{{ $this->selectedPaymentMethodSlug === 'tron' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 p-4 mb-1.5 rounded-md text-[#FFFFFF]">
+                            class="{{ $this->selectedPaymentMethodSlug === 'tron' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-7 mb-1.5 rounded-md text-[#FFFFFF]">
                             <div class="flex-none">
                                 <div
                                     class="size-4 rounded-full {{ $this->selectedPaymentMethodSlug === 'tron' ? 'border-4 border-[#1E90FF]' : 'border border-[#a4a4a4]' }}">
