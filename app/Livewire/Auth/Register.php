@@ -51,7 +51,7 @@ class Register extends Component
   {
     try {
       if (is_null($this->gRecaptchaResponse)) {
-        $this->dispatch('login-error', message: 'Please confirm you are not a robot.')->self();
+        $this->dispatch('signup-error', message: 'Please confirm you are not a robot.')->self();
       }
 
       $recatpchaResponse = Http::get("https://www.google.com/recaptcha/api/siteverify", [
@@ -85,7 +85,7 @@ class Register extends Component
           'ref' => $this->ref
         ]);
       } else {
-        $this->dispatch('login-error', message: 'Please confirm you are not a robot.')->self();
+        $this->dispatch('signup-error', message: 'Please confirm you are not a robot.')->self();
         return redirect()->back();
       }
     } catch (\Exception $e) {
