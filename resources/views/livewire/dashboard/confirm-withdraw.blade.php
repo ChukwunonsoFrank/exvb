@@ -4,10 +4,9 @@
         <div class="lg:h-full lg:flex-1 lg:px-96 lg:pt-6">
             <div class="pt-4 lg:h-full lg:pb-24 lg:overflow-scroll scrollbar-hide">
                 <div class="p-4 bg-dim rounded-lg border border-[#323335]">
-                    <div class="flex items-center gap-x-2 mb-3 text-left pb-2 lg:pt-4">
+                    <div class="flex items-center gap-x-2 mb-2 text-left lg:pt-4">
                         <div class="flex-none">
-                            <div wire:click="back()"
-                                class="flex items-center justify-center size-8 bg-dim rounded-full border border-[#323335]">
+                            <div wire:click="back()" class="flex items-center justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
                                     fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"
                                     stroke-linejoin="round" class="lucide lucide-arrow-left-icon lucide-arrow-left">
@@ -19,11 +18,10 @@
                     </div>
 
                     <div class="flex items-center gap-x-2 mb-3 text-left pb-2 lg:pt-4">
-                        <div class="-mt-0.5">
-                            <img class="inline" src="{{ asset('storage/' . $this->iconUrl) }}">
-                        </div>
-                        <div>
-                            <h1 class="inline text-white text-lg md:text-xl lg:text-2xl font-bold">Withdraw with
+                        <div class="flex-none">
+                            <h1 class="text-white text-lg md:text-xl lg:text-2xl font-bold">Withdraw with
+                                <img class="inline-block -mt-1 align-middle"
+                                    src="{{ asset('storage/' . $this->iconUrl) }}">
                                 {{ $this->method }}
                             </h1>
                         </div>
@@ -33,7 +31,7 @@
                         <p class="text-base font-medium text-[#a4a4a4]">Payment Details</p>
                     </div>
 
-                    <div class="mb-8">
+                    <div class="mb-4">
                         <p class="text-sm font-semibold text-white mb-2">Amount to receive</p>
                         <div class="flex items-center gap-x-16">
                             <div class="flex-1 text-wrap">
@@ -42,7 +40,7 @@
                         </div>
                     </div>
 
-                    <div class="mb-8">
+                    <div class="mb-4">
                         <p class="text-sm font-semibold text-white mb-2">Payment address</p>
                         <div class="flex items-center gap-x-16">
                             <div class="flex-1 overflow-x-auto">
