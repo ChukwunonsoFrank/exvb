@@ -131,7 +131,7 @@
                                 </svg>
                             </div>
                             <div class="ms-3">
-                                <div class="mt-1 text-sm text-zinc-300">
+                                <div class="text-sm text-zinc-300">
                                     After making your payment, click on the "<span class="font-bold">I have
                                         paid</span>" button below.
                                 </div>
@@ -158,7 +158,7 @@
                                 </svg>
                             </div>
                             <div class="ms-3">
-                                <div class="mt-1 text-sm text-zinc-300">
+                                <div class="text-sm text-zinc-300">
                                     Only send {{ $this->method }} to this wallet address.
                                 </div>
                             </div>
