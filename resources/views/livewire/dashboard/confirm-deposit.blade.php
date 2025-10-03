@@ -5,7 +5,7 @@
             <div class="pt-4 lg:h-full lg:pb-24 lg:overflow-scroll scrollbar-hide">
                 <div class="p-4 bg-dim rounded-lg border border-[#323335]">
                     <div class="flex items-center gap-x-3 mb-3 text-left pb-2 lg:pt-4">
-                        <div class="flex-none">
+                        {{-- <div class="flex-none">
                             <div wire:click="back()" class="flex items-center justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
                                     fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"
@@ -14,7 +14,7 @@
                                     <path d="M19 12H5" />
                                 </svg>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="flex-none">
                             <h1 class="text-white text-lg md:text-xl lg:text-2xl font-bold">Deposit with
                                 <img class="inline-block -mt-1 align-middle"
