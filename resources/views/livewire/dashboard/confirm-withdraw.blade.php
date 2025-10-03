@@ -4,7 +4,7 @@
         <div class="lg:h-full lg:flex-1 lg:px-96 lg:pt-6">
             <div class="pt-4 lg:h-full lg:pb-24 lg:overflow-scroll scrollbar-hide">
                 <div class="p-4 bg-dim rounded-lg border border-[#323335]">
-                    <div class="flex items-center gap-x-2 mb-2 text-left lg:pt-4">
+                    <div class="flex items-center gap-x-3 mb-3 text-left pb-2 lg:pt-4">
                         <div class="flex-none">
                             <div wire:click="back()" class="flex items-center justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
@@ -15,9 +15,6 @@
                                 </svg>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="flex items-center gap-x-2 mb-3 text-left pb-2 lg:pt-4">
                         <div class="flex-none">
                             <h1 class="text-white text-lg md:text-xl lg:text-2xl font-bold">Withdraw with
                                 <img class="inline-block -mt-1 align-middle"
