@@ -29,7 +29,7 @@
                             </span>
                         @endif
                     </div>
-                    <div class="flex-1">
+                    {{-- <div class="flex-1">
                         @if (!$this->isKycPending && $this->kycStatus === 'Not verified')
                             <p class="text-xs text-white">Your current verification level: (Not verified)</p>
                         @endif
@@ -39,7 +39,7 @@
                         @if ($this->kycStatus === 'Verified')
                             <p class="text-xs text-white">Your current verification level: (Verified)</p>
                         @endif
-                    </div>
+                    </div> --}}
                 </div>
 
                 <div class="mb-5">
