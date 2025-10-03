@@ -40,7 +40,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <p class="text-sm font-semibold text-white mb-2">Payment address</p>
+                        <p class="text-sm font-semibold text-white mb-2">Payment Address</p>
                         <div class="flex items-center gap-x-16">
                             <div class="flex-1 overflow-x-auto">
                                 <input id="address" type="text" id="hs-trailing-icon" name="hs-trailing-icon"
