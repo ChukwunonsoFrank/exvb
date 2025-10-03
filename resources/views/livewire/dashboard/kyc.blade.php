@@ -2,7 +2,7 @@
     <div class="lg:flex lg:h-full">
         <livewire:dashboard.partials.desktop-navbar />
         <div class="lg:h-full lg:flex-1 lg:px-96 lg:pt-6">
-            <div class="my-3 sticky top-0 bg-dashboard z-10 pb-2 lg:pt-4">
+            <div class="my-3 sticky top-0 bg-dashboard rounded-lg border border-[#323335] z-10 p-3 lg:pt-4">
                 <h1 class="text-white mb-2 text-lg md:text-xl lg:text-2xl font-semibold">Verify Your Identity</h1>
                 <p class="text-zinc-300 text-xs">For your security and to uniock full access, please complete your
                     verification.</p>
@@ -160,7 +160,8 @@
                     </div>
                     <div class="flex-1">
                         <p class="text-xs text-[#a4a4a4]">
-                            Your data is encrypted and stored securely; Verification may take 24 hours.
+                            Your data is encrypted and stored securely. Verification is fast, and usually done within 24
+                            hours.
                         </p>
                     </div>
                 </div>
