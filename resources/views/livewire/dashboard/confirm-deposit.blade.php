@@ -42,7 +42,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <p class="text-sm font-semibold text-white mb-2">Payment Address</p>
+                        <p class="text-sm font-semibold text-white mb-2">Wallet Address</p>
                         <div class="flex items-center gap-x-16">
                             <div class="flex-1 overflow-x-auto">
                                 <input id="address" type="text" id="hs-trailing-icon" name="hs-trailing-icon"
@@ -95,16 +95,74 @@
                     </div>
 
                     <div x-cloak x-show="$store.confirmDepositPage.isQRModalOpen"
-                        x-on:click="$store.confirmDepositPage.toggleQRModal()"
                         class="fixed top-0 left-0 h-svh w-full px-4 lg:px-96 pt-6 z-20">
                         <div class="absolute inset-0 h-svh w-full px-4 lg:px-96 pt-6 z-20 bg-dashboard opacity-85">
                         </div>
                         <div class="relative w-full h-full flex items-center justify-center z-30">
                             <div
-                                class="max-w-sm mx-auto flex items-center justify-center bg-dashboard border border-[#26252a] rounded-2xl pointer-events-auto">
-                                <div class="p-6">
-                                    <div class="w-24 h-24 bg-[#FFFFFF] p-2 flex rounded-lg">
-                                        <div wire:ignore class="w-36 h-36" id="qrcode"></div>
+                                class="max-w-sm mx-auto flex flex-col bg-dashboard border border-[#26252a] rounded-2xl pointer-events-auto">
+                                <div class="p-6 overflow-y-auto">
+                                    <div class="flex mb-6 items-center">
+                                        <div class="flex-1">
+                                            <h3 class="font-semibold text-white">
+                                                Payment details QR code
+                                            </h3>
+                                        </div>
+                                        <div class="flex-none">
+                                            <div class="size-4 flex justify-center items-center cursor-pointer"
+                                                x-on:click="$store.confirmDepositPage.toggleQRModal()">
+                                                <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg"
+                                                    width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                    stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round">
+                                                    <path d="M18 6 6 18"></path>
+                                                    <path d="m6 6 12 12"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-center mb-8">
+                                        <div class="size-52 bg-[#FFFFFF] p-2 flex rounded-lg">
+                                            <div wire:ignore class="size-52" id="qrcode"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4 text-left">
+                                        <p class="text-sm font-semibold text-white mb-2">Amount</p>
+                                        <div class="flex items-center">
+                                            <div class="flex-none text-wrap">
+                                                <p class="text-white font-light break-words">
+                                                    {{ $this->formatAmountToPay() }}</p>
+                                                <input id="amount" type="text" id="hs-trailing-icon"
+                                                    name="hs-trailing-icon" class="hidden"
+                                                    value="{{ $this->amountToPay }}">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <p class="text-sm font-semibold text-white mb-2">Wallet Address</p>
+                                        <div class="flex items-center gap-x-16">
+                                            <div class="flex-1 overflow-x-auto">
+                                                <input id="address" type="text" id="hs-trailing-icon"
+                                                    name="hs-trailing-icon" class="hidden"
+                                                    value="{{ $this->address }}">
+                                                <p class="text-white font-light break-words whitespace-normal"
+                                                    style="word-break: break-all;">{{ $this->address }}</p>
+                                            </div>
+                                            <div wire:click="sendDepositIntentNotification()"
+                                                x-on:click="$store.confirmDepositPage.copyWalletAddress()"
+                                                class="flex-none flex items-center gap-x-1.5 cursor-pointer">
+                                                <span class="text-sm text-white font-light">Copy</span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="#FFFFFF"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="js-clipboard-default size-4 group-hover:rotate-6 transition lucide lucide-copy-icon lucide-copy">
+                                                    <rect width="14" height="14" x="8" y="8" rx="2"
+                                                        ry="2" />
+                                                    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                                                </svg>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -117,9 +175,9 @@
                         </div>
                         <div class="relative w-full h-full flex items-center justify-center z-30">
                             <div
-                                class="max-w-sm mx-auto flex flex-col bg-dashboard border border-[#26252a] rounded-2xl pointer-events-auto">
-                                <div class="p-6 overflow-y-auto text-center">
-                                    <div class="flex justify-center mb-8">
+                                class="max-w-sm mx-12 flex flex-col bg-dashboard border border-[#26252a] rounded-2xl pointer-events-auto">
+                                <div class="p-4 pb-5 overflow-y-auto text-center">
+                                    <div class="flex justify-center mb-4">
                                         <div>
                                             <svg width="48" height="48" viewBox="0 0 48 48" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -136,16 +194,16 @@
                                             </svg>
                                         </div>
                                     </div>
-                                    <p class="text-white font-medium text-base">
+                                    <p class="text-white font-medium text-base mb-4">
                                         Don't forget to click 'Yes, I've Paid' after sending your deposit.
                                     </p>
-                                    <div class="mt-6 grid grid-cols-1">
-                                        <div>
+                                    <div class="flex justify-center">
+                                        <div class="flex-none">
                                             <button type="button"
                                                 x-on:click="$store.confirmDepositPage.toggleClickOnPaidModal();"
                                                 type="button"
-                                                class="p-3 w-full text-center text-sm font-semibold rounded-lg border border-transparent bg-accent text-white cursor-pointer hover:bg-accent focus:outline-hidden focus:bg-accent disabled:opacity-50 disabled:pointer-events-none">
-                                                OK
+                                                class="py-3 px-5 text-center text-sm font-semibold rounded-lg border border-transparent bg-accent text-white cursor-pointer hover:bg-accent focus:outline-hidden focus:bg-accent disabled:opacity-50 disabled:pointer-events-none">
+                                                Okay
                                             </button>
                                         </div>
                                     </div>
@@ -225,24 +283,41 @@
 <script>
     let lastToast = null;
 
-    function toastCopied() {
+    function toast(type, message) {
         if (lastToast) {
             lastToast.hideToast();
         }
 
-        const copiedToastMarkup = `
+        let toastMarkup = '';
+
+        if (type === 'info') {
+            toastMarkup = `
             <div class="flex items-center p-4">
                 <div class="shrink-0">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-info-icon lucide-info"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
                 </div>
                 <div class="ms-3 flex-1">
-                    <p class="text-xs font-semibold text-white">Copied</p>
+                    <p class="text-xs font-semibold text-white">${message}</p>
                 </div>
             </div>
         `;
+        }
+
+        if (type === 'deposit-error') {
+            toastMarkup = `
+            <div class="flex items-center p-4">
+                <div class="shrink-0">
+                    <svg class="shrink-0 size-4 text-red-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-alert-icon lucide-shield-alert"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+                </div>
+                <div class="ms-3 flex-1">
+                    <p class="text-xs font-semibold text-white">${message}</p>
+                </div>
+            </div>
+            `;
+        }
 
         lastToast = Toastify({
-            text: copiedToastMarkup,
+            text: toastMarkup,
             className: "hs-toastify-on:opacity-100 opacity-0 absolute top-0 start-1/2 -translate-x-1/2 z-90 w-4/5 md:w-1/2 lg:w-1/4 transition-all duration-300 bg-dim border border-[#26252a] text-sm text-white rounded-xl shadow-lg [&>.toast-close]:hidden",
             duration: 4000,
             close: true,
@@ -256,6 +331,7 @@
         Alpine.store('confirmDepositPage', {
             isQRModalOpen: false,
             isClickOnPaidModalOpen: false,
+            isClickOnPaidViewedOnce: false,
             init() {
                 this.generateQRCode()
             },
@@ -272,9 +348,13 @@
                 copyText.select();
                 copyText.setSelectionRange(0, 99999); // For mobile devices
                 navigator.clipboard.writeText(copyText.value);
-                toastCopied();
+                toast('info', 'Copied');
                 setTimeout(() => {
+                    if (this.isClickOnPaidViewedOnce) {
+                        return;
+                    }
                     this.isClickOnPaidModalOpen = true;
+                    this.isClickOnPaidViewedOnce = true;
                 }, 1000);
             },
             toggleQRModal() {
@@ -287,24 +367,7 @@
 @script
     <script>
         $wire.on('deposit-error', (event) => {
-            const toastMarkup = `
-                <div class="flex items-center p-4">
-                    <div class="shrink-0">
-                        <svg class="shrink-0 size-4 text-red-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-alert-icon lucide-shield-alert"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
-                    </div>
-                    <div class="ms-3 flex-1">
-                        <p class="text-xs font-semibold text-white">${event.message}</p>
-                    </div>
-                </div>
-            `;
-
-            Toastify({
-                text: toastMarkup,
-                className: "hs-toastify-on:opacity-100 opacity-0 absolute top-0 start-1/2 -translate-x-1/2 z-90 w-4/5 md:w-1/2 lg:w-1/4 transition-all duration-300 bg-dim border border-[#26252a] text-sm text-white rounded-xl shadow-lg [&>.toast-close]:hidden",
-                duration: 4000,
-                close: true,
-                escapeMarkup: false
-            }).showToast();
+            toast('deposit-error', event.message);
         });
     </script>
 @endscript
