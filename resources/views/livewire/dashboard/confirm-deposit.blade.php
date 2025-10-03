@@ -16,7 +16,7 @@
                             </div>
                         </div>
                         <div class="flex-none">
-                            <h1 class="text-white text-lg md:text-xl lg:text-2xl font-bold">Pay with
+                            <h1 class="text-white text-lg md:text-xl lg:text-2xl font-bold">Deposit with
                                 <img class="inline-block -mt-1 align-middle"
                                     src="{{ asset('storage/' . $this->iconUrl) }}">
                                 {{ $this->method }}
