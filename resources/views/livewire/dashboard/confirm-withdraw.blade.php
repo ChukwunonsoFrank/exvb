@@ -2,7 +2,7 @@
     <div class="lg:flex lg:h-full">
         <livewire:dashboard.partials.desktop-navbar />
         <div class="lg:h-full lg:flex-1 lg:px-96 lg:pt-6">
-            <div class="pt-4 lg:h-full lg:pb-24 lg:overflow-scroll scrollbar-hide">
+            <div class="pt-2 lg:h-full lg:pb-24 lg:overflow-scroll scrollbar-hide">
                 <div class="flex items-center mb-2">
                     <div class="flex-none">
                         <div wire:click="back()" class="flex items-center justify-center">
