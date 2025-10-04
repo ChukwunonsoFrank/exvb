@@ -135,9 +135,15 @@
                                                         width="24" height="auto"
                                                         src="wp-content/uploads/2025/03/plaform.svg">
                                                 </div>
-                                                <h2 class="main-block_child"><span
-                                                        class="purple-gradient">AI Bot</span> trading.</h2>
-                                                <p class="main-block_child">Automate your trades and take advantage of leverage using our advanced AI trading feature. Our intelligent algorithms operate 24/7, pinpointing opportunities, executing trades, and generating profits while you're away. Experience hands-free trading with precise strategies, robust risk controls, and live performance monitoring. Let smart automation handle the complexities of trading for you.</p>
+                                                <h2 class="main-block_child"><span class="purple-gradient">AI
+                                                        Bot</span> trading.</h2>
+                                                <p class="main-block_child">Automate your trades and take advantage of
+                                                    leverage using our advanced AI trading feature. Our intelligent
+                                                    algorithms operate 24/7, pinpointing opportunities, executing
+                                                    trades, and generating profits while you're away. Experience
+                                                    hands-free trading with precise strategies, robust risk controls,
+                                                    and live performance monitoring. Let smart automation handle the
+                                                    complexities of trading for you.</p>
                                                 <!-- Refactored Button Rendering -->
                                                 <div class="button-wrapper main-block_child justify-start">
 
@@ -154,150 +160,6 @@
                             <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-ed35d4f"
                                 data-id="ed35d4f" data-element_type="column">
                                 <div class="elementor-widget-wrap">
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <section
-                        class="elementor-section elementor-inner-section elementor-element elementor-element-2e20c83 elementor-section-full_width elementor-section-height-default elementor-section-height-default"
-                        data-id="2e20c83" data-element_type="section">
-                        <div class="elementor-container elementor-column-gap-default">
-                            <div class="elementor-column elementor-col-100 elementor-inner-column elementor-element elementor-element-c882fc1"
-                                data-id="c882fc1" data-element_type="column">
-                                <div class="elementor-widget-wrap elementor-element-populated">
-                                    <div class="elementor-element elementor-element-740649b elementor-widget elementor-widget-shortcode"
-                                        data-id="740649b" data-element_type="widget"
-                                        data-widget_type="shortcode.default">
-                                        <div class="elementor-widget-container">
-                                            <div class="elementor-shortcode">
-                                                <div class="platform">
-                                                    <div class="chart-panel tl-grey-mask">
-                                                        <div class="chart-area">
-                                                            <svg version="1.1" id="area"
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-                                                                y="0px" viewBox="0 0 1006.2 693.4"
-                                                                style="enable-background:new 0 0 1006.2 693.4;"
-                                                                xml:space="preserve">
-                                                                <style type="text/css">
-                                                                    .st0 {
-                                                                        fill: none;
-                                                                        stroke: #4D7BFF;
-                                                                        stroke-width: 3;
-                                                                    }
-
-                                                                    .st1 {
-                                                                        fill: url(#SVGID_1_);
-                                                                    }
-
-                                                                    .fill-mask {
-                                                                        fill: white;
-                                                                    }
-
-                                                                    .st2 {
-                                                                        fill: #4D7BFF;
-                                                                    }
-                                                                </style>
-                                                                <defs>
-                                                                    <mask id="fillMask">
-                                                                        <rect class="fill-mask" x="0" y="0"
-                                                                            width="0" height="100%" />
-                                                                    </mask>
-                                                                </defs>
-                                                                <path style="opacity:0" class="st0" d="M-0.2,194.5l15.5,12l19.5-35l16.5,23l20,12l19,6l37.5,5.5l19-5.5l20,14l37.5-5l18,8.5l20,19.5l19-19.5l18.5,8
-                l19.5-19l19,57.5h19l18-17l20,29l21-13.5l16.5-12.5l18.5-102l38.5-58.5l18.5,30.5l20-7l18.5-17.5l19,31l19-10.5l19,23.5l19,8.5
-                l19,29h18.5l19.5-32l19,23l21.5-26.5l17-23l18.5-15l19-71l18.5-5.5L792.8,72l19-24l18.5-43.5l39.5,100l17.5,35l19,95l38,101.5l38-60
-                l20,13.5" />
-                                                                <linearGradient id="SVGID_1_"
-                                                                    gradientUnits="userSpaceOnUse" x1="501.55"
-                                                                    y1="202.1129" x2="501.55" y2="891.1129"
-                                                                    gradientTransform="matrix(1 0 0 1 0 -197.6129)">
-                                                                    <stop offset="0"
-                                                                        style="stop-color:#3461FF;stop-opacity:0.4" />
-                                                                    <stop offset="1"
-                                                                        style="stop-color:#3461FF;stop-opacity:0" />
-                                                                </linearGradient>
-                                                                <path class="st1" d="M15.8,206.5l-15.5-12v499h1002.5v-404l-20-13.5l-38,60l-38-101.5l-19-95l-17.5-35l-39.5-100L812.3,48l-19,24
-                l-19.5-32.5L755.3,45l-19,71l-18.5,15l-17,23l-21.5,26.5l-19-23l-19.5,32h-18.5l-19-29l-19-8.5l-19-23.5l-19,10.5l-19-31l-18.5,17.5
-                l-20,7L470.3,102l-38.5,58.5l-18.5,102L396.8,275l-21,13.5l-20-29l-18,17h-19l-19-57.5l-19.5,19l-18.5-8l-19,19.5l-20-19.5l-18-8.5
-                l-37.5,5l-20-14l-19,5.5l-37.5-5.5l-19-6l-20-12l-16.5-23L15.8,206.5z" mask="url(#fillMask)" />
-                                                                <circle class="st2" cx="1001.6" cy="289.2"
-                                                                    r="4.2" />
-                                                            </svg>
-
-
-                                                        </div>
-                                                        <div class="take-profit on-chart">
-                                                            <div class="price-box buy-default">
-                                                                <div class="price">TP USD$ 247.07 / 3.53%</div>
-                                                                <div class="cancel"></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="order-position on-chart">
-                                                            <div class="price-box">
-                                                                <div class="price">USD$ 33.80</div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="stop-loss on-chart">
-                                                            <div class="price-box sell-default">
-                                                                <div class="price">SL -USD$ 127.50 / -1.64%</div>
-                                                                <div class="cancel"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="order-panel tl-grey-mask">
-                                                        <div class="direction-type tabs grid column-2 column-mobile-2">
-                                                            <div class="tab sell-default">Sell</div>
-                                                            <div class="tab selected buy-default">Buy</div>
-                                                        </div>
-                                                        <div class="order-type tabs grid column-2 column-mobile-2">
-                                                            <div class="tab selected">Market</div>
-                                                            <div class="tab ">Pending</div>
-                                                        </div>
-                                                        <div class="order-type grid column-2 column-mobile-2">
-                                                            <div class="field checkbox checked"
-                                                                style="margin-bottom:unset"><span
-                                                                    class="trail">Trail</span><span>Stop
-                                                                    Loss</span><span class="checkmark"></span></div>
-                                                            <div class="field checkbox">Take profit <span
-                                                                    class="checkmark"></span></div>
-                                                        </div>
-                                                        <div class="sltp-calculator grid column-3 column-mobile-3"
-                                                            style="margin-top:.5em">
-                                                            <div class="left column">
-                                                                <div class="field input active">1.06956</div>
-                                                                <div class="field input">20</div>
-                                                                <div class="field input">20</div>
-                                                                <div class="field input">20</div>
-                                                            </div>
-                                                            <div class="center column">
-                                                                <div class=""></div>
-                                                                <div class="field">Price</div>
-                                                                <div class="field">Ticks</div>
-                                                                <div class="field">P&L</div>
-                                                                <div class="field">Balance</div>
-                                                            </div>
-                                                            <div class="right column">
-                                                                <div class="field input disabled">420</div>
-                                                                <div class="field input disabled">20</div>
-                                                                <div class="field input disabled">20</div>
-                                                                <div class="field input disabled">20</div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="size-wrapper grid column-2 column-mobile-2">
-                                                            <div class="field checkbox checked"
-                                                                style="margin-bottom:0">Risk <span
-                                                                    class="checkmark"></span></div>
-                                                            <div class="field input disabled">0.5 lots</div>
-                                                        </div>
-                                                        <div class="buy-default-button">
-                                                            BUY 20 @ 1.07966
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -333,13 +195,15 @@
                                                 </div>
                                                 <h2 class="main-block_child">Quick deposits and withdrawals.
                                                 </h2>
-                                                <p class="main-block_child">Get instant deposits with our streamlined funding system. Top up your account quickly and never miss a trading opportunity. Our secure and efficient process ensures your funds are available exactly when you need them.</p>
+                                                <p class="main-block_child">Get instant deposits with our streamlined
+                                                    funding system. Top up your account quickly and never miss a trading
+                                                    opportunity. Our secure and efficient process ensures your funds are
+                                                    available exactly when you need them.</p>
                                                 <!-- Refactored Button Rendering -->
                                                 <div class="button-wrapper main-block_child justify-start">
 
                                                     <a data-analytics-label="Homepage Start trading CTA - Hub"
-                                                        aria-label="Go to /hub page"
-                                                        href="{{ route('register') }}">
+                                                        aria-label="Go to /hub page" href="{{ route('register') }}">
                                                         <button class="btn-hub">
                                                             Start trading </button>
                                                     </a>
@@ -428,7 +292,10 @@
                                                         src="wp-content/uploads/2025/03/studio.svg">
                                                 </div>
                                                 <h2 class="main-block_child">Track and monitor trades.</h2>
-                                                <p class="main-block_child">Monitor your live trades directly on the chart with real-time precision. See your entry points, stop-losses, and take-profits instantly as the market moves. Stay informed and in control with clear, interactive visual tracking.</p>
+                                                <p class="main-block_child">Monitor your live trades directly on the
+                                                    chart with real-time precision. See your entry points, stop-losses,
+                                                    and take-profits instantly as the market moves. Stay informed and in
+                                                    control with clear, interactive visual tracking.</p>
                                                 <!-- Refactored Button Rendering -->
                                                 <div class="button-wrapper main-block_child justify-start">
 
@@ -608,7 +475,8 @@
                                                             <span class="elementor-toggle-icon-opened"><i
                                                                     class="elementor-toggle-icon-opened fas fa-caret-up"></i></span>
                                                         </span>
-                                                        <a href="#" class="elementor-toggle-title">How does Moxyai
+                                                        <a href="#" class="elementor-toggle-title">How does
+                                                            Moxyai
                                                             works?</a>
                                                     </div>
 
@@ -617,7 +485,8 @@
                                                         data-tab="1" role="tabpanel"
                                                         aria-labelledby="elementor-tab-title-3551">
                                                         <p>
-                                                            Moxyai is an automated AI trading bot that helps you trade the
+                                                            Moxyai is an automated AI trading bot that helps you trade
+                                                            the
                                                             forex and crypto
                                                             market easily with a proven scalping strategy powered by a
                                                             strong algorithm that
@@ -654,7 +523,8 @@
                                                         <p>
                                                             No, you don't need any trading skills to profit from this,
                                                             you can earn from
-                                                            Moxyai with zero knowledge in trading. The AI bot handles all
+                                                            Moxyai with zero knowledge in trading. The AI bot handles
+                                                            all
                                                             the trades for you
                                                             and make profits, all you need to do is start the robot.
                                                         </p>
