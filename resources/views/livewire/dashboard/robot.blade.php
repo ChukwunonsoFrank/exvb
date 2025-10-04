@@ -10,7 +10,7 @@
                     <div class="w-full flex flex-col bg-dashboard rounded-xl pointer-events-auto">
                         <div class="flex justify-between items-center py-3 px-4 border-b border-[#26252a]">
                             <h3 id="hs-vertically-centered-modal-label" class="font-bold text-white">
-                                How to use the Exvb Robot
+                                How to use the Moxyai Robot
                             </h3>
                             <button type="button"
                                 class="size-8 inline-flex justify-center items-center gap-x-2 rounded-full border border-transparent bg-dim text-white  focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none"
@@ -49,7 +49,7 @@
                                 </ul>
                             </div>
                             <div class="mt-4 text-white text-sm">
-                                Feel free to contact us if you need any help with using the Exvb Robot.
+                                Feel free to contact us if you need any help with using the Moxyai Robot.
                             </div>
                         </div>
                     </div>

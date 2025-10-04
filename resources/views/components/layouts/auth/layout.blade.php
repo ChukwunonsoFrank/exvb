@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Exvb - AI Trading Robot</title>
+    <title>Moxyai - AI Trading Robot</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -920,7 +920,7 @@
     <div class="disclaimer elementor-section elementor-section-boxed">
         <div class="elementor-container">
             <p style="font-size:14px">
-                Exvb © <span id="year">{{ now()->year }}</span>. All rights reserved.
+                Moxyai © <span id="year">{{ now()->year }}</span>. All rights reserved.
                 <br><br>Moxyai is available worldwide with no regional restrictions. Access to our platform is limited
                 to individuals aged 18 years and above. By using our services, you acknowledge that you understand these
                 risks and agree to our Terms & Conditions. Our platform operates with transparency, instant

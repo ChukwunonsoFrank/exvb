@@ -608,7 +608,7 @@
                                                             <span class="elementor-toggle-icon-opened"><i
                                                                     class="elementor-toggle-icon-opened fas fa-caret-up"></i></span>
                                                         </span>
-                                                        <a href="#" class="elementor-toggle-title">How does Exvb
+                                                        <a href="#" class="elementor-toggle-title">How does Moxyai
                                                             works?</a>
                                                     </div>
 
@@ -617,7 +617,7 @@
                                                         data-tab="1" role="tabpanel"
                                                         aria-labelledby="elementor-tab-title-3551">
                                                         <p>
-                                                            Exvb is an automated AI trading bot that helps you trade the
+                                                            Moxyai is an automated AI trading bot that helps you trade the
                                                             forex and crypto
                                                             market easily with a proven scalping strategy powered by a
                                                             strong algorithm that
@@ -654,7 +654,7 @@
                                                         <p>
                                                             No, you don't need any trading skills to profit from this,
                                                             you can earn from
-                                                            Exvb with zero knowledge in trading. The AI bot handles all
+                                                            Moxyai with zero knowledge in trading. The AI bot handles all
                                                             the trades for you
                                                             and make profits, all you need to do is start the robot.
                                                         </p>
@@ -763,7 +763,7 @@
                                                             <span class="elementor-toggle-icon-opened"><i
                                                                     class="elementor-toggle-icon-opened fas fa-caret-up"></i></span>
                                                         </span>
-                                                        <a href="#" class="elementor-toggle-title">Does Exvb
+                                                        <a href="#" class="elementor-toggle-title">Does Moxyai
                                                             increase my returns daily?</a>
                                                     </div>
 
@@ -836,7 +836,7 @@
                                                         data-tab="7" role="tabpanel"
                                                         aria-labelledby="elementor-tab-title-3557">
                                                         <p>
-                                                            Getting started with Exvb is very easy, you don't need any
+                                                            Getting started with Moxyai is very easy, you don't need any
                                                             technical knowledge
                                                             to earn from this. there are 4 strategies you can choose
                                                             from each of them has a
