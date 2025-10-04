@@ -30,9 +30,14 @@ class ConfirmWithdraw extends Component
 
   public $amountToPay;
 
+  public $fee = 1;
+
+  public $amountToReceive;
+
   public function mount()
   {
     $this->amountToPay = $this->amount / 100;
+    $this->amountToReceive = $this->amountToPay - $this->fee;
   }
 
   public function back()
@@ -45,22 +50,37 @@ class ConfirmWithdraw extends Component
     return '$' . strval($this->amountToPay) . ' USD';
   }
 
+  public function formatFee()
+  {
+    return '$' . strval($this->fee) . ' USD';
+  }
+
+  public function formatAmountToReceive()
+  {
+    return '$' . strval($this->amountToReceive) . ' USD';
+  }
+
+  public function serializeAmount(float $amount): int
+  {
+    return $amount * 100;
+  }
+
   public function generateOTP()
   {
     try {
       // Pass query parameters by appending them to the URL string:
       $twoFAQueryParams = http_build_query([
         'amount' => $this->amount,
+        'amountToReceive' => $this->serializeAmount($this->amountToReceive),
         'method' => $this->method,
         'address' => $this->address,
       ]);
 
       $otpQueryParams = http_build_query([
         'amount' => $this->amount,
+        'amountToReceive' => $this->serializeAmount($this->amountToReceive),
         'method' => $this->method,
         'address' => $this->address,
-        'iconUrl' => $this->iconUrl,
-        'slug' => $this->slug,
       ]);
 
       if (auth()->user()->two_factor_enabled) {

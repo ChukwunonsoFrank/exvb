@@ -40,6 +40,24 @@
                     </div>
 
                     <div class="mb-4">
+                        <p class="text-sm font-semibold text-white mb-2">Fee</p>
+                        <div class="flex items-center gap-x-16">
+                            <div class="flex-1 text-wrap">
+                                <p class="text-white font-light break-words">{{ $this->formatFee() }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <p class="text-sm font-semibold text-white mb-2">Amount to Receive</p>
+                        <div class="flex items-center gap-x-16">
+                            <div class="flex-1 text-wrap">
+                                <p class="text-white font-light break-words">{{ $this->formatAmountToReceive() }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
                         <p class="text-sm font-semibold text-white mb-2">Wallet Address</p>
                         <div class="flex items-center gap-x-16">
                             <div class="flex-1 overflow-x-auto">

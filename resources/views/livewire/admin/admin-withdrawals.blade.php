@@ -95,7 +95,7 @@
                                     </th>
                                     <th class="px-5 py-3 font-normal whitespace-nowrap sm:px-6">
                                         <div class="flex items-center">
-                                            <p class="text-theme-sm text-gray-500 dark:text-gray-400">Amount</p>
+                                            <p class="text-theme-sm text-gray-500 dark:text-gray-400">Amount To Send</p>
                                         </div>
                                     </th>
                                     <th class="px-5 py-3 font-normal whitespace-nowrap sm:px-6">
@@ -130,7 +130,7 @@
                                             <td class="px-5 py-3 whitespace-nowrap sm:px-6">
                                                 <div class="flex items-center">
                                                     <p class="text-theme-sm text-gray-700 dark:text-gray-400">
-                                                        @money($withdrawal['amount'] / 100)
+                                                        @money($withdrawal['received_amount'] / 100)
                                                     </p>
                                                 </div>
                                             </td>
@@ -198,7 +198,7 @@
                             </table>
                         </div>
                     </div>
-                    
+
                     <div class="flex justify-center mt-8">
                         <div>
                             {{ $withdrawals->links() }}

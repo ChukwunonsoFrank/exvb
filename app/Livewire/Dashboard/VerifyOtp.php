@@ -20,6 +20,9 @@ class VerifyOtp extends Component
   public $amount;
 
   #[Url]
+  public $amountToReceive;
+
+  #[Url]
   public $method;
 
   #[Url]
@@ -59,6 +62,7 @@ class VerifyOtp extends Component
       Withdrawal::create([
         'user_id' => auth()->user()->id,
         'amount' => $this->amount,
+        'received_amount' => $this->amountToReceive,
         'payment_method' => $this->method,
         'address' => $this->address,
         'status' => 'pending'
