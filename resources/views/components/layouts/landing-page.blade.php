@@ -774,77 +774,11 @@
                         <p>Unlock your potential.</p>
                         <div class="system-status-wrapper flex-wrap">
                             <div id="status-container"></div>
-                            <a rel="noreferrer noopener" href="status/index.html#live"
+                            <a rel="noreferrer noopener" href="{{ route('login') }}"
                                 class="status status-up">LIVE</a>
-                            <a rel="noreferrer noopener" href="status/index.html#demo"
+                            <a rel="noreferrer noopener" href="{{ route('login') }}"
                                 class="status status-up">DEMO</a>
                         </div>
-                    </div>
-                    <div class="social-media-container">
-                        <a class="social-icon" href="#"><svg id="Layer_1" data-name="Layer 1"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 913.68 913.67">
-                                <defs>
-                                    <style>
-                                        .cls-1 {
-                                            fill: #fff;
-                                        }
-                                    </style>
-                                    <linearGradient class="MyGradient">
-                                        <stop offset="5%" stop-color="#F60" />
-                                        <stop offset="95%" stop-color="#FF6" />
-                                    </linearGradient>
-                                </defs>
-                                <path class="cls-1"
-                                    d="M456.72,304.49c-83.89,0-152.34,68.46-152.34,152.34s68.45,152.35,152.34,152.35,152.34-68.46,152.34-152.35S540.61,304.49,456.72,304.49ZM913.63,456.83c0-63.08.58-125.6-3-188.57-3.54-73.14-20.23-138-73.71-191.54S718.55,6.55,645.41,3C582.32-.54,519.81,0,456.83,0S331.23-.54,268.26,3c-73.14,3.54-138,20.22-191.54,73.71S6.55,195.12,3,268.26c-3.55,63.09-3,125.6-3,188.57s-.57,125.6,3,188.58C6.55,718.55,23.23,783.46,76.72,837s118.4,70.17,191.54,73.71c63.09,3.55,125.6,3,188.57,3s125.6.58,188.58-3C718.55,907.12,783.46,890.43,837,837s70.17-118.4,73.71-191.54c3.66-63,3-125.49,3-188.58ZM456.72,691.23a234.4,234.4,0,1,1,234.4-234.4A234.07,234.07,0,0,1,456.72,691.23Zm244-423.65a54.67,54.67,0,1,1,.14,0Z" />
-                            </svg></a>
-                        <a class="social-icon" href="#"><svg id="Layer_1" data-name="Layer 1"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 619.52 430.78">
-                                <defs>
-                                    <style>
-                                        .cls-1 {
-                                            fill: #fff;
-                                        }
-                                    </style>
-                                </defs>
-                                <path class="cls-1"
-                                    d="M542.08,54.55C473.11,3.33,408.51.84,395.93.79L388.05,8.6C476.5,34.2,519.29,74.18,519.29,74.18c-57-28.5-108.37-42.76-159.74-48.52-37.12-5.76-74.24-2.73-105.6,0h-8.53c-20.06,0-62.72,8.54-119.9,31.36-19.3,8.4-30.64,14-31.33,14.32C95.51,70,138.39,28.25,231.12,5.78L225.36,0S154-2.71,77,54.21c0,0-77,134.14-77,299.52,0,0,42.67,74.24,159.7,77,0,0,17.07-22.74,34.35-42.75-65.71-20-91.31-59.9-91.31-59.9A139.79,139.79,0,0,1,117,336.66h2.56a3.39,3.39,0,0,1,2.56,1.28v.26a3.29,3.29,0,0,0,2.56,1.28c14.08,5.8,28.16,11.52,39.68,17.06a349,349,0,0,0,76.8,22.87c39.68,5.76,85.17,8.54,137,0,25.6-5.76,51.2-11.39,76.8-22.82,16.64-8.54,37.12-17.07,59.61-31.45,0,0-25.6,39.94-94.08,59.91,14.08,19.88,33.92,42.66,33.92,42.66,117.08-2.56,162.56-76.8,165.12-73.64C619.52,189,542.08,54.55,542.08,54.55Zm-331,247.94c-29.86,0-54.18-25.6-54.18-56.92,0-31.57,24.32-57.09,54.18-57.09l.17-.13c29.87,0,54,25.6,54,57C265.3,276.89,241,302.49,211.11,302.49Zm194,0c-29.87,0-54.19-25.6-54.19-56.92.09-31.57,24.45-57.09,54.19-57.09v-.13c30,0,54.19,25.6,54.19,57C459.31,276.89,435,302.49,405.12,302.49Z" />
-                            </svg></a>
-                        <a class="social-icon" href="#"><svg id="Layer_1" data-name="Layer 1"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 848.21 853.35">
-                                <defs>
-                                    <style>
-                                        .cls-1 {
-                                            fill: #fff;
-                                        }
-                                    </style>
-                                </defs>
-                                <path class="cls-1"
-                                    d="M785.49,0H62.72A61.86,61.86,0,0,0,0,61H0V792.33a61.87,61.87,0,0,0,62.71,61H785.49a61.87,61.87,0,0,0,62.72-61h0V61a61.85,61.85,0,0,0-62.7-61ZM257.28,714.25h-128v-384h128Zm-64-437.76a66.56,66.56,0,0,1,0-133.12h0a67,67,0,0,1,15.1,133.12A68.07,68.07,0,0,1,193.28,276.49ZM718.93,714.25h-128V508.17c0-51.63-18.34-85.34-64.85-85.34a70.42,70.42,0,0,0-65.71,46.51,85.3,85.3,0,0,0-4.26,31.15V713.82h-128v-384h128V384a128,128,0,0,1,115.62-64c85.34,0,147.2,55,147.2,173.22Z" />
-                            </svg></a>
-                        <a class="social-icon" href="#"><svg id="Layer_1" data-name="Layer 1"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 462.8">
-                                <defs>
-                                    <style>
-                                        .cls-1 {
-                                            fill: #fff;
-                                        }
-                                    </style>
-                                </defs>
-                                <path class="cls-1"
-                                    d="M403.23,0h78.5L310.22,196,512,462.8H354L230.26,301,88.67,462.8H10.11L193.56,253.12,0,0H162L273.85,147.88ZM375.67,415.8h43.51L138.36,44.53H91.68l284,371.28Z" />
-                            </svg></a>
-                        <a class="social-icon" href="#"><svg id="Layer_1" data-name="Layer 1"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 566.1">
-                                <defs>
-                                    <style>
-                                        .cls-1 {
-                                            fill: #fff;
-                                        }
-                                    </style>
-                                </defs>
-                                <path class="cls-1"
-                                    d="M633.85,0H166.15A166.15,166.15,0,0,0,0,166.15V400A166.15,166.15,0,0,0,166.15,566.1h467.7A166.15,166.15,0,0,0,800,400V166.15A166.15,166.15,0,0,0,633.85,0ZM521.48,294.43,302.73,398.76a8.79,8.79,0,0,1-12.57-7.93V175.64a8.78,8.78,0,0,1,12.75-7.83L521.67,278.66A8.79,8.79,0,0,1,521.48,294.43Z" />
-                            </svg></a>
                     </div>
                 </div>
                 <div class="col-1">
@@ -859,7 +793,10 @@
                                     href="/#faqs-section">FAQs</a></li>
                             <li id="menu-item-2374"
                                 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2374"><a
-                                    href="{{ route('login') }}">Sign Up</a></li>
+                                    href="{{ route('findus') }}">Find Us</a></li>
+                            <li id="menu-item-2374"
+                                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2374"><a
+                                    href="{{ route('register') }}">Sign Up</a></li>
                             <li id="menu-item-2374"
                                 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2374"><a
                                     href="{{ route('login') }}">Sign In</a></li>

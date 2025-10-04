@@ -52,6 +52,7 @@ use App\Livewire\Dashboard\Security\VerifyChangePasswordTwofa;
 use App\Livewire\Dashboard\Transaction;
 use App\Livewire\Dashboard\VerifyWithdrawTwofa;
 use App\Livewire\Dashboard\WithdrawAddressStep;
+use App\Livewire\FindUs;
 
 Route::get('/link-storage', function () {
   Artisan::call('storage:link');
@@ -69,7 +70,7 @@ Route::get('/cache', function () {
 });
 
 Route::get('/', Homepage::class)->name('home');
-Route::get('/about', About::class)->name('about');
+Route::get('/find-us', FindUs::class)->name('findus');
 Route::get('/terms', Terms::class)->name('terms');
 Route::get('/privacy', Privacy::class)->name('privacy');
 
