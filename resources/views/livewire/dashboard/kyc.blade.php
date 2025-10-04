@@ -9,7 +9,7 @@
             </div>
             <div class="lg:h-full lg:pb-24 lg:overflow-scroll scrollbar-hide">
                 <div class="mb-5 flex gap-x-3 items-center">
-                    <div class="flex-none">
+                    {{-- <div class="flex-none">
                         @if (!$this->isKycPending && $this->kycStatus === 'Not verified')
                             <span
                                 class="inline-flex items-center gap-x-1.5 py-1 px-2 rounded-lg text-xs font-semibold bg-[#282828] text-white">
@@ -28,7 +28,7 @@
                                 Verified
                             </span>
                         @endif
-                    </div>
+                    </div> --}}
                     {{-- <div class="flex-1">
                         @if (!$this->isKycPending && $this->kycStatus === 'Not verified')
                             <p class="text-xs text-white">Your current verification level: (Not verified)</p>

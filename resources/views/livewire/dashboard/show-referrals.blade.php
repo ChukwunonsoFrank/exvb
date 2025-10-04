@@ -108,7 +108,7 @@
 
                 <div class="my-8">
                     <div class="w-full space-y-2">
-                        <h1 class="text-white text-sm font-semibold">Referral link</h1>
+                        <h1 class="text-white text-sm font-semibold">Referral Link</h1>
                         <div>
                             <div class="relative">
                                 <input id="referral_code" type="text" class="hidden"

@@ -15,7 +15,7 @@ class Withdraw extends Component
 
   public string $amount = '';
 
-  public string $address = '';
+  public int $minimumWithdrawAmount = 25;
 
   public $paymentMethod;
 
@@ -49,7 +49,7 @@ class Withdraw extends Component
     return $amount * 100;
   }
 
-  public function confirmWithdraw()
+  public function proceedToAddressStep()
   {
     try {
       $pendingWithdrawals = Withdrawal::where(['user_id' => auth()->user()->id, 'status' => 'pending'])->first();
@@ -69,13 +69,14 @@ class Withdraw extends Component
         return;
       }
 
-      if (intval($this->amount) === 0) {
-        $this->dispatch('withdraw-error', message: 'Amount must be greater than 0')->self();
+      if (floatval($this->amount) < $this->minimumWithdrawAmount) {
+        $message = 'Minimum withdrawal is $' . strval($this->minimumWithdrawAmount);
+        $this->dispatch('withdraw-error', message: $message)->self();
         return;
       }
 
-      if ($this->address === '') {
-        $this->dispatch('withdraw-error', message: 'Wallet address field is empty')->self();
+      if (intval($this->amount) === 0) {
+        $this->dispatch('withdraw-error', message: 'Amount must be greater than 0')->self();
         return;
       }
 
@@ -85,10 +86,9 @@ class Withdraw extends Component
         return false;
       }
 
-      $this->redirectRoute('dashboard.withdraw.confirm', [
+      $this->redirectRoute('dashboard.withdraw.addressstep', [
         'amount' => $this->serializeAmount($this->amount),
         'method' => $this->paymentMethod['name'],
-        'address' => $this->address,
         'iconUrl' => $this->paymentMethod['icon_url'],
         'slug' => $this->paymentMethod['slug'],
       ]);

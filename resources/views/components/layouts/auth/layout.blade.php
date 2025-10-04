@@ -680,7 +680,7 @@
                                 href="/#faqs-section" data-analytics-label="Start trading">FAQs<span
                                     class="menu-item-description"></span></a> </li>
                         <li id='menu-item-4' class="menu-item menu-item-type-custom menu-item-object-custom"><a
-                                href="{{ route('register') }}" data-analytics-label="Start trading">Register<span
+                                href="{{ route('register') }}" data-analytics-label="Start trading">Sign Up<span
                                     class="menu-item-description"></span></a> </li>
                         <li id='menu-item-5' class="menu-item menu-item-type-custom menu-item-object-custom"><a
                                 href="{{ route('login') }}" data-analytics-label="Start trading">Login<span
@@ -716,7 +716,7 @@
                                 href="/#faqs-section" data-analytics-label="Start trading">FAQs<span
                                     class="menu-item-description"></span></a> </li>
                         <li id='menu-item-4' class="menu-item menu-item-type-custom menu-item-object-custom"><a
-                                href="{{ route('register') }}" data-analytics-label="Start trading">Register<span
+                                href="{{ route('register') }}" data-analytics-label="Start trading">Sign Up<span
                                     class="menu-item-description"></span></a> </li>
                         <li id='menu-item-5' class="menu-item menu-item-type-custom menu-item-object-custom"><a
                                 href="{{ route('login') }}" data-analytics-label="Start trading">Login<span
@@ -883,6 +883,9 @@
                                     href="/#faqs-section">FAQs</a></li>
                             <li id="menu-item-2374"
                                 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2374"><a
+                                    href="{{ route('login') }}">Sign Up</a></li>
+                            <li id="menu-item-2374"
+                                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2374"><a
                                     href="{{ route('login') }}">Sign In</a></li>
                             <li id="menu-item-1005"
                                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1005"><a
@@ -917,16 +920,11 @@
     <div class="disclaimer elementor-section elementor-section-boxed">
         <div class="elementor-container">
             <p style="font-size:14px">
-                Exvb © <span id="year">2023</span>. All rights reserved.
-                <br><br>*Neither this app or its contents should be regarded as professional, financial or investment
-                advice. This app is a suite of trading tools, meant to be used in connection with an account held by a
-                trader with their brokerage firm. If you intend on using this app for real trading, you should
-                understand how various financial products work and the risks you will be undertaking on your own.
-                <br><br>**By using this app you will have access to information of a general nature (i.e., that does not
-                address the circumstances of any particular individual). If you require further information, or
-                otherwise a more comprehensive or complete statement of the related matters and regulations, you should
-                seek the advice of a lawyer, your brokerage firm, or from a licensed financial service provider before
-                you start trading.
+                Exvb © <span id="year">{{ now()->year }}</span>. All rights reserved.
+                <br><br>Moxyai is available worldwide with no regional restrictions. Access to our platform is limited
+                to individuals aged 18 years and above. By using our services, you acknowledge that you understand these
+                risks and agree to our Terms & Conditions. Our platform operates with transparency, instant
+                deposits/withdrawals, and 24/7 support to ensure a secure trading environment.
             </p>
         </div>
     </div>

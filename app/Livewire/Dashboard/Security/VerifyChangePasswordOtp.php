@@ -1,29 +1,22 @@
 <?php
 
-namespace App\Livewire\Dashboard;
+namespace App\Livewire\Dashboard\Security;
 
 use App\Models\OtpToken;
 use App\Models\User;
-use App\Models\Withdrawal;
 use App\Notifications\TokenRequested;
-use App\Notifications\TransactionOccured;
-use App\Notifications\WithdrawalInitiated;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 
 #[Layout('components.layouts.app')]
 
-class VerifyOtp extends Component
+class VerifyChangePasswordOtp extends Component
 {
   #[Url]
-  public $amount;
-
-  #[Url]
-  public $method;
-
-  #[Url]
-  public $address;
+  public $password;
 
   public $token = '';
 
@@ -34,47 +27,37 @@ class VerifyOtp extends Component
     $this->generatedToken = OtpToken::where('user_id', auth()->user()->id)->first();
   }
 
-  public function createWithdrawal()
+  public function updatePassword()
   {
     try {
       if ($this->token === '') {
-        $this->dispatch('withdraw-error', message: 'OTP token field is empty')->self();
+        $this->dispatch('error-message', message: 'OTP token field is empty')->self();
         return;
       }
 
       if ($this->token !== $this->generatedToken['token']) {
         $message = 'Invalid OTP token';
-        $this->dispatch('withdraw-error', message: $message)->self();
+        $this->dispatch('error-message', message: $message)->self();
         return;
       }
 
       $expiresAt = $this->generatedToken['expires_at'];
       $now = now()->getTimestampMs();
+
       if ($now > $expiresAt) {
         $message = 'Expired OTP token. Click on "Resend code" to generate a new token.';
-        $this->dispatch('withdraw-error', message: $message)->self();
+        $this->dispatch('error-message', message: $message)->self();
         return;
       }
 
-      Withdrawal::create([
-        'user_id' => auth()->user()->id,
-        'amount' => $this->amount,
-        'payment_method' => $this->method,
-        'address' => $this->address,
-        'status' => 'pending'
+      Auth::user()->update([
+        'password' => Hash::make($this->password),
       ]);
 
-      $user = User::find(auth()->user()->id);
-      $user->notify(new WithdrawalInitiated(auth()->user()->name, strval($this->amount / 100)));
-
-      $admin = User::where('is_admin', 1)->first();
-      $admin->notify(new TransactionOccured('withdrawal', $user['name'], strval($this->amount / 100)));
-
-      session()->flash('message', 'Withdrawal successful. You will receive an email when your withdrawal has been processed.');
-
-      $this->redirectRoute('dashboard.transactions');
+      session()->flash('message', 'Password changed successfully');
+      $this->redirectRoute('dashboard.security.setup');
     } catch (\Exception $e) {
-      $this->dispatch('withdraw-error', message: $e->getMessage())->self();
+      $this->dispatch('error-message', message: $e->getMessage())->self();
     }
   }
 
@@ -98,12 +81,12 @@ class VerifyOtp extends Component
 
       $this->dispatch('token-generated', message: $message)->self();
     } catch (\Exception $e) {
-      $this->dispatch('withdraw-error', message: $e->getMessage())->self();
+      $this->dispatch('error-message', message: $e->getMessage())->self();
     }
   }
 
   public function render()
   {
-    return view('livewire.dashboard.verify-otp');
+    return view('livewire.dashboard.security.verify-change-password-otp');
   }
 }

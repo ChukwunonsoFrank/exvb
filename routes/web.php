@@ -42,12 +42,16 @@ use App\Livewire\Dashboard\ConnectedExchanges;
 use App\Livewire\Dashboard\Faqs;
 use App\Livewire\Dashboard\IdentityVerification;
 use App\Livewire\Dashboard\Security\ChangeEmail;
+use App\Livewire\Dashboard\Security\ChangePassword;
 use App\Livewire\Dashboard\Security\Setup;
 use App\Livewire\Dashboard\Security\Twofa\DisableTwofa;
 use App\Livewire\Dashboard\Security\Twofa\Secret;
 use App\Livewire\Dashboard\Security\Twofa\VerifyTwofa;
+use App\Livewire\Dashboard\Security\VerifyChangePasswordOtp;
+use App\Livewire\Dashboard\Security\VerifyChangePasswordTwofa;
 use App\Livewire\Dashboard\Transaction;
 use App\Livewire\Dashboard\VerifyWithdrawTwofa;
+use App\Livewire\Dashboard\WithdrawAddressStep;
 
 Route::get('/link-storage', function () {
   Artisan::call('storage:link');
@@ -78,6 +82,7 @@ Route::middleware(['auth', 'user'])->group(function () {
   Route::get('/dashboard/deposit', Deposit::class)->middleware(['auth', 'verified'])->name('dashboard.deposit');
   Route::get('/dashboard/deposit/confirm', ConfirmDeposit::class)->middleware(['auth', 'verified'])->name('dashboard.deposit.confirm');
   Route::get('/dashboard/withdraw', Withdraw::class)->middleware(['auth', 'verified'])->name('dashboard.withdraw');
+  Route::get('/dashboard/withdraw/addresssetp', WithdrawAddressStep::class)->middleware(['auth', 'verified'])->name('dashboard.withdraw.addressstep');
   Route::get('/dashboard/withdraw/confirm', ConfirmWithdraw::class)->middleware(['auth', 'verified'])->name('dashboard.withdraw.confirm');
   Route::get('/dashboard/withdraw/verifyotp', VerifyOtp::class)->middleware(['auth', 'verified'])->name('dashboard.withdraw.verifyotp');
   Route::get('/dashboard/withdraw/verifywithdrawtwofa', VerifyWithdrawTwofa::class)->middleware(['auth', 'verified'])->name('dashboard.withdraw.verifywithdrawtwofa');
@@ -87,6 +92,9 @@ Route::middleware(['auth', 'user'])->group(function () {
   Route::get('/dashboard/transactions', Transaction::class)->middleware(['auth', 'verified'])->name('dashboard.transactions');
   Route::get('/dashboard/connectedexchanges', ConnectedExchanges::class)->middleware(['auth', 'verified'])->name('dashboard.connectedexchanges');
   Route::get('/dashboard/security/changeemail', ChangeEmail::class)->middleware(['auth', 'verified'])->name('dashboard.security.changeemail');
+  Route::get('/dashboard/security/changepassword', ChangePassword::class)->middleware(['auth', 'verified'])->name('dashboard.security.changepassword');
+  Route::get('/dashboard/security/changepassword/verifyotp', VerifyChangePasswordOtp::class)->middleware(['auth', 'verified'])->name('dashboard.security.changepassword.verifyotp');
+  Route::get('/dashboard/security/changepassword/verifytwofa', VerifyChangePasswordTwofa::class)->middleware(['auth', 'verified'])->name('dashboard.security.changepassword.verifytwofa');
   Route::get('/dashboard/security/setup', Setup::class)->middleware(['auth', 'verified'])->name('dashboard.security.setup');
   Route::get('/dashboard/security/2fa/secret', Secret::class)->middleware(['auth', 'verified'])->name('dashboard.security.2fa.secret');
   Route::get('/dashboard/security/2fa/verifytwofa', VerifyTwofa::class)->middleware(['auth', 'verified'])->name('dashboard.security.2fa.verifytwofa');

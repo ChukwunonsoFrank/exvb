@@ -13,44 +13,47 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
-    public function register(): void
-    {
-        //
-    }
+  /**
+   * Register any application services.
+   */
+  public function register(): void
+  {
+    //
+  }
 
-    /**
-     * Bootstrap any application services.
-     */
-    public function boot(): void
-    {
-        Model::shouldBeStrict(! app()->isProduction());
+  /**
+   * Bootstrap any application services.
+   */
+  public function boot(): void
+  {
+    Model::shouldBeStrict(! app()->isProduction());
 
-        Date::use(CarbonImmutable::class);
+    Date::use(CarbonImmutable::class);
 
-        DB::prohibitDestructiveCommands(app()->isProduction());
+    DB::prohibitDestructiveCommands(app()->isProduction());
 
-        Blade::directive('money', function ($amount) {
-            return "<?php echo '$' . number_format($amount, 2, '.', ','); ?>";
-        });
+    Blade::directive('money', function ($amount) {
+      return "<?php echo '$' . number_format($amount, 2, '.', ','); ?>";
+    });
 
-        Blade::directive('maskEmail', function ($email) {
-            return "<?php
+    Blade::directive('maskEmail', function ($email) {
+      return "<?php
             // Remove quotes from the email variable
             \$email = trim($email, \"'\");
             \$atPosition = strpos(\$email, '@');
             \$name = substr(\$email, 0, \$atPosition);
             \$domain = substr(\$email, \$atPosition);
-            \$firstChar = substr(\$name, 0, 2);
-            \$maskedName = \$firstChar . str_repeat('*', strlen(\$name) - 1);
+            if (strlen(\$name) > 2) {
+          \$maskedName = substr(\$name, 0, 1) . str_repeat('*', strlen(\$name) - 2) . substr(\$name, -1);
+            } else {
+          \$maskedName = \$name;
+            }
             echo \$maskedName . \$domain;
         ?>";
-        });
+    });
 
-        Gate::define('viewPulse', function (User $user) {
-            return $user->isAdmin();
-        });
-    }
+    Gate::define('viewPulse', function (User $user) {
+      return $user->isAdmin();
+    });
+  }
 }

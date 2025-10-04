@@ -7,10 +7,10 @@
             </div>
             <div class="lg:h-full lg:pb-24 lg:overflow-scroll scrollbar-hide">
                 <div class="mb-4">
-                    <label for="input-label" class="block text-xs font-medium mb-2 text-zinc-300">Input Amount</label>
+                    <label for="input-label" class="block text-xs font-medium mb-2 text-zinc-300">Enter Amount</label>
                     <div class="relative">
                         <input wire:model="amount" x-model="$store.depositPage.amount" type="text"
-                            @input.debounce.1000ms="$store.depositPage.togglePaymentMethodSelect()"
+                            @input.debounce.1000ms="$store.depositPage.togglePaymentMethodSelect($wire)"
                             class="text-white border border-[#26252a] bg-transparent text-sm peer py-3.5 px-4 ps-11 block w-full rounded-lg sm:text-sm focus:outline-0 placeholder:text-zinc-500"
                             placeholder="0.00">
                         <div
@@ -509,20 +509,30 @@
 
             isPaymentMethodSelectVisible: false,
 
-            togglePaymentMethodSelect() {
+            togglePaymentMethodSelect(wire) {
                 if (this.amount === '' || this.amount === 0) {
-                    this.isPaymentMethodSelectVisible = false
-                    return
+                    this.isPaymentMethodSelectVisible = false;
+                    return;
                 }
-                this.isPaymentMethodSelectVisible = true
+
+                if (parseFloat(this.amount) < parseInt(wire.minimumDepositAmount) && parseFloat(wire
+                        .amount) !== 0) {
+                    console.log('ran');
+                    this.isPaymentMethodSelectVisible = false;
+                    let message = `Minimum deposit is $${wire.minimumDepositAmount}`;
+                    toast('deposit-error', message);
+                    return;
+                }
+
+                this.isPaymentMethodSelectVisible = true;
             },
 
             toggleUSDTNetworksDropdown() {
-                this.isUSDTNetworksDropdownOpen = !this.isUSDTNetworksDropdownOpen
+                this.isUSDTNetworksDropdownOpen = !this.isUSDTNetworksDropdownOpen;
             },
 
             toggleUSDCNetworksDropdown() {
-                this.isUSDCNetworksDropdownOpen = !this.isUSDCNetworksDropdownOpen
+                this.isUSDCNetworksDropdownOpen = !this.isUSDCNetworksDropdownOpen;
             },
 
             proceedToDepositConfirmation(wire) {

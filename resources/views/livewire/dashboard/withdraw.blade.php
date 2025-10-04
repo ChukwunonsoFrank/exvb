@@ -3,22 +3,23 @@
         <livewire:dashboard.partials.desktop-navbar />
         <div class="pb-6 lg:h-full lg:flex-1 lg:px-96 lg:pt-6">
             <div class="my-3 sticky top-0 bg-dashboard z-10 pb-2 lg:pt-4">
-                <h1 class="text-white text-lg md:text-xl lg:text-2xl font-semibold">Make a withdrawal</h1>
+                <h1 class="text-white text-lg md:text-xl lg:text-2xl font-semibold">Make a Withdrawal</h1>
             </div>
             <div class="lg:h-full lg:pb-24 lg:overflow-scroll scrollbar-hide">
                 <div class="mb-4">
-                    <label for="input-label" class="block text-xs font-medium mb-2 text-zinc-300">Amount</label>
+                    <label for="input-label" class="block text-xs font-medium mb-2 text-zinc-300">Enter Amount</label>
                     <div class="relative">
                         <input wire:model="amount" type="text"
-                            @input.debounce.1000ms="$store.withdrawPage.togglePaymentMethodSelect()"
+                            @input.debounce.1000ms="$store.withdrawPage.togglePaymentMethodSelect($wire)"
                             x-model="$store.withdrawPage.amount"
-                            class="text-white border border-[#26252a] bg-transparent text-sm peer py-3.5 px-4 ps-11 block w-full rounded-lg sm:text-sm focus:outline-0"
-                            placeholder="">
+                            class="text-white border border-[#26252a] bg-transparent text-sm peer py-3.5 px-4 ps-11 block w-full rounded-lg sm:text-sm focus:outline-0 placeholder:text-zinc-500"
+                            placeholder="0.00">
                         <div
                             class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-4 peer-disabled:opacity-50 peer-disabled:pointer-events-none">
                             <p class="text-white text-sm font-semibold">$</p>
                         </div>
                     </div>
+                    <p class="text-[10px] text-zinc-500 font-medium mt-1 ml-1">Minimum withdrawal is $25</p>
                 </div>
 
                 <div x-cloak x-show="$store.withdrawPage.isPaymentMethodSelectVisible" class="mb-5">
@@ -26,7 +27,7 @@
 
                     <div class="w-full overflow-scroll scrollbar-hide">
                         <div wire:click="selectPaymentMethod('bitcoin')"
-                            @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                            @click.debounce.1000ms="$store.withdrawPage.proceedToAddressStep($wire)"
                             class="{{ $this->selectedPaymentMethodSlug === 'bitcoin' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-7 mb-1.5 rounded-md text-[#FFFFFF]">
                             <div class="flex-none">
                                 <div
@@ -42,7 +43,7 @@
                         </div>
 
                         <div wire:click="selectPaymentMethod('ethereum')"
-                            @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                            @click.debounce.1000ms="$store.withdrawPage.proceedToAddressStep($wire)"
                             class="{{ $this->selectedPaymentMethodSlug === 'ethereum' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-7 mb-1.5 rounded-md text-[#FFFFFF]">
                             <div class="flex-none">
                                 <div
@@ -102,7 +103,7 @@
 
                         <div class="relative pl-3" x-cloak x-show="$store.withdrawPage.isUSDTNetworksDropdownOpen">
                             <div wire:click="selectPaymentMethod('usdt-trc20')"
-                                @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                                @click.debounce.1000ms="$store.withdrawPage.proceedToAddressStep($wire)"
                                 class="{{ $this->selectedPaymentMethodSlug === 'usdt-trc20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-4.5 mb-1.5 rounded-md text-[#FFFFFF]">
                                 <div class="flex-none">
                                     <div
@@ -118,7 +119,7 @@
                                 </div>
                             </div>
                             <div wire:click="selectPaymentMethod('usdt-bep20')"
-                                @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                                @click.debounce.1000ms="$store.withdrawPage.proceedToAddressStep($wire)"
                                 class="{{ $this->selectedPaymentMethodSlug === 'usdt-bep20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-4.5 mb-1.5 rounded-md text-[#FFFFFF]">
                                 <div class="flex-none">
                                     <div
@@ -134,7 +135,7 @@
                                 </div>
                             </div>
                             <div wire:click="selectPaymentMethod('usdt-erc20')"
-                                @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                                @click.debounce.1000ms="$store.withdrawPage.proceedToAddressStep($wire)"
                                 class="{{ $this->selectedPaymentMethodSlug === 'usdt-erc20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-4.5 mb-1.5 rounded-md text-[#FFFFFF]">
                                 <div class="flex-none">
                                     <div
@@ -150,7 +151,7 @@
                                 </div>
                             </div>
                             <div wire:click="selectPaymentMethod('usdt-polygon')"
-                                @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                                @click.debounce.1000ms="$store.withdrawPage.proceedToAddressStep($wire)"
                                 class="{{ $this->selectedPaymentMethodSlug === 'usdt-polygon' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-4.5 mb-1.5 rounded-md text-[#FFFFFF]">
                                 <div class="flex-none">
                                     <div
@@ -166,7 +167,7 @@
                                 </div>
                             </div>
                             <div wire:click="selectPaymentMethod('usdt-sol')"
-                                @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                                @click.debounce.1000ms="$store.withdrawPage.proceedToAddressStep($wire)"
                                 class="{{ $this->selectedPaymentMethodSlug === 'usdt-sol' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-4.5 mb-1.5 rounded-md text-[#FFFFFF]">
                                 <div class="flex-none">
                                     <div
@@ -228,7 +229,7 @@
 
                         <div class="relative pl-3" x-cloak x-show="$store.withdrawPage.isUSDCNetworksDropdownOpen">
                             <div wire:click="selectPaymentMethod('usdc-erc20')"
-                                @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                                @click.debounce.1000ms="$store.withdrawPage.proceedToAddressStep($wire)"
                                 class="{{ $this->selectedPaymentMethodSlug === 'usdc-erc20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-4.5 mb-1.5 rounded-md text-[#FFFFFF]">
                                 <div class="flex-none">
                                     <div
@@ -244,7 +245,7 @@
                                 </div>
                             </div>
                             <div wire:click="selectPaymentMethod('usdc-bep20')"
-                                @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                                @click.debounce.1000ms="$store.withdrawPage.proceedToAddressStep($wire)"
                                 class="{{ $this->selectedPaymentMethodSlug === 'usdc-bep20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-4.5 mb-1.5 rounded-md text-[#FFFFFF]">
                                 <div class="flex-none">
                                     <div
@@ -260,7 +261,7 @@
                                 </div>
                             </div>
                             <div wire:click="selectPaymentMethod('usdc-sol')"
-                                @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                                @click.debounce.1000ms="$store.withdrawPage.proceedToAddressStep($wire)"
                                 class="{{ $this->selectedPaymentMethodSlug === 'usdc-sol' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-4.5 mb-1.5 rounded-md text-[#FFFFFF]">
                                 <div class="flex-none">
                                     <div
@@ -276,7 +277,7 @@
                                 </div>
                             </div>
                             <div wire:click="selectPaymentMethod('usdc-trc20')"
-                                @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                                @click.debounce.1000ms="$store.withdrawPage.proceedToAddressStep($wire)"
                                 class="{{ $this->selectedPaymentMethodSlug === 'usdc-trc20' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-4.5 mb-1.5 rounded-md text-[#FFFFFF]">
                                 <div class="flex-none">
                                     <div
@@ -292,7 +293,7 @@
                                 </div>
                             </div>
                             <div wire:click="selectPaymentMethod('usdc-polygon')"
-                                @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                                @click.debounce.1000ms="$store.withdrawPage.proceedToAddressStep($wire)"
                                 class="{{ $this->selectedPaymentMethodSlug === 'usdc-polygon' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-4.5 mb-1.5 rounded-md text-[#FFFFFF]">
                                 <div class="flex-none">
                                     <div
@@ -310,7 +311,7 @@
                         </div>
 
                         <div wire:click="selectPaymentMethod('solana')"
-                            @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                            @click.debounce.1000ms="$store.withdrawPage.proceedToAddressStep($wire)"
                             class="{{ $this->selectedPaymentMethodSlug === 'solana' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-7 mb-1.5 rounded-md text-[#FFFFFF]">
                             <div class="flex-none">
                                 <div
@@ -326,7 +327,7 @@
                         </div>
 
                         <div wire:click="selectPaymentMethod('litecoin')"
-                            @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                            @click.debounce.1000ms="$store.withdrawPage.proceedToAddressStep($wire)"
                             class="{{ $this->selectedPaymentMethodSlug === 'litecoin' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-7 mb-1.5 rounded-md text-[#FFFFFF]">
                             <div class="flex-none">
                                 <div
@@ -342,7 +343,7 @@
                         </div>
 
                         <div wire:click="selectPaymentMethod('binance-coin')"
-                            @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                            @click.debounce.1000ms="$store.withdrawPage.proceedToAddressStep($wire)"
                             class="{{ $this->selectedPaymentMethodSlug === 'binance-coin' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-7 mb-1.5 rounded-md text-[#FFFFFF]">
                             <div class="flex-none">
                                 <div
@@ -358,7 +359,7 @@
                         </div>
 
                         <div wire:click="selectPaymentMethod('tron')"
-                            @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                            @click.debounce.1000ms="$store.withdrawPage.proceedToAddressStep($wire)"
                             class="{{ $this->selectedPaymentMethodSlug === 'tron' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-7 mb-1.5 rounded-md text-[#FFFFFF]">
                             <div class="flex-none">
                                 <div
@@ -374,7 +375,7 @@
                         </div>
 
                         <div wire:click="selectPaymentMethod('ripple')"
-                            @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                            @click.debounce.1000ms="$store.withdrawPage.proceedToAddressStep($wire)"
                             class="{{ $this->selectedPaymentMethodSlug === 'ripple' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-7 mb-1.5 rounded-md text-[#FFFFFF]">
                             <div class="flex-none">
                                 <div
@@ -390,7 +391,7 @@
                         </div>
 
                         <div wire:click="selectPaymentMethod('bitcoin-cash')"
-                            @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                            @click.debounce.1000ms="$store.withdrawPage.proceedToAddressStep($wire)"
                             class="{{ $this->selectedPaymentMethodSlug === 'bitcoin-cash' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-7 mb-1.5 rounded-md text-[#FFFFFF]">
                             <div class="flex-none">
                                 <div
@@ -406,7 +407,7 @@
                         </div>
 
                         <div wire:click="selectPaymentMethod('dogecoin')"
-                            @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                            @click.debounce.1000ms="$store.withdrawPage.proceedToAddressStep($wire)"
                             class="{{ $this->selectedPaymentMethodSlug === 'dogecoin' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-7 mb-1.5 rounded-md text-[#FFFFFF]">
                             <div class="flex-none">
                                 <div
@@ -422,7 +423,7 @@
                         </div>
 
                         <div wire:click="selectPaymentMethod('dash')"
-                            @click.debounce.1000ms="$store.withdrawPage.toggleWalletAddressInput()"
+                            @click.debounce.1000ms="$store.withdrawPage.proceedToAddressStep($wire)"
                             class="{{ $this->selectedPaymentMethodSlug === 'dash' ? 'border-3 border-[#1E90FF]' : 'border border-[#26252a]' }} bg-dim hover:bg-[#3b3a41] cursor-pointer flex items-center space-x-2 px-4 py-7 mb-1.5 rounded-md text-[#FFFFFF]">
                             <div class="flex-none">
                                 <div
@@ -439,14 +440,14 @@
                     </div>
                 </div>
 
-                <div x-cloak x-show="$store.withdrawPage.isWalletAddressInputVisible"
+                {{-- <div x-cloak x-show="$store.withdrawPage.isWalletAddressInputVisible"
                     @input.debounce.1000ms="$store.withdrawPage.proceedToWithdrawConfirmation($wire)" class="mb-5">
                     <label for="input-label" class="block text-xs font-medium mb-2 text-zinc-300">Wallet
                         address</label>
                     <input wire:model="address" type="text"
                         class="text-white border border-[#26252a] bg-transparent text-sm py-3.5 px-2 ps-4 block w-full rounded-lg sm:text-sm focus:outline-0"
                         placeholder="">
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
@@ -514,32 +515,35 @@
 
             isWalletAddressInputVisible: false,
 
-            togglePaymentMethodSelect() {
+            togglePaymentMethodSelect(wire) {
                 if (this.amount === '' || this.amount === 0) {
-                    this.isPaymentMethodSelectVisible = false
-                    return
+                    this.isPaymentMethodSelectVisible = false;
+                    this.isWalletAddressInputVisible = false;
+                    return;
                 }
-                this.isPaymentMethodSelectVisible = true
-            },
 
-            toggleWalletAddressInput() {
-                if (this.amount === '' || this.amount === 0) {
-                    this.isWalletAddressInputVisible = false
-                    return
+                if (parseFloat(this.amount) < parseInt(wire.minimumWithdrawAmount) && parseFloat(wire
+                        .amount) !== 0) {
+                    this.isPaymentMethodSelectVisible = false;
+                    this.isWalletAddressInputVisible = false;
+                    let message = `Minimum withdrawal is $${wire.minimumWithdrawAmount}`;
+                    toast('withdraw-error', message);
+                    return;
                 }
-                this.isWalletAddressInputVisible = true
+
+                this.isPaymentMethodSelectVisible = true;
             },
 
             toggleUSDTNetworksDropdown() {
-                this.isUSDTNetworksDropdownOpen = !this.isUSDTNetworksDropdownOpen
+                this.isUSDTNetworksDropdownOpen = !this.isUSDTNetworksDropdownOpen;
             },
 
             toggleUSDCNetworksDropdown() {
-                this.isUSDCNetworksDropdownOpen = !this.isUSDCNetworksDropdownOpen
+                this.isUSDCNetworksDropdownOpen = !this.isUSDCNetworksDropdownOpen;
             },
 
-            proceedToWithdrawConfirmation(wire) {
-                wire.confirmWithdraw();
+            proceedToAddressStep(wire) {
+                wire.proceedToAddressStep();
             }
         })
     })

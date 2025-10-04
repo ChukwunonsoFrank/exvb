@@ -27,7 +27,7 @@
                     </div>
 
                     <div class="mb-3 text-left">
-                        <p class="text-base font-medium text-[#a4a4a4]">Payment Details</p>
+                        <p class="text-base font-medium text-[#a4a4a4]">Withdrawal Details</p>
                     </div>
 
                     <div class="mb-4">
@@ -52,7 +52,7 @@
                     <div class="md:px-52">
                         <button wire:click="generateOTP()" type="button" wire:loading.attr="disabled"
                             class="py-2.5 cursor-pointer px-4 w-full md:px-6 text-center gap-x-2 text-sm font-semibold rounded-lg bg-accent text-white focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none">
-                            Proceed
+                            Confirm
                         </button>
                     </div>
                 </div>
