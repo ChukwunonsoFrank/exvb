@@ -10,7 +10,8 @@
                     <div class="elementor-element elementor-element-f3b0803 elementor-widget elementor-widget-heading"
                         data-id="f3b0803" data-element_type="widget" data-widget_type="heading.default">
                         <div class="elementor-widget-container" style="text-align: center;">
-                            <h2 class="elementor-heading-title elementor-size-default" style="margin-bottom: 0 !important;">Verify 2FA</h2>
+                            <h2 class="elementor-heading-title elementor-size-default"
+                                style="margin-bottom: 0 !important;">Verify 2FA</h2>
                         </div>
                     </div>
                     <div class="elementor-element elementor-element-23adb73 elementor-widget__width-initial elementor-widget elementor-widget-text-editor"
@@ -35,10 +36,9 @@
                                     autocomplete="email" required placeholder="">
                             </div>
                             <div class="w-full">
-                                <a wire:click="verify2fa()">
-                                    <flux:button variant="primary" class="w-full! h-12! rounded-md! p-2! bg-accent!">
-                                        {{ __('Log In') }}</flux:button>
-                                </a>
+                                <flux:button wire:click="verify2fa()" variant="primary"
+                                    class="w-full! h-12! rounded-md! p-2! bg-accent!">
+                                    {{ __('Log In') }}</flux:button>
                             </div>
                         </div>
                     </div>

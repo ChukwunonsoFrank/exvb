@@ -37,10 +37,9 @@
                                     required placeholder="Enter code">
                             </div>
                             <div class="w-full">
-                                <a wire:click="verifyLoginCode()">
-                                    <flux:button variant="primary" class="w-full! h-12! rounded-md! p-2! bg-accent!">
-                                        {{ __('Create Account') }}</flux:button>
-                                </a>
+                                <flux:button wire:click="verifyLoginCode()" variant="primary"
+                                    class="w-full! h-12! rounded-md! p-2! bg-accent!">
+                                    {{ __('Create Account') }}</flux:button>
                             </div>
                         </div>
                     </div>
