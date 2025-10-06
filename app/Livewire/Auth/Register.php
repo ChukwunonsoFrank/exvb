@@ -50,44 +50,44 @@ class Register extends Component
   public function register()
   {
     try {
-      if (is_null($this->gRecaptchaResponse)) {
-        $this->dispatch('signup-error', message: 'Please confirm you are not a robot.')->self();
-      }
+      // if (is_null($this->gRecaptchaResponse)) {
+      //   $this->dispatch('signup-error', message: 'Please confirm you are not a robot.')->self();
+      // }
 
-      $recatpchaResponse = Http::get("https://www.google.com/recaptcha/api/siteverify", [
-        'secret' => config('services.recaptcha.secret'),
-        'response' => $this->gRecaptchaResponse
+      // $recatpchaResponse = Http::get("https://www.google.com/recaptcha/api/siteverify", [
+      //   'secret' => config('services.recaptcha.secret'),
+      //   'response' => $this->gRecaptchaResponse
+      // ]);
+
+      // $result = $recatpchaResponse->json();
+
+      // if ($recatpchaResponse->successful() && $result['success'] == true) {
+      $validated = $this->validate([
+        'name' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+        'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
+        'termsAndPrivacyPolicyAccepted' => 'accepted',
       ]);
 
-      $result = $recatpchaResponse->json();
+      unset($validated['termsAndPrivacyPolicyAccepted']);
 
-      if ($recatpchaResponse->successful() && $result['success'] == true) {
-        $validated = $this->validate([
-          'name' => ['required', 'string', 'max:255'],
-          'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-          'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
-          'termsAndPrivacyPolicyAccepted' => 'accepted',
-        ]);
+      /**
+       * Attempt to send login code to user's email.
+       */
+      $loginCode = substr(str_shuffle('0123456789'), 0, 6);
+      Notification::route('mail', $validated['email'])->notify(new LoginCodeRequested($loginCode));
 
-        unset($validated['termsAndPrivacyPolicyAccepted']);
-
-        /**
-         * Attempt to send login code to user's email.
-         */
-        $loginCode = substr(str_shuffle('0123456789'), 0, 6);
-        Notification::route('mail', $validated['email'])->notify(new LoginCodeRequested($loginCode));
-
-        $this->redirectRoute('register.verifylogincode', [
-          'name' => $validated['name'],
-          'email' => $validated['email'],
-          'password' => $validated['password'],
-          'hash' => Hash::make($loginCode),
-          'ref' => $this->ref
-        ]);
-      } else {
-        $this->dispatch('signup-error', message: 'Please confirm you are not a robot.')->self();
-        return redirect()->back();
-      }
+      $this->redirectRoute('register.verifylogincode', [
+        'name' => $validated['name'],
+        'email' => $validated['email'],
+        'password' => $validated['password'],
+        'hash' => Hash::make($loginCode),
+        'ref' => $this->ref
+      ]);
+      // } else {
+      //   $this->dispatch('signup-error', message: 'Please confirm you are not a robot.')->self();
+      //   return redirect()->back();
+      // }
     } catch (\Exception $e) {
       $this->dispatch('signup-error', message: $e->getMessage())->self();
     }
