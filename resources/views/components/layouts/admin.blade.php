@@ -6,6 +6,7 @@
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>
         Moxyai - Admin Dashboard
     </title>
@@ -206,8 +207,7 @@ $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(valu
                             <!-- Menu Item Payment Methods -->
                             <li>
                                 <a href="{{ route('admin.dashboard.kyc') }}"
-                                    @click="selected = (selected === 'KYC' ? '':'KYC')"
-                                    class="menu-item group"
+                                    @click="selected = (selected === 'KYC' ? '':'KYC')" class="menu-item group"
                                     :class="(selected === 'KYC') && (page === 'kyc') ?
                                     'menu-item-active' :
                                     'menu-item-inactive'">

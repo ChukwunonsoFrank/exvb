@@ -11,6 +11,8 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
 
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
     <link rel="profile" href="https://gmpg.org/xfn/11">
     <link rel="preload" href="{{ asset('wp-content/uploads/2024/06/space-cover.webp') }}" as="image">
     <link rel="preload" href="{{ asset('wp-content/uploads/2024/06/door-2.webp') }}" as="image">
