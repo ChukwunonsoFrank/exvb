@@ -1,7 +1,5 @@
-*
 !payment-method-icon/
-!profile-picture/
+!payment-method-icon/*.svg
 !strategy-image/
-!kyc/
-!livewire-tmp/
+!strategy-image/*.png
 !.gitignore
