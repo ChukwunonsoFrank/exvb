@@ -116,7 +116,12 @@
                                     @if ($this->kycStatus === 'Verified')
                                         <div
                                             class="px-1.5 py-1 cursor-pointer inline-flex items-center justify-center gap-x-1 text-[10px] rounded-lg bg-[#282828] text-white">
-                                            <span class="text-white font-bold">Verified</span>
+                                            <span class="text-white font-bold mt-0.5">Verified</span>
+                                            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M8.33366 2.5L3.75033 7.08333L1.66699 5" stroke="white"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
                                         </div>
                                     @endif
                                 </div>
@@ -313,7 +318,14 @@
                                     <p class="text-xs font-bold text-[#F59E0B]">Pending Review</p>
                                 @endif
                                 @if ($this->kycStatus === 'Verified')
-                                    <p class="text-xs font-bold text-[#a4a4a4]">Verified</p>
+                                    <div class="flex items-center gap-x-1">
+                                        <span class="text-xs font-bold text-[#a4a4a4]">Verified</span>
+                                        <svg class="mt-0.5" width="12" height="12" viewBox="0 0 12 12"
+                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M10 3L4.5 8.5L2 6" stroke="#a4a4a4" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </div>
                                 @endif
                             </div>
                             <div class="flex-none text-end">

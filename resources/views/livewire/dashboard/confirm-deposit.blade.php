@@ -195,7 +195,9 @@
                                         </div>
                                     </div>
                                     <p class="text-white font-medium text-base mb-4">
-                                        Don't forget to click 'Yes, I've Paid' after sending your deposit.
+                                        After sending your payment, click on <span class="font-bold">Yes, I’ve
+                                            Paid</span>
+                                        to confirm.
                                     </p>
                                     <div class="flex justify-center">
                                         <div class="flex-none">
@@ -238,7 +240,9 @@
                                         </div>
                                     </div>
                                     <p class="text-white font-medium text-base mb-4">
-                                        Don't forget to click 'Yes, I've Paid' after sending your deposit.
+                                        After sending your payment, click on <span class="font-bold">Yes, I’ve
+                                            Paid</span>
+                                        to confirm.
                                     </p>
                                     <div class="flex justify-center">
                                         <div class="flex-none">
@@ -257,7 +261,7 @@
 
                     <div class="text-sm text-white rounded-lg bg-dashboard p-4 mb-2" role="alert" tabindex="-1"
                         aria-labelledby="hs-with-description-label">
-                        <div class="flex items-center">
+                        <div class="flex items-start">
                             <div class="shrink-0">
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -273,10 +277,10 @@
                                     </defs>
                                 </svg>
                             </div>
-                            <div class="ms-3">
+                            <div class="ms-2">
                                 <div class="text-sm text-zinc-300">
-                                    After making your payment, click on the "<span class="font-bold">I have
-                                        paid</span>" button below.
+                                    After sending your payment, click on <span class="font-bold">Yes, I’ve Paid</span>
+                                    to confirm.
                                 </div>
                             </div>
                         </div>
@@ -284,7 +288,7 @@
 
                     <div class="text-sm text-white rounded-lg bg-dashboard p-4 mb-4 mt-3" role="alert"
                         tabindex="-1" aria-labelledby="hs-with-description-label">
-                        <div class="flex items-center">
+                        <div class="flex items-start">
                             <div class="shrink-0">
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -300,7 +304,7 @@
                                     </defs>
                                 </svg>
                             </div>
-                            <div class="ms-3">
+                            <div class="ms-2">
                                 <div class="text-sm text-zinc-300">
                                     Only send {{ $this->method }} to this wallet address.
                                 </div>

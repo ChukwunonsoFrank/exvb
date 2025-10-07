@@ -2,21 +2,27 @@
 
 namespace App\Livewire\Dashboard;
 
-use App\Models\User;
+use App\Models\Kyc;
 use Livewire\Component;
 
 class IdentityVerification extends Component
 {
-    public string $kycStatus = '';
+  public string $kycStatus = '';
 
-    public function mount()
-    {
-        $user = User::where(['id' => auth()->user()->id])->latest()->first();
-        $this->kycStatus = $user['is_kyc_verified'] ? 'Verified' : 'Not verified';
-    }
+  public bool $isKycPending = false;
 
-    public function render()
-    {
-        return view('livewire.dashboard.identity-verification');
+  public function mount()
+  {
+    $this->kycStatus = auth()->user()->is_kyc_verified ? 'Verified' : 'Not verified';
+    $kycRequest = Kyc::where('user_id', auth()->user()->id)->latest()->first();
+
+    if ($kycRequest && $kycRequest['status'] === 'pending') {
+      $this->isKycPending = true;
     }
+  }
+
+  public function render()
+  {
+    return view('livewire.dashboard.identity-verification');
+  }
 }

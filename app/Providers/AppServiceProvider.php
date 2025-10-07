@@ -38,18 +38,20 @@ class AppServiceProvider extends ServiceProvider
 
     Blade::directive('maskEmail', function ($email) {
       return "<?php
-            // Remove quotes from the email variable
-            \$email = trim($email, \"'\");
-            \$atPosition = strpos(\$email, '@');
-            \$name = substr(\$email, 0, \$atPosition);
-            \$domain = substr(\$email, \$atPosition);
-            if (strlen(\$name) > 2) {
-          \$maskedName = substr(\$name, 0, 1) . str_repeat('*', strlen(\$name) - 2) . substr(\$name, -1);
-            } else {
+        // Remove quotes from the email variable
+        \$email = trim($email, \"'\");
+        \$atPosition = strpos(\$email, '@');
+        \$name = substr(\$email, 0, \$atPosition);
+        \$domain = substr(\$email, \$atPosition);
+        if (strlen(\$name) > 2) {
+          // Use HTML entity for asterisk to ensure uniform size
+          \$asterisk = '&#42;';
+          \$maskedName = substr(\$name, 0, 1) . str_repeat(\$asterisk, strlen(\$name) - 2) . substr(\$name, -1);
+        } else {
           \$maskedName = \$name;
-            }
-            echo \$maskedName . \$domain;
-        ?>";
+        }
+        echo \$maskedName . \$domain;
+      ?>";
     });
 
     Gate::define('viewPulse', function (User $user) {

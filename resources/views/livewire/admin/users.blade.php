@@ -113,6 +113,11 @@
                                             <p class="text-theme-sm text-gray-500 dark:text-gray-400">User</p>
                                         </div>
                                     </th>
+                                    <th class="py-3 pr-5 font-normal whitespace-nowrap sm:pr-6">
+                                        <div class="flex items-center">
+                                            <p class="text-theme-sm text-gray-500 dark:text-gray-400">Country</p>
+                                        </div>
+                                    </th>
                                     <th class="px-5 py-3 font-normal whitespace-nowrap sm:px-6">
                                         <div class="flex items-center">
                                             <p class="text-theme-sm text-gray-500 dark:text-gray-400">Email</p>
@@ -144,6 +149,14 @@
                                                     <p
                                                         class="text-theme-sm block font-medium text-gray-700 dark:text-gray-400">
                                                         {{ $user['name'] }}
+                                                    </p>
+                                                </div>
+                                            </td>
+                                            <td class="py-3 pr-5 whitespace-nowrap sm:pr-5">
+                                                <div class="flex items-center">
+                                                    <p
+                                                        class="text-theme-sm block font-medium text-gray-700 dark:text-gray-400">
+                                                        {{ $user['country'] }}
                                                     </p>
                                                 </div>
                                             </td>

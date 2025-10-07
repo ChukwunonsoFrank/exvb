@@ -9,60 +9,60 @@ use Illuminate\Notifications\Notification;
 
 class KYCApproved extends Notification implements ShouldQueue
 {
-    use Queueable;
+  use Queueable;
 
-    public $tries = 5;
+  public $tries = 5;
 
-    /**
-     * Create a new notification instance.
-     */
-    public function __construct(public string $name)
-    {
-        //
-    }
+  /**
+   * Create a new notification instance.
+   */
+  public function __construct(public string $name)
+  {
+    //
+  }
 
-    /**
-     * Determine which queues should be used for each notification channel.
-     *
-     * @return array<string, string>
-     */
-    public function viaQueues(): array
-    {
-        return [
-            'mail' => 'notifications',
-        ];
-    }
+  /**
+   * Determine which queues should be used for each notification channel.
+   *
+   * @return array<string, string>
+   */
+  public function viaQueues(): array
+  {
+    return [
+      'mail' => 'notifications',
+    ];
+  }
 
-    /**
-     * Get the notification's delivery channels.
-     *
-     * @return array<int, string>
-     */
-    public function via(object $notifiable): array
-    {
-        return ['mail'];
-    }
+  /**
+   * Get the notification's delivery channels.
+   *
+   * @return array<int, string>
+   */
+  public function via(object $notifiable): array
+  {
+    return ['mail'];
+  }
 
-    /**
-     * Get the mail representation of the notification.
-     */
-    public function toMail(object $notifiable): MailMessage
-    {
-        return (new MailMessage)
-            ->subject('KYC Approved')
-            ->greeting("Hi " . $this->name . ',')
-            ->line("This email is to notify you that your KYC request has been processed and approved. Enjoy higher transaction limits on your trading account.");
-    }
+  /**
+   * Get the mail representation of the notification.
+   */
+  public function toMail(object $notifiable): MailMessage
+  {
+    return (new MailMessage)
+      ->subject('KYC Approved - Your Account Is Now Verified')
+      ->greeting("Hi " . $this->name . ',')
+      ->line("Your KYC has been approved and your account fully verified. Enjoy seamless trading and higher transaction privileges.");
+  }
 
-    /**
-     * Get the array representation of the notification.
-     *
-     * @return array<string, mixed>
-     */
-    public function toArray(object $notifiable): array
-    {
-        return [
-            //
-        ];
-    }
+  /**
+   * Get the array representation of the notification.
+   *
+   * @return array<string, mixed>
+   */
+  public function toArray(object $notifiable): array
+  {
+    return [
+      //
+    ];
+  }
 }

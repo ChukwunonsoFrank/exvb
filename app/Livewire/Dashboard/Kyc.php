@@ -284,7 +284,7 @@ class Kyc extends Component
 
       $this->id->storeAs(path: 'kyc', name: $this->id->getClientOriginalName());
 
-      $this->dispatch('success-message', message: 'Your KYC verification request has been submitted successfully. You will receive an email with the outcome of your verification process.')->self();
+      $this->dispatch('success-message')->self();
 
       $admin = User::where('is_admin', 1)->first();
       $admin->notify(new KYCInitiated(auth()->user()->name));

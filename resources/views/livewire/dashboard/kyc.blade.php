@@ -148,6 +148,48 @@
                     </a>
                 </div>
 
+                <div x-cloak x-show="$store.kycPage.isSuccessModalOpen"
+                    class="fixed top-0 left-0 h-svh w-full px-4 lg:px-96 pt-6 z-20">
+                    <div class="absolute inset-0 h-svh w-full px-4 lg:px-96 pt-6 z-20 bg-dashboard opacity-85">
+                    </div>
+                    <div class="relative w-full h-full flex items-center justify-center z-30">
+                        <div
+                            class="max-w-sm mx-8 flex flex-col bg-dashboard border border-[#26252a] rounded-2xl pointer-events-auto">
+                            <div class="p-4 pb-5 overflow-y-auto text-center">
+                                <div class="flex justify-center mb-4">
+                                    <div>
+                                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <mask id="mask0_595_377" style="mask-type:luminance"
+                                                maskUnits="userSpaceOnUse" x="0" y="0" width="48" height="48">
+                                                <path d="M48 0H0V48H48V0Z" fill="white" />
+                                            </mask>
+                                            <g mask="url(#mask0_595_377)">
+                                                <path
+                                                    d="M23.9995 4.00024C35.0454 4.00024 43.9996 12.9542 43.9996 24.0003C43.9996 35.0463 35.0454 44.0002 23.9995 44.0002C12.9535 44.0002 3.99951 35.0463 3.99951 24.0003C3.99951 12.9542 12.9535 4.00024 23.9995 4.00024ZM23.9795 20.0002H21.9995C21.4898 20.0008 20.9995 20.196 20.6288 20.5459C20.2581 20.8959 20.035 21.3742 20.0052 21.883C19.9753 22.3919 20.1409 22.893 20.468 23.2839C20.7952 23.6748 21.2593 23.926 21.7655 23.9862L21.9995 24.0003V33.9802C21.9995 35.0201 22.7875 35.8803 23.7995 35.9883L24.0196 36.0003H24.9995C25.4202 36.0003 25.8302 35.8676 26.171 35.6213C26.512 35.3748 26.7664 35.0273 26.8984 34.628C27.0306 34.2286 27.0333 33.7978 26.9063 33.3968C26.7794 32.9957 26.5293 32.6448 26.1916 32.3943L25.9996 32.2683V22.0202C25.9996 20.9802 25.2114 20.1202 24.1996 20.0122L23.9795 20.0002ZM23.9995 14.0002C23.4691 14.0002 22.9604 14.2109 22.5853 14.586C22.2102 14.9611 21.9995 15.4698 21.9995 16.0002C21.9995 16.5307 22.2102 17.0394 22.5853 17.4144C22.9604 17.7895 23.4691 18.0002 23.9995 18.0002C24.5301 18.0002 25.0386 17.7895 25.4137 17.4144C25.7889 17.0394 25.9996 16.5307 25.9996 16.0002C25.9996 15.4698 25.7889 14.9611 25.4137 14.586C25.0386 14.2109 24.5301 14.0002 23.9995 14.0002Z"
+                                                    fill="#3B71FF" />
+                                            </g>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <p class="text-white font-medium text-base mb-4">
+                                    Your details have been received and are now under review. You'll get an update
+                                    within 24 hours.
+                                </p>
+                                <div class="flex justify-center">
+                                    <div class="flex-none">
+                                        <button type="button" x-on:click="$store.kycPage.isSuccessModalOpen = false;"
+                                            type="button"
+                                            class="py-3 px-5 text-center text-sm font-semibold rounded-lg border border-transparent bg-accent text-white cursor-pointer hover:bg-accent focus:outline-hidden focus:bg-accent disabled:opacity-50 disabled:pointer-events-none">
+                                            Okay
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="flex items-center gap-x-2 p-3 my-3 bg-dim rounded-lg border border-[#323335]">
                     <div class="flex-none">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
@@ -174,6 +216,8 @@
     document.addEventListener('alpine:init', () => {
         Alpine.store('kycPage', {
             isCountrySelectOpen: false,
+
+            isSuccessModalOpen: false,
 
             toggleCountrySelect() {
                 this.isCountrySelectOpen = !this.isCountrySelectOpen
@@ -206,24 +250,11 @@
         });
 
         $wire.on('success-message', (event) => {
-            const toastMarkup = `
-                <div class="flex items-center p-4">
-                    <div class="shrink-0">
-                        <svg class="shrink-0 size-4 text-teal-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big-icon lucide-circle-check-big"><path d="M21.801 10A10 10 0 1 1 17 3.335"/><path d="m9 11 3 3L22 4"/></svg>
-                    </div>
-                    <div class="ms-3 flex-1">
-                        <p class="text-xs font-semibold text-white">${event.message}</p>
-                    </div>
-                </div>
-            `;
+            // Access Alpine store data
+            const kycPageStore = Alpine.store('kycPage');
 
-            Toastify({
-                text: toastMarkup,
-                className: "hs-toastify-on:opacity-100 opacity-0 absolute top-0 start-1/2 -translate-x-1/2 z-90 w-4/5 md:w-1/2 lg:w-1/4 transition-all duration-300 bg-dim border border-[#26252a] text-sm text-white rounded-xl shadow-lg [&>.toast-close]:hidden",
-                duration: 8000,
-                close: true,
-                escapeMarkup: false
-            }).showToast();
+            // Example: open the success modal
+            kycPageStore.isSuccessModalOpen = true;
         });
     </script>
 @endscript

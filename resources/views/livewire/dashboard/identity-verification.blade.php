@@ -25,13 +25,19 @@
                             @endif
                         </div>
                         <div class="flex-none">
-                            @if ($this->kycStatus === 'Not verified')
+                            @if (!$this->isKycPending && $this->kycStatus === 'Not verified')
                                 <a href="{{ route('dashboard.kyc') }}">
                                     <button type="button"
                                         class="w-full px-6 py-2 cursor-pointer inline-flex items-center justify-center gap-x-1 text-sm font-semibold rounded-lg bg-[#F59E0B] text-white focus:outline-hidden">
                                         Verify Now
                                     </button>
                                 </a>
+                            @endif
+                            @if ($this->isKycPending && $this->kycStatus === 'Not verified')
+                                <button type="button"
+                                    class="w-full px-6 py-2 cursor-pointer inline-flex items-center justify-center gap-x-1 text-sm font-semibold rounded-lg bg-[#F59E0B] text-white focus:outline-hidden">
+                                    Pending Review
+                                </button>
                             @endif
                         </div>
                     </div>

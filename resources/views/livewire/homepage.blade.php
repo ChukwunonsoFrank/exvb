@@ -42,10 +42,10 @@
                                                         stroke="white" stroke-width="0.727273" />
                                                 </svg>
                                             </div>
-                                            <h4 class="tab-title">Find a challenge</h4>
+                                            <h4 class="tab-title">Create an Account</h4>
                                         </div>
                                         <h4 class="tab-link"><a aria-label="Go to https://tradelocker.com/hub"
-                                                href="hub/prop-firm-challenges.html" class="start-here">Start now</a>
+                                                href="{{ route('register') }}" class="start-here">Start now</a>
                                         </h4>
                                     </div>
                                     <div class="title-block_child tabs-item">
@@ -60,10 +60,10 @@
                                                         stroke="white" stroke-width="0.727273" />
                                                 </svg>
                                             </div>
-                                            <h4 class="tab-title">Find a broker</h4>
+                                            <h4 class="tab-title">Start Robot</h4>
                                         </div>
                                         <h4 class="tab-link"><a aria-label="Go to /retail-trading"
-                                                href="retail-trading/index.html" class="start-here">Start now</a></h4>
+                                                href="{{ route('register') }}" class="start-here">Start now</a></h4>
                                     </div>
                                     <div class="title-block_child tabs-item">
                                         <div class="tab-header grid">
@@ -77,10 +77,10 @@
                                                         stroke="white" stroke-width="0.727273" />
                                                 </svg>
                                             </div>
-                                            <h4 class="tab-title">Create Bots</h4>
+                                            <h4 class="tab-title">Let the AI Trade</h4>
                                         </div>
-                                        <h4 class="tab-link"><a aria-label="Go to /studio" href="studio/index.html"
-                                                class="start-here">Start now</a></h4>
+                                        <h4 class="tab-link"><a aria-label="Go to /studio"
+                                                href="{{ route('register') }}" class="start-here">Start now</a></h4>
                                     </div>
                                     <div class="title-block_child tabs-item">
                                         <div class="tab-header grid">
@@ -95,10 +95,10 @@
                                                         stroke="white" stroke-width="0.727273" />
                                                 </svg>
                                             </div>
-                                            <h4 class="tab-title">Integrate TradeLocker</h4>
+                                            <h4 class="tab-title">Withdraw Anytime</h4>
                                         </div>
                                         <h4 class="tab-link"><a aria-label="Go to /integrate-tradelocker"
-                                                href="integrate-tradelocker/index.html" class="start-here">Start
+                                                href="{{ route('register') }}" class="start-here">Start
                                                 now</a></h4>
                                     </div>
                                 </div>

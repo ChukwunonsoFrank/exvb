@@ -49,8 +49,8 @@ class LoginCodeRequested extends Notification implements ShouldQueue
   public function toMail(object $notifiable): MailMessage
   {
     return (new MailMessage)
-      ->line("Your login code is " . $this->code . '.')
-      ->line("Use this code to complete your registration.");
+      ->line("Your code is " . $this->code . '.')
+      ->line("Use this code to complete your registration on moxyai.");
   }
 
   /**

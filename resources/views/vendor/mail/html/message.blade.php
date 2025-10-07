@@ -1,31 +1,30 @@
 <x-mail::layout>
-{{-- Header --}}
-<x-slot:header>
-<x-mail::header :url="config('app.url')">
-{{ config('app.name') }}
-</x-mail::header>
-</x-slot:header>
+    {{-- Header --}}
+    <x-slot:header>
+        <x-mail::header :url="config('app.url')">
+            {{ config('app.name') }}
+        </x-mail::header>
+    </x-slot:header>
 
-{{-- Body --}}
-{{ $slot }}
+    {{-- Body --}}
+    {{ $slot }}
 
-{{-- Subcopy --}}
-@isset($subcopy)
-<x-slot:subcopy>
-<x-mail::subcopy>
-{{ $subcopy }}
-</x-mail::subcopy>
-</x-slot:subcopy>
-@endisset
+    {{-- Subcopy --}}
+    @isset($subcopy)
+        <x-slot:subcopy>
+            <x-mail::subcopy>
+                {{ $subcopy }}
+            </x-mail::subcopy>
+        </x-slot:subcopy>
+    @endisset
 
-{{-- Footer --}}
-<x-slot:footer>
-<x-mail::footer>
-© {{ date('Y') }} Exvb Technologies Ltd. All rights reserved.
+    {{-- Footer --}}
+    <x-slot:footer>
+        <x-mail::footer>
+            "moxyai" is trademark of Moxyai Inc with the registered address at 2 Av. Jean Jaurès, 92120 Châtillon,
+            France.
 
-If you would like to find out more about which Exvb Technologies entity you receive services from, please reach out to us via the in-dashboard support.
-
-"Exvb" is trademark of Exvb Technologies Ltd with the registered address at 12 Auckland Street, 1130 Vienna, Austria
-</x-mail::footer>
-</x-slot:footer>
+            © {{ date('Y') }} Moxyai Inc. All rights reserved.
+        </x-mail::footer>
+    </x-slot:footer>
 </x-mail::layout>

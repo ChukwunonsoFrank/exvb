@@ -3,7 +3,8 @@
         <livewire:dashboard.partials.desktop-navbar />
         <div class="pb-6 lg:h-full lg:flex-1 lg:px-96 lg:pt-6">
             <div class="my-3 sticky top-0 bg-dashboard z-10 pb-2 lg:pt-4">
-                <h1 class="text-white text-lg md:text-xl lg:text-2xl font-semibold">Enter your wallet address</h1>
+                <h1 class="text-white text-lg md:text-xl lg:text-2xl font-semibold">Enter your {{ $this->method }}
+                    address</h1>
             </div>
             <div class="lg:h-full lg:pb-24 lg:overflow-scroll scrollbar-hide">
                 <div class="mb-5">
