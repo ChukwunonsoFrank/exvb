@@ -54,7 +54,7 @@ class VerifyLoginTwofa extends Component
 
         $loggedInUser = User::find(Auth::id());
 
-        $ipApiEndpoint = "http://ip-api.com/json/" . request()->ip();
+        $ipApiEndpoint = "http://ip-api.com/json/" . request()->header('X-Forwarded-For');
 
         $ipApiResponse = Http::get($ipApiEndpoint);
 
@@ -67,7 +67,7 @@ class VerifyLoginTwofa extends Component
         }
 
         $loggedInUser->last_login_at = now();
-        $loggedInUser->ip_address = request()->ip();
+        $loggedInUser->ip_address = request()->header('X-Forwarded-For');
         $loggedInUser->save();
 
         $this->redirectIntended(default: route('dashboard.robot', absolute: false));
