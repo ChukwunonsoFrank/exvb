@@ -3,28 +3,31 @@
         class="elementor-section elementor-top-section elementor-element elementor-element-a126101 tl-section-padding  elementor-section-boxed elementor-section-height-default elementor-section-height-default"
         data-id="a126101" data-element_type="section" id="contact"
         data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-        <div class="elementor-container elementor-column-gap-default">
-            <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-4a7e867"
-                data-id="4a7e867" data-element_type="column">
-                <div class="elementor-widget-wrap elementor-element-populated">
+        <div class="px-3 md:px-48 lg:px-[32rem]">
+            <div class="mb-6">
+                <div class="elementor-widget-wrap elementor-element-populated" style="padding-top: 8rem;">
+                    <div class="elementor-element elementor-element-f3b0803 elementor-widget elementor-widget-heading"
+                        data-id="f3b0803" data-element_type="widget" data-widget_type="heading.default"
+                        style="margin-bottom: 1rem !important;">
+                        <div class="elementor-widget-container" style="text-align: center;">
+                            <a href="{{ route('home') }}">
+                                <img class="w-36 text-center inline"
+                                    src="{{ asset('wp-content/uploads/2023/05/moxyai-logo.png') }}" alt="Logo" />
+                            </a>
+                        </div>
+                    </div>
                     <div class="elementor-element elementor-element-f3b0803 elementor-widget elementor-widget-heading"
                         data-id="f3b0803" data-element_type="widget" data-widget_type="heading.default">
                         <div class="elementor-widget-container" style="text-align: center;">
-                            <h2 class="elementor-heading-title elementor-size-default"
-                                style="margin-bottom: 0 !important;">Check your email inbox</h2>
-                        </div>
-                    </div>
-                    <div class="elementor-element elementor-element-23adb73 elementor-widget__width-initial elementor-widget elementor-widget-text-editor"
-                        data-id="23adb73" data-element_type="widget" data-widget_type="text-editor.default">
-                        <div class="elementor-widget-container">
-                            <p>To complete your account set up, enter the code sent to: <span
-                                    style="font-weight: bold;">{{ $this->email }}</span></p>
+                            <h5 class="elementor-heading-title elementor-size-default"
+                                style="margin-bottom: 0 !important; margin-top: 0 !important; font-weight: 500;">Enter
+                                the code sent to your email
+                            </h5>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-6bff677"
-                data-id="6bff677" data-element_type="column">
+            <div>
                 <div class="elementor-widget-wrap elementor-element-populated">
                     <div class="elementor-element elementor-element-fb8ad16 elementor-widget elementor-widget-html">
                         <div class="elementor-widget-container">
@@ -33,12 +36,12 @@
 
                             <div class="mb-4">
                                 <input wire:model="code" type="text"
-                                    class="py-4 px-4 block w-full border font-medium text-gray-600 border-gray-200 rounded-sm text-sm disabled:opacity-50 disabled:pointer-events-none"
-                                    required placeholder="Enter code">
+                                    class="py-6 h-14 px-4 block w-full border font-medium text-gray-600 border-gray-200 rounded-sm text-sm disabled:opacity-50 disabled:pointer-events-none"
+                                    style="background-color: #161616;" required placeholder="Enter code">
                             </div>
                             <div class="w-full">
                                 <flux:button wire:click="verifyLoginCode()" variant="primary"
-                                    class="w-full! h-12! rounded-md! p-2! bg-accent!">
+                                    class="w-full! h-14! rounded-md! p-2! bg-accent!">
                                     {{ __('Create Account') }}</flux:button>
                             </div>
                         </div>

@@ -3,16 +3,17 @@
         class="elementor-section elementor-top-section elementor-element elementor-element-a126101 tl-section-padding  elementor-section-boxed elementor-section-height-default elementor-section-height-default"
         data-id="a126101" data-element_type="section" id="contact"
         data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-        <div class="elementor-container elementor-column-gap-default">
-            <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-4a7e867"
-                data-id="4a7e867" data-element_type="column">
-                <div class="elementor-widget-wrap elementor-element-populated" style="padding-top: 3rem;">
+        <div class="px-3 md:px-48 lg:px-[32rem]">
+            <div class="mb-6">
+                <div class="elementor-widget-wrap elementor-element-populated" style="padding-top: 8rem;">
                     <div class="elementor-element elementor-element-f3b0803 elementor-widget elementor-widget-heading"
                         data-id="f3b0803" data-element_type="widget" data-widget_type="heading.default"
                         style="margin-bottom: 1rem !important;">
                         <div class="elementor-widget-container" style="text-align: center;">
-                            <img class="w-36 text-center inline"
-                                src="{{ asset('wp-content/uploads/2023/05/moxyai-logo.png') }}" alt="Logo" />
+                            <a href="{{ route('home') }}">
+                                <img class="w-36 text-center inline"
+                                    src="{{ asset('wp-content/uploads/2023/05/moxyai-logo.png') }}" alt="Logo" />
+                            </a>
                         </div>
                     </div>
                     <div class="elementor-element elementor-element-f3b0803 elementor-widget elementor-widget-heading"
@@ -25,8 +26,7 @@
                     </div>
                 </div>
             </div>
-            <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-6bff677"
-                data-id="6bff677" data-element_type="column">
+            <div>
                 <div class="elementor-widget-wrap elementor-element-populated">
                     <div class="elementor-element elementor-element-fb8ad16 elementor-widget elementor-widget-html">
                         <div class="elementor-widget-container">
@@ -37,19 +37,18 @@
                                 <!-- Email Address -->
                                 <input wire:model="email" type="email"
                                     class="py-6 h-14 px-4 block w-full border font-medium text-gray-600 border-gray-200 rounded-sm text-sm disabled:opacity-50 disabled:pointer-events-none"
-                                    autocomplete="email" required placeholder="Email">
+                                    style="background-color: #161616;" autocomplete="email" required
+                                    placeholder="Email">
 
                                 <!-- Password -->
-                                {{-- <input wire:model="password" type="password"
-                                    class="py-6 h-14 px-4 block w-full border font-medium text-gray-600 border-gray-200 rounded-sm text-sm disabled:opacity-50 disabled:pointer-events-none"
-                                    autocomplete="current-password" required placeholder="Password"> --}}
-                                <div class="max-w-sm space-y-3">
+                                <div class="w-full space-y-3">
                                     <div>
                                         <div class="relative">
                                             <input wire:model="password"
                                                 x-bind:type="$store.loginPage.isPasswordVisible ? 'text' : 'password'"
                                                 id="hs-trailing-icon" name="hs-trailing-icon"
                                                 class="py-6 h-14 px-4 block w-full border font-medium text-gray-600 border-gray-200 rounded-sm text-sm disabled:opacity-50 disabled:pointer-events-none"
+                                                style="background-color: #161616;" autocomplete="current-password"
                                                 placeholder="Password">
                                             <div x-on:click="$store.loginPage.togglePassword()"
                                                 class="absolute inset-y-0 end-0 flex items-center z-20 pe-4">

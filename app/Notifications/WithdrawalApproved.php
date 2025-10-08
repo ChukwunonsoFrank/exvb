@@ -49,6 +49,7 @@ class WithdrawalApproved extends Notification implements ShouldQueue
   public function toMail(object $notifiable): MailMessage
   {
     return (new MailMessage)
+      ->subject('Withdrawal Completed')
       ->greeting("Hi " . $this->name . ',')
       ->line("Your withdrawal of $" . $this->amount . " has been processed and completed.");
   }

@@ -49,6 +49,7 @@ class DepositApproved extends Notification implements ShouldQueue
   public function toMail(object $notifiable): MailMessage
   {
     return (new MailMessage)
+      ->subject('Deposit Confirmed')
       ->greeting("Hi " . $this->name . ',')
       ->line("Your deposit of $" . $this->amount . " has been processed and confirmed.");
   }

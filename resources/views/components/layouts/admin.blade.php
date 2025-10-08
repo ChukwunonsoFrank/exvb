@@ -40,7 +40,7 @@ $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(valu
                 <!-- Sidebar Menu -->
                 <nav x-data="{ selected: $persist('Dashboard') }">
                     <!-- Menu Group -->
-                    <div>
+                    <div class="pt-16">
                         <ul class="mb-6 flex flex-col gap-4">
                             <!-- Menu Item Dashboard -->
                             <li>

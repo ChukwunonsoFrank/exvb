@@ -297,6 +297,11 @@ class Kyc extends Component
     }
   }
 
+  public function robot()
+  {
+    $this->redirectRoute('dashboard.robot');
+  }
+
   public function render()
   {
     $this->kycStatus = auth()->user()->is_kyc_verified ? 'Verified' : 'Not verified';

@@ -835,11 +835,11 @@
     <div class="disclaimer elementor-section elementor-section-boxed">
         <div class="elementor-container">
             <p style="font-size:14px">
-                Moxyai © <span id="year">{{ now()->year }}</span>. All rights reserved.
-                <br><br>Moxyai is available worldwide with no regional restrictions. Access to our platform is limited
+                Moxyai is available worldwide with no regional restrictions. Access to our platform is limited
                 to individuals aged 18 years and above. By using our services, you acknowledge that you understand these
                 risks and agree to our Terms & Conditions. Our platform operates with transparency, instant
                 deposits/withdrawals, and 24/7 support to ensure a secure trading environment.
+                <br><br>Moxyai © <span id="year">{{ now()->year }}</span>. All rights reserved.
             </p>
         </div>
     </div>

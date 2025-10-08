@@ -551,13 +551,38 @@
                                                         data-tab="3" role="tabpanel"
                                                         aria-labelledby="elementor-tab-title-3553">
                                                         <p>
-                                                            Yes, there's a 1% fee charged from profits made by the bot.
-                                                            For example, when
-                                                            you trade and the AI makes $100 in profits, the company
-                                                            charges you 1% of the
-                                                            $100 profits made by the bot, not from your capital but only
-                                                            from the profits
-                                                            made.
+                                                            Moxyai does not charge any hidden fees. However, there’s a
+                                                            small $1 withdrawal fee applied to every withdrawals to
+                                                            cover network and processing costs.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="elementor-toggle-item">
+                                                    <div id="elementor-tab-title-3553" class="elementor-tab-title"
+                                                        data-tab="12" role="tab"
+                                                        aria-controls="elementor-tab-content-3553"
+                                                        aria-expanded="false">
+                                                        <span class="elementor-toggle-icon elementor-toggle-icon-left"
+                                                            aria-hidden="true">
+                                                            <span class="elementor-toggle-icon-closed"><i
+                                                                    class="fas fa-caret-right"></i></span>
+                                                            <span class="elementor-toggle-icon-opened"><i
+                                                                    class="elementor-toggle-icon-opened fas fa-caret-up"></i></span>
+                                                        </span>
+                                                        <a href="#" class="elementor-toggle-title">How does
+                                                            Moxyai benefit or make profit?</a>
+                                                    </div>
+
+                                                    <div id="elementor-tab-content-3553"
+                                                        class="elementor-tab-content elementor-clearfix"
+                                                        data-tab="12" role="tabpanel"
+                                                        aria-labelledby="elementor-tab-title-3553">
+                                                        <p>
+                                                            There's a 10% commission taken from profits made by the bot.
+                                                            For example, when you trade and the AI makes $100 in
+                                                            profits, the company charges you 10% of the $100 profits
+                                                            made by the bot, not from your capital but only from the
+                                                            profits made.
                                                         </p>
                                                     </div>
                                                 </div>
@@ -587,7 +612,7 @@
                                                             have to be scared of loosing out, your capital is returned
                                                             after every trade.
                                                             You can choose to withdraw both your capital and profits
-                                                            anytime.100% guarantee
+                                                            anytime. 100% guarantee
                                                             on withdrawals.
                                                         </p>
                                                     </div>
@@ -675,7 +700,7 @@
                                                         data-tab="8" role="tabpanel"
                                                         aria-labelledby="elementor-tab-title-3558">
                                                         <p>
-                                                            The minimum deposit is $100, the minimum withdrawal is $10.
+                                                            The minimum deposit is $100, the minimum withdrawal is $25.
                                                             There are no limits
                                                             on deposits and withdrawals, you can choose to deposit and
                                                             withdraw any amounts
@@ -707,18 +732,13 @@
                                                         aria-labelledby="elementor-tab-title-3557">
                                                         <p>
                                                             Getting started with Moxyai is very easy, you don't need any
-                                                            technical knowledge
-                                                            to earn from this. there are 4 strategies you can choose
-                                                            from each of them has a
-                                                            certain minimum amount and a certain profit percentage, you
-                                                            will have to choose
-                                                            the strategy that matches your trade amount. This works for
-                                                            every country, the
-                                                            robot trades on both weekdays and weekends, trades forex and
-                                                            crypto during the
-                                                            week and trades only crypto during weekends. You can always
-                                                            contact our live
-                                                            support if you need further help.
+                                                            technical knowledge to earn from this. there is a scalping
+                                                            strategy already setup for you, all you need to do is input
+                                                            a trade amount and choose if it’s Demo or Live you’d want to
+                                                            trade on. This works for every country, the robot trades on
+                                                            both weekdays and weekends, trades forex and crypto during
+                                                            the week and trades only crypto during weekends. You can
+                                                            always contact our live support if you need further help.
                                                         </p>
                                                     </div>
                                                 </div>

@@ -57,7 +57,7 @@
                     <label for="input-label" class="block text-sm font-medium mb-2 text-zinc-300">Date of Birth</label>
                     <div class="relative">
                         <input wire:model="dob" type="date"
-                            class="text-white border border-[#26252a] bg-transparent text-sm peer py-2.5 sm:py-3 px-4 ps-4 block w-full rounded-lg sm:text-sm focus:outline-0"
+                            class="text-white border border-[#26252a] bg-transparent text-sm peer py-2.5 sm:py-3 px-4 block w-full rounded-lg sm:text-sm focus:outline-0"
                             placeholder="">
                     </div>
                 </div>
@@ -179,7 +179,7 @@
                                 <div class="flex justify-center">
                                     <div class="flex-none">
                                         <button type="button" x-on:click="$store.kycPage.isSuccessModalOpen = false;"
-                                            type="button"
+                                            wire:click="robot()" type="button"
                                             class="py-3 px-5 text-center text-sm font-semibold rounded-lg border border-transparent bg-accent text-white cursor-pointer hover:bg-accent focus:outline-hidden focus:bg-accent disabled:opacity-50 disabled:pointer-events-none">
                                             Okay
                                         </button>

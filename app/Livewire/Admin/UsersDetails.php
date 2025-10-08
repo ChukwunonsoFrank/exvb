@@ -25,6 +25,10 @@ class UsersDetails extends Component
   #[Url]
   public $id;
 
+  public $email;
+
+  public $country;
+
   public $liveBalance;
 
   public $activeBotCount;
@@ -126,6 +130,8 @@ class UsersDetails extends Component
   {
     $user = User::with('bots')->where('id', $this->id)->first();
     $this->liveBalance = $user->live_balance;
+    $this->email = $user->email;
+    $this->country = $user->country;
     $this->activeBotCount = $user->bots->where('status', 'active')->count();
     $deposits = Deposit::with('user')->where('user_id', $user->id)->latest()->paginate(10, ['*'], 'deposits_page');
     $bots = Bot::with('user')->where('user_id', $user->id)->latest()->paginate(10, ['*'], 'bots_page');

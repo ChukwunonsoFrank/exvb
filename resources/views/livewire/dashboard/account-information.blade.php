@@ -91,7 +91,7 @@
                             @endif
                         </div>
                         <div class="flex-none">
-                            @if ($this->kycStatus === 'Not verified')
+                            @if ($this->isKycPending && $this->kycStatus === 'Not verified')
                                 <a href="{{ route('dashboard.identityverification') }}">
                                     <button type="button"
                                         class="w-full py-2 px-3 cursor-pointer inline-flex items-center justify-center gap-x-1 text-xs font-semibold rounded-lg bg-accent text-white focus:outline-hidden">

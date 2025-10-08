@@ -29,8 +29,7 @@
                                 <span class="font-medium text-semibold text-white mb-6">How to start the robot:</span>
                                 <ul class="list-disc list-inside text-white text-sm">
                                     <li>Step 1: Enter your trade amount.</li>
-                                    <li>Step 2: Select a strategy. Strategy depends on your trade amount. Choose one
-                                        that matches your trade amount.</li>
+                                    <li>Step 2: Choose Demo or Live.</li>
                                     <li>Step 3: Activate the robot. Click "Start Robot" and it will begin trading on
                                         your behalf, generating profits every 5 minutes.</li>
                                 </ul>
@@ -244,7 +243,8 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="input-label" class="block text-sm font-medium mb-2 text-zinc-300">Trading Strategy</label>
+                    <label for="input-label" class="block text-sm font-medium mb-2 text-zinc-300">Trading
+                        Strategy</label>
                     <div class="grid space-y-2">
                         @foreach ($this->strategies as $strategy)
                             <div class="relative">
@@ -377,7 +377,8 @@
                                         </button>
                                     </div>
                                     <div>
-                                        <button x-on:click="$store.robotPage.toggleTradeDetailsConfirmationModal($wire)"
+                                        <button
+                                            x-on:click="$store.robotPage.toggleTradeDetailsConfirmationModal($wire)"
                                             type="button"
                                             class="p-3 w-full text-center text-sm font-semibold rounded-lg border border-white text-white shadow-2xs cursor-pointer focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none">
                                             Cancel
@@ -563,8 +564,7 @@
                                                 {{ $this->accountType }}</div>
                                         </div>
 
-                                        <div
-                                            class="flex items-center justify-center gap-x-1 py-2">
+                                        <div class="flex items-center justify-center gap-x-1 py-2">
                                             <div class="flex-none">
                                                 <img class="w-4.5"
                                                     src="{{ asset('assets/images/robot-illustration.png') }}"
