@@ -233,6 +233,14 @@
                                                                     </button>
                                                                 </form>
                                                             @endif
+                                                            <form
+                                                                wire:submit.prevent="destroyUser({{ $user['id'] }})">
+                                                                <button type="submit"
+                                                                    x-on:click="isActionDropdownOpen = false"
+                                                                    class="text-theme-xs flex w-full rounded-lg px-3 py-2 text-left font-medium text-error-600">
+                                                                    Delete user
+                                                                </button>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>

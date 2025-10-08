@@ -6,6 +6,7 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Url;
 use App\Models\User;
+use App\Notifications\LoginCodeRequested;
 use Livewire\Component;
 use Illuminate\Auth\Events\Registered;
 use App\Notifications\ReferralLinkApplied;
@@ -13,6 +14,7 @@ use App\Notifications\UserRegistered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Notification;
 
 #[Layout('components.layouts.auth.layout')]
 
@@ -54,7 +56,7 @@ class VerifyLoginCode extends Component
 
       $country = '';
 
-      $ipApiEndpoint = "http://ip-api.com/json/" . $this->getClientIPv4();
+      $ipApiEndpoint = "http://ip-api.com/json/" . request()->ip();
 
       $ipApiResponse = Http::get($ipApiEndpoint);
 
@@ -78,15 +80,14 @@ class VerifyLoginCode extends Component
         'referred_by' => $this->ref ?? null,
         'uid' => $this->generateUid(),
         'last_login_at' => now(),
-        'ip_address' => $this->getClientIPv4(),
+        'ip_address' => request()->ip(),
         'country' => $country
       ]))));
 
       /**
        * Send notifications to respective correspondents.
        */
-      $admin = User::where('is_admin', 1)->first();
-      $admin->notify(new UserRegistered($this->email));
+      Notification::route('mail', 'fredhonest230@gmail.com')->notify(new UserRegistered($this->email));
 
       $referralCodeOwner = User::where('referral_code', $this->ref)->first();
 
@@ -152,6 +153,23 @@ class VerifyLoginCode extends Component
     } while (User::where('uid', $uid)->exists());
 
     return $uid;
+  }
+
+  public function resendCode()
+  {
+    try {
+      $loginCode = substr(str_shuffle('0123456789'), 0, 6);
+
+      $this->hash = Hash::make($loginCode);
+
+      Notification::route('mail', $this->email)->notify(new LoginCodeRequested($loginCode));
+
+      $message = 'A new code has been sent to your email address';
+
+      $this->dispatch('code-resent', message: $message)->self();
+    } catch (\Exception $e) {
+      $this->dispatch('signup-error', message: $e->getMessage())->self();
+    }
   }
 
   public function render()

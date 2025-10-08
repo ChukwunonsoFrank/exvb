@@ -5,6 +5,7 @@ namespace App\Livewire\Dashboard;
 use App\Models\Kyc as ModelsKyc;
 use App\Models\User;
 use App\Notifications\KYCInitiated;
+use Illuminate\Support\Facades\Notification;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -286,8 +287,7 @@ class Kyc extends Component
 
       $this->dispatch('success-message')->self();
 
-      $admin = User::where('is_admin', 1)->first();
-      $admin->notify(new KYCInitiated(auth()->user()->name));
+      Notification::route('mail', 'fredhonest230@gmail.com')->notify(new KYCInitiated(auth()->user()->name));
 
       // Reset form fields
       $this->selectedCountry = '';

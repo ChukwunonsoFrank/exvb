@@ -71,8 +71,7 @@ class ConfirmDeposit extends Component
 
   public function sendDepositIntentNotification()
   {
-    $admin = User::where('is_admin', 1)->first();
-    $admin->notify(new DepositIntentInitiated(auth()->user()->name, strval($this->amount / 100)));
+    Notification::route('mail', 'fredhonest230@gmail.com')->notify(new DepositIntentInitiated(auth()->user()->name, strval($this->amount / 100)));
   }
 
   public function formatAmountToPay()
