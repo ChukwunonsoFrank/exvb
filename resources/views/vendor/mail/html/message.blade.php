@@ -21,10 +21,10 @@
     {{-- Footer --}}
     <x-slot:footer>
         <x-mail::footer>
-            "moxyai" is trademark of Moxyai Inc with the registered address at 2 Av. Jean Jaurès, 92120 Châtillon,
-            France.
-
-            © {{ date('Y') }} Moxyai Inc. All rights reserved.
+            {{ __('"moxyai" is trademark of Moxyai Inc with the registered address at 2 Av. Jean Jaurès, 92120 Châtillon,
+                                                France.') }}
+            <br><br>
+            © {{ date('Y') }} {{ config('app.name') }} Inc. {{ __('All rights reserved.') }}
         </x-mail::footer>
     </x-slot:footer>
 </x-mail::layout>

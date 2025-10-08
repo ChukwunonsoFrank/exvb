@@ -39,8 +39,7 @@ a img {
 
 h1 {
   color: #000000;
-  font-size: 16px;
-  font-weight: normal;
+  font-size: 14px;
   margin-top: 0;
   text-align: left;
 }
@@ -271,12 +270,12 @@ img {
 
 .panel-content {
   background-color: #edf2f7;
-  color: #000000;
+  color: #718096;
   padding: 16px;
 }
 
 .panel-content p {
-  color: #000000;
+  color: #718096;
 }
 
 .panel-item {
@@ -292,14 +291,4 @@ img {
 
 .break-all {
   word-break: break-all;
-}
-
-/* Add this with your other styles */
-.transaction-heading {
-  text-align: center;
-  margin: 0 0 25px;
-  padding: 0;
-  color: #25258e;
-  font-size: 24px;
-  font-weight: bold;
 }

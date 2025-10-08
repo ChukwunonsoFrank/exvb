@@ -1,4 +1,4 @@
-<div>
+<div x-data>
     <section style="padding-top: 0 !important;"
         class="elementor-section elementor-top-section elementor-element elementor-element-a126101 tl-section-padding  elementor-section-boxed elementor-section-height-default elementor-section-height-default"
         data-id="a126101" data-element_type="section" id="contact"
@@ -6,18 +6,21 @@
         <div class="elementor-container elementor-column-gap-default">
             <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-4a7e867"
                 data-id="4a7e867" data-element_type="column">
-                <div class="elementor-widget-wrap elementor-element-populated">
+                <div class="elementor-widget-wrap elementor-element-populated" style="padding-top: 3rem;">
+                    <div class="elementor-element elementor-element-f3b0803 elementor-widget elementor-widget-heading"
+                        data-id="f3b0803" data-element_type="widget" data-widget_type="heading.default"
+                        style="margin-bottom: 1rem !important;">
+                        <div class="elementor-widget-container" style="text-align: center;">
+                            <img class="w-36 text-center inline"
+                                src="{{ asset('wp-content/uploads/2023/05/moxyai-logo.png') }}" alt="Logo" />
+                        </div>
+                    </div>
                     <div class="elementor-element elementor-element-f3b0803 elementor-widget elementor-widget-heading"
                         data-id="f3b0803" data-element_type="widget" data-widget_type="heading.default">
                         <div class="elementor-widget-container" style="text-align: center;">
-                            <h2 class="elementor-heading-title elementor-size-default"
-                                style="margin-bottom: 0 !important;">Login</h2>
-                        </div>
-                    </div>
-                    <div class="elementor-element elementor-element-23adb73 elementor-widget__width-initial elementor-widget elementor-widget-text-editor"
-                        data-id="23adb73" data-element_type="widget" data-widget_type="text-editor.default">
-                        <div class="elementor-widget-container">
-                            <p>Enter your email address and password to access your dashboard.</p>
+                            <h5 class="elementor-heading-title elementor-size-default"
+                                style="margin-bottom: 0 !important; margin-top: 0 !important; font-weight: 500;">Login
+                            </h5>
                         </div>
                     </div>
                 </div>
@@ -33,13 +36,51 @@
                             <form wire:submit="login" class="flex flex-col mt-2 gap-y-4">
                                 <!-- Email Address -->
                                 <input wire:model="email" type="email"
-                                    class="py-4 px-4 block w-full border font-medium text-gray-600 border-gray-200 rounded-sm text-sm disabled:opacity-50 disabled:pointer-events-none"
+                                    class="py-6 h-14 px-4 block w-full border font-medium text-gray-600 border-gray-200 rounded-sm text-sm disabled:opacity-50 disabled:pointer-events-none"
                                     autocomplete="email" required placeholder="Email">
 
                                 <!-- Password -->
-                                <input wire:model="password" type="password"
-                                    class="py-3 px-4 block w-full border font-medium text-gray-600 border-gray-200 rounded-sm text-sm disabled:opacity-50 disabled:pointer-events-none"
-                                    autocomplete="current-password" required placeholder="Password">
+                                {{-- <input wire:model="password" type="password"
+                                    class="py-6 h-14 px-4 block w-full border font-medium text-gray-600 border-gray-200 rounded-sm text-sm disabled:opacity-50 disabled:pointer-events-none"
+                                    autocomplete="current-password" required placeholder="Password"> --}}
+                                <div class="max-w-sm space-y-3">
+                                    <div>
+                                        <div class="relative">
+                                            <input wire:model="password"
+                                                x-bind:type="$store.loginPage.isPasswordVisible ? 'text' : 'password'"
+                                                id="hs-trailing-icon" name="hs-trailing-icon"
+                                                class="py-6 h-14 px-4 block w-full border font-medium text-gray-600 border-gray-200 rounded-sm text-sm disabled:opacity-50 disabled:pointer-events-none"
+                                                placeholder="Password">
+                                            <div x-on:click="$store.loginPage.togglePassword()"
+                                                class="absolute inset-y-0 end-0 flex items-center z-20 pe-4">
+                                                <template x-if="!$store.loginPage.isPasswordVisible">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                        height="24" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        class="lucide lucide-eye-closed-icon lucide-eye-closed">
+                                                        <path d="m15 18-.722-3.25" />
+                                                        <path d="M2 8a10.645 10.645 0 0 0 20 0" />
+                                                        <path d="m20 15-1.726-2.05" />
+                                                        <path d="m4 15 1.726-2.05" />
+                                                        <path d="m9 18 .722-3.25" />
+                                                    </svg>
+                                                </template>
+                                                <template x-if="$store.loginPage.isPasswordVisible">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                        height="24" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        class="lucide lucide-eye-icon lucide-eye">
+                                                        <path
+                                                            d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
+                                                        <circle cx="12" cy="12" r="3" />
+                                                    </svg>
+                                                </template>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="mt-2">
                                     <div wire:ignore class="g-recaptcha"
@@ -49,7 +90,7 @@
 
                                 <div class="w-full">
                                     <flux:button variant="primary" type="submit"
-                                        class="w-full! h-12! mt-4! rounded-md! p-2! bg-accent!">
+                                        class="w-full! h-14! mt-4! rounded-md! p-2! bg-accent!">
                                         {{ __('Log In') }}</flux:button>
                                 </div>
                             </form>
@@ -102,3 +143,15 @@
         });
     </script>
 @endscript
+
+<script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.store('loginPage', {
+            isPasswordVisible: false,
+
+            togglePassword() {
+                this.isPasswordVisible = !this.isPasswordVisible;
+            }
+        })
+    })
+</script>
