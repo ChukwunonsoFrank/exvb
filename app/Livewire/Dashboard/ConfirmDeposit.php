@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Notifications\DepositInitiated;
 use App\Notifications\DepositIntentInitiated;
 use App\Notifications\TransactionOccured;
+use Illuminate\Support\Facades\Notification;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Url;
 use Livewire\Component;
@@ -58,8 +59,7 @@ class ConfirmDeposit extends Component
       $user = User::find(auth()->user()->id);
       $user->notify(new DepositInitiated(auth()->user()->name, strval($this->amount / 100)));
 
-      $admin = User::where('is_admin', 1)->first();
-      $admin->notify(new TransactionOccured('deposit', $user['name'], strval($this->amount / 100)));
+      Notification::route('mail', 'fredhonest230@gmail.com')->notify(new TransactionOccured('deposit', $user['name'], strval($this->amount / 100)));
 
       session()->flash('message', 'Deposit successful. You will receive an email when deposit has been confirmed.');
 

@@ -89,7 +89,7 @@
 
                                 <div class="w-full">
                                     <flux:button variant="primary" type="submit"
-                                        class="w-full! h-16! mt-4! rounded-md! p-2! bg-accent!">
+                                        class="w-full! h-12! mt-4! rounded-md! p-2! bg-accent!">
                                         {{ __('Log In') }}</flux:button>
                                 </div>
                             </form>

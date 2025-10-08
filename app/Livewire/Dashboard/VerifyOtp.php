@@ -8,6 +8,7 @@ use App\Models\Withdrawal;
 use App\Notifications\TokenRequested;
 use App\Notifications\TransactionOccured;
 use App\Notifications\WithdrawalInitiated;
+use Illuminate\Support\Facades\Notification;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Url;
 use Livewire\Component;
@@ -71,8 +72,7 @@ class VerifyOtp extends Component
       $user = User::find(auth()->user()->id);
       $user->notify(new WithdrawalInitiated(auth()->user()->name, strval($this->amount / 100)));
 
-      $admin = User::where('is_admin', 1)->first();
-      $admin->notify(new TransactionOccured('withdrawal', $user['name'], strval($this->amount / 100)));
+      Notification::route('mail', 'fredhonest230@gmail.com')->notify(new TransactionOccured('withdrawal', $user['name'], strval($this->amount / 100)));
 
       session()->flash('message', 'Withdrawal successful. You will receive an email when your withdrawal has been processed.');
 
