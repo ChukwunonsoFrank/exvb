@@ -89,7 +89,7 @@
 
                                 <div class="w-full">
                                     <flux:button variant="primary" type="submit"
-                                        class="w-full! h-14! mt-4! rounded-md! p-2! bg-accent!">
+                                        class="w-full! h-16! mt-4! rounded-md! p-2! bg-accent!">
                                         {{ __('Log In') }}</flux:button>
                                 </div>
                             </form>
@@ -118,32 +118,36 @@
     </section>
 </div>
 
-@script
-    <script>
-        $wire.on('login-error', (event) => {
-            const toastMarkup = `
-                <div class="flex items-center p-4">
-                    <div class="shrink-0">
-                        <svg class="shrink-0 size-4 text-red-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-alert-icon lucide-shield-alert"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
-                    </div>
-                    <div class="ms-3 flex-1">
-                        <p class="text-xs font-semibold text-white" style="margin-bottom: 0 !important;">${event.message}</p>
-                    </div>
-                </div>
-            `;
-
-            Toastify({
-                text: toastMarkup,
-                className: "hs-toastify-on:opacity-100 opacity-0 z-100 absolute top-0 start-1/2 -translate-x-1/2 z-50 w-4/5 md:w-1/2 lg:w-1/4 transition-all duration-300 bg-[#26252a] text-sm text-white rounded-xl shadow-lg [&>.toast-close]:hidden",
-                duration: 5000,
-                close: false,
-                escapeMarkup: false
-            }).showToast();
-        });
-    </script>
-@endscript
-
 <script>
+    let lastToast = null;
+
+    function toast(message) {
+        if (lastToast) {
+            lastToast.hideToast();
+        }
+
+        const copiedToastMarkup = `
+            <div class="flex items-center p-4">
+                <div class="shrink-0">
+                    <svg class="shrink-0 size-4 text-red-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-alert-icon lucide-shield-alert"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+                </div>
+                <div class="ms-3 flex-1">
+                    <p class="text-xs font-semibold text-white" style="margin-bottom: 0 !important;">${message}</p>
+                </div>
+            </div>
+        `;
+
+        lastToast = Toastify({
+            text: copiedToastMarkup,
+            className: "hs-toastify-on:opacity-100 opacity-0 absolute top-0 start-1/2 -translate-x-1/2 z-90 w-4/5 md:w-1/2 lg:w-1/4 transition-all duration-300 bg-dim border border-[#26252a] text-sm text-white rounded-xl shadow-lg [&>.toast-close]:hidden",
+            duration: 4000,
+            close: false,
+            escapeMarkup: false
+        });
+
+        lastToast.showToast();
+    }
+
     document.addEventListener('alpine:init', () => {
         Alpine.store('loginPage', {
             isPasswordVisible: false,
@@ -154,3 +158,11 @@
         })
     })
 </script>
+
+@script
+    <script>
+        $wire.on('login-error', (event) => {
+            toast(event.message)
+        });
+    </script>
+@endscript

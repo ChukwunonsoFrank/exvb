@@ -41,7 +41,7 @@
                             </div>
                             <div class="w-full">
                                 <flux:button wire:click="verifyLoginCode()" variant="primary"
-                                    class="w-full! h-14! rounded-md! p-2! bg-accent!">
+                                    class="w-full! h-16! rounded-md! p-2! bg-accent!">
                                     {{ __('Create Account') }}</flux:button>
                             </div>
                         </div>

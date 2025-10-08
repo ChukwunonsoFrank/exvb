@@ -57,8 +57,8 @@
                     <label for="input-label" class="block text-sm font-medium mb-2 text-zinc-300">Date of Birth</label>
                     <div class="relative">
                         <input wire:model="dob" type="date"
-                            class="text-white border border-[#26252a] bg-transparent text-sm peer py-2.5 sm:py-3 px-4 block w-full rounded-lg sm:text-sm focus:outline-0"
-                            placeholder="">
+                            class="appearance-none text-white border border-[#26252a] bg-transparent text-sm peer py-2.5 sm:py-3 px-4 block w-full rounded-lg sm:text-sm focus:outline-0"
+                            placeholder="" style="color-scheme: dark;">
                     </div>
                 </div>
 
