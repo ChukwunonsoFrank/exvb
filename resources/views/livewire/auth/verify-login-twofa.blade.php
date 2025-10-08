@@ -3,27 +3,30 @@
         class="elementor-section elementor-top-section elementor-element elementor-element-a126101 tl-section-padding  elementor-section-boxed elementor-section-height-default elementor-section-height-default"
         data-id="a126101" data-element_type="section" id="contact"
         data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-        <div class="elementor-container elementor-column-gap-default">
-            <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-4a7e867"
-                data-id="4a7e867" data-element_type="column">
-                <div class="elementor-widget-wrap elementor-element-populated">
+        <div class="px-3 md:px-48 lg:px-[32rem]">
+            <div class="mb-6">
+                <div class="elementor-widget-wrap elementor-element-populated" style="padding-top: 8rem;">
+                    <div class="elementor-element elementor-element-f3b0803 elementor-widget elementor-widget-heading"
+                        data-id="f3b0803" data-element_type="widget" data-widget_type="heading.default"
+                        style="margin-bottom: 1rem !important;">
+                        <div class="elementor-widget-container" style="text-align: center;">
+                            <a href="{{ route('home') }}">
+                                <img class="w-36 text-center inline"
+                                    src="{{ asset('wp-content/uploads/2023/05/moxyai-logo.png') }}" alt="Logo" />
+                            </a>
+                        </div>
+                    </div>
                     <div class="elementor-element elementor-element-f3b0803 elementor-widget elementor-widget-heading"
                         data-id="f3b0803" data-element_type="widget" data-widget_type="heading.default">
                         <div class="elementor-widget-container" style="text-align: center;">
-                            <h2 class="elementor-heading-title elementor-size-default"
-                                style="margin-bottom: 0 !important;">Verify 2FA</h2>
-                        </div>
-                    </div>
-                    <div class="elementor-element elementor-element-23adb73 elementor-widget__width-initial elementor-widget elementor-widget-text-editor"
-                        data-id="23adb73" data-element_type="widget" data-widget_type="text-editor.default">
-                        <div class="elementor-widget-container">
-                            <p>Enter the 6-digit authentication code generated on the app.</p>
+                            <h5 class="elementor-heading-title elementor-size-default"
+                                style="margin-bottom: 0 !important; margin-top: 0 !important; font-weight: 500;">Enter
+                                the 6-digit authentication code generated on the app.</h5>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-6bff677"
-                data-id="6bff677" data-element_type="column">
+            <div>
                 <div class="elementor-widget-wrap elementor-element-populated">
                     <div class="elementor-element elementor-element-fb8ad16 elementor-widget elementor-widget-html">
                         <div class="elementor-widget-container">
