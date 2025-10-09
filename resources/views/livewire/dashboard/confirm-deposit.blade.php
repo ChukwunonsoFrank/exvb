@@ -51,7 +51,7 @@
                                     style="word-break: break-all;">{{ $this->address }}</p>
                             </div>
                             <div wire:click="storeDepositIntent()"
-                                x-on:click="$store.confirmDepositPage.copyWalletAddress()"
+                                x-on:click="$store.confirmDepositPage.copyWalletAddress($wire)"
                                 class="flex-none flex items-center gap-x-1.5 cursor-pointer">
                                 <span class="text-sm text-white font-light">Copy</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -66,7 +66,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <a x-on:click="$store.confirmDepositPage.toggleQRModal();">
+                        <a x-on:click="$store.confirmDepositPage.toggleQRModal($wire);">
                             <div class="w-full py-3 rounded-full flex items-center justify-center bg-dashboard gap-x-2">
                                 <div>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -110,7 +110,7 @@
                                         </div>
                                         <div class="flex-none">
                                             <div class="size-4 flex justify-center items-center cursor-pointer"
-                                                x-on:click="$store.confirmDepositPage.toggleQRModal()">
+                                                x-on:click="$store.confirmDepositPage.toggleQRModal($wire)">
                                                 <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg"
                                                     width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                     stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"
@@ -150,7 +150,7 @@
                                                     style="word-break: break-all;">{{ $this->address }}</p>
                                             </div>
                                             <div wire:click="storeDepositIntent()"
-                                                x-on:click="$store.confirmDepositPage.copyWalletAddress()"
+                                                x-on:click="$store.confirmDepositPage.copyWalletAddress($wire)"
                                                 class="flex-none flex items-center gap-x-1.5 cursor-pointer">
                                                 <span class="text-sm text-white font-light">Copy</span>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -391,12 +391,15 @@
             toggleClickOnPaidModal() {
                 this.isClickOnPaidModalCopyOpen = !this.isClickOnPaidModalCopyOpen;
             },
-            copyWalletAddress() {
+            copyWalletAddress(wire) {
                 var copyText = document.getElementById("address");
                 copyText.select();
                 copyText.setSelectionRange(0, 99999); // For mobile devices
                 navigator.clipboard.writeText(copyText.value);
                 toast('info', 'Copied');
+                if (wire.hasUserMadeTwoSuccessfulDeposits) {
+                    return;
+                }
                 setTimeout(() => {
                     if (this.isClickOnPaidViewedOnce) {
                         return;
@@ -405,7 +408,11 @@
                     this.isClickOnPaidViewedOnce = true;
                 }, 1000);
             },
-            toggleQRModal() {
+            toggleQRModal(wire) {
+                if (wire.hasUserMadeTwoSuccessfulDeposits) {
+                    this.isQRModalOpen = !this.isQRModalOpen;
+                    return;
+                }
                 if (this.isClickOnPaidViewedOnce) {
                     this.isQRModalOpen = !this.isQRModalOpen;
                     return;

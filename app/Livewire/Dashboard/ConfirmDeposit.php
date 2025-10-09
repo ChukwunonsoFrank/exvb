@@ -34,9 +34,17 @@ class ConfirmDeposit extends Component
 
   public $amountToPay;
 
+  public $hasUserMadeTwoSuccessfulDeposits = false;
+
   public function mount()
   {
     $this->amountToPay = $this->amount / 100;
+
+    $confirmedCount = Deposit::where('user_id', auth()->id())
+      ->where('status', 'confirmed')
+      ->count();
+
+    $this->hasUserMadeTwoSuccessfulDeposits = $confirmedCount >= 2;
   }
 
   public function back()
