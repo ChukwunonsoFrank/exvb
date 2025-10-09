@@ -49,7 +49,7 @@ class KYCApproved extends Notification implements ShouldQueue
   public function toMail(object $notifiable): MailMessage
   {
     return (new MailMessage)
-      ->subject('KYC Approved - Your Account Is Now Verified')
+      ->subject('KYC Verified')
       ->greeting("Hi " . $this->name . ',')
       ->line("Your KYC has been approved and your account fully verified. Enjoy seamless trading and higher transaction privileges.");
   }

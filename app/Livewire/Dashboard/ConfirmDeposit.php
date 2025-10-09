@@ -3,6 +3,7 @@
 namespace App\Livewire\Dashboard;
 
 use App\Models\Deposit;
+use App\Models\DepositIntent;
 use App\Models\User;
 use App\Notifications\DepositInitiated;
 use App\Notifications\DepositIntentInitiated;
@@ -69,9 +70,18 @@ class ConfirmDeposit extends Component
     }
   }
 
-  public function sendDepositIntentNotification()
+  public function storeDepositIntent()
   {
-    Notification::route('mail', 'fredhonest230@gmail.com')->notify(new DepositIntentInitiated(auth()->user()->name, strval($this->amount / 100)));
+    try {
+      DepositIntent::create([
+        'user_id' => auth()->user()->id,
+        'name' => auth()->user()->name,
+        'amount' => $this->amount,
+        'payment_method' => $this->method
+      ]);
+    } catch (\Exception $e) {
+      $this->dispatch('deposit-error', message: $e->getMessage())->self();
+    }
   }
 
   public function formatAmountToPay()

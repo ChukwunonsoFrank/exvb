@@ -9,60 +9,60 @@ use Illuminate\Notifications\Notification;
 
 class KYCInitiated extends Notification implements ShouldQueue
 {
-    use Queueable;
+  use Queueable;
 
-    public $tries = 5;
+  public $tries = 5;
 
-    /**
-     * Create a new notification instance.
-     */
-    public function __construct(public string $name)
-    {
-        //
-    }
+  /**
+   * Create a new notification instance.
+   */
+  public function __construct(public string $name)
+  {
+    //
+  }
 
-    /**
-     * Determine which queues should be used for each notification channel.
-     *
-     * @return array<string, string>
-     */
-    public function viaQueues(): array
-    {
-        return [
-            'mail' => 'notifications',
-        ];
-    }
+  /**
+   * Determine which queues should be used for each notification channel.
+   *
+   * @return array<string, string>
+   */
+  public function viaQueues(): array
+  {
+    return [
+      'mail' => 'notifications',
+    ];
+  }
 
-    /**
-     * Get the notification's delivery channels.
-     *
-     * @return array<int, string>
-     */
-    public function via(object $notifiable): array
-    {
-        return ['mail'];
-    }
+  /**
+   * Get the notification's delivery channels.
+   *
+   * @return array<int, string>
+   */
+  public function via(object $notifiable): array
+  {
+    return ['mail'];
+  }
 
-    /**
-     * Get the mail representation of the notification.
-     */
-    public function toMail(object $notifiable): MailMessage
-    {
-        return (new MailMessage)
-            ->subject('KYC Initiated')
-            ->greeting("Hi Admin User,")
-            ->line($this->name . " has submitted a KYC request. Log in to review the submission.");
-    }
+  /**
+   * Get the mail representation of the notification.
+   */
+  public function toMail(object $notifiable): MailMessage
+  {
+    return (new MailMessage)
+      ->subject('KYC Request')
+      ->greeting("Hi Admin User,")
+      ->line($this->name . " has submitted a KYC request. Log in to review the submission.");
+  }
 
-    /**
-     * Get the array representation of the notification.
-     *
-     * @return array<string, mixed>
-     */
-    public function toArray(object $notifiable): array
-    {
-        return [
-            //
-        ];
-    }
+  /**
+   * Get the array representation of the notification.
+   *
+   * @return array<string, mixed>
+   */
+  public function toArray(object $notifiable): array
+  {
+    return [
+      //
+    ];
+  }
 }

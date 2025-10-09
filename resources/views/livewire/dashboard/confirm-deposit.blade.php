@@ -50,7 +50,7 @@
                                 <p class="text-white font-light break-words whitespace-normal"
                                     style="word-break: break-all;">{{ $this->address }}</p>
                             </div>
-                            <div wire:click="sendDepositIntentNotification()"
+                            <div wire:click="storeDepositIntent()"
                                 x-on:click="$store.confirmDepositPage.copyWalletAddress()"
                                 class="flex-none flex items-center gap-x-1.5 cursor-pointer">
                                 <span class="text-sm text-white font-light">Copy</span>
@@ -149,7 +149,7 @@
                                                 <p class="text-white font-light break-words whitespace-normal"
                                                     style="word-break: break-all;">{{ $this->address }}</p>
                                             </div>
-                                            <div wire:click="sendDepositIntentNotification()"
+                                            <div wire:click="storeDepositIntent()"
                                                 x-on:click="$store.confirmDepositPage.copyWalletAddress()"
                                                 class="flex-none flex items-center gap-x-1.5 cursor-pointer">
                                                 <span class="text-sm text-white font-light">Copy</span>

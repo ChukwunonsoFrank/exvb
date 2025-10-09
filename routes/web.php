@@ -17,6 +17,7 @@ use App\Livewire\Dashboard\History;
 use App\Livewire\Dashboard\Support;
 use App\Livewire\Settings\Password;
 use App\Livewire\Admin\AdminDeposit;
+use App\Livewire\Admin\AdminDepositIntent;
 use App\Livewire\Admin\UsersDetails;
 use App\Livewire\Dashboard\Withdraw;
 use App\Livewire\Admin\AdminStrategy;
@@ -121,6 +122,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
   Route::get('/dashboard/strategy', AdminStrategy::class)->middleware(['auth', 'verified'])->name('dashboard.strategy');
   Route::get('/dashboard/strategy/details', AdminStrategyDetails::class)->middleware(['auth', 'verified'])->name('dashboard.strategy.details');
   Route::get('/dashboard/deposits', AdminDeposit::class)->middleware(['auth', 'verified'])->name('dashboard.deposits');
+  Route::get('/dashboard/depositintents', AdminDepositIntent::class)->middleware(['auth', 'verified'])->name('dashboard.depositintents');
   Route::get('/dashboard/withdrawals', AdminWithdrawals::class)->middleware(['auth', 'verified'])->name('dashboard.withdrawals');
   Route::get('/dashboard/paymentmethods', PaymentMethods::class)->middleware(['auth', 'verified'])->name('dashboard.paymentmethods');
   Route::get('/dashboard/paymentmethods/details', PaymentMethodDetails::class)->middleware(['auth', 'verified'])->name('dashboard.paymentmethods.details');
