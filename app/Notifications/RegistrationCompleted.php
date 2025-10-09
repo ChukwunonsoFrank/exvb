@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class UserRegistered extends Notification implements ShouldQueue
+class RegistrationCompleted extends Notification implements ShouldQueue
 {
   use Queueable;
 
@@ -16,7 +16,7 @@ class UserRegistered extends Notification implements ShouldQueue
   /**
    * Create a new notification instance.
    */
-  public function __construct(public string $emailAddress)
+  public function __construct(public string $name)
   {
     //
   }
@@ -49,10 +49,16 @@ class UserRegistered extends Notification implements ShouldQueue
   public function toMail(object $notifiable): MailMessage
   {
     return (new MailMessage)
-      ->subject('New Registration')
-      ->greeting("Hi Admin User,")
-      ->line(sprintf("%s just signed up.", $this->emailAddress))
-      ->line("Login to the admin dashboard to confirm this action.");
+      ->subject('Registration Successful')
+      ->greeting("Hi " . $this->name . ',')
+      ->line("Welcome to Moxyai!")
+      ->line("Your account has been successfully created. You're now one step away from trading automatically with our powerful AI scalping bot.")
+      ->line('Steps to get started')
+      ->line('1. Login to your Moxyai account now.')
+      ->line('2. Navigate to AI Robot.')
+      ->line('3. Input a trade amount.')
+      ->line('4. Click on Start Robot.')
+      ->line("Our Powerful AI Scalping Bot will automate your trade 24/7.");
   }
 
   /**

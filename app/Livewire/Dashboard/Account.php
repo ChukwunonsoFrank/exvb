@@ -2,16 +2,12 @@
 
 namespace App\Livewire\Dashboard;
 
-use App\Models\Bot;
-use App\Models\Deposit;
+
 use App\Models\Kyc;
-use App\Models\OtpToken;
-use App\Models\Trade;
-use App\Models\Withdrawal;
-use Illuminate\Support\Facades\Auth;
-use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Livewire\Attributes\Layout;
+use Illuminate\Support\Facades\Auth;
 
 #[Layout('components.layouts.app')]
 
@@ -81,42 +77,6 @@ class Account extends Component
 
     if ($status === 'declined') {
       return 'bg-[#e32d2d]';
-    }
-  }
-
-  public function destroyAccount()
-  {
-    try {
-      $user = Auth::user();
-
-      // Delete related KYC records
-      Kyc::where('user_id', $user->id)->delete();
-
-      // Delete related deposit records
-      Deposit::where('user_id', $user->id)->delete();
-
-      // Delete related withdrawal records
-      Withdrawal::where('user_id', $user->id)->delete();
-
-      // Delete related bot records
-      Bot::where('user_id', $user->id)->delete();
-
-      // Delete related bot trades records
-      Trade::where('user_id', $user->id)->delete();
-
-      // Delete related bot trades records
-      OtpToken::where('user_id', $user->id)->delete();
-
-      // Delete the user account
-      $user->delete();
-
-      // Log out the user
-      Auth::logout();
-
-      // Redirect to signup page
-      return redirect()->route('register');
-    } catch (\Exception $e) {
-      $this->dispatch('error-message', message: $e->getMessage())->self();
     }
   }
 

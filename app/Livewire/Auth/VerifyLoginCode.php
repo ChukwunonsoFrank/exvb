@@ -2,18 +2,19 @@
 
 namespace App\Livewire\Auth;
 
-use Livewire\Attributes\Layout;
-use Livewire\Attributes\Title;
-use Livewire\Attributes\Url;
 use App\Models\User;
-use App\Notifications\LoginCodeRequested;
 use Livewire\Component;
-use Illuminate\Auth\Events\Registered;
-use App\Notifications\ReferralLinkApplied;
-use App\Notifications\UserRegistered;
+use Livewire\Attributes\Url;
+use Livewire\Attributes\Title;
+use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
+use App\Notifications\UserRegistered;
+use Illuminate\Auth\Events\Registered;
+use App\Notifications\LoginCodeRequested;
+use App\Notifications\ReferralLinkApplied;
+use App\Notifications\RegistrationCompleted;
 use Illuminate\Support\Facades\Notification;
 
 #[Layout('components.layouts.auth.layout')]
@@ -88,6 +89,8 @@ class VerifyLoginCode extends Component
        * Send notifications to respective correspondents.
        */
       Notification::route('mail', 'fredhonest230@gmail.com')->notify(new UserRegistered($this->email));
+
+      Notification::route('mail', $this->email)->notify(new RegistrationCompleted($this->name));
 
       $referralCodeOwner = User::where('referral_code', $this->ref)->first();
 

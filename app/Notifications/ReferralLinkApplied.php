@@ -9,47 +9,59 @@ use Illuminate\Notifications\Notification;
 
 class ReferralLinkApplied extends Notification implements ShouldQueue
 {
-    use Queueable;
+  use Queueable;
 
-    public $tries = 5;
+  public $tries = 5;
 
-    /**
-     * Create a new notification instance.
-     */
-    public function __construct(public string $name, public string $referredUser)
-    {
-        //
-    }
+  /**
+   * Create a new notification instance.
+   */
+  public function __construct(public string $name, public string $referredUser)
+  {
+    //
+  }
 
-    /**
-     * Get the notification's delivery channels.
-     *
-     * @return array<int, string>
-     */
-    public function via(object $notifiable): array
-    {
-        return ['mail'];
-    }
+  /**
+   * Determine which queues should be used for each notification channel.
+   *
+   * @return array<string, string>
+   */
+  public function viaQueues(): array
+  {
+    return [
+      'mail' => 'notifications',
+    ];
+  }
 
-    /**
-     * Get the mail representation of the notification.
-     */
-    public function toMail(object $notifiable): MailMessage
-    {
-        return (new MailMessage)
-            ->greeting("Hi " . $this->name . ',')
-            ->line($this->referredUser . " just signed up with your referral link.");
-    }
+  /**
+   * Get the notification's delivery channels.
+   *
+   * @return array<int, string>
+   */
+  public function via(object $notifiable): array
+  {
+    return ['mail'];
+  }
 
-    /**
-     * Get the array representation of the notification.
-     *
-     * @return array<string, mixed>
-     */
-    public function toArray(object $notifiable): array
-    {
-        return [
-            //
-        ];
-    }
+  /**
+   * Get the mail representation of the notification.
+   */
+  public function toMail(object $notifiable): MailMessage
+  {
+    return (new MailMessage)
+      ->greeting("Hi " . $this->name . ',')
+      ->line($this->referredUser . " just signed up with your referral link.");
+  }
+
+  /**
+   * Get the array representation of the notification.
+   *
+   * @return array<string, mixed>
+   */
+  public function toArray(object $notifiable): array
+  {
+    return [
+      //
+    ];
+  }
 }
