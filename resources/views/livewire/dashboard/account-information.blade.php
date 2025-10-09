@@ -81,7 +81,7 @@
                             @endif
                             @if ($this->kycStatus === 'Verified')
                                 <span
-                                    class="inline-flex items-center gap-x-1.5 py-1 px-2 rounded-lg text-xs font-semibold border border-[#85FDF8] text-[#85FDF8]">Verified<svg
+                                    class="inline-flex items-center gap-x-1.5 py-1 px-2 rounded-lg text-xs font-semibold border border-verified text-verified">Verified<svg
                                         width="10" height="10" viewBox="0 0 10 10" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path d="M8.33366 2.5L3.75033 7.08333L1.66699 5" stroke="#85FDF8"
