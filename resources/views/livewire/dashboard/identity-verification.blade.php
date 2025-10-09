@@ -9,17 +9,18 @@
                 <div class="px-4 py-5 bg-dim rounded-lg border border-[#323335]">
                     <div class="flex items-center space-x-2 -mt-0.5">
                         <div class="grow">
-                            <p class="text-[10px] text-[#a4a4a4]">Current Status </p>
+                            <p class="text-[10px] text-[#a4a4a4] mb-1">Current Status </p>
                             @if ($this->kycStatus === 'Not verified')
                                 <p class="text-sm text-yellow-500 font-bold">Not verified</p>
                             @endif
                             @if ($this->kycStatus === 'Verified')
-                                <div class="flex items-center gap-x-0.5">
-                                    <p class="text-sm text-green-500 font-bold">Verified</p>
-                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                <div
+                                    class="px-1.5 py-0.5 cursor-pointer inline-flex items-center border border-green-300 justify-center gap-x-1 text-xs rounded-lg">
+                                    <span class="text-green-300 font-bold mt-0.5">Verified</span>
+                                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M13.3332 4L5.99984 11.3333L2.6665 8" stroke="#00C951" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M8.33366 2.5L3.75033 7.08333L1.66699 5" stroke="#7bf1a8"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
                                 </div>
                             @endif
