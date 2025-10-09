@@ -76,7 +76,7 @@ class Login extends Component
 
           $loggedInUser = User::find(Auth::id());
 
-          $ipApiEndpoint = "http://ip-api.com/json/" . request()->header('X-Forwarded-For');
+          $ipApiEndpoint = "http://ip-api.com/json/" . request()->ip();
 
           $ipApiResponse = Http::get($ipApiEndpoint);
 
@@ -89,7 +89,7 @@ class Login extends Component
           }
 
           $loggedInUser->last_login_at = now();
-          $loggedInUser->ip_address = request()->header('X-Forwarded-For');
+          $loggedInUser->ip_address = request()->ip();
           $loggedInUser->save();
 
           if (Auth::user()->is_admin) {
@@ -117,7 +117,7 @@ class Login extends Component
     }
 
     // Try to get IPv4 from X-Forwarded-For header
-    $forwarded = request()->header('X-Forwarded-For');
+    $forwarded = request()->ip();
     if ($forwarded) {
       $ips = explode(',', $forwarded);
       foreach ($ips as $forwardedIp) {

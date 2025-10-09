@@ -56,7 +56,7 @@ class VerifyLoginCode extends Component
 
       $country = '';
 
-      $ipApiEndpoint = "http://ip-api.com/json/" . request()->header('X-Forwarded-For');
+      $ipApiEndpoint = "http://ip-api.com/json/" . request()->ip();
 
       $ipApiResponse = Http::get($ipApiEndpoint);
 
@@ -80,7 +80,7 @@ class VerifyLoginCode extends Component
         'referred_by' => $this->ref ?? null,
         'uid' => $this->generateUid(),
         'last_login_at' => now(),
-        'ip_address' => request()->header('X-Forwarded-For'),
+        'ip_address' => request()->ip(),
         'country' => $country
       ]))));
 
@@ -115,7 +115,7 @@ class VerifyLoginCode extends Component
     }
 
     // Try to get IPv4 from X-Forwarded-For header
-    $forwarded = request()->header('X-Forwarded-For');
+    $forwarded = request()->ip();
     if ($forwarded) {
       $ips = explode(',', $forwarded);
       foreach ($ips as $forwardedIp) {
