@@ -787,6 +787,12 @@
                     <h5>Resources</h5>
                     <div class="menu-business-container">
                         <ul id="menu-business" class="menu">
+                          <li id="menu-item-2374"
+                                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2374"><a
+                                    href="{{ route('register') }}">Sign Up</a></li>
+                            <li id="menu-item-2374"
+                                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2374"><a
+                                    href="{{ route('login') }}">Sign In</a></li>
                             <li id="menu-item-2374"
                                 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2374"><a
                                     href="/#features-section">Features</a></li>
@@ -796,12 +802,6 @@
                             <li id="menu-item-2374"
                                 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2374"><a
                                     href="{{ route('findus') }}">Find Us</a></li>
-                            <li id="menu-item-2374"
-                                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2374"><a
-                                    href="{{ route('register') }}">Sign Up</a></li>
-                            <li id="menu-item-2374"
-                                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2374"><a
-                                    href="{{ route('login') }}">Sign In</a></li>
                             <li id="menu-item-1005"
                                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1005"><a
                                     href="{{ route('terms') }}">Terms and Conditions</a></li>
@@ -839,7 +839,11 @@
                 to individuals aged 18 years and above. By using our services, you acknowledge that you understand these
                 risks and agree to our Terms & Conditions. Our platform operates with transparency, instant
                 deposits/withdrawals, and 24/7 support to ensure a secure trading environment.
-                <br><br>Moxyai © <span id="year">{{ now()->year }}</span>. All rights reserved.
+            </p>
+        </div>
+        <br>
+        <div style="text-align: center;">
+            <p style="font-size:14px">Moxyai © <span id="year">{{ now()->year }}</span>. All rights reserved.
             </p>
         </div>
     </div>

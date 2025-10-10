@@ -34,8 +34,13 @@
                             <div wire:key="transaction-{{ $transaction['id'] }}"
                                 class="bg-dim w-full rounded-lg flex flex-col space-y-2 p-3 px-4 mb-3">
                                 <div class="flex items-center gap-x-4">
+                                    <div class="flex-none">
+                                        <img class="w-7"
+                                            src="{{ asset($this->getPaymentMethodIconUrl($transaction['payment_method'])) }}"
+                                            alt="">
+                                    </div>
                                     <div class="flex-1">
-                                        <div class="flex items-center mb-1">
+                                        <div class="flex items-center">
                                             <div class="flex-1">
                                                 <p class="text-white text-xs font-semibold">{{ $transaction['type'] }}
                                                 </p>
@@ -45,6 +50,21 @@
                                                     @money($transaction['amount'] / 100)
                                                 </p>
                                             </div>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <div class="flex-1">
+                                                <p class="text-[#a4a4a4] text-xs font-semibold">
+                                                    {{ $transaction['payment_method'] }}
+                                                </p>
+                                            </div>
+                                            @if ($transaction['type'] === 'Withdrawal')
+                                                <div class="flex-1 text-end">
+                                                    <p class="font-normal text-xs md:text-base text-white">
+                                                        Wallet:
+                                                        {{ strlen($transaction['address']) > 9 ? substr($transaction['address'], 0, 4) . '...' . substr($transaction['address'], -5) : $transaction['address'] }}
+                                                    </p>
+                                                </div>
+                                            @endif
                                         </div>
                                         <div class="flex items-center">
                                             <div class="flex-1">
@@ -89,8 +109,13 @@
                             <div wire:key="deposit-{{ $deposit['id'] }}"
                                 class="bg-dim w-full rounded-lg flex flex-col space-y-2 p-3 px-4 mb-3">
                                 <div class="flex items-center gap-x-4">
+                                    <div class="flex-none">
+                                        <img class="w-7"
+                                            src="{{ asset($this->getPaymentMethodIconUrl($deposit['payment_method'])) }}"
+                                            alt="">
+                                    </div>
                                     <div class="flex-1">
-                                        <div class="flex items-center mb-1">
+                                        <div class="flex items-center">
                                             <div class="flex-1">
                                                 <p class="text-white text-xs font-semibold">Deposit
                                                 </p>
@@ -98,6 +123,13 @@
                                             <div class="flex-1 text-end">
                                                 <p class="font-semibold text-sm md:text-base text-white">
                                                     @money($deposit['amount'] / 100)
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <div class="flex-1">
+                                                <p class="text-[#a4a4a4] text-xs font-semibold">
+                                                    {{ $deposit['payment_method'] }}
                                                 </p>
                                             </div>
                                         </div>
@@ -138,14 +170,20 @@
                         @endif
                     </div>
 
-                    <div id="pills-with-brand-color-3" class="{{ $this->activeTab === 'withdrawals' ? '' : 'hidden' }}"
-                        role="tabpanel" aria-labelledby="pills-with-brand-color-item-3">
+                    <div id="pills-with-brand-color-3"
+                        class="{{ $this->activeTab === 'withdrawals' ? '' : 'hidden' }}" role="tabpanel"
+                        aria-labelledby="pills-with-brand-color-item-3">
                         @forelse ($withdrawals as $withdrawal)
                             <div wire:key="withdrawal-{{ $withdrawal['id'] }}"
                                 class="bg-dim w-full rounded-lg flex flex-col space-y-2 p-3 px-4 mb-3">
                                 <div class="flex items-center gap-x-4">
+                                    <div class="flex-none">
+                                        <img class="w-7"
+                                            src="{{ asset($this->getPaymentMethodIconUrl($withdrawal['payment_method'])) }}"
+                                            alt="">
+                                    </div>
                                     <div class="flex-1">
-                                        <div class="flex items-center mb-1">
+                                        <div class="flex items-center">
                                             <div class="flex-1">
                                                 <p class="text-white text-xs font-semibold">Withdrawal
                                                 </p>
@@ -153,6 +191,19 @@
                                             <div class="flex-1 text-end">
                                                 <p class="font-semibold text-sm md:text-base text-white">
                                                     @money($withdrawal['amount'] / 100)
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <div class="flex-1">
+                                                <p class="text-[#a4a4a4] text-xs font-semibold">
+                                                    {{ $withdrawal['payment_method'] }}
+                                                </p>
+                                            </div>
+                                            <div class="flex-1 text-end">
+                                                <p class="font-normal text-xs md:text-base text-white">
+                                                    Wallet:
+                                                    {{ strlen($withdrawal['address']) > 9 ? substr($withdrawal['address'], 0, 4) . '...' . substr($withdrawal['address'], -5) : $withdrawal['address'] }}
                                                 </p>
                                             </div>
                                         </div>
@@ -235,3 +286,46 @@
         });
     </script>
 @endscript
+
+<script>
+    let lastToast = null;
+
+    function toastCopied() {
+        if (lastToast) {
+            lastToast.hideToast();
+        }
+
+        const copiedToastMarkup = `
+            <div class="flex items-center p-4">
+                <div class="shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-info-icon lucide-info"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                </div>
+                <div class="ms-3 flex-1">
+                    <p class="text-xs font-semibold text-white">Copied</p>
+                </div>
+            </div>
+        `;
+
+        lastToast = Toastify({
+            text: copiedToastMarkup,
+            className: "hs-toastify-on:opacity-100 opacity-0 absolute top-0 start-1/2 -translate-x-1/2 z-90 w-4/5 md:w-1/2 lg:w-1/4 transition-all duration-300 bg-dim border border-[#26252a] text-sm text-white rounded-xl shadow-lg [&>.toast-close]:hidden",
+            duration: 4000,
+            close: true,
+            escapeMarkup: false
+        });
+
+        lastToast.showToast();
+    }
+
+    document.addEventListener('alpine:init', () => {
+        Alpine.store('transactionPage', {
+            copyAddress() {
+                var copyText = document.getElementById("address");
+                copyText.select();
+                copyText.setSelectionRange(0, 99999); // For mobile devices
+                navigator.clipboard.writeText(copyText.value);
+                toastCopied();
+            }
+        })
+    })
+</script>

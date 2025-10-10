@@ -53,11 +53,13 @@ class RegistrationCompleted extends Notification implements ShouldQueue
       ->greeting("Hi " . $this->name . ',')
       ->line("Welcome to Moxyai!")
       ->line("Your account has been successfully created. You're now one step away from trading automatically with our powerful AI scalping bot.")
+      ->line('')
       ->line('Steps to get started')
       ->line('1. Login to your Moxyai account now.')
       ->line('2. Navigate to AI Robot.')
       ->line('3. Input a trade amount.')
       ->line('4. Click on Start Robot.')
+      ->line('')
       ->line("Our Powerful AI Scalping Bot will automate your trade 24/7.");
   }
 

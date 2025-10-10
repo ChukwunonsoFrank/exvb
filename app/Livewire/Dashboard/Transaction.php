@@ -108,7 +108,9 @@ class Transaction extends Component
           'id' => $deposit->id,
           'type' => 'Deposit',
           'amount' => $deposit->amount,
+          'payment_method' => $deposit->payment_method,
           'status' => $deposit->status,
+          'address' => '',
           'created_at' => $deposit->created_at,
           'created_at_formatted' => $deposit->getCreatedAtFormattedAttribute(),
         ];
@@ -122,7 +124,9 @@ class Transaction extends Component
           'id' => $withdrawal->id,
           'type' => 'Withdrawal',
           'amount' => $withdrawal->amount,
+          'payment_method' => $withdrawal->payment_method,
           'status' => $withdrawal->status,
+          'address' => $withdrawal->address,
           'created_at' => $withdrawal->created_at,
           'created_at_formatted' => $withdrawal->getCreatedAtFormattedAttribute(),
         ];

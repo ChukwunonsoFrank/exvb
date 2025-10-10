@@ -50,18 +50,18 @@ class Register extends Component
   public function register()
   {
     try {
-      if (is_null($this->gRecaptchaResponse)) {
-        $this->dispatch('signup-error', message: 'Please confirm you are not a robot.')->self();
-      }
+      // if (is_null($this->gRecaptchaResponse)) {
+      //   $this->dispatch('signup-error', message: 'Please confirm you are not a robot.')->self();
+      // }
 
-      $recatpchaResponse = Http::get("https://www.google.com/recaptcha/api/siteverify", [
-        'secret' => config('services.recaptcha.secret'),
-        'response' => $this->gRecaptchaResponse
-      ]);
+      // $recatpchaResponse = Http::get("https://www.google.com/recaptcha/api/siteverify", [
+      //   'secret' => config('services.recaptcha.secret'),
+      //   'response' => $this->gRecaptchaResponse
+      // ]);
 
-      $result = $recatpchaResponse->json();
+      // $result = $recatpchaResponse->json();
 
-      if ($recatpchaResponse->successful() && $result['success'] == true) {
+      // if ($recatpchaResponse->successful() && $result['success'] == true) {
         $validated = $this->validate([
           'name' => ['required', 'string', 'max:255'],
           'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
@@ -84,10 +84,10 @@ class Register extends Component
           'hash' => Hash::make($loginCode),
           'ref' => $this->ref
         ]);
-      } else {
-        $this->dispatch('signup-error', message: 'Please confirm you are not a robot.')->self();
-        return redirect()->back();
-      }
+      // } else {
+      //   $this->dispatch('signup-error', message: 'Please confirm you are not a robot.')->self();
+      //   return redirect()->back();
+      // }
     } catch (\Exception $e) {
       $this->dispatch('signup-error', message: $e->getMessage())->self();
     }
