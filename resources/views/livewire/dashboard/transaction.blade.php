@@ -36,7 +36,7 @@
                                 <div class="flex items-center gap-x-4">
                                     <div class="flex-none">
                                         <img class="w-7"
-                                            src="{{ asset($this->getPaymentMethodIconUrl($transaction['payment_method'])) }}"
+                                            src="{{ asset('storage/' . $this->getPaymentMethodIconUrl($transaction['payment_method'])) }}"
                                             alt="">
                                     </div>
                                     <div class="flex-1">
@@ -51,18 +51,32 @@
                                                 </p>
                                             </div>
                                         </div>
-                                        <div class="flex items-center">
-                                            <div class="flex-1">
+                                        <div class="flex items-center my-1">
+                                            <div class="flex-none">
                                                 <p class="text-[#a4a4a4] text-xs font-semibold">
                                                     {{ $transaction['payment_method'] }}
                                                 </p>
                                             </div>
                                             @if ($transaction['type'] === 'Withdrawal')
-                                                <div class="flex-1 text-end">
+                                                <div class="flex-1 inline-flex items-center justify-end gap-x-2">
                                                     <p class="font-normal text-xs md:text-base text-white">
+                                                        <input
+                                                            id="transaction-{{ $transaction['type'] }}-{{ $transaction['id'] }}"
+                                                            type="text" class="hidden"
+                                                            value="{{ $transaction['address'] }}">
                                                         Wallet:
                                                         {{ strlen($transaction['address']) > 9 ? substr($transaction['address'], 0, 4) . '...' . substr($transaction['address'], -5) : $transaction['address'] }}
                                                     </p>
+                                                    <svg x-on:click="$store.transactionPage.copyAddress('transaction-{{ $transaction['type'] }}-{{ $transaction['id'] }}')"
+                                                        xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        viewBox="0 0 24 24" fill="none" stroke="#ffffff"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                        class="lucide lucide-copy-icon lucide-copy">
+                                                        <rect width="14" height="14" x="8" y="8" rx="2"
+                                                            ry="2" />
+                                                        <path
+                                                            d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                                                    </svg>
                                                 </div>
                                             @endif
                                         </div>
@@ -111,7 +125,7 @@
                                 <div class="flex items-center gap-x-4">
                                     <div class="flex-none">
                                         <img class="w-7"
-                                            src="{{ asset($this->getPaymentMethodIconUrl($deposit['payment_method'])) }}"
+                                            src="{{ asset('storage/' . $this->getPaymentMethodIconUrl($deposit['payment_method'])) }}"
                                             alt="">
                                     </div>
                                     <div class="flex-1">
@@ -126,7 +140,7 @@
                                                 </p>
                                             </div>
                                         </div>
-                                        <div class="flex items-center">
+                                        <div class="flex items-center my-1">
                                             <div class="flex-1">
                                                 <p class="text-[#a4a4a4] text-xs font-semibold">
                                                     {{ $deposit['payment_method'] }}
@@ -179,7 +193,7 @@
                                 <div class="flex items-center gap-x-4">
                                     <div class="flex-none">
                                         <img class="w-7"
-                                            src="{{ asset($this->getPaymentMethodIconUrl($withdrawal['payment_method'])) }}"
+                                            src="{{ asset('storage/' . $this->getPaymentMethodIconUrl($withdrawal['payment_method'])) }}"
                                             alt="">
                                     </div>
                                     <div class="flex-1">
@@ -194,17 +208,28 @@
                                                 </p>
                                             </div>
                                         </div>
-                                        <div class="flex items-center">
-                                            <div class="flex-1">
+                                        <div class="flex items-center my-1">
+                                            <div class="flex-none">
                                                 <p class="text-[#a4a4a4] text-xs font-semibold">
                                                     {{ $withdrawal['payment_method'] }}
                                                 </p>
                                             </div>
-                                            <div class="flex-1 text-end">
+                                            <div class="flex-1 inline-flex items-center justify-end gap-x-2">
                                                 <p class="font-normal text-xs md:text-base text-white">
+                                                    <input id="withdrawal-{{ $withdrawal['id'] }}" type="text"
+                                                        class="hidden" value="{{ $withdrawal['address'] }}">
                                                     Wallet:
                                                     {{ strlen($withdrawal['address']) > 9 ? substr($withdrawal['address'], 0, 4) . '...' . substr($withdrawal['address'], -5) : $withdrawal['address'] }}
                                                 </p>
+                                                <svg x-on:click="$store.transactionPage.copyAddress('withdrawal-{{ $withdrawal['id'] }}')"
+                                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    viewBox="0 0 24 24" fill="none" stroke="#ffffff"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="lucide lucide-copy-icon lucide-copy">
+                                                    <rect width="14" height="14" x="8" y="8" rx="2"
+                                                        ry="2" />
+                                                    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                                                </svg>
                                             </div>
                                         </div>
                                         <div class="flex items-center">
@@ -319,8 +344,8 @@
 
     document.addEventListener('alpine:init', () => {
         Alpine.store('transactionPage', {
-            copyAddress() {
-                var copyText = document.getElementById("address");
+            copyAddress(id) {
+                var copyText = document.getElementById(id);
                 copyText.select();
                 copyText.setSelectionRange(0, 99999); // For mobile devices
                 navigator.clipboard.writeText(copyText.value);

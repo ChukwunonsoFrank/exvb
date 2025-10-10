@@ -69,7 +69,6 @@ class Transaction extends Component
     $filtered = $this->paymentMethods->filter(function (PaymentMethod $value, $key) use ($paymentMethod) {
       return $value['name'] === $paymentMethod;
     });
-
     return $filtered->first()['icon_url'];
   }
 

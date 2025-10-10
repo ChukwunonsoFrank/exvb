@@ -356,7 +356,7 @@
             <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-b3c0773"
                 data-id="b3c0773" data-element_type="column">
                 <div class="elementor-widget-wrap elementor-element-populated">
-                    <section
+                    <section style="padding-bottom: 0 !important;"
                         class="elementor-section elementor-inner-section elementor-element elementor-element-ffa5a99 elementor-section-full_width elementor-section-height-default elementor-section-height-default"
                         data-id="ffa5a99" data-element_type="section">
                         <div class="elementor-container elementor-column-gap-default">
@@ -381,7 +381,7 @@
                                     <div class="elementor-element elementor-element-21dda50 elementor-widget__width-inherit elementor-widget elementor-widget-toggle"
                                         data-id="21dda50" data-element_type="widget"
                                         data-widget_type="toggle.default">
-                                        <div class="elementor-widget-container">
+                                        <div class="elementor-widget-container" style="margin-bottom: 0 !important;">
                                             <style>
                                                 /*! elementor - v3.13.3 - 28-05-2023 */
                                                 .elementor-toggle {

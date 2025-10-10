@@ -495,7 +495,7 @@
                                 class="bg-dim w-full rounded-lg flex items-center space-x-2 p-3 mb-1 border border-[#323335] lg:mb-0">
                                 <div class="flex-none text-white">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        viewBox="0 0 24 24" fill="none" stroke="#fb2c36" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round"
                                         class="lucide lucide-log-out-icon lucide-log-out">
                                         <path d="m16 17 5-5-5-5" />
@@ -504,7 +504,7 @@
                                     </svg>
                                 </div>
                                 <div class="flex-1">
-                                    <p class="font-medium text-sm text-white">Sign Out</p>
+                                    <p class="font-medium text-sm text-red-500">Sign Out</p>
                                 </div>
                                 <div class="flex-none text-end">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
