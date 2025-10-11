@@ -1,4 +1,4 @@
-<nav id="mobile__navbar" class="flex-none lg:hidden px-4 w-full py-3 border-t border-[#26252a]">
+<nav x-data id="mobile__navbar" class="flex-none lg:hidden px-4 w-full py-3 border-t border-[#26252a]">
     <div class="flex justify-between items-center md:justify-around">
         <a class="block" href="{{ route('dashboard') }}">
             <div>
@@ -30,16 +30,23 @@
                 <div class="text-center">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 12H12.01" stroke="#D4D4D4" stroke-width="{{ request()->is('dashboard/history') || request()->is('dashboard/history/details') ? 2 : 1 }}" stroke-linecap="round"
-                            stroke-linejoin="round" />
+                        <path d="M12 12H12.01" stroke="#D4D4D4"
+                            stroke-width="{{ request()->is('dashboard/history') || request()->is('dashboard/history/details') ? 2 : 1 }}"
+                            stroke-linecap="round" stroke-linejoin="round" />
                         <path
                             d="M16 6V4C16 3.46957 15.7893 2.96086 15.4142 2.58579C15.0391 2.21071 14.5304 2 14 2H10C9.46957 2 8.96086 2.21071 8.58579 2.58579C8.21071 2.96086 8 3.46957 8 4V6"
-                            stroke="#D4D4D4" stroke-width="{{ request()->is('dashboard/history') || request()->is('dashboard/history/details') ? 2 : 1 }}" stroke-linecap="round" stroke-linejoin="round" />
+                            stroke="#D4D4D4"
+                            stroke-width="{{ request()->is('dashboard/history') || request()->is('dashboard/history/details') ? 2 : 1 }}"
+                            stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M22 13C19.0328 14.959 15.5555 16.0033 12 16.0033C8.44445 16.0033 4.96721 14.959 2 13"
-                            stroke="#D4D4D4" stroke-width="{{ request()->is('dashboard/history') || request()->is('dashboard/history/details') ? 2 : 1 }}" stroke-linecap="round" stroke-linejoin="round" />
+                            stroke="#D4D4D4"
+                            stroke-width="{{ request()->is('dashboard/history') || request()->is('dashboard/history/details') ? 2 : 1 }}"
+                            stroke-linecap="round" stroke-linejoin="round" />
                         <path
                             d="M20 6H4C2.89543 6 2 6.89543 2 8V18C2 19.1046 2.89543 20 4 20H20C21.1046 20 22 19.1046 22 18V8C22 6.89543 21.1046 6 20 6Z"
-                            stroke="#D4D4D4" stroke-width="{{ request()->is('dashboard/history') || request()->is('dashboard/history/details') ? 2 : 1 }}" stroke-linecap="round" stroke-linejoin="round" />
+                            stroke="#D4D4D4"
+                            stroke-width="{{ request()->is('dashboard/history') || request()->is('dashboard/history/details') ? 2 : 1 }}"
+                            stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                     <p
                         class="text-[10px] mt-0.5 tracking-wide {{ request()->is('dashboard/history') || request()->is('dashboard/history/details') ? 'text-white' : 'text-[#a4a4a4]' }}">
@@ -65,7 +72,7 @@
             </div>
         </a>
 
-        <a class="block" href="{{ route('dashboard.support') }}">
+        <a class="block" x-on:click="$store.mobileNavbar.toggleSupportModal()">
             <div>
                 <div class="text-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -103,4 +110,36 @@
             </div>
         </a>
     </div>
+
+    <div x-cloak x-show="$store.mobileNavbar.isSupportModalOpen" x-transition
+        class="fixed top-0 left-0 h-svh w-full bg-dashboard z-20 flex flex-col">
+        <div class="flex items-center px-4 py-4 border-y border-[#26252a]">
+            <div class="flex-1">
+                <h1 class="text-white text-base font-bold">Support</h1>
+            </div>
+            <div class="flex-none">
+                <svg x-on:click="$store.mobileNavbar.toggleSupportModal()" xmlns="http://www.w3.org/2000/svg"
+                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x">
+                    <path d="M18 6 6 18" />
+                    <path d="m6 6 12 12" />
+                </svg>
+            </div>
+        </div>
+        <div class="grow">
+            <iframe frameborder="0" width="100%" height="100%"
+                src="https://tawk.to/chat/68e5729411d1b11954cbc1e5/1j704f59b"></iframe>
+        </div>
+    </div>
 </nav>
+
+<script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.store('mobileNavbar', {
+            isSupportModalOpen: false,
+            toggleSupportModal() {
+                this.isSupportModalOpen = !this.isSupportModalOpen;
+            },
+        })
+    })
+</script>

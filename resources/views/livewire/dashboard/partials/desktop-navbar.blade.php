@@ -1,4 +1,4 @@
-<div class="hidden lg:flex flex-none flex-col items-center space-y-3 w-16 lg:border-r lg:border-[#26252a]">
+<div x-data class="hidden lg:flex flex-none flex-col items-center space-y-3 w-16 lg:border-r lg:border-[#26252a]">
     <div @class([
         'w-full' => true,
         'py-3' => true,
@@ -98,7 +98,7 @@
         'cursor-pointer' => true,
         'hover:bg-dim' => true,
     ])>
-        <a class="block" href="{{ route('dashboard.support') }}">
+        <a class="block" x-on:click="$store.desktopNavbar.toggleSupportModal()">
             <div class="mb-1">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="#D4D4D4" stroke-width="{{ request()->is('dashboard/support') ? 2 : 1 }}"
@@ -143,4 +143,37 @@
             </div>
         </a>
     </div>
+
+    <div x-cloak x-show="$store.desktopNavbar.isSupportModalOpen" x-transition
+        class="fixed top-0 right-0 h-svh w-96 bg-dashboard z-20 flex flex-col border border-[#26252a]">
+        <div class="flex items-center px-4 py-4 border-y border-[#26252a]">
+            <div class="flex-1">
+                <h1 class="text-white text-base font-bold">Support</h1>
+            </div>
+            <div class="flex-none">
+                <svg x-on:click="$store.desktopNavbar.toggleSupportModal()" xmlns="http://www.w3.org/2000/svg"
+                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-x-icon lucide-x">
+                    <path d="M18 6 6 18" />
+                    <path d="m6 6 12 12" />
+                </svg>
+            </div>
+        </div>
+        <div class="grow">
+            <iframe frameborder="0" width="100%" height="100%"
+                src="https://tawk.to/chat/68e5729411d1b11954cbc1e5/1j704f59b"></iframe>
+        </div>
+    </div>
 </div>
+
+<script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.store('desktopNavbar', {
+            isSupportModalOpen: false,
+            toggleSupportModal() {
+                this.isSupportModalOpen = !this.isSupportModalOpen;
+            },
+        })
+    })
+</script>

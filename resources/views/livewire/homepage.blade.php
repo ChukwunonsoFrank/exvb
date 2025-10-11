@@ -138,14 +138,97 @@
                                                 <h2 class="main-block_child"><span
                                                         class="purple-gradient">AI-Powered</span> Scalping Technology
                                                 </h2>
-                                                <p class="main-block_child">Automate your trades and take advantage of
-                                                    leverage using our advanced AI trading feature. Our intelligent
-                                                    algorithms operate 24/7, pinpointing opportunities, executing
-                                                    trades, and generating profits while you're away. Experience
-                                                    hands-free trading with precise strategies, robust risk controls,
-                                                    and live performance monitoring. Let '
-                                                    smart automation handle the
-                                                    complexities of trading for you.</p>
+                                                <p class="main-block_child">Moxyai uses a cutting-edge AI scalping
+                                                    strategy that opens and closes trades in seconds.</p>
+                                                <!-- Refactored Button Rendering -->
+                                                <div class="button-wrapper main-block_child justify-start">
+
+                                                    <a href="{{ route('register') }}">
+                                                        <button class="btn-platform">
+                                                            Start trading </button>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-ed35d4f"
+                                data-id="ed35d4f" data-element_type="column">
+                                <div class="elementor-widget-wrap">
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section
+                        class="elementor-section elementor-inner-section elementor-element elementor-element-65416b8 elementor-section-full_width elementor-section-height-default elementor-section-height-default"
+                        data-id="65416b8" data-element_type="section">
+                        <div class="elementor-container elementor-column-gap-default">
+                            <div class="elementor-column elementor-col-100 elementor-inner-column elementor-element elementor-element-674d720"
+                                data-id="674d720" data-element_type="column">
+                                <div class="elementor-widget-wrap elementor-element-populated">
+                                    <div class="elementor-element elementor-element-ac14913 elementor-widget__width-initial elementor-hidden-mobile elementor-widget elementor-widget-mockup-block"
+                                        data-id="ac14913" data-element_type="widget"
+                                        data-widget_type="mockup-block.default">
+                                        <div class="elementor-widget-container">
+                                            <div class="mockup-block flex justify-center">
+                                                <img width="400" decoding="async" loading="lazy"
+                                                    class="mockup_screenshot centerX-absolute"
+                                                    src="wp-content/uploads/2025/03/Screenshot-2025-03-26-at-15.48.10.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="elementor-element elementor-element-5588d24 elementor-hidden-desktop elementor-hidden-tablet elementor-widget elementor-widget-mockup-block"
+                                        data-id="5588d24" data-element_type="widget"
+                                        data-settings="{&quot;_animation&quot;:&quot;none&quot;}"
+                                        data-widget_type="mockup-block.default">
+                                        <div class="elementor-widget-container">
+                                            <div class="mockup-block flex justify-center">
+                                                <img decoding="async" loading="lazy"
+                                                    class="mockup_screenshot centerX-absolute"
+                                                    src="wp-content/uploads/2025/03/Screenshot-2025-03-26-at-15.48.10.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section
+        class="elementor-section elementor-top-section elementor-element elementor-element-48c09f1 tl-section-border tl-section-border-top no-inner-borders elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+        data-id="48c09f1" data-element_type="section"
+        data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+        <div class="elementor-container elementor-column-gap-default">
+            <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-19eeb6b"
+                data-id="19eeb6b" data-element_type="column">
+                <div class="elementor-widget-wrap elementor-element-populated">
+                    <section
+                        class="elementor-section elementor-inner-section elementor-element elementor-element-3ae5ecd elementor-section-full_width elementor-section-height-default elementor-section-height-default"
+                        data-id="3ae5ecd" data-element_type="section">
+                        <div class="elementor-container elementor-column-gap-default">
+                            <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-2d03aa1"
+                                data-id="2d03aa1" data-element_type="column">
+                                <div class="elementor-widget-wrap elementor-element-populated">
+                                    <div class="elementor-element elementor-element-7a5c00b elementor-widget elementor-widget-main-block"
+                                        data-id="7a5c00b" data-element_type="widget"
+                                        data-widget_type="main-block.default">
+                                        <div class="elementor-widget-container">
+                                            <div class="main-block text-left flex-wrap justify-start"
+                                                style="text-align:left">
+                                                <div class="main-block_child main-block_eyebrow"><img decoding="async"
+                                                        width="24" height="auto"
+                                                        src="wp-content/uploads/2025/03/plaform.svg">
+                                                </div>
+                                                <h2 class="main-block_child"><span
+                                                        class="purple-gradient">$10,000</span> Demo Account
+                                                </h2>
+                                                <p class="main-block_child">Every new user gets a free $10,000 demo
+                                                    account to test the AI bot and understand how it works.</p>
                                                 <!-- Refactored Button Rendering -->
                                                 <div class="button-wrapper main-block_child justify-start">
 
@@ -170,43 +253,43 @@
             </div>
         </div>
     </section>
+
     <section
-        class="elementor-section elementor-top-section elementor-element elementor-element-019e2b9 tl-section-border elementor-section-boxed elementor-section-height-default elementor-section-height-default"
-        data-id="019e2b9" data-element_type="section"
+        class="elementor-section elementor-top-section elementor-element elementor-element-48c09f1 tl-section-border tl-section-border-top no-inner-borders elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+        data-id="48c09f1" data-element_type="section"
         data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
         <div class="elementor-container elementor-column-gap-default">
-            <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-d85020c"
-                data-id="d85020c" data-element_type="column">
+            <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-19eeb6b"
+                data-id="19eeb6b" data-element_type="column">
                 <div class="elementor-widget-wrap elementor-element-populated">
                     <section
-                        class="elementor-section elementor-inner-section elementor-element elementor-element-6638357 elementor-section-full_width elementor-section-height-default elementor-section-height-default"
-                        data-id="6638357" data-element_type="section">
+                        class="elementor-section elementor-inner-section elementor-element elementor-element-3ae5ecd elementor-section-full_width elementor-section-height-default elementor-section-height-default"
+                        data-id="3ae5ecd" data-element_type="section">
                         <div class="elementor-container elementor-column-gap-default">
-                            <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-79a1f58"
-                                data-id="79a1f58" data-element_type="column">
+                            <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-2d03aa1"
+                                data-id="2d03aa1" data-element_type="column">
                                 <div class="elementor-widget-wrap elementor-element-populated">
-                                    <div class="elementor-element elementor-element-cbdd730 elementor-widget elementor-widget-main-block"
-                                        data-id="cbdd730" data-element_type="widget"
+                                    <div class="elementor-element elementor-element-7a5c00b elementor-widget elementor-widget-main-block"
+                                        data-id="7a5c00b" data-element_type="widget"
                                         data-widget_type="main-block.default">
                                         <div class="elementor-widget-container">
                                             <div class="main-block text-left flex-wrap justify-start"
                                                 style="text-align:left">
                                                 <div class="main-block_child main-block_eyebrow"><img decoding="async"
                                                         width="24" height="auto"
-                                                        src="wp-content/uploads/2025/03/hub.svg">
+                                                        src="wp-content/uploads/2025/03/plaform.svg">
                                                 </div>
-                                                <h2 class="main-block_child">Quick deposits and withdrawals.
+                                                <h2 class="main-block_child">Fully Licensed & Secured
                                                 </h2>
-                                                <p class="main-block_child">Get instant deposits with our streamlined
-                                                    funding system. Top up your account quickly and never miss a trading
-                                                    opportunity. Our secure and efficient process ensures your funds are
-                                                    available exactly when you need them.</p>
+                                                <p class="main-block_child">Moxyai is a fully registered and licensed
+                                                    company based in France at 62 Av. Jean Jaurès, 92120 Châtillon. The
+                                                    platform is encrypted with top-grade security standards, ensuring
+                                                    your funds and data remain protected at all times.</p>
                                                 <!-- Refactored Button Rendering -->
                                                 <div class="button-wrapper main-block_child justify-start">
 
-                                                    <a data-analytics-label="Homepage Start trading CTA - Hub"
-                                                        aria-label="Go to /hub page" href="{{ route('register') }}">
-                                                        <button class="btn-hub">
+                                                    <a href="{{ route('register') }}">
+                                                        <button class="btn-platform">
                                                             Start trading </button>
                                                     </a>
                                                 </div>
@@ -215,51 +298,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-00242f8"
-                                data-id="00242f8" data-element_type="column">
+                            <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-ed35d4f"
+                                data-id="ed35d4f" data-element_type="column">
                                 <div class="elementor-widget-wrap">
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <section
-                        class="elementor-section elementor-inner-section elementor-element elementor-element-65416b8 elementor-section-full_width elementor-section-height-default elementor-section-height-default"
-                        data-id="65416b8" data-element_type="section">
-                        <div class="elementor-container elementor-column-gap-default">
-                            <div class="elementor-column elementor-col-100 elementor-inner-column elementor-element elementor-element-674d720"
-                                data-id="674d720" data-element_type="column">
-                                <div class="elementor-widget-wrap elementor-element-populated">
-                                    <div class="elementor-element elementor-element-ac14913 elementor-widget__width-initial elementor-hidden-mobile elementor-widget elementor-widget-mockup-block"
-                                        data-id="ac14913" data-element_type="widget"
-                                        data-widget_type="mockup-block.default">
-                                        <div class="elementor-widget-container">
-                                            <div class="mockup-block flex justify-center">
-                                                <div class="mockup tablet">
-                                                    <img decoding="async" class="tablet"
-                                                        src="wp-content/plugins/elementor-custom-widgets/assets/img/tablet-hardware.png"><img
-                                                        decoding="async" loading="lazy"
-                                                        class="mockup_screenshot centerX-absolute"
-                                                        src="wp-content/uploads/2025/03/Screenshot-2025-03-27-at-15.05.59.png">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="elementor-element elementor-element-5588d24 elementor-hidden-desktop elementor-hidden-tablet elementor-widget elementor-widget-mockup-block"
-                                        data-id="5588d24" data-element_type="widget"
-                                        data-settings="{&quot;_animation&quot;:&quot;none&quot;}"
-                                        data-widget_type="mockup-block.default">
-                                        <div class="elementor-widget-container">
-                                            <div class="mockup-block flex justify-center">
-                                                <div class="mockup mobile">
-                                                    <img decoding="async" class="mobile"
-                                                        src="wp-content/plugins/elementor-custom-widgets/assets/img/iphone-hardware.png"><img
-                                                        decoding="async" loading="lazy"
-                                                        class="mockup_screenshot centerX-absolute"
-                                                        src="wp-content/uploads/2025/03/IMG_8553796F08C1-1-1-scaled.jpg">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -268,43 +309,44 @@
             </div>
         </div>
     </section>
+
     <section
-        class="elementor-section elementor-top-section elementor-element elementor-element-7590a1e tl-section-border tl-section-border-bottom no-inner-borderss elementor-section-boxed elementor-section-height-default elementor-section-height-default"
-        data-id="7590a1e" data-element_type="section"
+        class="elementor-section elementor-top-section elementor-element elementor-element-48c09f1 tl-section-border tl-section-border-top no-inner-borders elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+        data-id="48c09f1" data-element_type="section"
         data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
         <div class="elementor-container elementor-column-gap-default">
-            <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-38b240a"
-                data-id="38b240a" data-element_type="column">
+            <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-19eeb6b"
+                data-id="19eeb6b" data-element_type="column">
                 <div class="elementor-widget-wrap elementor-element-populated">
                     <section
-                        class="elementor-section elementor-inner-section elementor-element elementor-element-890c038 elementor-section-full_width elementor-section-height-default elementor-section-height-default"
-                        data-id="890c038" data-element_type="section">
+                        class="elementor-section elementor-inner-section elementor-element elementor-element-3ae5ecd elementor-section-full_width elementor-section-height-default elementor-section-height-default"
+                        data-id="3ae5ecd" data-element_type="section">
                         <div class="elementor-container elementor-column-gap-default">
-                            <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-ad3d1c3"
-                                data-id="ad3d1c3" data-element_type="column">
+                            <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-2d03aa1"
+                                data-id="2d03aa1" data-element_type="column">
                                 <div class="elementor-widget-wrap elementor-element-populated">
-                                    <div class="elementor-element elementor-element-e9576cc elementor-widget elementor-widget-main-block"
-                                        data-id="e9576cc" data-element_type="widget"
+                                    <div class="elementor-element elementor-element-7a5c00b elementor-widget elementor-widget-main-block"
+                                        data-id="7a5c00b" data-element_type="widget"
                                         data-widget_type="main-block.default">
                                         <div class="elementor-widget-container">
                                             <div class="main-block text-left flex-wrap justify-start"
                                                 style="text-align:left">
                                                 <div class="main-block_child main-block_eyebrow"><img decoding="async"
                                                         width="24" height="auto"
-                                                        src="wp-content/uploads/2025/03/studio.svg">
+                                                        src="wp-content/uploads/2025/03/plaform.svg">
                                                 </div>
-                                                <h2 class="main-block_child">Track and monitor trades.</h2>
-                                                <p class="main-block_child">Monitor your live trades directly on the
-                                                    chart with real-time precision. See your entry points, stop-losses,
-                                                    and take-profits instantly as the market moves. Stay informed and in
-                                                    control with clear, interactive visual tracking.</p>
+                                                <h2 class="main-block_child">
+                                                    Instant Deposit & Withdrawal
+                                                </h2>
+                                                <p class="main-block_child">
+                                                    All deposits and withdrawals are processed instantly within minutes.
+                                                </p>
                                                 <!-- Refactored Button Rendering -->
                                                 <div class="button-wrapper main-block_child justify-start">
 
                                                     <a href="{{ route('register') }}">
-                                                        <button class="btn-studio">
+                                                        <button class="btn-platform">
                                                             Start trading </button>
-                                                    </a>
                                                     </a>
                                                 </div>
                                             </div>
@@ -312,35 +354,174 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-de7e2a9"
-                                data-id="de7e2a9" data-element_type="column">
+                            <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-ed35d4f"
+                                data-id="ed35d4f" data-element_type="column">
                                 <div class="elementor-widget-wrap">
                                 </div>
                             </div>
                         </div>
                     </section>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section
+        class="elementor-section elementor-top-section elementor-element elementor-element-48c09f1 tl-section-border tl-section-border-top no-inner-borders elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+        data-id="48c09f1" data-element_type="section"
+        data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+        <div class="elementor-container elementor-column-gap-default">
+            <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-19eeb6b"
+                data-id="19eeb6b" data-element_type="column">
+                <div class="elementor-widget-wrap elementor-element-populated">
                     <section
-                        class="elementor-section elementor-inner-section elementor-element elementor-element-a30727a elementor-section-full_width elementor-section-height-default elementor-section-height-default"
-                        data-id="a30727a" data-element_type="section">
+                        class="elementor-section elementor-inner-section elementor-element elementor-element-3ae5ecd elementor-section-full_width elementor-section-height-default elementor-section-height-default"
+                        data-id="3ae5ecd" data-element_type="section">
                         <div class="elementor-container elementor-column-gap-default">
-                            <div class="elementor-column elementor-col-100 elementor-inner-column elementor-element elementor-element-b0decf2"
-                                data-id="b0decf2" data-element_type="column">
+                            <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-2d03aa1"
+                                data-id="2d03aa1" data-element_type="column">
                                 <div class="elementor-widget-wrap elementor-element-populated">
-                                    <div class="elementor-element elementor-element-ed23da7 elementor-widget elementor-widget-mockup-block"
-                                        data-id="ed23da7" data-element_type="widget"
-                                        data-widget_type="mockup-block.default">
+                                    <div class="elementor-element elementor-element-7a5c00b elementor-widget elementor-widget-main-block"
+                                        data-id="7a5c00b" data-element_type="widget"
+                                        data-widget_type="main-block.default">
                                         <div class="elementor-widget-container">
-                                            <div class="mockup-block flex justify-center">
-                                                <div class="mockup desktop">
-                                                    <img decoding="async" class="desktop"
-                                                        src="wp-content/plugins/elementor-custom-widgets/assets/img/desktop-hardware.png"><img
-                                                        decoding="async" loading="lazy"
-                                                        class="mockup_screenshot centerX-absolute"
-                                                        src="wp-content/uploads/2025/03/Screenshot-2025-03-26-at-15.48.10.png">
+                                            <div class="main-block text-left flex-wrap justify-start"
+                                                style="text-align:left">
+                                                <div class="main-block_child main-block_eyebrow"><img decoding="async"
+                                                        width="24" height="auto"
+                                                        src="wp-content/uploads/2025/03/plaform.svg">
+                                                </div>
+                                                <h2 class="main-block_child">Referral Program
+                                                </h2>
+                                                <p class="main-block_child">Earn passive income by inviting others.
+                                                    Moxyai’s two-level referral system gives Level 1: 5% on deposits &
+                                                    8% on trades. Level 2: 2% on deposits & 4% on trades.</p>
+                                                <!-- Refactored Button Rendering -->
+                                                <div class="button-wrapper main-block_child justify-start">
+
+                                                    <a href="{{ route('register') }}">
+                                                        <button class="btn-platform">
+                                                            Start trading </button>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-ed35d4f"
+                                data-id="ed35d4f" data-element_type="column">
+                                <div class="elementor-widget-wrap">
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section
+        class="elementor-section elementor-top-section elementor-element elementor-element-48c09f1 tl-section-border tl-section-border-top no-inner-borders elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+        data-id="48c09f1" data-element_type="section"
+        data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+        <div class="elementor-container elementor-column-gap-default">
+            <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-19eeb6b"
+                data-id="19eeb6b" data-element_type="column">
+                <div class="elementor-widget-wrap elementor-element-populated">
+                    <section
+                        class="elementor-section elementor-inner-section elementor-element elementor-element-3ae5ecd elementor-section-full_width elementor-section-height-default elementor-section-height-default"
+                        data-id="3ae5ecd" data-element_type="section">
+                        <div class="elementor-container elementor-column-gap-default">
+                            <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-2d03aa1"
+                                data-id="2d03aa1" data-element_type="column">
+                                <div class="elementor-widget-wrap elementor-element-populated">
+                                    <div class="elementor-element elementor-element-7a5c00b elementor-widget elementor-widget-main-block"
+                                        data-id="7a5c00b" data-element_type="widget"
+                                        data-widget_type="main-block.default">
+                                        <div class="elementor-widget-container">
+                                            <div class="main-block text-left flex-wrap justify-start"
+                                                style="text-align:left">
+                                                <div class="main-block_child main-block_eyebrow"><img decoding="async"
+                                                        width="24" height="auto"
+                                                        src="wp-content/uploads/2025/03/plaform.svg">
+                                                </div>
+                                                <h2 class="main-block_child">No Trading Skills Required
+                                                </h2>
+                                                <p class="main-block_child">Whether you’re a beginner or a
+                                                    professional. Simply activate your AI robot and let it trade
+                                                    automatically while you monitor results.</p>
+                                                <!-- Refactored Button Rendering -->
+                                                <div class="button-wrapper main-block_child justify-start">
+
+                                                    <a href="{{ route('register') }}">
+                                                        <button class="btn-platform">
+                                                            Start trading </button>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-ed35d4f"
+                                data-id="ed35d4f" data-element_type="column">
+                                <div class="elementor-widget-wrap">
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section
+        class="elementor-section elementor-top-section elementor-element elementor-element-48c09f1 tl-section-border tl-section-border-top no-inner-borders elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+        data-id="48c09f1" data-element_type="section"
+        data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+        <div class="elementor-container elementor-column-gap-default">
+            <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-19eeb6b"
+                data-id="19eeb6b" data-element_type="column">
+                <div class="elementor-widget-wrap elementor-element-populated">
+                    <section
+                        class="elementor-section elementor-inner-section elementor-element elementor-element-3ae5ecd elementor-section-full_width elementor-section-height-default elementor-section-height-default"
+                        data-id="3ae5ecd" data-element_type="section">
+                        <div class="elementor-container elementor-column-gap-default">
+                            <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-2d03aa1"
+                                data-id="2d03aa1" data-element_type="column">
+                                <div class="elementor-widget-wrap elementor-element-populated">
+                                    <div class="elementor-element elementor-element-7a5c00b elementor-widget elementor-widget-main-block"
+                                        data-id="7a5c00b" data-element_type="widget"
+                                        data-widget_type="main-block.default">
+                                        <div class="elementor-widget-container">
+                                            <div class="main-block text-left flex-wrap justify-start"
+                                                style="text-align:left">
+                                                <div class="main-block_child main-block_eyebrow"><img decoding="async"
+                                                        width="24" height="auto"
+                                                        src="wp-content/uploads/2025/03/plaform.svg">
+                                                </div>
+                                                <h2 class="main-block_child">Worldwide Access
+                                                </h2>
+                                                <p class="main-block_child">Accessible from any country, Moxyai allows
+                                                    users to trade, deposit, and withdraw globally with no restrictions.
+                                                </p>
+                                                <!-- Refactored Button Rendering -->
+                                                <div class="button-wrapper main-block_child justify-start">
+
+                                                    <a href="{{ route('register') }}">
+                                                        <button class="btn-platform">
+                                                            Start trading </button>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-ed35d4f"
+                                data-id="ed35d4f" data-element_type="column">
+                                <div class="elementor-widget-wrap">
                                 </div>
                             </div>
                         </div>

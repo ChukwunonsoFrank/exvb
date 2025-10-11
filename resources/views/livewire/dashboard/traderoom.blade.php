@@ -104,7 +104,7 @@
                                             <img x-bind:src="assetIcon" alt="">
                                         </div>
                                         <div>
-                                            <p class="font-semibold text-white text-[15px]">{{ $this->asset }}</p>
+                                            <p x-text="asset" class="font-semibold text-white text-[15px]"></p>
                                         </div>
                                         <div class="pb-1">
                                             <span x-text="sentiment"

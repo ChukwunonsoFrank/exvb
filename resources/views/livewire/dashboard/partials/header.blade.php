@@ -1,77 +1,47 @@
 <div>
     <header class="bg-dashboard flex-none lg:mb-0 md:border-b md:border-[#26252a]">
-        <div
-            class="flex items-center px-2 border-b border-[#26252a] justify-between gap-x-1 md:gap-x-16 md:border-none md:mb-0 md:order-2 md:flex-1">
+        <div class="flex items-center px-2 border-b border-[#26252a] justify-between gap-x-1 md:border-none">
 
-            <div class="flex-1 relative md:flex-none border py-2 border-[#323335] bg-transparent rounded-lg text-center">
-                @if ($this->accountType === 'demo')
-                    <div class="w-4 flex-none absolute top-1 left-1">
-                        <div class="flex relative size-4 -mt-[1px] justify-center items-center">
-                            <span
-                                class="absolute animate-pulse inset-0 inline-flex size-full rounded-full bg-accent opacity-30"></span>
-                            <span class="relative inset-0 inline-flex rounded-full size-2 bg-accent"></span>
-                        </div>
-                    </div>
-                @endif
-                <div class="flex items-center justify-center gap-x-1.5">
-                    <div class="flex-none">
-                        <p class="text-zinc-300 text-xs font-black tracking-normal">Demo account</p>
-                    </div>
-                </div>
-                <p class="text-white font-bold text-xs md:text-sm">@money(auth()->user()->demo_balance / 100)</p>
-            </div>
-            <div
-                class="flex-1 relative md:flex-none border py-2 border-[#323335] bg-transparent rounded-lg text-center">
-                @if ($this->accountType === 'live')
-                    <div class="w-4 flex-none absolute top-1 left-1">
-                        <div class="flex relative size-4 -mt-[1px] justify-center items-center">
-                            <span
-                                class="absolute animate-pulse inset-0 inline-flex size-full rounded-full bg-accent opacity-30"></span>
-                            <span class="relative inset-0 inline-flex rounded-full size-2 bg-accent"></span>
-                        </div>
-                    </div>
-                @endif
-                <div class="flex items-center justify-center gap-x-1.5">
-                    <div class="flex-none">
-                        <p class="text-zinc-300 text-xs font-black tracking-normal">Live account</p>
-                    </div>
-                </div>
-                <p class="text-white font-bold text-xs md:text-sm">@money(auth()->user()->live_balance / 100)</p>
-            </div>
-            {{-- <div class="flex-1 md:flex-none border py-2 border-[#323335] bg-transparent rounded-lg text-center">
-                <div class="flex items-center justify-center gap-x-1.5">
+            <div class="flex gap-x-1 flex-1 md:flex-none">
+                <div
+                    class="flex-1 md:flex-none md:px-16 relative border py-2 border-[#323335] bg-transparent rounded-lg text-center">
                     @if ($this->accountType === 'demo')
-                        <div class="w-4 flex-none relative">
+                        <div class="w-4 flex-none absolute top-1 left-1">
                             <div class="flex relative size-4 -mt-[1px] justify-center items-center">
                                 <span
-                                    class="absolute animate-pulse inset-0 inline-flex size-full rounded-full bg-[#00C951] opacity-30"></span>
-                                <span class="relative inset-0 inline-flex rounded-full size-2 bg-[#00C951]"></span>
+                                    class="absolute animate-pulse inset-0 inline-flex size-full rounded-full bg-accent opacity-30"></span>
+                                <span class="relative inset-0 inline-flex rounded-full size-2 bg-accent"></span>
                             </div>
                         </div>
                     @endif
-                    <div class="flex-none">
-                        <p class="text-[#aaaaaa] text-xs font-black tracking-normal">Demo account</p>
+                    <div class="flex items-center justify-center gap-x-1.5">
+                        <div class="flex-none">
+                            <p class="text-zinc-300 text-xs font-black tracking-normal">Demo account</p>
+                        </div>
                     </div>
+                    <p class="text-white font-bold text-xs md:text-sm">@money(auth()->user()->demo_balance / 100)</p>
                 </div>
-                <p class="text-white font-bold text-xs md:text-sm">@money(auth()->user()->demo_balance / 100)</p>
-            </div>
-            <div class="flex-1 md:flex-none border py-2 border-[#323335] bg-transparent rounded-lg text-center">
-                <div class="flex items-center justify-center gap-x-1.5">
+
+                <div
+                    class="flex-1 md:flex-none md:px-16 relative border py-2 border-[#323335] bg-transparent rounded-lg text-center">
                     @if ($this->accountType === 'live')
-                        <div class="w-4 flex-none relative">
+                        <div class="w-4 flex-none absolute top-1 left-1">
                             <div class="flex relative size-4 -mt-[1px] justify-center items-center">
                                 <span
-                                    class="absolute animate-pulse inset-0 inline-flex size-full rounded-full bg-[#00C951] opacity-30"></span>
-                                <span class="relative inset-0 inline-flex rounded-full size-2 bg-[#00C951]"></span>
+                                    class="absolute animate-pulse inset-0 inline-flex size-full rounded-full bg-accent opacity-30"></span>
+                                <span class="relative inset-0 inline-flex rounded-full size-2 bg-accent"></span>
                             </div>
                         </div>
                     @endif
-                    <div class="flex-none">
-                        <p class="text-[#aaaaaa] text-xs font-black tracking-normal">Live account</p>
+                    <div class="flex items-center justify-center gap-x-1.5">
+                        <div class="flex-none">
+                            <p class="text-zinc-300 text-xs font-black tracking-normal">Live account</p>
+                        </div>
                     </div>
+                    <p class="text-white font-bold text-xs md:text-sm">@money(auth()->user()->live_balance / 100)</p>
                 </div>
-                <p class="text-white font-bold text-xs md:text-sm">@money(auth()->user()->live_balance / 100)</p>
-            </div> --}}
+            </div>
+
             <div class="flex-none text-end py-3">
                 <a href="{{ route('dashboard.deposit') }}">
                     <button type="button"

@@ -2,6 +2,15 @@
 <html lang="en">
 
 <head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17538896252"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-17538896252');
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -693,18 +702,17 @@
                     <span class="screen-reader-text">Menu</span>
                 </div>
             </div>
-            <nav class="site-navigation-drop" aria-hidden="true">
-
+            <nav id="mobile__navbar" class="site-navigation-drop" aria-hidden="true">
                 <div class="menu-primary-menu-container">
                     <ul id="menu-primary-menu" class="menu">
-                        <li id='menu-item-1' class="menu-item menu-item-type-custom menu-item-object-custom"><a
-                                href="#home-section" data-analytics-label="Start trading">Home<span
+                        <li id='menu-item-1' class="menu-item menu-item-type-custom menu-item-object-custom"><a onclick="toggleNavbar()"
+                                href="/#home-section" data-analytics-label="Start trading">Home<span
                                     class="menu-item-description"></span></a> </li>
-                        <li id='menu-item-2' class="menu-item menu-item-type-custom menu-item-object-custom"><a
-                                href="#features-section" data-analytics-label="Start trading">Features<span
+                        <li id='menu-item-2' class="menu-item menu-item-type-custom menu-item-object-custom"><a onclick="toggleNavbar()"
+                                href="/#features-section" data-analytics-label="Start trading">Features<span
                                     class="menu-item-description"></span></a> </li>
-                        <li id='menu-item-3' class="menu-item menu-item-type-custom menu-item-object-custom"><a
-                                href="#faqs-section" data-analytics-label="Start trading">FAQs<span
+                        <li id='menu-item-3' class="menu-item menu-item-type-custom menu-item-object-custom"><a onclick="toggleNavbar()"
+                                href="/#faqs-section" data-analytics-label="Start trading">FAQs<span
                                     class="menu-item-description"></span></a> </li>
                         <li id='menu-item-4' class="menu-item menu-item-type-custom menu-item-object-custom"><a
                                 href="{{ route('register') }}" data-analytics-label="Start trading">Sign Up<span
@@ -816,13 +824,13 @@
         <div class="elementor-container">
             <div class="app-wrapper">
                 <ul class="app-links">
-                    <a href="https://play.google.com/store/apps/details?id=com.tradelocker.mobile">
+                    <a href="{{ route('login') }}">
                         <li class="playstore">
                             <div class="supertitle">Get it on</div>
                             <div class="title">Google Play</div>
                         </li>
                     </a>
-                    <a href="https://apps.apple.com/uy/app/tradelocker/id6447196449">
+                    <a href="{{ route('login') }}">
                         <li class="appstore">
                             <div class="supertitle">Download on the</div>
                             <div class="title">App Store</div>
@@ -849,6 +857,12 @@
     </div>
     <script>
         document.getElementById("year").innerHTML = new Date().getFullYear();
+    </script>
+
+    <script>
+      function toggleNavbar() {
+        document.getElementById('mobile__navbar').setAttribute('aria-hidden', true);
+      }
     </script>
 
     <link rel='stylesheet' id='e-animations-css'

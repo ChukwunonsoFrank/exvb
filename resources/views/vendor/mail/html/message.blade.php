@@ -25,7 +25,7 @@
 <br><br>
 © {{ date('Y') }} {{ config('app.name') }} Inc. {{ __('All rights reserved.') }}
 <br><br>
-<a href="https://www.moxyai.com" target="_blank" rel="noopener noreferrer">www.moxyai.com</a> | <a href="mailto:support@moxyai.com">support@moxyai.com</a>
+<a href="https://moxyai.com" target="_blank" rel="noopener noreferrer">www.moxyai.com</a> | <a href="mailto:support@moxyai.com">support@moxyai.com</a>
 </x-mail::footer>
 </x-slot:footer>
 </x-mail::layout>

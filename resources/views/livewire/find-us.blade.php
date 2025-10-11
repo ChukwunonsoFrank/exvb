@@ -36,7 +36,9 @@
                 </svg>
             </div>
             <div>
+              <a href="https://maps.app.goo.gl/1uAg3Jj3NB4TqyU96" style="text-decoration: underline;">
                 <p class="text-white text-sm font-bold">62 Av. Jean Jaurès, 92120 Châtillon, France</p>
+              </a>
             </div>
         </div>
 
