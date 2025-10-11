@@ -135,14 +135,16 @@
                                                         width="24" height="auto"
                                                         src="wp-content/uploads/2025/03/plaform.svg">
                                                 </div>
-                                                <h2 class="main-block_child"><span class="purple-gradient">AI
-                                                        Bot</span> trading.</h2>
+                                                <h2 class="main-block_child"><span
+                                                        class="purple-gradient">AI-Powered</span> Scalping Technology
+                                                </h2>
                                                 <p class="main-block_child">Automate your trades and take advantage of
                                                     leverage using our advanced AI trading feature. Our intelligent
                                                     algorithms operate 24/7, pinpointing opportunities, executing
                                                     trades, and generating profits while you're away. Experience
                                                     hands-free trading with precise strategies, robust risk controls,
-                                                    and live performance monitoring. Let smart automation handle the
+                                                    and live performance monitoring. Let '
+                                                    smart automation handle the
                                                     complexities of trading for you.</p>
                                                 <!-- Refactored Button Rendering -->
                                                 <div class="button-wrapper main-block_child justify-start">
