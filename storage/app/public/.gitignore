@@ -1,5 +1,2 @@
-# payment-method-icon/
-# !payment-method-icon/*.svg
-# strategy-image/
-# !strategy-image/*.png
+*
 !.gitignore
