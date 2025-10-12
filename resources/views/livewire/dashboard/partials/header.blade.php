@@ -16,7 +16,7 @@
                     @endif
                     <div class="flex items-center justify-center gap-x-1.5">
                         <div class="flex-none">
-                            <p class="text-zinc-300 text-xs font-black tracking-normal">Demo Account</p>
+                            <p class="text-zinc-300 text-xs font-black tracking-normal">Demo account</p>
                         </div>
                     </div>
                     <p class="text-white font-bold text-xs md:text-sm">@money(auth()->user()->demo_balance / 100)</p>

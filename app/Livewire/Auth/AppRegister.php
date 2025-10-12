@@ -14,9 +14,9 @@ use Livewire\Component;
 
 #[Layout('components.layouts.auth.layout')]
 
-#[Title('Register')]
+#[Title('App Register')]
 
-class Register extends Component
+class AppRegister extends Component
 {
   #[Url]
   public $ref;
@@ -29,46 +29,17 @@ class Register extends Component
 
   public string $password_confirmation = '';
 
-  public bool $termsAndPrivacyPolicyAccepted = false;
-
-  public $gRecaptchaResponse;
-
-  /**
-   * Custom validation error messages.
-   */
-  protected function messages(): array
-  {
-    return [
-      'termsAndPrivacyPolicyAccepted.accepted' => 'Please accept the Terms & Conditions and Privacy Policy to proceed.',
-    ];
-  }
-
   /**
    * Handle an incoming registration request.
    */
   public function register()
   {
     try {
-      // if (is_null($this->gRecaptchaResponse)) {
-      //   $this->dispatch('signup-error', message: 'Please confirm you are not a robot.')->self();
-      // }
-
-      // $recatpchaResponse = Http::get("https://www.google.com/recaptcha/api/siteverify", [
-      //   'secret' => config('services.recaptcha.secret'),
-      //   'response' => $this->gRecaptchaResponse
-      // ]);
-
-      // $result = $recatpchaResponse->json();
-
-      // if ($recatpchaResponse->successful() && $result['success'] == true) {
       $validated = $this->validate([
         'name' => ['required', 'string', 'max:255'],
         'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
         'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
-        'termsAndPrivacyPolicyAccepted' => 'accepted',
       ]);
-
-      unset($validated['termsAndPrivacyPolicyAccepted']);
 
       /**
        * Attempt to send login code to user's email.
@@ -76,17 +47,13 @@ class Register extends Component
       $loginCode = substr(str_shuffle('0123456789'), 0, 6);
       Notification::route('mail', $validated['email'])->notify(new LoginCodeRequested($loginCode));
 
-      $this->redirectRoute('register.verifylogincode', [
+      $this->redirectRoute('appregister.verifylogincode', [
         'name' => $validated['name'],
         'email' => $validated['email'],
         'password' => $validated['password'],
         'hash' => Hash::make($loginCode),
         'ref' => $this->ref
       ]);
-      // } else {
-      //   $this->dispatch('signup-error', message: 'Please confirm you are not a robot.')->self();
-      //   return redirect()->back();
-      // }
     } catch (\Exception $e) {
       $this->dispatch('signup-error', message: $e->getMessage())->self();
     }

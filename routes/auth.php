@@ -1,6 +1,10 @@
 <?php
 
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Livewire\Auth\AppLogin;
+use App\Livewire\Auth\AppLoginVerifyLoginTwofa;
+use App\Livewire\Auth\AppRegister;
+use App\Livewire\Auth\AppRegisterVerifyLoginCode;
 use App\Livewire\Auth\ConfirmPassword;
 use App\Livewire\Auth\ForgotPassword;
 use App\Livewire\Auth\Login;
@@ -14,8 +18,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('guest')->group(function () {
   Route::get('login', Login::class)->name('login');
   Route::get('login/verifylogintwofa', VerifyLoginTwofa::class)->name('login.verifylogintwofa');
+  Route::get('applogin', AppLogin::class)->name('applogin');
+  Route::get('applogin/verifylogintwofa', AppLoginVerifyLoginTwofa::class)->name('applogin.verifylogintwofa');
   Route::get('register', Register::class)->name('register');
   Route::get('register/verifylogincode', VerifyLoginCode::class)->name('register.verifylogincode');
+  Route::get('appregister', AppRegister::class)->name('appregister');
+  Route::get('appregister/verifylogincode', AppRegisterVerifyLoginCode::class)->name('appregister.verifylogincode');
   Route::get('forgot-password', ForgotPassword::class)->name('password.request');
   Route::get('reset-password/{token}', ResetPassword::class)->name('password.reset');
 });
