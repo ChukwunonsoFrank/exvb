@@ -5,6 +5,7 @@ namespace App\Livewire\Auth;
 use App\Models\User;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Session;
@@ -148,5 +149,13 @@ class AppLogin extends Component
   protected function throttleKey(): string
   {
     return Str::transliterate(Str::lower($this->email) . '|' . request()->ip());
+  }
+
+  public function render()
+  {
+    if (!Cookie::has('device')) {
+      Cookie::queue(Cookie::forever('device', 'app'));
+    }
+    return view('livewire.auth.app-login');
   }
 }
