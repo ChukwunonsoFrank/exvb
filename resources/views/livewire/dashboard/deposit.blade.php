@@ -34,7 +34,7 @@
                                 </div>
                             </div>
                             <div class="flex-none">
-                                <img src="{{ asset('storage/payment-method-icon/btc.svg') }}">
+                                <img src="{{ Storage::url('payment-method-icon/btc.svg') }}">
                             </div>
                             <div class="flex-1">
                                 <p class="text-sm">Bitcoin</p>
@@ -50,7 +50,7 @@
                                 </div>
                             </div>
                             <div class="flex-none">
-                                <img src="{{ asset('storage/payment-method-icon/eth.svg') }}">
+                                <img src="{{ Storage::url('payment-method-icon/eth.svg') }}">
                             </div>
                             <div class="flex-1">
                                 <p class="text-sm">Ethereum</p>
@@ -80,22 +80,22 @@
                                     </template>
                                 </div>
                                 <div class="flex-none">
-                                    <img src="{{ asset('storage/payment-method-icon/usdt.svg') }}">
+                                    <img src="{{ Storage::url('payment-method-icon/usdt.svg') }}">
                                 </div>
                                 <div class="flex-1">
                                     <p class="text-sm">USDT</p>
                                 </div>
                                 <div class="flex-none">
                                     <img class="inline-block"
-                                        src="{{ asset('storage/payment-method-icon/an-trc20.svg') }}">
+                                        src="{{ Storage::url('payment-method-icon/an-trc20.svg') }}">
                                     <img class="inline-block -ml-1.5"
-                                        src="{{ asset('storage/payment-method-icon/an-erc20.svg') }}">
+                                        src="{{ Storage::url('payment-method-icon/an-erc20.svg') }}">
                                     <img class="inline-block -ml-1.5"
-                                        src="{{ asset('storage/payment-method-icon/an-bep20.svg') }}">
+                                        src="{{ Storage::url('payment-method-icon/an-bep20.svg') }}">
                                     <img class="inline-block -ml-1.5"
-                                        src="{{ asset('storage/payment-method-icon/an-sol.svg') }}">
+                                        src="{{ Storage::url('payment-method-icon/an-sol.svg') }}">
                                     <img class="inline-block -ml-1.5"
-                                        src="{{ asset('storage/payment-method-icon/an-polygon.svg') }}">
+                                        src="{{ Storage::url('payment-method-icon/an-polygon.svg') }}">
                                 </div>
                             </div>
                         </div>
@@ -110,7 +110,7 @@
                                     </div>
                                 </div>
                                 <div class="flex-none">
-                                    <img src="{{ asset('storage/payment-method-icon/usdt-trc20.svg') }}">
+                                    <img src="{{ Storage::url('payment-method-icon/usdt-trc20.svg') }}">
                                 </div>
                                 <div class="flex-1">
                                     <p class="text-sm">USDT</p>
@@ -126,7 +126,7 @@
                                     </div>
                                 </div>
                                 <div class="flex-none">
-                                    <img src="{{ asset('storage/payment-method-icon/usdt-bep20.svg') }}">
+                                    <img src="{{ Storage::url('payment-method-icon/usdt-bep20.svg') }}">
                                 </div>
                                 <div class="flex-1">
                                     <p class="text-sm">USDT</p>
@@ -142,7 +142,7 @@
                                     </div>
                                 </div>
                                 <div class="flex-none">
-                                    <img src="{{ asset('storage/payment-method-icon/usdt-erc20.svg') }}">
+                                    <img src="{{ Storage::url('payment-method-icon/usdt-erc20.svg') }}">
                                 </div>
                                 <div class="flex-1">
                                     <p class="text-sm">USDT</p>
@@ -158,7 +158,7 @@
                                     </div>
                                 </div>
                                 <div class="flex-none">
-                                    <img src="{{ asset('storage/payment-method-icon/usdt-polygon.svg') }}">
+                                    <img src="{{ Storage::url('payment-method-icon/usdt-polygon.svg') }}">
                                 </div>
                                 <div class="flex-1">
                                     <p class="text-sm">USDT</p>
@@ -174,7 +174,7 @@
                                     </div>
                                 </div>
                                 <div class="flex-none">
-                                    <img src="{{ asset('storage/payment-method-icon/usdt-sol.svg') }}">
+                                    <img src="{{ Storage::url('payment-method-icon/usdt-sol.svg') }}">
                                 </div>
                                 <div class="flex-1">
                                     <p class="text-sm">USDT</p>
@@ -206,22 +206,22 @@
                                     </template>
                                 </div>
                                 <div class="flex-none">
-                                    <img src="{{ asset('storage/payment-method-icon/usdc.svg') }}">
+                                    <img src="{{ Storage::url('payment-method-icon/usdc.svg') }}">
                                 </div>
                                 <div class="flex-1">
                                     <p class="text-sm">USDC</p>
                                 </div>
                                 <div class="flex-none">
                                     <img class="inline-block"
-                                        src="{{ asset('storage/payment-method-icon/an-trc20.svg') }}">
+                                        src="{{ Storage::url('payment-method-icon/an-trc20.svg') }}">
                                     <img class="inline-block -ml-1.5"
-                                        src="{{ asset('storage/payment-method-icon/an-erc20.svg') }}">
+                                        src="{{ Storage::url('payment-method-icon/an-erc20.svg') }}">
                                     <img class="inline-block -ml-1.5"
-                                        src="{{ asset('storage/payment-method-icon/an-bep20.svg') }}">
+                                        src="{{ Storage::url('payment-method-icon/an-bep20.svg') }}">
                                     <img class="inline-block -ml-1.5"
-                                        src="{{ asset('storage/payment-method-icon/an-sol.svg') }}">
+                                        src="{{ Storage::url('payment-method-icon/an-sol.svg') }}">
                                     <img class="inline-block -ml-1.5"
-                                        src="{{ asset('storage/payment-method-icon/an-polygon.svg') }}">
+                                        src="{{ Storage::url('payment-method-icon/an-polygon.svg') }}">
                                 </div>
                             </div>
                         </div>
@@ -236,7 +236,7 @@
                                     </div>
                                 </div>
                                 <div class="flex-none">
-                                    <img src="{{ asset('storage/payment-method-icon/usdc-erc20.svg') }}">
+                                    <img src="{{ Storage::url('payment-method-icon/usdc-erc20.svg') }}">
                                 </div>
                                 <div class="flex-1">
                                     <p class="text-sm">USDC</p>
@@ -252,7 +252,7 @@
                                     </div>
                                 </div>
                                 <div class="flex-none">
-                                    <img src="{{ asset('storage/payment-method-icon/usdc-bep20.svg') }}">
+                                    <img src="{{ Storage::url('payment-method-icon/usdc-bep20.svg') }}">
                                 </div>
                                 <div class="flex-1">
                                     <p class="text-sm">USDC</p>
@@ -268,7 +268,7 @@
                                     </div>
                                 </div>
                                 <div class="flex-none">
-                                    <img src="{{ asset('storage/payment-method-icon/usdc-sol.svg') }}">
+                                    <img src="{{ Storage::url('payment-method-icon/usdc-sol.svg') }}">
                                 </div>
                                 <div class="flex-1">
                                     <p class="text-sm">USDC</p>
@@ -284,7 +284,7 @@
                                     </div>
                                 </div>
                                 <div class="flex-none">
-                                    <img src="{{ asset('storage/payment-method-icon/usdc-trc20.svg') }}">
+                                    <img src="{{ Storage::url('payment-method-icon/usdc-trc20.svg') }}">
                                 </div>
                                 <div class="flex-1">
                                     <p class="text-sm">USDC</p>
@@ -300,7 +300,7 @@
                                     </div>
                                 </div>
                                 <div class="flex-none">
-                                    <img src="{{ asset('storage/payment-method-icon/usdc-polygon.svg') }}">
+                                    <img src="{{ Storage::url('payment-method-icon/usdc-polygon.svg') }}">
                                 </div>
                                 <div class="flex-1">
                                     <p class="text-sm">USDC</p>
@@ -318,7 +318,7 @@
                                 </div>
                             </div>
                             <div class="flex-none">
-                                <img src="{{ asset('storage/payment-method-icon/sol.svg') }}">
+                                <img src="{{ Storage::url('payment-method-icon/sol.svg') }}">
                             </div>
                             <div class="flex-1">
                                 <p class="text-sm">Solana</p>
@@ -334,7 +334,7 @@
                                 </div>
                             </div>
                             <div class="flex-none">
-                                <img src="{{ asset('storage/payment-method-icon/ltc.svg') }}">
+                                <img src="{{ Storage::url('payment-method-icon/ltc.svg') }}">
                             </div>
                             <div class="flex-1">
                                 <p class="text-sm">Litecoin</p>
@@ -350,7 +350,7 @@
                                 </div>
                             </div>
                             <div class="flex-none">
-                                <img src="{{ asset('storage/payment-method-icon/bnb.svg') }}">
+                                <img src="{{ Storage::url('payment-method-icon/bnb.svg') }}">
                             </div>
                             <div class="flex-1">
                                 <p class="text-sm">BNB</p>
@@ -366,7 +366,7 @@
                                 </div>
                             </div>
                             <div class="flex-none">
-                                <img src="{{ asset('storage/payment-method-icon/tron.svg') }}">
+                                <img src="{{ Storage::url('payment-method-icon/tron.svg') }}">
                             </div>
                             <div class="flex-1">
                                 <p class="text-sm">Tron</p>
@@ -382,7 +382,7 @@
                                 </div>
                             </div>
                             <div class="flex-none">
-                                <img src="{{ asset('storage/payment-method-icon/xrp.svg') }}">
+                                <img src="{{ Storage::url('payment-method-icon/xrp.svg') }}">
                             </div>
                             <div class="flex-1">
                                 <p class="text-sm">XRP</p>
@@ -398,7 +398,7 @@
                                 </div>
                             </div>
                             <div class="flex-none">
-                                <img src="{{ asset('storage/payment-method-icon/bch.svg') }}">
+                                <img src="{{ Storage::url('payment-method-icon/bch.svg') }}">
                             </div>
                             <div class="flex-1">
                                 <p class="text-sm">BCH</p>
@@ -414,7 +414,7 @@
                                 </div>
                             </div>
                             <div class="flex-none">
-                                <img src="{{ asset('storage/payment-method-icon/doge.svg') }}">
+                                <img src="{{ Storage::url('payment-method-icon/doge.svg') }}">
                             </div>
                             <div class="flex-1">
                                 <p class="text-sm">Dogecoin</p>
@@ -430,7 +430,7 @@
                                 </div>
                             </div>
                             <div class="flex-none">
-                                <img src="{{ asset('storage/payment-method-icon/dash.svg') }}">
+                                <img src="{{ Storage::url('payment-method-icon/dash.svg') }}">
                             </div>
                             <div class="flex-1">
                                 <p class="text-sm">DASH</p>
