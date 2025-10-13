@@ -15,6 +15,7 @@
                                 <p x-text="fee" class="text-[#fb2c36] text-xs inline font-bold"></p>
                             </div>
                         </div>
+
                         <div class="flex-none text-center">
                             <h2 class="text-white font-bold text-xl -ml-6">@money($this->profit)</h2>
                             <div class="flex items-center gap-x-0.5 -ml-1">
@@ -32,6 +33,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="flex-none flex flex-col gap-y-2 items-center">
                             <div>
                                 <svg width="73" height="23" viewBox="0 0 73 23" fill="none"
