@@ -554,8 +554,10 @@
                                             </defs>
                                         </svg>
                                     @endif
-                                    @if ($this->profilePicture)
+                                    @if ($this->profilePicture && auth()->user()->profile_image_path)
                                         <img src="{{ $this->profilePicture->temporaryUrl() }}">
+                                        <img class="absolute size-16 rounded-full"
+                                            src="{{ $this->profilePicture->temporaryUrl() }}" alt="">
                                     @endif
                                     @if (auth()->user()->profile_image_path)
                                         <img class="absolute size-16 rounded-full"
