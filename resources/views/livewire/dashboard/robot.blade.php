@@ -341,7 +341,7 @@
                     </a>
                 </div>
 
-                <div x-cloak x-show="$store.robotPage.isTradeDetailsConfirmationModalOpen"
+                <div x-cloak x-transition x-show="$store.robotPage.isTradeDetailsConfirmationModalOpen"
                     class="fixed top-0 left-0 h-svh w-full px-4 lg:px-96 pt-6 z-20">
                     <div class="absolute inset-0 h-svh w-full px-4 lg:px-96 pt-6 z-20 bg-dashboard opacity-85"></div>
                     <div class="relative w-full h-full flex items-center justify-center z-30">
@@ -390,7 +390,7 @@
                     </div>
                 </div>
 
-                <div x-cloak x-show="$store.robotPage.isStartRobotConfirmationModalOpen"
+                <div x-cloak x-transition x-show="$store.robotPage.isStartRobotConfirmationModalOpen"
                     class="fixed top-0 left-0 h-svh w-full px-4 lg:px-96 pt-6 z-20">
                     <div class="absolute inset-0 h-svh w-full px-4 lg:px-96 pt-6 z-20 bg-dashboard opacity-85"></div>
                     <div class="relative w-full h-full flex items-center justify-center z-30">

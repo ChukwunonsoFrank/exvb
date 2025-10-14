@@ -94,7 +94,7 @@
                         </a>
                     </div>
 
-                    <div x-cloak x-show="$store.confirmDepositPage.isQRModalOpen"
+                    <div x-cloak x-transition x-show="$store.confirmDepositPage.isQRModalOpen"
                         class="fixed top-0 left-0 h-svh w-full px-4 lg:px-96 pt-6 z-20">
                         <div class="absolute inset-0 h-svh w-full px-4 lg:px-96 pt-6 z-20 bg-dashboard opacity-85">
                         </div>
@@ -169,7 +169,7 @@
                         </div>
                     </div>
 
-                    <div x-cloak x-show="$store.confirmDepositPage.isClickOnPaidModalCopyOpen"
+                    <div x-cloak x-transition x-show="$store.confirmDepositPage.isClickOnPaidModalCopyOpen"
                         class="fixed top-0 left-0 h-svh w-full px-4 lg:px-96 pt-6 z-20">
                         <div class="absolute inset-0 h-svh w-full px-4 lg:px-96 pt-6 z-20 bg-dashboard opacity-85">
                         </div>
@@ -214,7 +214,7 @@
                         </div>
                     </div>
 
-                    <div x-cloak x-show="$store.confirmDepositPage.isClickOnPaidModalQROpen"
+                    <div x-cloak x-transition x-show="$store.confirmDepositPage.isClickOnPaidModalQROpen"
                         class="fixed top-0 left-0 h-svh w-full px-4 lg:px-96 pt-6 z-20">
                         <div class="absolute inset-0 h-svh w-full px-4 lg:px-96 pt-6 z-20 bg-dashboard opacity-85">
                         </div>
