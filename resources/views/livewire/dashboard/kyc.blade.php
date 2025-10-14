@@ -131,9 +131,9 @@
 
                         <input id="file-upload" type="file" wire:model="id" class="hidden" />
 
-                        <div class="mt-2 text-xs text-gray-400" wire:loading.remove wire:target="id">
+                        <div class="mt-1 text-xs text-gray-400" wire:loading.remove wire:target="id">
                             @if ($id)
-                                {{ is_string($id) ? $id : $id->getClientOriginalName() }}
+                                Uploaded
                             @endif
                         </div>
                     </div>
