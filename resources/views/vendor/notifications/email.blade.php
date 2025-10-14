@@ -33,6 +33,14 @@ default => 'primary',
 {{ $line }}
 @endforeach
 
+{{-- Salutation --}}
+@if (! empty($salutation))
+{{ $salutation }}
+@else
+@lang('Thanks,')<br>
+@lang('The Moxyai Team')
+@endif
+
 {{-- Subcopy --}}
 @isset($actionText)
 <x-slot:subcopy>

@@ -457,7 +457,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="{{ route('dashboard.support') }}">
+                    <a x-on:click="$store.accountPage.toggleSupportModal()">
                         <div
                             class="bg-dim w-full rounded-lg flex items-center space-x-2 p-3 mb-1 border border-[#323335] lg:mb-0">
                             <div class="flex-none">
@@ -530,7 +530,7 @@
                             <div class="flex justify-center mb-4">
                                 <div
                                     class="relative bg-[#232323] size-16 rounded-full flex items-center justify-center lg:size-20">
-                                    @if (is_null(auth()->user()->profile_image_path))
+                                    @if (is_null(auth()->user()->profile_image_path) && !$this->profilePicture)
                                         <svg class="absolute" xmlns="http://www.w3.org/2000/svg" width="48"
                                             height="48" viewBox="0 0 48 48" fill="none">
                                             <g clip-path="url(#clip0_49_26)">
@@ -553,7 +553,11 @@
                                                 </clipPath>
                                             </defs>
                                         </svg>
-                                    @else
+                                    @endif
+                                    @if ($this->profilePicture)
+                                        <img src="{{ $this->profilePicture->temporaryUrl() }}">
+                                    @endif
+                                    @if (auth()->user()->profile_image_path)
                                         <img class="absolute size-16 rounded-full"
                                             src="{{ asset('storage/' . auth()->user()->profile_image_path) }}"
                                             alt="">
@@ -618,6 +622,28 @@
                     </div>
                 </div>
             </div>
+
+            <div x-cloak x-show="$store.accountPage.isSupportModalOpen" x-transition
+                class="fixed top-0 left-0 h-svh w-full bg-dashboard z-20 flex flex-col">
+                <div class="flex items-center px-4 py-4 border-y border-[#26252a]">
+                    <div class="flex-1">
+                        <h1 class="text-white text-base font-bold">Support</h1>
+                    </div>
+                    <div class="flex-none">
+                        <svg x-on:click="$store.accountPage.toggleSupportModal()" xmlns="http://www.w3.org/2000/svg"
+                            width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-x-icon lucide-x">
+                            <path d="M18 6 6 18" />
+                            <path d="m6 6 12 12" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="grow">
+                    <iframe frameborder="0" width="100%" height="100%"
+                        src="https://tawk.to/chat/68e5729411d1b11954cbc1e5/1j704f59b"></iframe>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -626,6 +652,11 @@
     document.addEventListener('alpine:init', () => {
         Alpine.store('accountPage', {
             isProfilePictureModalOpen: false,
+
+            isSupportModalOpen: false,
+            toggleSupportModal() {
+                this.isSupportModalOpen = !this.isSupportModalOpen;
+            },
 
             toggleProfilePictureModal() {
                 this.isProfilePictureModalOpen = !this.isProfilePictureModalOpen;

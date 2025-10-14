@@ -33,7 +33,7 @@
                         @forelse ($transactions as $transaction)
                             <div wire:key="transaction-{{ $transaction['id'] }}"
                                 class="bg-dim w-full rounded-lg flex flex-col space-y-2 p-3 px-4 mb-3">
-                                <div class="flex items-center gap-x-4">
+                                <div class="flex items-start gap-x-3">
                                     <div class="flex-none">
                                         <img class="w-7"
                                             src="{{ asset('storage/' . $this->getPaymentMethodIconUrl($transaction['payment_method'])) }}"
@@ -122,7 +122,7 @@
                         @forelse ($deposits as $deposit)
                             <div wire:key="deposit-{{ $deposit['id'] }}"
                                 class="bg-dim w-full rounded-lg flex flex-col space-y-2 p-3 px-4 mb-3">
-                                <div class="flex items-center gap-x-4">
+                                <div class="flex items-start gap-x-3">
                                     <div class="flex-none">
                                         <img class="w-7"
                                             src="{{ asset('storage/' . $this->getPaymentMethodIconUrl($deposit['payment_method'])) }}"
@@ -190,7 +190,7 @@
                         @forelse ($withdrawals as $withdrawal)
                             <div wire:key="withdrawal-{{ $withdrawal['id'] }}"
                                 class="bg-dim w-full rounded-lg flex flex-col space-y-2 p-3 px-4 mb-3">
-                                <div class="flex items-center gap-x-4">
+                                <div class="flex items-start gap-x-3">
                                     <div class="flex-none">
                                         <img class="w-7"
                                             src="{{ asset('storage/' . $this->getPaymentMethodIconUrl($withdrawal['payment_method'])) }}"

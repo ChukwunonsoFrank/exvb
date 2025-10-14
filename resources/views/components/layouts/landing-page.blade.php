@@ -2,15 +2,18 @@
 <html lang="en">
 
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17538896252"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17538896252"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'AW-17538896252');
-</script>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'AW-17538896252');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -705,14 +708,17 @@
             <nav id="mobile__navbar" class="site-navigation-drop" aria-hidden="true">
                 <div class="menu-primary-menu-container">
                     <ul id="menu-primary-menu" class="menu">
-                        <li id='menu-item-1' class="menu-item menu-item-type-custom menu-item-object-custom"><a onclick="toggleNavbar()"
-                                href="/#home-section" data-analytics-label="Start trading">Home<span
+                        <li id='menu-item-1' class="menu-item menu-item-type-custom menu-item-object-custom"><a
+                                onclick="toggleNavbar()" href="/#home-section"
+                                data-analytics-label="Start trading">Home<span
                                     class="menu-item-description"></span></a> </li>
-                        <li id='menu-item-2' class="menu-item menu-item-type-custom menu-item-object-custom"><a onclick="toggleNavbar()"
-                                href="/#features-section" data-analytics-label="Start trading">Features<span
+                        <li id='menu-item-2' class="menu-item menu-item-type-custom menu-item-object-custom"><a
+                                onclick="toggleNavbar()" href="/#features-section"
+                                data-analytics-label="Start trading">Features<span
                                     class="menu-item-description"></span></a> </li>
-                        <li id='menu-item-3' class="menu-item menu-item-type-custom menu-item-object-custom"><a onclick="toggleNavbar()"
-                                href="/#faqs-section" data-analytics-label="Start trading">FAQs<span
+                        <li id='menu-item-3' class="menu-item menu-item-type-custom menu-item-object-custom"><a
+                                onclick="toggleNavbar()" href="/#faqs-section"
+                                data-analytics-label="Start trading">FAQs<span
                                     class="menu-item-description"></span></a> </li>
                         <li id='menu-item-4' class="menu-item menu-item-type-custom menu-item-object-custom"><a
                                 href="{{ route('register') }}" data-analytics-label="Start trading">Sign Up<span
@@ -795,7 +801,7 @@
                     <h5>Resources</h5>
                     <div class="menu-business-container">
                         <ul id="menu-business" class="menu">
-                          <li id="menu-item-2374"
+                            <li id="menu-item-2374"
                                 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2374"><a
                                     href="{{ route('register') }}">Sign Up</a></li>
                             <li id="menu-item-2374"
@@ -824,7 +830,7 @@
         <div class="elementor-container">
             <div class="app-wrapper">
                 <ul class="app-links">
-                    <a href="{{ route('login') }}">
+                    <a href="/Moxyaiapp.apk">
                         <li class="playstore">
                             <div class="supertitle">Get it on</div>
                             <div class="title">Google Play</div>
@@ -860,9 +866,9 @@
     </script>
 
     <script>
-      function toggleNavbar() {
-        document.getElementById('mobile__navbar').setAttribute('aria-hidden', true);
-      }
+        function toggleNavbar() {
+            document.getElementById('mobile__navbar').setAttribute('aria-hidden', true);
+        }
     </script>
 
     <link rel='stylesheet' id='e-animations-css'
