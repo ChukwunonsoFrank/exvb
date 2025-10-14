@@ -554,12 +554,11 @@
                                             </defs>
                                         </svg>
                                     @endif
-                                    @if ($this->profilePicture && auth()->user()->profile_image_path)
-                                        <img src="{{ $this->profilePicture->temporaryUrl() }}">
+                                    @if ($this->profilePicture && !is_null(auth()->user()->profile_image_path))
                                         <img class="absolute size-16 rounded-full"
                                             src="{{ $this->profilePicture->temporaryUrl() }}" alt="">
                                     @endif
-                                    @if (auth()->user()->profile_image_path)
+                                    @if (auth()->user()->profile_image_path && is_null(auth()->user()->profile_image_path))
                                         <img class="absolute size-16 rounded-full"
                                             src="{{ asset('storage/' . auth()->user()->profile_image_path) }}"
                                             alt="">
