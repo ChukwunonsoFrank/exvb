@@ -10,39 +10,39 @@ use Livewire\Component;
 
 class History extends Component
 {
-    public $perPage = 10;
+  public $perPage = 10;
 
-    public $visibleCount;
+  public $visibleCount;
 
-    public $totalBots;
+  public $totalBots;
 
-    public function mount()
-    {
-        $this->totalBots = Bot::where('user_id', auth()->user()->id)->count();
-        $this->visibleCount = min($this->perPage, $this->totalBots);
-    }
+  public function mount()
+  {
+    $this->totalBots = Bot::where('user_id', auth()->user()->id)->count();
+    $this->visibleCount = min($this->perPage, $this->totalBots);
+  }
 
-    public function displayProfitMinusFee($profit)
-    {
-        $fee = 0.1 * ($profit / 100);
-        $displayProfit = ($profit / 100) - $fee;
-        return $displayProfit;
-    }
+  public function displayProfitMinusFee($profit)
+  {
+    $fee = 0.1 * ($profit / 100);
+    $displayProfit = ($profit / 100) - $fee;
+    return $displayProfit;
+  }
 
-    public function loadMore(): void
-    {
-        $this->visibleCount = min($this->visibleCount + $this->perPage, $this->totalBots);
-    }
+  public function loadMore(): void
+  {
+    $this->visibleCount = min($this->visibleCount + $this->perPage, $this->totalBots);
+  }
 
-    public function render()
-    {
-        $bots = Bot::where('user_id', auth()->user()->id)->latest()->take($this->visibleCount)->get();
+  public function render()
+  {
+    $bots = Bot::where('user_id', auth()->user()->id)->latest()->take($this->visibleCount)->get();
 
-        $showLoadMoreButton = $this->visibleCount < $this->totalBots;
+    $showLoadMoreButton = $this->visibleCount < $this->totalBots;
 
-        return view('livewire.dashboard.history', [
-            'bots' => $bots,
-            'showLoadMoreButton' => $showLoadMoreButton,
-        ]);
-    }
+    return view('livewire.dashboard.history', [
+      'bots' => $bots,
+      'showLoadMoreButton' => $showLoadMoreButton,
+    ]);
+  }
 }

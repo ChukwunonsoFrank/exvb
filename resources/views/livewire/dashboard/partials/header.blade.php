@@ -4,9 +4,9 @@
 
             <div class="flex gap-x-1 flex-1 md:flex-none">
                 <div
-                    class="flex-1 md:flex-none md:px-16 relative border py-2 border-[#323335] bg-transparent rounded-lg text-center">
+                    class="flex-1 md:flex-none md:px-10 relative border py-2 border-[#323335] bg-transparent rounded-lg text-center">
                     @if ($this->accountType === 'demo')
-                        <div class="w-4 flex-none absolute top-1 left-1">
+                        <div class="w-4 flex-none absolute top-0 left-0">
                             <div class="flex relative size-4 -mt-[1px] justify-center items-center">
                                 <span
                                     class="absolute animate-pulse inset-0 inline-flex size-full rounded-full bg-accent opacity-30"></span>
@@ -23,9 +23,9 @@
                 </div>
 
                 <div
-                    class="flex-1 md:flex-none md:px-16 relative border py-2 border-[#323335] bg-transparent rounded-lg text-center">
+                    class="flex-1 md:flex-none md:px-10 relative border py-2 border-[#323335] bg-transparent rounded-lg text-center">
                     @if ($this->accountType === 'live')
-                        <div class="w-4 flex-none absolute top-1 left-1">
+                        <div class="w-4 flex-none absolute top-0 left-0">
                             <div class="flex relative size-4 -mt-[1px] justify-center items-center">
                                 <span
                                     class="absolute animate-pulse inset-0 inline-flex size-full rounded-full bg-accent opacity-30"></span>
@@ -45,7 +45,7 @@
             <div class="flex-none text-end py-3">
                 <a href="{{ route('dashboard.deposit') }}">
                     <button type="button"
-                        class="px-6 py-3.5 lg:px-10 inline-flex items-center gap-x-1 text-[13px] font-bold tracking-[0.15px] rounded-md bg-accent text-white focus:outline-hidden">
+                        class="px-4 py-3.5 lg:px-10 inline-flex items-center gap-x-1 text-[13px] font-bold tracking-[0.15px] rounded-md bg-accent text-white focus:outline-hidden">
                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_1669_24)">

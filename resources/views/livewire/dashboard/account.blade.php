@@ -2,11 +2,8 @@
     <div class="lg:flex lg:h-full">
         <livewire:dashboard.partials.desktop-navbar />
         <div class="lg:h-full lg:flex-1 lg:px-96 lg:pt-6">
-            {{-- <div class="my-3 sticky top-0 bg-dashboard pb-2 lg:pt-4">
-                <h1 class="text-white text-lg md:text-xl lg:text-2xl font-semibold">Account</h1>
-            </div> --}}
             <div class="py-2 lg:h-full lg:pb-24 lg:overflow-scroll scrollbar-hide">
-                <div class="flex flex-col gap-y-2 px-2 py-3 bg-dim rounded-lg border border-[#323335]">
+                <div class="flex flex-col gap-y-2 px-2 py-3 md:px-4 md:p-4 bg-dim rounded-lg border border-[#323335]">
                     <div class="flex items-start space-x-4">
                         <div class="flex-none flex justify-center mb-3 lg:justify-start">
                             <a x-on:click="$store.accountPage.toggleProfilePictureModal();">
@@ -232,7 +229,7 @@
                 </div>
 
 
-                <div class="mb-3 lg:grid lg:grid-cols-2 lg:gap-4">
+                <div class="mb-3 grid grid-cols-1 gap-1 lg:grid-cols-2 lg:gap-2 lg:mb-2">
                     <a href="{{ route('dashboard.transactions') }}">
                         <div
                             class="bg-dim w-full rounded-lg flex items-center space-x-2 p-3 mb-1 border border-[#323335] lg:mb-0">

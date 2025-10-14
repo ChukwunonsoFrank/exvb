@@ -58,7 +58,7 @@
                 <p class="text-zinc-300 text-xs leading-normal">Share your referral link, grow your network, and earn
                     commission when your downlines deposit and also on every profit they make.</p>
 
-                <div class="rounded-lg bg-dim border-2 border-[#26252a] p-5 mt-5">
+                <div class="rounded-lg bg-dim border-2 border-[#26252a] p-3 mt-5">
                     <div class="flex items-center">
                         <div class="flex-1 flex items-center gap-x-1">
                             <div>
@@ -114,7 +114,7 @@
                                 <input id="referral_code" type="text" class="hidden"
                                     value="{{ 'https://moxyai.com/register?ref=' . auth()->user()->referral_code }}">
                                 <input type="text" name="hs-trailing-icon"
-                                    class="py-3 px-4 pe-11 block w-full border-2 border-[#26252a] text-white bg-transparent rounded-lg font-mono font-bold text-xs focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
+                                    class="py-3 px-4 pe-20 block w-full border-2 border-[#26252a] text-white bg-transparent rounded-lg font-mono font-bold text-xs focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
                                     value="{{ 'https://moxyai.com/register?ref=' . auth()->user()->referral_code }}"
                                     readonly>
                                 <div x-on:click="$store.showReferralsPage.copyWalletAddress()"
