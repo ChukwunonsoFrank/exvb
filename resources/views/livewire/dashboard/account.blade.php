@@ -555,15 +555,14 @@
                                         <img class="absolute size-16 rounded-full"
                                             src="{{ $this->profilePicture->temporaryUrl() }}" alt="">
                                     @endif
-                                    @if (auth()->user()->profile_image_path && is_null(auth()->user()->profile_image_path))
+                                    @if ($this->profilePicture && is_null(auth()->user()->profile_image_path))
                                         <img class="absolute size-16 rounded-full"
-                                            src="{{ asset('storage/' . auth()->user()->profile_image_path) }}"
-                                            alt="">
+                                            src="{{ $this->profilePicture->temporaryUrl() }}" alt="">
                                     @endif
                                 </div>
                             </div>
 
-                            <div class="relative mb-12">
+                            <div class="relative mb-8">
                                 <div class="flex flex-col gap-y-1">
                                     <div>
                                         <label for="file-upload"
@@ -586,15 +585,15 @@
                                     </div>
                                     <div wire:loading wire:target="profilePicture">
                                         <i class="fa-solid fa-circle-notch fa-spin text-gray-400"></i>
-                                        <span class="text-xs text-gray-400" wire:loading.remove>Uploading...</span>
+                                        <span class="text-xs text-gray-400">Uploading...</span>
                                     </div>
                                 </div>
 
-                                <input id="file-upload" type="file" wire:model="profilePicture" class="hidden"
-                                    placeholder="" />
+                                <input id="file-upload" type="file" wire:model.live="profilePicture"
+                                    class="hidden" />
 
                                 <div class="mt-2 text-xs text-gray-400">
-                                    <span x-text="document.getElementById('file-upload').files[0]?.name || ''"></span>
+                                    <span x-text="$wire.profilePicture?.name || ''"></span>
                                 </div>
                             </div>
 

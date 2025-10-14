@@ -100,8 +100,7 @@
                 </div>
 
                 <div class="mb-5">
-                    <label for="input-label" class="block text-sm font-medium mb-2 text-zinc-300">Upload
-                        Valid
+                    <label for="file-upload" class="block text-sm font-medium mb-2 text-zinc-300">Upload Valid
                         ID</label>
                     <div class="relative">
                         <div class="flex items-center gap-x-1">
@@ -126,14 +125,16 @@
                             </div>
                             <div wire:loading wire:target="id">
                                 <i class="fa-solid fa-circle-notch fa-spin text-gray-400"></i>
-                                <span class="text-xs text-gray-400" wire:loading.remove>Uploading...</span>
+                                <span class="text-xs text-gray-400">Uploading...</span>
                             </div>
                         </div>
 
-                        <input id="file-upload" type="file" wire:model="id" class="hidden" placeholder="" />
+                        <input id="file-upload" type="file" wire:model="id" class="hidden" />
 
-                        <div class="mt-2 text-xs text-gray-400">
-                            <span x-text="document.getElementById('file-upload').files[0]?.name || ''"></span>
+                        <div class="mt-2 text-xs text-gray-400" wire:loading.remove wire:target="id">
+                            @if ($id)
+                                {{ is_string($id) ? $id : $id->getClientOriginalName() }}
+                            @endif
                         </div>
                     </div>
                 </div>
