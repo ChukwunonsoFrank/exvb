@@ -57,17 +57,6 @@ return [
       'throw' => false,
       'report' => false,
     ],
-
-    'minio' => [
-      'driver' => 's3',
-      'key' => env('MINIO_ACCESS_KEY_ID'),
-      'secret' => env('MINIO_SECRET_ACCESS_KEY'),
-      'region' => env('MINIO_DEFAULT_REGION', 'us-east-1'),
-      'bucket' => env('MINIO_BUCKET'),
-      'url' => env('MINIO_URL'), // public base URL (optional)
-      'endpoint' => env('MINIO_ENDPOINT'), // e.g. https://minio.your-domain.com
-      'use_path_style_endpoint' => true, // MinIO requires this
-    ],
   ],
 
   /*
