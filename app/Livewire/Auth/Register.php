@@ -5,6 +5,7 @@ namespace App\Livewire\Auth;
 use App\Models\User;
 use App\Notifications\LoginCodeRequested;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Validation\Rules;
 use Livewire\Attributes\Layout;
@@ -61,28 +62,28 @@ class Register extends Component
       $result = $recatpchaResponse->json();
 
       if ($recatpchaResponse->successful() && $result['success'] == true) {
-      $validated = $this->validate([
-        'name' => ['required', 'string', 'max:255'],
-        'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-        'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
-        'termsAndPrivacyPolicyAccepted' => 'accepted',
-      ]);
+        $validated = $this->validate([
+          'name' => ['required', 'string', 'max:255'],
+          'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+          'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
+          'termsAndPrivacyPolicyAccepted' => 'accepted',
+        ]);
 
-      unset($validated['termsAndPrivacyPolicyAccepted']);
+        unset($validated['termsAndPrivacyPolicyAccepted']);
 
-      /**
-       * Attempt to send login code to user's email.
-       */
-      $loginCode = substr(str_shuffle('0123456789'), 0, 6);
-      Notification::route('mail', $validated['email'])->notify(new LoginCodeRequested($loginCode));
+        /**
+         * Attempt to send login code to user's email.
+         */
+        $loginCode = substr(str_shuffle('0123456789'), 0, 6);
+        Notification::route('mail', $validated['email'])->notify(new LoginCodeRequested($loginCode));
 
-      $this->redirectRoute('register.verifylogincode', [
-        'name' => $validated['name'],
-        'email' => $validated['email'],
-        'password' => $validated['password'],
-        'hash' => Hash::make($loginCode),
-        'ref' => $this->ref
-      ]);
+        $this->redirectRoute('register.verifylogincode', [
+          'name' => $validated['name'],
+          'email' => $validated['email'],
+          'password' => $validated['password'],
+          'hash' => Hash::make($loginCode),
+          'ref' => $this->ref
+        ]);
       } else {
         $this->dispatch('signup-error', message: 'Please confirm you are not a robot.')->self();
         return redirect()->back();
