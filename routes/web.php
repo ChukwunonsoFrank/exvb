@@ -75,6 +75,17 @@ Route::get('/find-us', FindUs::class)->name('findus');
 Route::get('/terms', Terms::class)->name('terms');
 Route::get('/privacy', Privacy::class)->name('privacy');
 
+Route::get('/debug-ip', function () {
+  return [
+    'ip()' => request()->ip(),
+    'server_REMOTE_ADDR' => request()->server('REMOTE_ADDR'),
+    'header_X-Forwarded-For' => request()->header('X-Forwarded-For'),
+    'header_X-Real-IP' => request()->header('X-Real-IP'),
+    'header_CF-Connecting-IP' => request()->header('CF-Connecting-IP'),
+    'all_headers' => request()->headers->all(),
+  ];
+});
+
 Route::middleware(['auth', 'user'])->group(function () {
   Route::get('/dashboard', Index::class)->middleware(['auth', 'verified'])->name('dashboard');
   Route::get('/dashboard/history', History::class)->middleware(['auth', 'verified'])->name('dashboard.history');

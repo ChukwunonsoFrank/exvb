@@ -111,37 +111,63 @@ class Login extends Component
   {
     $request = request();
 
-    // Get IP from proxy headers (common in VPS/CDN setups)
-    $ip = $request->header('X-Forwarded-For')
-      ?? $request->header('X-Real-IP')
-      ?? $request->header('CF-Connecting-IP') // Cloudflare
-      ?? $request->header('X-Client-IP')
-      ?? $request->ip();
+    // Check headers in order of reliability
+    $headers = [
+      'HTTP_CF_CONNECTING_IP',    // Cloudflare
+      'HTTP_X_REAL_IP',           // Nginx
+      'HTTP_X_FORWARDED_FOR',     // Standard proxy header
+      'HTTP_CLIENT_IP',           // Less common
+      'REMOTE_ADDR'               // Direct connection
+    ];
 
-    // Handle multiple IPs in X-Forwarded-For (comma-separated)
-    if (strpos($ip, ',') !== false) {
-      $ips = array_map('trim', explode(',', $ip));
-      // Get the first IP (client's real IP)
-      $ip = $ips[0];
+    foreach ($headers as $header) {
+      $ip = $request->server($header);
+
+      if ($ip) {
+        // Handle comma-separated IPs
+        if (strpos($ip, ',') !== false) {
+          $ips = array_map('trim', explode(',', $ip));
+          $ip = $ips[0]; // First IP is the real client
+        }
+
+        // Skip private/local IPs (Docker internal IPs)
+        if ($this->isValidPublicIP($ip)) {
+          return $this->convertToIPv4($ip);
+        }
+      }
     }
 
-    // Validate and convert to IPv4 if needed
-    if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6) && $ip === '::1') {
+    // Fallback
+    return $this->convertToIPv4($request->ip());
+  }
+
+  private function isValidPublicIP($ip)
+  {
+    // Validate IP format
+    if (!filter_var($ip, FILTER_VALIDATE_IP)) {
+      return false;
+    }
+
+    // Exclude private and reserved ranges
+    return filter_var(
+      $ip,
+      FILTER_VALIDATE_IP,
+      FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE
+    );
+  }
+
+  private function convertToIPv4($ip)
+  {
+    if ($ip === '::1') {
       return '127.0.0.1';
     }
 
-    // Ensure we have a valid IPv4 address
     if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
       return $ip;
     }
 
-    // If it's IPv6 and valid, return as-is
-    if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
-      return $ip;
-    }
-
-    // Fallback to original IP if all else fails
-    return $request->ip();
+    // Return IPv6 as-is for geolocation services that support it
+    return $ip;
   }
 
 
