@@ -126,7 +126,7 @@ class Traderoom extends Component
   public function calculateFees(): float
   {
     $profit = $this->normalizeAmount($this->activeBot['profit']);
-    $fee = 0.1 * $profit;
+    $fee = 0.05 * $profit;
     return $fee;
   }
 
@@ -187,9 +187,9 @@ class Traderoom extends Component
     try {
       if ($this->level === 1) {
         /**
-         * Top upline commission(8% on trade profits)
+         * Top upline commission(12% on trade profits)
          */
-        $commission = round(0.08 * floatval($robotProfit), 2);
+        $commission = round(0.12 * floatval($robotProfit), 2);
         $newFirstUplineBalance = (($this->firstUpline['live_balance'] / 100) + $commission) * 100;
 
         DB::transaction(function () use ($newFirstUplineBalance, $referralCode, $commission) {
@@ -207,9 +207,9 @@ class Traderoom extends Component
 
       if ($this->level === 2) {
         /**
-         * Middle upline commission(8% on trade profits)
+         * Middle upline commission(12% on trade profits)
          */
-        $commission = round(0.08 * floatval($robotProfit), 2);
+        $commission = round(0.12 * floatval($robotProfit), 2);
         $newSecondUplineBalance = (($this->secondUpline['live_balance'] / 100) + $commission) * 100;
 
         DB::transaction(function () use ($newSecondUplineBalance, $referralCode, $commission) {
@@ -225,9 +225,9 @@ class Traderoom extends Component
         $this->secondUpline->notify(new CommissionEarned($this->secondUpline['name'], $botOwnerName, strval($commission), 'trade profit'));
 
         /**
-         * First upline commission(4% on trade profits)
+         * First upline commission(8% on trade profits)
          */
-        $commission = round(0.04 * floatval($robotProfit), 2);
+        $commission = round(0.08 * floatval($robotProfit), 2);
         $newFirstUplineBalance = (($this->firstUpline['live_balance'] / 100) + $commission) * 100;
 
         DB::transaction(function () use ($newFirstUplineBalance, $referralCode, $commission) {

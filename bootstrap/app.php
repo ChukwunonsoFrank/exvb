@@ -13,7 +13,12 @@ return Application::configure(basePath: dirname(__DIR__))
     health: '/up',
   )
   ->withMiddleware(function (Middleware $middleware) {
-    $middleware->redirectUsersTo('/dashboard/robot');
+    $middleware->redirectUsersTo(function (Request $request) {
+      if (auth()->check() && auth()->user()->is_admin) {
+        return '/admin/dashboard';
+      }
+      return '/dashboard/robot';
+    });
 
     $middleware->alias([
       'admin' => \App\Http\Middleware\Admin::class,

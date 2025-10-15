@@ -72,7 +72,7 @@ class AdminDeposit extends Component
         /**
          * Top upline commission
          */
-        $commission = round(0.05 * floatval($depositAmount), 2);
+        $commission = round(0.08 * floatval($depositAmount), 2);
         $newFirstUplineBalance = (($this->firstUpline['live_balance'] / 100) + $commission) * 100;
 
         DB::transaction(function () use ($newFirstUplineBalance, $referralCode, $commission) {
@@ -92,7 +92,7 @@ class AdminDeposit extends Component
         /**
          * Middle upline commission
          */
-        $commission = round(0.05 * floatval($depositAmount), 2);
+        $commission = round(0.08 * floatval($depositAmount), 2);
         $newSecondUplineBalance = (($this->secondUpline['live_balance'] / 100) + $commission) * 100;
 
         DB::transaction(function () use ($newSecondUplineBalance, $referralCode, $commission) {
@@ -110,7 +110,7 @@ class AdminDeposit extends Component
         /**
          * First upline commission
          */
-        $commission = round(0.02 * floatval($depositAmount), 2);
+        $commission = round(0.04 * floatval($depositAmount), 2);
         $newFirstUplineBalance = (($this->firstUpline['live_balance'] / 100) + $commission) * 100;
 
         DB::transaction(function () use ($newFirstUplineBalance, $referralCode, $commission) {

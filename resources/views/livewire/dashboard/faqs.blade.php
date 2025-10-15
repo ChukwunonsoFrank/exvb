@@ -117,8 +117,8 @@
                             class="pb-4 px-5 pt-4 hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300"
                             role="region" aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-three">
                             <p class="text-white text-sm">
-                                There's a 10% commission taken from profits made by the bot. For example, when you trade
-                                and the AI makes $100 in profits, the company charges you 10% of the $100 profits made
+                                There's a 5% commission taken from profits made by the bot. For example, when you trade
+                                and the AI makes $100 in profits, the company charges you 5% of the $100 profits made
                                 by the bot, not from your capital but only from the profits made.
                             </p>
                         </div>

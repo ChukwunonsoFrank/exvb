@@ -761,9 +761,9 @@
                                                         data-tab="12" role="tabpanel"
                                                         aria-labelledby="elementor-tab-title-3553">
                                                         <p>
-                                                            There's a 10% commission taken from profits made by the bot.
+                                                            There's a 5% commission taken from profits made by the bot.
                                                             For example, when you trade and the AI makes $100 in
-                                                            profits, the company charges you 10% of the $100 profits
+                                                            profits, the company charges you 5% of the $100 profits
                                                             made by the bot, not from your capital but only from the
                                                             profits made.
                                                         </p>

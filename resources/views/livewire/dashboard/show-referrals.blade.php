@@ -31,10 +31,10 @@
                             </div>
                             <div class="mb-4">
                                 <ul class="list-disc list-inside text-white text-sm">
-                                    <li>Level 1 (Direct Referrals): These are people you invite’s directly using your
-                                        link. You earn 5% from their deposits and 8% from their trading profits.</li>
+                                    <li>Level 1 (Direct Referrals): These are people you invite's directly using your
+                                        link. You earn 8% from their deposits and 12% from their trading profits.</li>
                                     <li>Level 2 (Indirect Referrals): These are people invited by your Level 1
-                                        referrals. You earn 2% from their deposits and 4% from their trading profits.
+                                        referrals. You earn 4% from their deposits and 8% from their trading profits.
                                     </li>
                                 </ul>
                             </div>
@@ -135,7 +135,7 @@
 
                 <div class="flex flex-col border-2 border-[#323335]">
                     <div class="py-3 px-5 bg-dim border-b border-[#323335]">
-                        <p class="text-white text-sm font-bold">Level 1 <span class="text-xs">(5% on deposits, 8% on
+                        <p class="text-white text-sm font-bold">Level 1 <span class="text-xs">(8% on deposits, 12% on
                                 trades)</span></p>
                     </div>
                     <div class="px-4 py-8 flex items-center gap-1 flex-wrap">
@@ -148,7 +148,7 @@
                         @endforeach
                     </div>
                     <div class="py-3 px-5 bg-dim border-t-2 border-b border-[#323335]">
-                        <p class="text-white text-sm font-bold">Level 2 <span class="text-xs">(2% on deposits, 4% on
+                        <p class="text-white text-sm font-bold">Level 2 <span class="text-xs">(4% on deposits, 8% on
                                 trades)</span></p>
                     </div>
                     <div class="px-4 py-8 flex items-center gap-1 flex-wrap">

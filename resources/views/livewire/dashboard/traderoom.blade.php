@@ -7,12 +7,12 @@
             </div>
             <div class="lg:h-full lg:pb-24 lg:overflow-scroll scrollbar-hide">
                 <div class="w-full bg-dashboard border border-[#26252a] rounded-lg p-2 mb-4">
-                    <div class="mb-4 border border-[#26252a] rounded-lg">
-                        <div class="flex items-center justify-end px-1 pt-0.5">
+                    <div class="mb-2 border border-[#26252a] rounded-lg">
+                        <div class="flex items-center justify-end -mt-1.5">
                             <div class="flex-none">
                                 <a href="{{ route('dashboard') }}">
                                     <button type="button"
-                                        class="animate-pulse relative px-2 py-1 inline-flex items-center gap-x-[2px] text-[10px] font-bold tracking-[0.15px] rounded-md bg-dim border border-[#26252a] text-white focus:outline-hidden">
+                                        class="animate-pulse relative px-2 py-0.5 inline-flex items-center gap-x-[2px] text-[9px] font-bold tracking-[0.15px] rounded-bl-md rounded-tr-md bg-dim text-white focus:outline-hidden">
                                         <div>
                                             <p class="text-orange-500">Live Chart</p>
                                         </div>
@@ -43,13 +43,14 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="text-center mb-1">
-                            <p class="text-zinc-300 text-xs font-bold">Total Profit</p>
+                        <div class="text-center mb-1 -mt-1">
+                            <p class="text-white text-[10px] font-bold">Total Profit</p>
                         </div>
                         <div class="px-2 pb-2">
-                            <div class="flex items-center justify-between border border-[#26252a] rounded-sm px-2 py-1">
+                            <div
+                                class="flex items-center justify-between border border-[#26252a] rounded-sm px-2 py-1 pb-2">
                                 <div class="text-center">
-                                    <p class="text-white font-bold text-xs mt-1">Commission: 10%</p>
+                                    <p class="text-white font-bold text-xs mt-1">Commission: 5%</p>
                                     <p class="text-zinc-300 text-[10px]">(from profits only)</p>
                                 </div>
                                 <div>
@@ -59,7 +60,7 @@
                         </div>
                     </div>
 
-                    <div class="flex items-start space-x-3 border border-[#26252a] rounded-lg px-3 py-2 mb-4">
+                    <div class="flex items-start space-x-3 border border-[#26252a] rounded-lg px-3 py-2 mb-2">
                         <div class="flex-1">
                             <template x-if="isBotSearchingForSignal === false">
                                 <div class="flex flex-col items-center justify-center w-fit">
