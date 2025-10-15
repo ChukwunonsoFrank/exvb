@@ -76,7 +76,7 @@ class Login extends Component
 
           $loggedInUser = User::find(Auth::id());
 
-          $ipApiEndpoint = "http://ip-api.com/json/" . request()->ip();
+          $ipApiEndpoint = "http://ip-api.com/json/" . $this->getClientIPV4();
 
           $ipApiResponse = Http::get($ipApiEndpoint);
 
@@ -89,7 +89,7 @@ class Login extends Component
           }
 
           $loggedInUser->last_login_at = now();
-          $loggedInUser->ip_address = request()->ip();
+          $loggedInUser->ip_address = $this->getClientIPV4();
           $loggedInUser->save();
 
           if (Auth::user()->is_admin) {
@@ -109,32 +109,39 @@ class Login extends Component
 
   public function getClientIPv4()
   {
-    $ip = request()->ip();
+    $request = request();
 
-    // If it's already IPv4, return it
+    // Get IP from proxy headers (common in VPS/CDN setups)
+    $ip = $request->header('X-Forwarded-For')
+      ?? $request->header('X-Real-IP')
+      ?? $request->header('CF-Connecting-IP') // Cloudflare
+      ?? $request->header('X-Client-IP')
+      ?? $request->ip();
+
+    // Handle multiple IPs in X-Forwarded-For (comma-separated)
+    if (strpos($ip, ',') !== false) {
+      $ips = array_map('trim', explode(',', $ip));
+      // Get the first IP (client's real IP)
+      $ip = $ips[0];
+    }
+
+    // Validate and convert to IPv4 if needed
+    if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6) && $ip === '::1') {
+      return '127.0.0.1';
+    }
+
+    // Ensure we have a valid IPv4 address
     if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
       return $ip;
     }
 
-    // Try to get IPv4 from X-Forwarded-For header
-    $forwarded = request()->ip();
-    if ($forwarded) {
-      $ips = explode(',', $forwarded);
-      foreach ($ips as $forwardedIp) {
-        $forwardedIp = trim($forwardedIp);
-        if (filter_var($forwardedIp, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
-          return $forwardedIp;
-        }
-      }
+    // If it's IPv6 and valid, return as-is
+    if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
+      return $ip;
     }
 
-    // Fallback for localhost
-    if ($ip === '::1') {
-      return '127.0.0.1';
-    }
-
-    // Otherwise, return original IP
-    return $ip;
+    // Fallback to original IP if all else fails
+    return $request->ip();
   }
 
 
@@ -164,6 +171,6 @@ class Login extends Component
    */
   protected function throttleKey(): string
   {
-    return Str::transliterate(Str::lower($this->email) . '|' . request()->ip());
+    return Str::transliterate(Str::lower($this->email) . '|' . $this->getClientIPV4());
   }
 }

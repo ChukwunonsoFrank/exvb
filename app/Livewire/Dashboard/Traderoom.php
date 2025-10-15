@@ -279,7 +279,8 @@ class Traderoom extends Component
           User::where('id', auth()->user()->id)->update(['live_balance' => $serialized]);
         });
 
-        if (auth()->user()->referred_by) {
+        // Add referral trade profit only when the profit is greater than 0
+        if (auth()->user()->referred_by && $profit > 0) {
           $profitMinusFees = $profit - $this->fee;
           $this->computeUpline(auth()->user()->referred_by);
           $this->processReferralPayouts($profitMinusFees, auth()->user()->referral_code, auth()->user()->name);

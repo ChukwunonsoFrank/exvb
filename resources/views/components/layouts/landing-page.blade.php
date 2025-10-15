@@ -655,7 +655,6 @@
 
 <body
     class="home page-template page-template-elementor_header_footer page page-id-2264 wp-custom-logo elementor-default elementor-template-full-width elementor-kit-23 elementor-page elementor-page-2264">
-
     <header id="site-header" class="site-header dynamic-header header-full-width menu-dropdown-mobile"
         role="banner">
         <div class="header-inner">

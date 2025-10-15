@@ -87,8 +87,8 @@
                             <label for="input-label" class="block text-sm font-medium mb-2 text-zinc-300">Trade
                                 Amount</label>
                             <div class="relative">
-                                <input wire:model="amount" wire:keyup.debounce.300ms="calculateProfitExpected"
-                                    @input.debounce.500ms="$store.robotPage.checkMinimumAmount($wire)" type="text"
+                                <input wire:model="amount" wire:keyup="calculateProfitExpected"
+                                    @input="$store.robotPage.checkMinimumAmount($wire)" type="text"
                                     class="bg-transparent text-white border border-[#26252a] text-sm peer py-2.5 px-4 ps-11 block w-full rounded-lg sm:text-sm focus:outline-0"
                                     placeholder="">
                                 <div

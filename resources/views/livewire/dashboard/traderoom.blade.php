@@ -7,51 +7,10 @@
             </div>
             <div class="lg:h-full lg:pb-24 lg:overflow-scroll scrollbar-hide">
                 <div class="w-full bg-dashboard border border-[#26252a] rounded-lg p-4 mb-4">
-                    <div class="mb-4 flex items-center justify-between">
-                        <div class="flex-none text-center">
-                            <p class="text-white font-bold text-xs mt-1">Commission: 10%</p>
-                            <p class="text-zinc-300 text-[10px]">(from profits only)</p>
-                            <div class="-mt-0.5">
-                                <p x-text="fee" class="text-[#fb2c36] text-xs inline font-bold"></p>
-                            </div>
-                        </div>
-
-                        <div class="flex-none text-center">
-                            <h2 class="text-white font-bold text-xl -ml-6">@money($this->profit)</h2>
-                            <div class="flex items-center gap-x-0.5 -ml-1">
-                                <div>
-                                    <p class="text-zinc-300 text-xs">Total Profit</p>
-                                </div>
-                                <div class="-mt-0.5">
-                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2.91669 6.99996L7.00002 2.91663L11.0834 6.99996" stroke="#00C951"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M7 11.0833V2.91663" stroke="#00C951" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex-none flex flex-col gap-y-2 items-center">
+                    <div class="mb-4 border border-[#26252a] rounded-lg p-3">
+                        <div class="flex items-center justify-between">
                             <div>
-                                <svg width="73" height="23" viewBox="0 0 73 23" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M72.2429 21.8037V1.09814L67.1401 3.94394L62.1355 2.47197L55.6588 7.6729L49.6729 3.25702L41.6261 8.26169L34.4626 5.31777H29.9486L27.0047 4.63085L20.4299 8.26169H17.2897L12.5794 11.7944L5.02337 15.0327L1.09814 22L72.2429 21.8037Z"
-                                        fill="url(#paint0_linear_513_324)" />
-                                    <path
-                                        d="M1 21.2149L4.57936 15.0153C4.75631 14.7088 5.03161 14.4711 5.3606 14.3407L12.557 11.4885C12.702 11.4311 12.8376 11.3523 12.9594 11.2549L17.063 7.97199C17.4524 7.66049 17.9666 7.55246 18.4484 7.68095L19.9838 8.09039C20.3944 8.19988 20.8318 8.13827 21.1962 7.91965L26.7883 4.56436C27.231 4.29877 27.7759 4.26773 28.2459 4.48134L29.3446 4.98076C29.5486 5.07351 29.7701 5.12149 29.9943 5.12149H33.7568C33.9636 5.12149 34.1684 5.16235 34.3593 5.24171L40.8484 7.93847C41.3342 8.14034 41.8887 8.08555 42.3256 7.79254L48.6561 3.54644C49.2538 3.14554 50.0476 3.20235 50.5821 3.6843L54.5684 7.27853C55.1821 7.83185 56.1196 7.81483 56.7128 7.23961L61.3887 2.70545C61.8414 2.26649 62.5127 2.14093 63.0935 2.38662L66.4103 3.7899C66.9232 4.0069 67.5127 3.93596 67.9595 3.60348L71.4579 1"
-                                        stroke="#00732F" stroke-width="1.76635" stroke-linecap="round" />
-                                    <defs>
-                                        <linearGradient id="paint0_linear_513_324" x1="40.743" y1="8.16356"
-                                            x2="40.743" y2="30.0467" gradientUnits="userSpaceOnUse">
-                                            <stop stop-color="#0C2819" />
-                                            <stop offset="1" stop-color="#161616" stop-opacity="0" />
-                                        </linearGradient>
-                                    </defs>
-                                </svg>
+                                <p class="text-zinc-300 text-xs">Total Profit</p>
                             </div>
                             <div>
                                 <a href="{{ route('dashboard') }}">
@@ -73,9 +32,32 @@
                                 </a>
                             </div>
                         </div>
+                        <div class="flex items-start justify-center my-2 gap-x-1">
+                            <div>
+                                <h2 class="text-[#20CC6A] font-bold text-3xl">@money($this->profit)</h2>
+                            </div>
+                            <div>
+                                <svg class="mt-1.5" width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="12" height="12" rx="3" fill="#20CC6A" />
+                                    <path
+                                        d="M5.958 3.54425C6.05822 3.37067 6.30876 3.37067 6.40898 3.54425L8.96451 7.97057C9.06473 8.14415 8.93946 8.36113 8.73903 8.36113H3.62795C3.42751 8.36113 3.30224 8.14415 3.40246 7.97057L5.958 3.54425Z"
+                                        fill="white" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="text-center">
+                                <p class="text-white font-bold text-xs mt-1">Commission: 10%</p>
+                                <p class="text-zinc-300 text-[10px]">(from profits only)</p>
+                            </div>
+                            <div>
+                                <p x-text="fee" class="text-[#fb2c36] text-xs inline font-bold"></p>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="flex items-start space-x-3 border border-[#26252a] rounded-lg px-4 py-2 mb-4">
+                    <div class="flex items-start space-x-3 border border-[#26252a] rounded-lg px-3 py-2 mb-4">
                         <div class="flex-1">
                             <template x-if="isBotSearchingForSignal === false">
                                 <div class="flex flex-col items-center justify-center w-fit">
@@ -85,7 +67,8 @@
                                     <p x-text='timer' class="mb-1.5 text-white font-bold text-2xl"></p>
                                     <div>
                                         <p class="text-zinc-300 text-[11px] text-center">Last trade: <span
-                                                x-text="previousBotProfit" class="text-green-500 font-bold"></span></p>
+                                                x-text="previousBotProfit" class="text-green-500 font-bold"></span>
+                                        </p>
                                     </div>
                                 </div>
                             </template>
@@ -131,12 +114,12 @@
                                                         <g clip-path="url(#clip0_1031_740)">
                                                             <path
                                                                 d="M5 6.49998C5.21473 6.78705 5.48868 7.02457 5.80328 7.19645C6.11787 7.36833 6.46575 7.47054 6.82333 7.49615C7.1809 7.52176 7.53979 7.47017 7.87567 7.34487C8.21155 7.21958 8.51656 7.02352 8.77 6.76998L10.27 5.26998C10.7254 4.79848 10.9774 4.16697 10.9717 3.51148C10.966 2.85599 10.7031 2.22896 10.2395 1.76544C9.77603 1.30192 9.14899 1.03899 8.4935 1.0333C7.83801 1.0276 7.20651 1.27959 6.735 1.73498L5.875 2.58998"
-                                                                stroke="white" stroke-width="2"
-                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                                stroke="white" stroke-width="2" stroke-linecap="round"
+                                                                stroke-linejoin="round" />
                                                             <path
                                                                 d="M7.0001 5.49999C6.78537 5.21293 6.51142 4.9754 6.19683 4.80352C5.88223 4.63164 5.53435 4.52943 5.17677 4.50382C4.8192 4.47822 4.46031 4.52981 4.12443 4.6551C3.78855 4.78039 3.48354 4.97646 3.2301 5.22999L1.7301 6.72999C1.2747 7.2015 1.02272 7.833 1.02841 8.48849C1.03411 9.14399 1.29703 9.77102 1.76055 10.2345C2.22407 10.6981 2.85111 10.961 3.5066 10.9667C4.16209 10.9724 4.79359 10.7204 5.2651 10.265L6.1201 9.40999"
-                                                                stroke="white" stroke-width="2"
-                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                                stroke="white" stroke-width="2" stroke-linecap="round"
+                                                                stroke-linejoin="round" />
                                                         </g>
                                                         <defs>
                                                             <clipPath id="clip0_1031_740">
@@ -204,7 +187,7 @@
                         </div>
                     </div>
 
-                    <div class="border border-[#26252a] rounded-lg p-4">
+                    <div class="border border-[#26252a] rounded-lg px-3 py-4">
                         <div class="flex items-center justify-center space-x-2 pb-2 border-b border-[#26252a]">
                             <div class="flex-none">
                                 <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
