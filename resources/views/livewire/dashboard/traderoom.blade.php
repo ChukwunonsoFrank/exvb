@@ -2,17 +2,14 @@
     <div class="lg:flex lg:h-full">
         <livewire:dashboard.partials.desktop-navbar />
         <div class="lg:h-full lg:flex-1 lg:px-96 lg:pt-6">
-            <div class="my-2 sticky top-0 bg-dashboard z-10 lg:pt-4">
-                <h1 class="text-white text-lg md:text-xl lg:text-2xl font-semibold">Active Robot</h1>
-            </div>
-            <div class="lg:h-full lg:pb-24 lg:overflow-scroll scrollbar-hide">
+            <div class="lg:h-full lg:pb-24 lg:overflow-scroll scrollbar-hide pt-2">
                 <div class="w-full bg-dashboard border border-[#26252a] rounded-lg p-2 mb-4">
                     <div class="mb-2 border border-[#26252a] rounded-lg">
-                        <div class="flex items-center justify-end -mt-1.5">
+                        <div class="flex items-center justify-end p-1">
                             <div class="flex-none">
                                 <a href="{{ route('dashboard') }}">
                                     <button type="button"
-                                        class="animate-pulse relative px-2 py-0.5 inline-flex items-center gap-x-[2px] text-[9px] font-bold tracking-[0.15px] rounded-bl-md rounded-tr-md bg-dim text-white focus:outline-hidden">
+                                        class="animate-pulse relative px-2 py-1 inline-flex items-center gap-x-[2px] text-[11px] font-bold tracking-[0.15px] rounded-md border border-[#26252a] bg-dim text-white focus:outline-hidden">
                                         <div>
                                             <p class="text-orange-500">Live Chart</p>
                                         </div>
