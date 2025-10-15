@@ -2,17 +2,14 @@
     <div class="lg:flex lg:h-full">
         <livewire:dashboard.partials.desktop-navbar />
         <div class="lg:h-full lg:flex-1 lg:px-96 lg:pt-6">
-            <div class="my-3 sticky top-0 bg-dashboard z-10 lg:pt-4">
+            <div class="my-2 sticky top-0 bg-dashboard z-10 lg:pt-4">
                 <h1 class="text-white text-lg md:text-xl lg:text-2xl font-semibold">Active Robot</h1>
             </div>
             <div class="lg:h-full lg:pb-24 lg:overflow-scroll scrollbar-hide">
-                <div class="w-full bg-dashboard border border-[#26252a] rounded-lg p-4 mb-4">
+                <div class="w-full bg-dashboard border border-[#26252a] rounded-lg p-2 mb-4">
                     <div class="mb-4 border border-[#26252a] rounded-lg">
-                        <div class="flex items-center justify-between px-1 pt-0.5">
-                            <div>
-                                <p class="text-zinc-300 text-xs">Total Profit</p>
-                            </div>
-                            <div>
+                        <div class="flex items-center justify-end px-1 pt-0.5">
+                            <div class="flex-none">
                                 <a href="{{ route('dashboard') }}">
                                     <button type="button"
                                         class="animate-pulse relative px-2 py-1 inline-flex items-center gap-x-[2px] text-[10px] font-bold tracking-[0.15px] rounded-md bg-dim border border-[#26252a] text-white focus:outline-hidden">
@@ -32,7 +29,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="flex items-start justify-center my-1.5 gap-x-1">
+                        <div class="flex items-start justify-center gap-x-1">
                             <div>
                                 <h2 class="text-[#20CC6A] font-extrabold text-2xl">@money($this->profit)</h2>
                             </div>
@@ -46,8 +43,11 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="px-1 pb-1">
-                            <div class="flex items-center justify-between border border-[#26252a] rounded-sm p-2">
+                        <div class="text-center mb-1">
+                            <p class="text-zinc-300 text-xs font-bold">Total Profit</p>
+                        </div>
+                        <div class="px-2 pb-2">
+                            <div class="flex items-center justify-between border border-[#26252a] rounded-sm px-2 py-1">
                                 <div class="text-center">
                                     <p class="text-white font-bold text-xs mt-1">Commission: 10%</p>
                                     <p class="text-zinc-300 text-[10px]">(from profits only)</p>
