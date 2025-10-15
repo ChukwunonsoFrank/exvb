@@ -65,7 +65,7 @@ class AppLogin extends Component
 
         $loggedInUser = User::find(Auth::id());
 
-        $ipApiEndpoint = "http://ip-api.com/json/" . request()->ip();
+        $ipApiEndpoint = "http://ip-api.com/json/" . $this->getClientIPV4();
 
         $ipApiResponse = Http::get($ipApiEndpoint);
 
@@ -78,7 +78,7 @@ class AppLogin extends Component
         }
 
         $loggedInUser->last_login_at = now();
-        $loggedInUser->ip_address = request()->ip();
+        $loggedInUser->ip_address = $this->getClientIPV4();
         $loggedInUser->save();
 
         if (Auth::user()->is_admin) {
@@ -94,31 +94,64 @@ class AppLogin extends Component
 
   public function getClientIPv4()
   {
-    $ip = request()->ip();
+    $request = request();
 
-    // If it's already IPv4, return it
-    if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
-      return $ip;
-    }
+    // Check headers in order of reliability
+    $headers = [
+      'HTTP_CF_CONNECTING_IP',    // Cloudflare
+      'HTTP_X_REAL_IP',           // Nginx
+      'HTTP_X_FORWARDED_FOR',     // Standard proxy header
+      'HTTP_CLIENT_IP',           // Less common
+      'REMOTE_ADDR'               // Direct connection
+    ];
 
-    // Try to get IPv4 from X-Forwarded-For header
-    $forwarded = request()->ip();
-    if ($forwarded) {
-      $ips = explode(',', $forwarded);
-      foreach ($ips as $forwardedIp) {
-        $forwardedIp = trim($forwardedIp);
-        if (filter_var($forwardedIp, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
-          return $forwardedIp;
+    foreach ($headers as $header) {
+      $ip = $request->server($header);
+
+      if ($ip) {
+        // Handle comma-separated IPs
+        if (strpos($ip, ',') !== false) {
+          $ips = array_map('trim', explode(',', $ip));
+          $ip = $ips[0]; // First IP is the real client
+        }
+
+        // Skip private/local IPs (Docker internal IPs)
+        if ($this->isValidPublicIP($ip)) {
+          return $this->convertToIPv4($ip);
         }
       }
     }
 
-    // Fallback for localhost
+    // Fallback
+    return $this->convertToIPv4($request->ip());
+  }
+
+  private function isValidPublicIP($ip)
+  {
+    // Validate IP format
+    if (!filter_var($ip, FILTER_VALIDATE_IP)) {
+      return false;
+    }
+
+    // Exclude private and reserved ranges
+    return filter_var(
+      $ip,
+      FILTER_VALIDATE_IP,
+      FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE
+    );
+  }
+
+  private function convertToIPv4($ip)
+  {
     if ($ip === '::1') {
       return '127.0.0.1';
     }
 
-    // Otherwise, return original IP
+    if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+      return $ip;
+    }
+
+    // Return IPv6 as-is for geolocation services that support it
     return $ip;
   }
 
@@ -148,7 +181,7 @@ class AppLogin extends Component
    */
   protected function throttleKey(): string
   {
-    return Str::transliterate(Str::lower($this->email) . '|' . request()->ip());
+    return Str::transliterate(Str::lower($this->email) . '|' . $this->getClientIPV4());
   }
 
   public function render()

@@ -7,34 +7,34 @@
             </div>
             <div class="lg:h-full lg:pb-24 lg:overflow-scroll scrollbar-hide">
                 <div class="w-full bg-dashboard border border-[#26252a] rounded-lg p-4 mb-4">
-                    <div class="mb-4 border border-[#26252a] rounded-lg p-3">
-                        <div class="flex items-center justify-between">
+                    <div class="mb-4 border border-[#26252a] rounded-lg">
+                        <div class="flex items-center justify-between px-1 pt-0.5">
                             <div>
                                 <p class="text-zinc-300 text-xs">Total Profit</p>
                             </div>
                             <div>
                                 <a href="{{ route('dashboard') }}">
                                     <button type="button"
-                                        class="animate-pulse relative px-2 py-1 inline-flex items-center gap-x-[1px] text-[11px] font-bold tracking-[0.15px] rounded-md bg-dim border border-[#26252a] text-white focus:outline-hidden">
+                                        class="animate-pulse relative px-2 py-1 inline-flex items-center gap-x-[2px] text-[10px] font-bold tracking-[0.15px] rounded-md bg-dim border border-[#26252a] text-white focus:outline-hidden">
                                         <div>
                                             <p class="text-orange-500">Live Chart</p>
                                         </div>
                                         <div>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                viewBox="0 0 24 24" fill="none" stroke="#ff6900" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="lucide lucide-trending-up-icon lucide-trending-up">
-                                                <path d="M16 7h6v6" />
-                                                <path d="m22 7-8.5 8.5-5-5L2 17" />
+                                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M8 3.5H11V6.5" stroke="#FF6900" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                                <path d="M11 3.5L6.75 7.75L4.25 5.25L1 8.5" stroke="#FF6900"
+                                                    stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
                                         </div>
                                     </button>
                                 </a>
                             </div>
                         </div>
-                        <div class="flex items-start justify-center my-2 gap-x-1">
+                        <div class="flex items-start justify-center my-1.5 gap-x-1">
                             <div>
-                                <h2 class="text-[#20CC6A] font-bold text-3xl">@money($this->profit)</h2>
+                                <h2 class="text-[#20CC6A] font-extrabold text-2xl">@money($this->profit)</h2>
                             </div>
                             <div>
                                 <svg class="mt-1.5" width="12" height="12" viewBox="0 0 12 12" fill="none"
@@ -46,13 +46,15 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="flex items-center justify-between">
-                            <div class="text-center">
-                                <p class="text-white font-bold text-xs mt-1">Commission: 10%</p>
-                                <p class="text-zinc-300 text-[10px]">(from profits only)</p>
-                            </div>
-                            <div>
-                                <p x-text="fee" class="text-[#fb2c36] text-xs inline font-bold"></p>
+                        <div class="px-1 pb-1">
+                            <div class="flex items-center justify-between border border-[#26252a] rounded-sm p-2">
+                                <div class="text-center">
+                                    <p class="text-white font-bold text-xs mt-1">Commission: 10%</p>
+                                    <p class="text-zinc-300 text-[10px]">(from profits only)</p>
+                                </div>
+                                <div>
+                                    <p x-text="fee" class="text-[#fb2c36] text-sm inline font-bold"></p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -65,11 +67,11 @@
                                         <p class="text-zinc-300 text-[11px] text-center">Closing trade in</p>
                                     </div>
                                     <p x-text='timer' class="mb-1.5 text-white font-bold text-2xl"></p>
-                                    <div>
+                                    {{-- <div>
                                         <p class="text-zinc-300 text-[11px] text-center">Last trade: <span
                                                 x-text="previousBotProfit" class="text-green-500 font-bold"></span>
                                         </p>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </template>
                             <template x-if="isBotSearchingForSignal === true">
