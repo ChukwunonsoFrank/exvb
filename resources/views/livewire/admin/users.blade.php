@@ -145,10 +145,14 @@
                                     @forelse ($users as $user)
                                         <tr wire:key="user-{{ $user['id'] }}" x-data="{ isActionDropdownOpen: false }">
                                             <td class="py-3 pr-5 whitespace-nowrap sm:pr-5">
-                                                <div class="flex items-center">
+                                                <div class="flex gap-x-1 items-center">
                                                     <p
                                                         class="text-theme-sm block font-medium text-gray-700 dark:text-gray-400">
                                                         {{ $user['name'] }}
+                                                    </p>
+                                                    <p
+                                                        class="text-theme-xs bg-success-50 text-success-600 rounded-full px-2 py-0.5 font-medium">
+                                                        {{ $user['referrer_name'] }}
                                                     </p>
                                                 </div>
                                             </td>

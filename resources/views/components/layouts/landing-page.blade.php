@@ -829,7 +829,7 @@
         <div class="elementor-container">
             <div class="app-wrapper">
                 <ul class="app-links">
-                    <a href="/Moxyaiapp.apk">
+                    <a href="/appmoxyai.apk">
                         <li class="playstore">
                             <div class="supertitle">Get it on</div>
                             <div class="title">Google Play</div>

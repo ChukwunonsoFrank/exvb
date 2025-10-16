@@ -69,9 +69,9 @@ class Dashboard extends Component
     return $amount * 100;
   }
 
-  public function calculateFees(int $profit): float
+  public function calculateFees(int $profit): int
   {
-    $fee = 0.01 * $profit;
+    $fee = intval(round($profit * 5 / 100));
     return $fee;
   }
 
@@ -81,30 +81,28 @@ class Dashboard extends Component
       $bot = Bot::find($botId);
       $userId = $bot->user->id;
       $accountType = $bot['account_type'];
-      $amount = $this->normalizeAmount($bot['amount']);
-      $profit = $this->normalizeAmount($bot['profit']);
+      $amount = $bot['amount'];
+      $profit = $bot['profit'];
       $fee = $this->calculateFees($profit);
       $netProfit = $profit - $fee;
 
       if ($accountType === "demo") {
-        $currentBalance = $this->normalizeAmount($bot->user->demo_balance);
+        $currentBalance = $bot->user->demo_balance;
         $newBalance = $currentBalance + $amount + $netProfit;
-        $serialized = $this->serializeAmount($newBalance);
 
-        DB::transaction(function () use ($serialized, $botId, $userId) {
+        DB::transaction(function () use ($newBalance, $botId, $userId) {
           Bot::where('id', $botId)->update(['status' => 'closed']);
-          User::where('id', $userId)->update(['demo_balance' => $serialized]);
+          User::where('id', $userId)->update(['demo_balance' => $newBalance]);
         });
       }
 
       if ($accountType === "live") {
-        $currentBalance = $this->normalizeAmount($bot->user->live_balance);
+        $currentBalance = $bot->user->live_balance;
         $newBalance = $currentBalance + $amount + $netProfit;
-        $serialized = $this->serializeAmount($newBalance);
 
-        DB::transaction(function () use ($serialized, $botId, $userId) {
+        DB::transaction(function () use ($newBalance, $botId, $userId) {
           Bot::where('id', $botId)->update(['status' => 'closed']);
-          User::where('id', $userId)->update(['live_balance' => $serialized]);
+          User::where('id', $userId)->update(['live_balance' => $newBalance]);
         });
       }
       session()->flash('success-message', 'Robot stopped successfully.');

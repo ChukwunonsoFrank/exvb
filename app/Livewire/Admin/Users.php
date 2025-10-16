@@ -87,7 +87,16 @@ class Users extends Component
 
   public function render()
   {
-    $users = empty($this->query) ? User::where('is_admin', 0)->latest()->paginate(20) : User::search($this->query)->paginate(20);
+    $query = User::leftJoin('users as referrers', 'users.referred_by', '=', 'referrers.referral_code')
+      ->select('users.*', 'referrers.name as referrer_name')
+      ->where('users.is_admin', 0);
+
+    if (!empty($this->query)) {
+      $query = $query->search($this->query);
+    }
+
+    $users = $query->latest()->paginate(20);
+
     return view('livewire.admin.users', [
       'users' => $users
     ]);
