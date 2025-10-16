@@ -835,7 +835,7 @@
                             <div class="title">Google Play</div>
                         </li>
                     </a>
-                    <a href="{{ route('login') }}">
+                    <a href="https://apps.apple.com/app/ceramicscoat-pro/id6751297821">
                         <li class="appstore">
                             <div class="supertitle">Download on the</div>
                             <div class="title">App Store</div>
