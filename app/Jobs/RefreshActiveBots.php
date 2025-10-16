@@ -44,30 +44,28 @@ class RefreshActiveBots implements ShouldQueue
          */
         if ($now > $endDate) {
           $accountType = $bot['account_type'];
-          $amount = $this->normalizeAmount($bot['amount']);
-          $profit = $this->normalizeAmount($bot['profit']);
+          $amount = $bot['amount'];
+          $profit = $bot['profit'];
           $fee = $this->calculateFees($profit);
           $netProfit = $profit - $fee;
 
           if ($accountType === "demo") {
-            $currentBalance = $this->normalizeAmount($bot->user->demo_balance);
+            $currentBalance = $bot->user->demo_balance;
             $newBalance = $currentBalance + $amount + $netProfit;
-            $serialized = $this->serializeAmount($newBalance);
 
-            DB::transaction(function () use ($serialized, $bot) {
+            DB::transaction(function () use ($newBalance, $bot) {
               Bot::where('id', $bot['id'])->update(['status' => 'expired']);
-              User::where('id', $bot->user->id)->update(['demo_balance' => $serialized]);
+              User::where('id', $bot->user->id)->update(['demo_balance' => $newBalance]);
             });
           }
 
           if ($accountType === "live") {
-            $currentBalance = $this->normalizeAmount($bot->user->live_balance);
+            $currentBalance = $bot->user->live_balance;
             $newBalance = $currentBalance + $amount + $netProfit;
-            $serialized = $this->serializeAmount($newBalance);
 
-            DB::transaction(function () use ($serialized, $bot) {
+            DB::transaction(function () use ($newBalance, $bot) {
               $bot->update(['status' => 'expired']);
-              User::where('id', $bot->user->id)->update(['live_balance' => $serialized]);
+              User::where('id', $bot->user->id)->update(['live_balance' => $newBalance]);
             });
 
             if ($bot->user->referred_by) {
@@ -124,9 +122,9 @@ class RefreshActiveBots implements ShouldQueue
     return $amount * 100;
   }
 
-  public function calculateFees(int $profit): float
+  public function calculateFees(int $profit): int
   {
-    $fee = 0.1 * $profit;
+    $fee = intval(round($profit * 5 / 100));
     return $fee;
   }
 
@@ -742,58 +740,58 @@ class RefreshActiveBots implements ShouldQueue
         /**
          * Top upline commission(12% on trade profits)
          */
-        $commission = round(0.12 * floatval($robotProfit), 2);
-        $newFirstUplineBalance = (($firstUpline['live_balance'] / 100) + $commission) * 100;
+        $commission = intval(round($robotProfit * 12 / 100));
+        $newFirstUplineBalance = $firstUpline['live_balance'] + $commission;
 
         DB::transaction(function () use ($newFirstUplineBalance, $firstUpline, $referralCode, $commission) {
           User::where('id', $firstUpline['id'])->update(['live_balance' => $newFirstUplineBalance]);
           Referral::create([
             'user_id' => $firstUpline['id'],
             'referral_code' => $referralCode,
-            'amount' => $commission * 100,
+            'amount' => $commission,
             'level' => '1'
           ]);
         });
 
-        $firstUpline->notify(new CommissionEarned($firstUpline['name'], $botOwnerName, strval($commission), 'trade profit'));
+        $firstUpline->notify(new CommissionEarned($firstUpline['name'], $botOwnerName, strval($this->normalizeAmount($commission)), 'trade profit'));
       }
 
       if ($level === 2) {
         /**
          * Middle upline commission(12% on trade profits)
          */
-        $commission = round(0.12 * floatval($robotProfit), 2);
-        $newSecondUplineBalance = (($secondUpline['live_balance'] / 100) + $commission) * 100;
+        $commission = intval(round($robotProfit * 12 / 100));
+        $newSecondUplineBalance = $secondUpline['live_balance'] + $commission;
 
         DB::transaction(function () use ($newSecondUplineBalance, $secondUpline, $referralCode, $commission) {
           User::where('id', $secondUpline['id'])->update(['live_balance' => $newSecondUplineBalance]);
           Referral::create([
             'user_id' => $secondUpline['id'],
             'referral_code' => $referralCode,
-            'amount' => $commission * 100,
+            'amount' => $commission,
             'level' => '1'
           ]);
         });
 
-        $secondUpline->notify(new CommissionEarned($secondUpline['name'], $botOwnerName, strval($commission), 'trade profit'));
+        $secondUpline->notify(new CommissionEarned($secondUpline['name'], $botOwnerName, strval($this->normalizeAmount($commission)), 'trade profit'));
 
         /**
          * First upline commission(8% on trade profits)
          */
-        $commission = round(0.08 * floatval($robotProfit), 2);
-        $newFirstUplineBalance = (($firstUpline['live_balance'] / 100) + $commission) * 100;
+        $commission = intval(round($robotProfit * 8 / 100));
+        $newFirstUplineBalance = $firstUpline['live_balance'] + $commission;
 
         DB::transaction(function () use ($newFirstUplineBalance, $firstUpline, $referralCode, $commission) {
           User::where('id', $firstUpline['id'])->update(['live_balance' => $newFirstUplineBalance]);
           Referral::create([
             'user_id' => $firstUpline['id'],
             'referral_code' => $referralCode,
-            'amount' => $commission * 100,
+            'amount' => $commission,
             'level' => '2'
           ]);
         });
 
-        $firstUpline->notify(new CommissionEarned($firstUpline['name'], $botOwnerName, strval($commission), 'trade profit'));
+        $firstUpline->notify(new CommissionEarned($firstUpline['name'], $botOwnerName, strval($this->normalizeAmount($commission)), 'trade profit'));
       }
     } catch (\Exception $e) {
       session()->flash('error-message', $e->getMessage());

@@ -28,7 +28,7 @@
                         </div>
                         <div class="flex items-start justify-center gap-x-1">
                             <div>
-                                <h2 class="text-[#20CC6A] font-extrabold text-2xl">@money($this->profit)</h2>
+                                <h2 class="text-[#20CC6A] font-extrabold text-2xl">@money($this->profit / 100)</h2>
                             </div>
                             <div>
                                 <svg class="mt-1.5" width="12" height="12" viewBox="0 0 12 12" fill="none"
@@ -758,9 +758,9 @@
                 this.assetClass = this.$wire.assetClass;
                 this.assetIcon = `/${this.$wire.assetIcon}`
                 this.sentiment = this.$wire.sentiment;
-                this.fee = `-$${Number(this.$wire.fee).toFixed(2)}`;
+                this.fee = `-$${(Number(this.$wire.fee) / 100).toFixed(2)}`;
                 this.netProfit =
-                    `$${(Number(this.$wire.profit) - Number(this.$wire.fee)).toFixed(2)}`;
+                    `$${(Number(this.$wire.profit) - Number(this.$wire.fee)) / 100}`;
                 this.previousBotProfit = `+$${Number(this.$wire.previousBotProfit).toFixed(2)}`;
 
                 if (Date.now() > this.$wire.timerCheckpoint) {
@@ -768,9 +768,9 @@
                     this.asset = this.$wire.asset;
                     this.assetIcon = `/${this.$wire.assetIcon}`;
                     this.sentiment = this.$wire.sentiment;
-                    this.fee = `-$${Number(this.$wire.fee).toFixed(2)}`;
+                    this.fee = `-$${(Number(this.$wire.fee) / 100).toFixed(2)}`;
                     this.netProfit =
-                        `$${(Number(this.$wire.profit) - Number(this.$wire.fee)).toFixed(2)}`;
+                        `$${(Number(this.$wire.profit) - Number(this.$wire.fee)) / 100}`;
                     let nextCheckpoint = new Date(Number(this.$wire.timerCheckpoint)).getTime() + (
                         5 * 60 + 8) * 1000;
                     this.timeLeft = this.calculateTimeLeftTillNextCheckpoint(nextCheckpoint);

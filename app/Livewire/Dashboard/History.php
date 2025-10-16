@@ -24,9 +24,9 @@ class History extends Component
 
   public function displayProfitMinusFee($profit)
   {
-    $fee = 0.1 * ($profit / 100);
-    $displayProfit = ($profit / 100) - $fee;
-    return $displayProfit;
+    $fee = intval(round($profit * 5 / 100));
+    $displayProfit = $profit - $fee;
+    return $displayProfit / 100;
   }
 
   public function loadMore(): void

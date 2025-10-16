@@ -114,7 +114,7 @@ class Traderoom extends Component
     $this->strategy = $strategy['name'];
     $this->minProfitLimit = $strategy['min_roi'];
     $this->maxProfitLimit = $strategy['max_roi'];
-    $this->profit = $this->normalizeAmount($this->activeBot['profit']);
+    $this->profit = $this->activeBot['profit'];
     $this->fee = $this->calculateFees();
     $this->asset = $this->activeBot['asset'];
     $this->assetClass = $this->activeBot['asset_class'];
@@ -123,10 +123,10 @@ class Traderoom extends Component
     $this->timerCheckpoint = $this->activeBot['timer_checkpoint'];
   }
 
-  public function calculateFees(): float
+  public function calculateFees(): int
   {
-    $profit = $this->normalizeAmount($this->activeBot['profit']);
-    $fee = 0.05 * $profit;
+    $profit = $this->activeBot['profit'];
+    $fee = intval(round($profit * 5 / 100));
     return $fee;
   }
 
@@ -151,7 +151,7 @@ class Traderoom extends Component
       $this->previousBotProfit = 0;
     }
 
-    $this->profit = $this->normalizeAmount($activeBot['profit']);
+    $this->profit = $activeBot['profit'];
     $this->fee = $this->calculateFees();
     $this->asset = $activeBot['asset'];
     $this->assetClass = $activeBot['asset_class'];
@@ -189,58 +189,58 @@ class Traderoom extends Component
         /**
          * Top upline commission(12% on trade profits)
          */
-        $commission = round(0.12 * floatval($robotProfit), 2);
-        $newFirstUplineBalance = (($this->firstUpline['live_balance'] / 100) + $commission) * 100;
+        $commission = intval(round($robotProfit * 12 / 100));
+        $newFirstUplineBalance = $this->firstUpline['live_balance'] + $commission;
 
         DB::transaction(function () use ($newFirstUplineBalance, $referralCode, $commission) {
           User::where('id', $this->firstUpline['id'])->update(['live_balance' => $newFirstUplineBalance]);
           Referral::create([
             'user_id' => $this->firstUpline['id'],
             'referral_code' => $referralCode,
-            'amount' => $commission * 100,
+            'amount' => $commission,
             'level' => '1'
           ]);
         });
 
-        $this->firstUpline->notify(new CommissionEarned($this->firstUpline['name'], $botOwnerName, strval($commission), 'trade profit'));
+        $this->firstUpline->notify(new CommissionEarned($this->firstUpline['name'], $botOwnerName, strval($this->normalizeAmount($commission)), 'trade profit'));
       }
 
       if ($this->level === 2) {
         /**
          * Middle upline commission(12% on trade profits)
          */
-        $commission = round(0.12 * floatval($robotProfit), 2);
-        $newSecondUplineBalance = (($this->secondUpline['live_balance'] / 100) + $commission) * 100;
+        $commission = intval(round($robotProfit * 12 / 100));
+        $newSecondUplineBalance = $this->secondUpline['live_balance'] + $commission;
 
         DB::transaction(function () use ($newSecondUplineBalance, $referralCode, $commission) {
           User::where('id', $this->secondUpline['id'])->update(['live_balance' => $newSecondUplineBalance]);
           Referral::create([
             'user_id' => $this->secondUpline['id'],
             'referral_code' => $referralCode,
-            'amount' => $commission * 100,
+            'amount' => $commission,
             'level' => '1'
           ]);
         });
 
-        $this->secondUpline->notify(new CommissionEarned($this->secondUpline['name'], $botOwnerName, strval($commission), 'trade profit'));
+        $this->secondUpline->notify(new CommissionEarned($this->secondUpline['name'], $botOwnerName, strval($this->normalizeAmount($commission)), 'trade profit'));
 
         /**
          * First upline commission(8% on trade profits)
          */
-        $commission = round(0.08 * floatval($robotProfit), 2);
-        $newFirstUplineBalance = (($this->firstUpline['live_balance'] / 100) + $commission) * 100;
+        $commission = intval(round($robotProfit * 8 / 100));
+        $newFirstUplineBalance = $this->firstUpline['live_balance'] + $commission;
 
         DB::transaction(function () use ($newFirstUplineBalance, $referralCode, $commission) {
           User::where('id', $this->firstUpline['id'])->update(['live_balance' => $newFirstUplineBalance]);
           Referral::create([
             'user_id' => $this->firstUpline['id'],
             'referral_code' => $referralCode,
-            'amount' => $commission * 100,
+            'amount' => $commission,
             'level' => '2'
           ]);
         });
 
-        $this->firstUpline->notify(new CommissionEarned($this->firstUpline['name'], $botOwnerName, strval($commission), 'trade profit'));
+        $this->firstUpline->notify(new CommissionEarned($this->firstUpline['name'], $botOwnerName, strval($this->normalizeAmount($commission)), 'trade profit'));
       }
     } catch (\Exception $e) {
       session()->flash('error-message', $e->getMessage());
@@ -253,30 +253,28 @@ class Traderoom extends Component
       $accountType = $this->activeBot['account_type'];
 
       if ($accountType === "demo") {
-        $amount = $this->normalizeAmount($this->activeBot['amount']);
-        $currentBalance = $this->normalizeAmount(auth()->user()->demo_balance);
-        $profit = $this->normalizeAmount($this->activeBot['profit']);
+        $amount = $this->activeBot['amount'];
+        $currentBalance = auth()->user()->demo_balance;
+        $profit = $this->activeBot['profit'];
         $newBalance = $currentBalance + $amount + $profit;
         $newBalanceMinusFees = $newBalance - $this->fee;
-        $serialized = $this->serializeAmount($newBalanceMinusFees);
 
-        DB::transaction(function () use ($serialized) {
+        DB::transaction(function () use ($newBalanceMinusFees) {
           Bot::where('id', $this->activeBot['id'])->update(['status' => 'closed']);
-          User::where('id', auth()->user()->id)->update(['demo_balance' => $serialized]);
+          User::where('id', auth()->user()->id)->update(['demo_balance' => $newBalanceMinusFees]);
         });
       }
 
       if ($accountType === "live") {
-        $amount = $this->normalizeAmount($this->activeBot['amount']);
-        $currentBalance = $this->normalizeAmount(auth()->user()->live_balance);
-        $profit = $this->normalizeAmount($this->activeBot['profit']);
+        $amount = $this->activeBot['amount'];
+        $currentBalance = auth()->user()->live_balance;
+        $profit = $this->activeBot['profit'];
         $newBalance = $currentBalance + $amount + $profit;
         $newBalanceMinusFees = $newBalance - $this->fee;
-        $serialized = $this->serializeAmount($newBalanceMinusFees);
 
-        DB::transaction(function () use ($serialized) {
+        DB::transaction(function () use ($newBalanceMinusFees) {
           Bot::where('id', $this->activeBot['id'])->update(['status' => 'closed']);
-          User::where('id', auth()->user()->id)->update(['live_balance' => $serialized]);
+          User::where('id', auth()->user()->id)->update(['live_balance' => $newBalanceMinusFees]);
         });
 
         // Add referral trade profit only when the profit is greater than 0
