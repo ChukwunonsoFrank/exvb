@@ -224,8 +224,7 @@
                                                         width="24" height="auto"
                                                         src="wp-content/uploads/2025/03/plaform.svg">
                                                 </div>
-                                                <h2 class="main-block_child"><span
-                                                        class="purple-gradient">$10,000</span> Demo Account
+                                                <h2 class="main-block_child">$10,000 Demo Account
                                                 </h2>
                                                 <p class="main-block_child">Every new user gets a free $10,000 demo
                                                     account to test the AI bot and understand how it works.</p>

@@ -478,18 +478,11 @@
                                         </div>
                                         <div class="flex-1">
                                             <p class="font-light text-xs text-white">Closing all opened positions on
+                                                <img class="inline w-8 align-middle"
+                                                    src="{{ asset('assets/icons/xtb.svg') }}" alt="xtb-logo"> and
+                                                <img class="inline w-8 align-middle"
+                                                    src="{{ asset('assets/icons/bybit.svg') }}" alt="bybit-logo">
                                             </p>
-                                        </div>
-                                        <div class="flex-none -mt-0.5">
-                                            <img class="inline w-7" src="{{ asset('assets/icons/xtb.svg') }}"
-                                                alt="xtb-logo">
-                                        </div>
-                                        <div class="flex-none">
-                                            <p class="font-light text-xs text-white"> and </p>
-                                        </div>
-                                        <div class="flex-none -mt-1">
-                                            <img class="inline w-7" src="{{ asset('assets/icons/bybit.svg') }}"
-                                                alt="bybit-logo">
                                         </div>
                                     </div>
                                 </template>
@@ -514,18 +507,11 @@
                                         </div>
                                         <div class="flex-1">
                                             <p class="font-light text-xs text-white">Closing all opened positions on
+                                                <img class="inline w-8 align-middle"
+                                                    src="{{ asset('assets/icons/xtb.svg') }}" alt="xtb-logo"> and
+                                                <img class="inline w-8 align-middle"
+                                                    src="{{ asset('assets/icons/bybit.svg') }}" alt="bybit-logo">
                                             </p>
-                                        </div>
-                                        <div class="flex-none -mt-0.5">
-                                            <img class="inline w-7" src="{{ asset('assets/icons/xtb.svg') }}"
-                                                alt="xtb-logo">
-                                        </div>
-                                        <div class="flex-none">
-                                            <p class="font-light text-xs text-white"> and </p>
-                                        </div>
-                                        <div class="flex-none -mt-1">
-                                            <img class="inline w-7" src="{{ asset('assets/icons/bybit.svg') }}"
-                                                alt="bybit-logo">
                                         </div>
                                     </div>
                                 </template>

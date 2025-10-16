@@ -10,6 +10,7 @@ use App\Notifications\DepositIntentInitiated;
 use App\Notifications\TransactionOccured;
 use Illuminate\Support\Facades\Notification;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Renderless;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 
@@ -78,6 +79,7 @@ class ConfirmDeposit extends Component
     }
   }
 
+  #[Renderless]
   public function storeDepositIntent()
   {
     try {

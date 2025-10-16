@@ -394,7 +394,7 @@
             copyWalletAddress(wire) {
                 var copyText = document.getElementById("address");
                 copyText.select();
-                copyText.setSelectionRange(0, 99999); // For mobile devices
+                copyText.setSelectionRange(0, 99999);
                 navigator.clipboard.writeText(copyText.value);
                 toast('info', 'Copied');
                 if (wire.hasUserMadeTwoSuccessfulDeposits) {
@@ -404,7 +404,10 @@
                     if (this.isClickOnPaidViewedOnce) {
                         return;
                     }
-                    this.isClickOnPaidModalCopyOpen = true;
+                    // Only show the modal if QR modal is not open
+                    if (!this.isQRModalOpen) {
+                        this.isClickOnPaidModalCopyOpen = true;
+                    }
                     this.isClickOnPaidViewedOnce = true;
                 }, 1000);
             },
