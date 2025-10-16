@@ -41,7 +41,7 @@
                             </div>
                         </div>
                         <div class="text-center mb-1 -mt-1">
-                            <p class="text-white text-[10px] font-bold">Total Profit</p>
+                            <p class="text-white text-xs font-bold">Total Profit</p>
                         </div>
                         <div class="px-2 pb-2">
                             <div
