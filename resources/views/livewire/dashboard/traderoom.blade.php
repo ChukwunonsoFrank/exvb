@@ -57,7 +57,7 @@
                         </div>
                     </div>
 
-                    <div class="flex items-start space-x-3 border border-[#26252a] rounded-lg px-3 py-2 mb-2">
+                    <div class="flex items-center space-x-3 border border-[#26252a] rounded-lg px-3 py-2 mb-2">
                         <div class="flex-1">
                             <template x-if="isBotSearchingForSignal === false">
                                 <div class="flex flex-col items-center justify-center w-fit">
