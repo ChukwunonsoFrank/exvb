@@ -143,6 +143,11 @@ class Traderoom extends Component
   public function refreshAssetData(): void
   {
     $activeBot = Bot::where(['user_id' => auth()->user()->id, 'status' => 'active'])->first();
+
+    if (is_null($activeBot)) {
+      return;
+    }
+
     $previousBotTrade = Trade::where('user_id', auth()->user()->id)->where('bot_id', $this->activeBot['id'])->latest()->first();
 
     if ($previousBotTrade) {
