@@ -87,12 +87,13 @@ class Users extends Component
 
   public function render()
   {
-    $query = User::leftJoin('users as referrers', 'users.referred_by', '=', 'referrers.referral_code')
-      ->select('users.*', 'referrers.name as referrer_name')
-      ->where('users.is_admin', 0);
+    $query = User::from('users as u')
+      ->leftJoin('users as referrers', 'u.referred_by', '=', 'referrers.referral_code')
+      ->select('u.*', 'referrers.name as referrer_name')
+      ->where('u.is_admin', 0);
 
     if (!empty($this->query)) {
-      $query = $query->search($this->query);
+      $query = $query->whereRaw("MATCH(u.name, u.email) AGAINST(? IN BOOLEAN MODE)", [$this->query]);
     }
 
     $users = $query->latest()->paginate(20);
