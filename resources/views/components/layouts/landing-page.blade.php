@@ -650,6 +650,11 @@
         [x-cloak] {
             display: none !important;
         }
+
+        .gt_container-unisv1 a.glink span {
+            color: #7a7a7a;
+            font-weight: 400;
+        }
     </style>
     <!-- Meta Pixel Code -->
     <script>
@@ -694,8 +699,10 @@
                             sizes="(max-width: 646px) 100vw, 646px" /></a>
                 </div>
             </div>
-
             <nav class="site-navigation show">
+                <div style="display: flex; margin-right: 16px;">
+                    <div class="gtranslate_wrapper"></div>
+                </div>
                 <div class="menu-primary-menu-container">
                     <ul id="menu-primary-menu" class="menu">
                         <li id='menu-item-1' class="menu-item menu-item-type-custom menu-item-object-custom"><a
@@ -716,7 +723,10 @@
                     </ul>
                 </div>
             </nav>
-            <div class="site-navigation-toggle-holder show">
+            <div class="site-navigation-toggle-holder show" style="max-width: 50%;">
+                <div style="display: flex; margin-right: 16px; margin-top: -6px;">
+                    <div class="gtranslate_wrapper"></div>
+                </div>
                 <div class="site-navigation-toggle" role="button" tabindex="0">
                     <svg width="21" height="18" viewBox="0 0 21 18" fill="none"
                         xmlns="http://www.w3.org/2000/svg">

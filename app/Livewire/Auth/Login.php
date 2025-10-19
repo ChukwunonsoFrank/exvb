@@ -15,188 +15,212 @@ use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
-#[Layout('components.layouts.auth.layout')]
-
-#[Title('Login')]
-
+#[Layout("components.layouts.auth.layout")]
+#[Title("Login")]
 class Login extends Component
 {
-  #[Validate('required|string|email')]
-  public string $email = '';
+    #[Validate("required|string|email")]
+    public string $email = "";
 
-  #[Validate('required|string')]
-  public string $password = '';
+    #[Validate("required|string")]
+    public string $password = "";
 
-  public bool $remember = false;
+    public bool $remember = false;
 
-  public $gRecaptchaResponse;
+    public $gRecaptchaResponse;
 
-  /**
-   * Handle an incoming authentication request.
-   */
-  public function login()
-  {
-    try {
-      if (is_null($this->gRecaptchaResponse)) {
-        $this->dispatch('login-error', message: 'Please confirm you are not a robot.')->self();
-      }
+    /**
+     * Handle an incoming authentication request.
+     */
+    public function login()
+    {
+        try {
+            if (is_null($this->gRecaptchaResponse)) {
+                $this->dispatch(
+                    "login-error",
+                    message: "Please confirm you are not a robot.",
+                )->self();
+            }
 
-      $recatpchaResponse = Http::get("https://www.google.com/recaptcha/api/siteverify", [
-        'secret' => config('services.recaptcha.secret'),
-        'response' => $this->gRecaptchaResponse
-      ]);
+            $recatpchaResponse = Http::get(
+                "https://www.google.com/recaptcha/api/siteverify",
+                [
+                    "secret" => config("services.recaptcha.secret"),
+                    "response" => $this->gRecaptchaResponse,
+                ],
+            );
 
-      $result = $recatpchaResponse->json();
+            $result = $recatpchaResponse->json();
 
-      if ($recatpchaResponse->successful() && $result['success'] == true) {
-        $user = User::where('email', $this->email)->first();
+            if (
+                $recatpchaResponse->successful() &&
+                $result["success"] == true
+            ) {
+                $user = User::where("email", $this->email)->first();
 
-        if ($user && $user['two_factor_enabled']) {
-          $this->redirectRoute('login.verifylogintwofa', [
-            'email' => $this->email,
-            'password' => $this->password
-          ]);
-        } else {
-          $this->validate();
+                if ($user && $user["two_factor_enabled"]) {
+                    $this->redirectRoute("login.verifylogintwofa", [
+                        "email" => $this->email,
+                        "password" => $this->password,
+                    ]);
+                } else {
+                    $this->validate();
 
-          $this->ensureIsNotRateLimited();
+                    $this->ensureIsNotRateLimited();
 
-          if (! Auth::attempt(['email' => $this->email, 'password' => $this->password], $this->remember)) {
-            RateLimiter::hit($this->throttleKey());
+                    if (
+                        !Auth::attempt(
+                            [
+                                "email" => $this->email,
+                                "password" => $this->password,
+                            ],
+                            $this->remember,
+                        )
+                    ) {
+                        RateLimiter::hit($this->throttleKey());
 
-            throw ValidationException::withMessages([
-              'email' => __('auth.failed'),
-            ]);
-          }
+                        throw ValidationException::withMessages([
+                            "email" => __("auth.failed"),
+                        ]);
+                    }
 
-          RateLimiter::clear($this->throttleKey());
-          Session::regenerate();
+                    RateLimiter::clear($this->throttleKey());
+                    Session::regenerate();
 
-          session()->flash('just_logged_in', true);
+                    session()->flash("just_logged_in", true);
 
-          $loggedInUser = User::find(Auth::id());
+                    $loggedInUser = User::find(Auth::id());
 
-          $ipApiEndpoint = "http://ip-api.com/json/" . $this->getClientIPV4();
+                    $ipApiEndpoint =
+                        "http://ip-api.com/json/" . $this->getClientIPV4();
 
-          $ipApiResponse = Http::get($ipApiEndpoint);
+                    $ipApiResponse = Http::get($ipApiEndpoint);
 
-          $ipApiResult = $ipApiResponse->json();
+                    $ipApiResult = $ipApiResponse->json();
 
-          if ($ipApiResponse->successful() && $ipApiResult['status'] === 'success') {
-            $loggedInUser->country = $ipApiResult['country'];
-          } else {
-            $loggedInUser->country = 'N/A';
-          }
+                    if (
+                        $ipApiResponse->successful() &&
+                        $ipApiResult["status"] === "success"
+                    ) {
+                        $loggedInUser->country = $ipApiResult["country"];
+                    } else {
+                        $loggedInUser->country = "N/A";
+                    }
 
-          $loggedInUser->last_login_at = now();
-          $loggedInUser->ip_address = $this->getClientIPV4();
-          $loggedInUser->save();
+                    $loggedInUser->last_login_at = now();
+                    $loggedInUser->ip_address = $this->getClientIPV4();
+                    $loggedInUser->save();
 
-          if (Auth::user()->is_admin) {
-            return redirect('/admin/dashboard');
-          }
+                    if (Auth::user()->is_admin) {
+                        return redirect("/admin/dashboard");
+                    }
 
-          $this->redirectIntended(default: route('dashboard.robot', absolute: false));
+                    $this->redirectIntended(
+                        default: route("dashboard.robot", absolute: false),
+                    );
+                }
+            } else {
+                $this->dispatch(
+                    "login-error",
+                    message: "Please confirm you are not a robot.",
+                )->self();
+            }
+        } catch (\Exception $e) {
+            $this->dispatch("login-error", message: $e->getMessage())->self();
         }
-      } else {
-        $this->dispatch('login-error', message: 'Please confirm you are not a robot.')->self();
-      }
-    } catch (\Exception $e) {
-      $this->dispatch('login-error', message: $e->getMessage())->self();
     }
-  }
 
+    public function getClientIPv4()
+    {
+        $request = request();
 
-  public function getClientIPv4()
-  {
-    $request = request();
+        // Check headers in order of reliability
+        $headers = [
+            "HTTP_CF_CONNECTING_IP", // Cloudflare
+            "HTTP_X_REAL_IP", // Nginx
+            "HTTP_X_FORWARDED_FOR", // Standard proxy header
+            "HTTP_CLIENT_IP", // Less common
+            "REMOTE_ADDR", // Direct connection
+        ];
 
-    // Check headers in order of reliability
-    $headers = [
-      'HTTP_CF_CONNECTING_IP',    // Cloudflare
-      'HTTP_X_REAL_IP',           // Nginx
-      'HTTP_X_FORWARDED_FOR',     // Standard proxy header
-      'HTTP_CLIENT_IP',           // Less common
-      'REMOTE_ADDR'               // Direct connection
-    ];
+        foreach ($headers as $header) {
+            $ip = $request->server($header);
 
-    foreach ($headers as $header) {
-      $ip = $request->server($header);
+            if ($ip) {
+                // Handle comma-separated IPs
+                if (strpos($ip, ",") !== false) {
+                    $ips = array_map("trim", explode(",", $ip));
+                    $ip = $ips[0]; // First IP is the real client
+                }
 
-      if ($ip) {
-        // Handle comma-separated IPs
-        if (strpos($ip, ',') !== false) {
-          $ips = array_map('trim', explode(',', $ip));
-          $ip = $ips[0]; // First IP is the real client
+                // Skip private/local IPs (Docker internal IPs)
+                if ($this->isValidPublicIP($ip)) {
+                    return $this->convertToIPv4($ip);
+                }
+            }
         }
 
-        // Skip private/local IPs (Docker internal IPs)
-        if ($this->isValidPublicIP($ip)) {
-          return $this->convertToIPv4($ip);
+        // Fallback
+        return $this->convertToIPv4($request->ip());
+    }
+
+    private function isValidPublicIP($ip)
+    {
+        // Validate IP format
+        if (!filter_var($ip, FILTER_VALIDATE_IP)) {
+            return false;
         }
-      }
+
+        // Exclude private and reserved ranges
+        return filter_var(
+            $ip,
+            FILTER_VALIDATE_IP,
+            FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE,
+        );
     }
 
-    // Fallback
-    return $this->convertToIPv4($request->ip());
-  }
+    private function convertToIPv4($ip)
+    {
+        if ($ip === "::1") {
+            return "127.0.0.1";
+        }
 
-  private function isValidPublicIP($ip)
-  {
-    // Validate IP format
-    if (!filter_var($ip, FILTER_VALIDATE_IP)) {
-      return false;
+        if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+            return $ip;
+        }
+
+        // Return IPv6 as-is for geolocation services that support it
+        return $ip;
     }
 
-    // Exclude private and reserved ranges
-    return filter_var(
-      $ip,
-      FILTER_VALIDATE_IP,
-      FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE
-    );
-  }
+    /**
+     * Ensure the authentication request is not rate limited.
+     */
+    protected function ensureIsNotRateLimited(): void
+    {
+        if (!RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
+            return;
+        }
 
-  private function convertToIPv4($ip)
-  {
-    if ($ip === '::1') {
-      return '127.0.0.1';
+        event(new Lockout(request()));
+
+        $seconds = RateLimiter::availableIn($this->throttleKey());
+
+        throw ValidationException::withMessages([
+            "email" => __("auth.throttle", [
+                "seconds" => $seconds,
+                "minutes" => ceil($seconds / 60),
+            ]),
+        ]);
     }
 
-    if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
-      return $ip;
+    /**
+     * Get the authentication rate limiting throttle key.
+     */
+    protected function throttleKey(): string
+    {
+        return Str::transliterate(
+            Str::lower($this->email) . "|" . $this->getClientIPV4(),
+        );
     }
-
-    // Return IPv6 as-is for geolocation services that support it
-    return $ip;
-  }
-
-
-  /**
-   * Ensure the authentication request is not rate limited.
-   */
-  protected function ensureIsNotRateLimited(): void
-  {
-    if (! RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
-      return;
-    }
-
-    event(new Lockout(request()));
-
-    $seconds = RateLimiter::availableIn($this->throttleKey());
-
-    throw ValidationException::withMessages([
-      'email' => __('auth.throttle', [
-        'seconds' => $seconds,
-        'minutes' => ceil($seconds / 60),
-      ]),
-    ]);
-  }
-
-  /**
-   * Get the authentication rate limiting throttle key.
-   */
-  protected function throttleKey(): string
-  {
-    return Str::transliterate(Str::lower($this->email) . '|' . $this->getClientIPV4());
-  }
 }
