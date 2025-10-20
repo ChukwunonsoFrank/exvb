@@ -51,7 +51,7 @@
                                                 </p>
                                             </div>
                                         </div>
-                                        <div class="flex items-center my-1">
+                                        <div class="flex items-center my-0.5">
                                             <div class="flex-none">
                                                 <p class="text-[#a4a4a4] text-xs font-semibold">
                                                     {{ $transaction['payment_method'] }}
@@ -59,7 +59,7 @@
                                             </div>
                                             @if ($transaction['type'] === 'Withdrawal')
                                                 <div class="flex-1 inline-flex items-center justify-end gap-x-2">
-                                                    <p class="font-normal text-xs md:text-base text-white">
+                                                    <p class="font-normal text-xs text-white">
                                                         <input
                                                             id="transaction-{{ $transaction['type'] }}-{{ $transaction['id'] }}"
                                                             type="text" class="hidden"
@@ -140,7 +140,7 @@
                                                 </p>
                                             </div>
                                         </div>
-                                        <div class="flex items-center my-1">
+                                        <div class="flex items-center my-0.5">
                                             <div class="flex-1">
                                                 <p class="text-[#a4a4a4] text-xs font-semibold">
                                                     {{ $deposit['payment_method'] }}
@@ -208,14 +208,14 @@
                                                 </p>
                                             </div>
                                         </div>
-                                        <div class="flex items-center my-1">
+                                        <div class="flex items-center my-0.5">
                                             <div class="flex-none">
                                                 <p class="text-[#a4a4a4] text-xs font-semibold">
                                                     {{ $withdrawal['payment_method'] }}
                                                 </p>
                                             </div>
                                             <div class="flex-1 inline-flex items-center justify-end gap-x-2">
-                                                <p class="font-normal text-xs md:text-base text-white">
+                                                <p class="font-normal text-xs text-white">
                                                     <input id="withdrawal-{{ $withdrawal['id'] }}" type="text"
                                                         class="hidden" value="{{ $withdrawal['address'] }}">
                                                     Wallet:

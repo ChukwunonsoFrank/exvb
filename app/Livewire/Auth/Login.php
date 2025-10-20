@@ -35,7 +35,7 @@ class Login extends Component
     public function login()
     {
         try {
-            if (is_null($this->gRecaptchaResponse)) {
+            if ($this->gRecaptchaResponse === null) {
                 $this->dispatch(
                     "login-error",
                     message: "Please confirm you are not a robot.",
@@ -56,7 +56,7 @@ class Login extends Component
                 $recatpchaResponse->successful() &&
                 $result["success"] == true
             ) {
-                $user = User::where("email", $this->email)->first();
+                $user = User::where("email", "=", $this->email, "and")->first();
 
                 if ($user && $user["two_factor_enabled"]) {
                     $this->redirectRoute("login.verifylogintwofa", [
@@ -89,7 +89,7 @@ class Login extends Component
 
                     session()->flash("just_logged_in", true);
 
-                    $loggedInUser = User::find(Auth::id());
+                    $loggedInUser = User::find(Auth::id(), ["*"]);
 
                     $ipApiEndpoint =
                         "http://ip-api.com/json/" . $this->getClientIPV4();
@@ -98,14 +98,11 @@ class Login extends Component
 
                     $ipApiResult = $ipApiResponse->json();
 
-                    if (
+                    $loggedInUser->country =
                         $ipApiResponse->successful() &&
                         $ipApiResult["status"] === "success"
-                    ) {
-                        $loggedInUser->country = $ipApiResult["country"];
-                    } else {
-                        $loggedInUser->country = "N/A";
-                    }
+                            ? $ipApiResult["country"]
+                            : "N/A";
 
                     $loggedInUser->last_login_at = now();
                     $loggedInUser->ip_address = $this->getClientIPV4();

@@ -11,18 +11,15 @@ class Header extends Component
 
     public function mount()
     {
-        $activeBot = Bot::where(['user_id' => auth()->user()->id, 'status' => 'active'])->first();
-        
-        if($activeBot) {
-            $this->accountType = $activeBot['account_type'];
-        } else {
-            $this->accountType = null;
-        }
+        $activeBot = Bot::where("user_id", "=", auth()->user()->id, "and")
+            ->where("status", "=", "active", "and")
+            ->first();
 
+        $this->accountType = $activeBot ? $activeBot["account_type"] : null;
     }
 
     public function render()
     {
-        return view('livewire.dashboard.partials.header');
+        return view("livewire.dashboard.partials.header");
     }
 }

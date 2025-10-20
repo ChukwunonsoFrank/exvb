@@ -20,7 +20,7 @@
                         <div class="flex-none">
                             <h1 class="text-white text-lg md:text-xl lg:text-2xl font-bold">Withdraw with
                                 <img class="inline-block -mt-1 align-middle"
-                                    src="{{ asset('storage/' . $this->iconUrl) }}">
+                                    src="{{ Storage::url($this->iconUrl) }}">
                                 {{ $this->method }}
                             </h1>
                         </div>

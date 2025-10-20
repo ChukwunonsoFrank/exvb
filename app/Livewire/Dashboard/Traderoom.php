@@ -59,13 +59,12 @@ class Traderoom extends Component
             $this->dispatch("robot-created", message: $message)->self();
         }
 
-        $this->activeBot = Bot::where([
-            "user_id" => auth()->user()->id,
-            "status" => "active",
-        ])->first();
+        $this->activeBot = Bot::where("user_id", "=", auth()->user()->id, "and")
+            ->where("status", "=", "active", "and")
+            ->first();
 
         // RULE:: Do not remove from this position
-        if (is_null($this->activeBot)) {
+        if ($this->activeBot === null) {
             $this->redirectRoute("dashboard.robot");
             return;
         }
@@ -107,21 +106,19 @@ class Traderoom extends Component
             $this->botExpirationInHrs = 0;
         }
 
-        $previousBotTrade = Trade::where("user_id", auth()->user()->id)
-            ->where("bot_id", $this->activeBot["id"])
+        $previousBotTrade = Trade::where(
+            "user_id",
+            "=",
+            auth()->user()->id,
+            "and",
+        )
+            ->where("bot_id", "=", $this->activeBot["id"], "and")
             ->latest()
             ->first();
 
-        if ($previousBotTrade) {
-            $this->previousBotProfit = number_format(
-                $previousBotTrade["profit"] / 100,
-                2,
-                ".",
-                ",",
-            );
-        } else {
-            $this->previousBotProfit = 0;
-        }
+        $this->previousBotProfit = $previousBotTrade
+            ? number_format($previousBotTrade["profit"] / 100, 2, ".", ",")
+            : 0;
 
         $this->amount = $this->normalizeAmount($this->activeBot["amount"]);
         $this->accountType =
@@ -129,7 +126,7 @@ class Traderoom extends Component
                 ? "Demo account"
                 : "Live account";
 
-        $strategy = Strategy::find($this->activeBot["strategy"]);
+        $strategy = Strategy::find($this->activeBot["strategy"], ["*"]);
 
         $this->strategy = $strategy["name"];
         $this->minProfitLimit = $strategy["min_roi"];
@@ -162,30 +159,27 @@ class Traderoom extends Component
 
     public function refreshAssetData(): void
     {
-        $activeBot = Bot::where([
-            "user_id" => auth()->user()->id,
-            "status" => "active",
-        ])->first();
+        $activeBot = Bot::where("user_id", "=", auth()->user()->id, "and")
+            ->where("status", "=", "active", "and")
+            ->first();
 
         if ($activeBot === null) {
             return;
         }
 
-        $previousBotTrade = Trade::where("user_id", auth()->user()->id)
+        $previousBotTrade = Trade::where(
+            "user_id",
+            "=",
+            auth()->user()->id,
+            "and",
+        )
             ->where("bot_id", $this->activeBot["id"])
             ->latest()
             ->first();
 
-        if ($previousBotTrade) {
-            $this->previousBotProfit = number_format(
-                $previousBotTrade["profit"] / 100,
-                2,
-                ".",
-                ",",
-            );
-        } else {
-            $this->previousBotProfit = 0;
-        }
+        $this->previousBotProfit = $previousBotTrade
+            ? number_format($previousBotTrade["profit"] / 100, 2, ".", ",")
+            : 0;
 
         $this->profit = $activeBot["profit"];
         $this->fee = $this->calculateFees();
@@ -207,13 +201,20 @@ class Traderoom extends Component
 
     public function computeUpline(string $referredBy)
     {
-        $currentUpline = User::where("referral_code", $referredBy)->first();
+        $currentUpline = User::where(
+            "referral_code",
+            "=",
+            $referredBy,
+            "and",
+        )->first();
         if ($currentUpline !== null) {
             $this->firstUpline = $currentUpline;
             $this->level += 1;
             $currentUpline = User::where(
                 "referral_code",
+                "=",
                 $currentUpline["referred_by"],
+                "and",
             )->first();
             if ($currentUpline !== null) {
                 $this->secondUpline = $this->firstUpline;
@@ -242,7 +243,12 @@ class Traderoom extends Component
                     $referralCode,
                     $commission,
                 ) {
-                    User::where("id", $this->firstUpline["id"])->update([
+                    User::where(
+                        "id",
+                        "=",
+                        $this->firstUpline["id"],
+                        "and",
+                    )->update([
                         "live_balance" => $newFirstUplineBalance,
                     ]);
                     Referral::create([
@@ -276,7 +282,12 @@ class Traderoom extends Component
                     $referralCode,
                     $commission,
                 ) {
-                    User::where("id", $this->secondUpline["id"])->update([
+                    User::where(
+                        "id",
+                        "=",
+                        $this->secondUpline["id"],
+                        "and",
+                    )->update([
                         "live_balance" => $newSecondUplineBalance,
                     ]);
                     Referral::create([
@@ -308,7 +319,12 @@ class Traderoom extends Component
                     $referralCode,
                     $commission,
                 ) {
-                    User::where("id", $this->firstUpline["id"])->update([
+                    User::where(
+                        "id",
+                        "=",
+                        $this->firstUpline["id"],
+                        "and",
+                    )->update([
                         "live_balance" => $newFirstUplineBalance,
                     ]);
                     Referral::create([
@@ -346,10 +362,15 @@ class Traderoom extends Component
                 $newBalanceMinusFees = $newBalance - $this->fee;
 
                 DB::transaction(function () use ($newBalanceMinusFees) {
-                    Bot::where("id", $this->activeBot["id"])->update([
+                    Bot::where(
+                        "id",
+                        "=",
+                        $this->activeBot["id"],
+                        "and",
+                    )->update([
                         "status" => "closed",
                     ]);
-                    User::where("id", auth()->user()->id)->update([
+                    User::where("id", "=", auth()->user()->id, "and")->update([
                         "demo_balance" => $newBalanceMinusFees,
                     ]);
                 });
@@ -363,10 +384,15 @@ class Traderoom extends Component
                 $newBalanceMinusFees = $newBalance - $this->fee;
 
                 DB::transaction(function () use ($newBalanceMinusFees) {
-                    Bot::where("id", $this->activeBot["id"])->update([
+                    Bot::where(
+                        "id",
+                        "=",
+                        $this->activeBot["id"],
+                        "and",
+                    )->update([
                         "status" => "closed",
                     ]);
-                    User::where("id", auth()->user()->id)->update([
+                    User::where("id", "=", auth()->user()->id, "and")->update([
                         "live_balance" => $newBalanceMinusFees,
                     ]);
                 });

@@ -760,7 +760,7 @@
                 this.sentiment = this.$wire.sentiment;
                 this.fee = `-$${(Number(this.$wire.fee) / 100).toFixed(2)}`;
                 this.netProfit =
-                    `$${(Number(this.$wire.profit) - Number(this.$wire.fee)) / 100}`;
+                    `$${((Number(this.$wire.profit) - Number(this.$wire.fee)) / 100).toFixed(2)}`;
                 this.previousBotProfit = `+$${Number(this.$wire.previousBotProfit).toFixed(2)}`;
 
                 if (Date.now() > this.$wire.timerCheckpoint) {
@@ -770,7 +770,7 @@
                     this.sentiment = this.$wire.sentiment;
                     this.fee = `-$${(Number(this.$wire.fee) / 100).toFixed(2)}`;
                     this.netProfit =
-                        `$${(Number(this.$wire.profit) - Number(this.$wire.fee)) / 100}`;
+                        `$${((Number(this.$wire.profit) - Number(this.$wire.fee)) / 100).toFixed(2)}`;
                     let nextCheckpoint = new Date(Number(this.$wire.timerCheckpoint)).getTime() + (
                         5 * 60 + 8) * 1000;
                     this.timeLeft = this.calculateTimeLeftTillNextCheckpoint(nextCheckpoint);

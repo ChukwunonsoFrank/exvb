@@ -49,7 +49,7 @@ class Register extends Component
     public function register()
     {
         try {
-            if (is_null($this->gRecaptchaResponse)) {
+            if ($this->gRecaptchaResponse === null) {
                 $this->dispatch(
                     "signup-error",
                     message: "Please confirm you are not a robot.",

@@ -9,17 +9,19 @@ class DesktopNavbar extends Component
 {
     public function robot()
     {
-        $activeBot = Bot::where(['user_id' => auth()->user()->id, 'status' => 'active'])->first();
+        $activeBot = Bot::where("user_id", "=", auth()->user()->id, "and")
+            ->where("status", "=", "active", "and")
+            ->first();
 
         if ($activeBot) {
-            $this->redirectRoute('dashboard.robot.traderoom');
+            $this->redirectRoute("dashboard.robot.traderoom");
         } else {
-            $this->redirectRoute('dashboard.robot');
+            $this->redirectRoute("dashboard.robot");
         }
     }
 
     public function render()
     {
-        return view('livewire.dashboard.partials.desktop-navbar');
+        return view("livewire.dashboard.partials.desktop-navbar");
     }
 }

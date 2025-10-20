@@ -7,8 +7,7 @@ use App\Models\User;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
-#[Layout('components.layouts.app')]
-
+#[Layout("components.layouts.app")]
 class ShowReferrals extends Component
 {
     // public $perPage = 10;
@@ -23,8 +22,13 @@ class ShowReferrals extends Component
     {
         // $this->totalReferrals = Referral::where('user_id', auth()->user()->id)->count();
         // $this->visibleCount = min($this->perPage, $this->totalReferrals);
-        $this->totalCommissions = Referral::where('user_id', auth()->user()->id)->sum('amount');
-        $this->totalCommissions = $this->totalCommissions / 100;
+        $this->totalCommissions = Referral::where(
+            "user_id",
+            "=",
+            auth()->user()->id,
+            "and",
+        )->sum("amount");
+        $this->totalCommissions /= 100;
     }
 
     // public function loadMore(): void
@@ -49,8 +53,24 @@ class ShowReferrals extends Component
 
     public function render()
     {
-        $level1Referrals = Referral::where(['user_id' => auth()->user()->id, 'level' => '1'])->latest()->get();
-        $level2Referrals = Referral::where(['user_id' => auth()->user()->id, 'level' => '2'])->latest()->get();
+        $level1Referrals = Referral::where(
+            "user_id",
+            "=",
+            auth()->user()->id,
+            "and",
+        )
+            ->where("level", "=", "1", "and")
+            ->latest()
+            ->get();
+        $level2Referrals = Referral::where(
+            "user_id",
+            "=",
+            auth()->user()->id,
+            "and",
+        )
+            ->where("level", "=", "2", "and")
+            ->latest()
+            ->get();
         $level1Downlines = collect();
         $level2Downlines = collect();
 
@@ -60,7 +80,12 @@ class ShowReferrals extends Component
                 if (in_array($lv1Ref->referral_code, $seenReferralCodes)) {
                     continue;
                 }
-                $users = User::where('referral_code', $lv1Ref->referral_code)->get();
+                $users = User::where(
+                    "referral_code",
+                    "=",
+                    $lv1Ref->referral_code,
+                    "and",
+                )->get();
                 $level1Downlines = $level1Downlines->merge($users);
                 $seenReferralCodes[] = $lv1Ref->referral_code;
             }
@@ -72,7 +97,12 @@ class ShowReferrals extends Component
                 if (in_array($lv2Ref->referral_code, $seenReferralCodes)) {
                     continue;
                 }
-                $users = User::where('referral_code', $lv2Ref->referral_code)->get();
+                $users = User::where(
+                    "referral_code",
+                    "=",
+                    $lv2Ref->referral_code,
+                    "and",
+                )->get();
                 $level2Downlines = $level2Downlines->merge($users);
                 $seenReferralCodes[] = $lv2Ref->referral_code;
             }
@@ -80,9 +110,9 @@ class ShowReferrals extends Component
 
         // $showLoadMoreButton = $this->visibleCount < $this->totalReferrals;
 
-        return view('livewire.dashboard.show-referrals', [
-            'level1Downlines' => $level1Downlines,
-            'level2Downlines' => $level2Downlines,
+        return view("livewire.dashboard.show-referrals", [
+            "level1Downlines" => $level1Downlines,
+            "level2Downlines" => $level2Downlines,
             // 'showLoadMoreButton' => $showLoadMoreButton,
         ]);
     }

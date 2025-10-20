@@ -14,133 +14,165 @@ use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-#[Layout('components.layouts.admin')]
-
+#[Layout("components.layouts.admin")]
 class UsersDetails extends Component
 {
-  use WithPagination;
+    use WithPagination;
 
-  protected $queryString = ['id'];
+    protected $queryString = ["id"];
 
-  #[Url]
-  public $id;
+    #[Url]
+    public $id;
 
-  public $email;
+    public $email;
 
-  public $country;
+    public $country;
 
-  public $liveBalance;
+    public $liveBalance;
 
-  public $activeBotCount;
+    public $activeBotCount;
 
-  public $bonusAmount;
+    public $bonusAmount;
 
-  public $subject;
+    public $subject;
 
-  public $message;
+    public $message;
 
-  public $strategies;
+    public $strategies;
 
-  public function mount()
-  {
-    $this->strategies = Strategy::all();
-  }
-
-  public function getStatusIndicatorColor(string $status)
-  {
-    if ($status === 'active' || $status === 'completed' || $status === 'confirmed') {
-      return 'bg-success-50 text-success-600';
+    public function mount()
+    {
+        $this->strategies = Strategy::all();
     }
 
-    if ($status === 'pending') {
-      return 'bg-warning-50 text-warning-600';
+    public function getStatusIndicatorColor(string $status)
+    {
+        if (
+            $status === "active" ||
+            $status === "completed" ||
+            $status === "confirmed"
+        ) {
+            return "bg-success-50 text-success-600";
+        }
+
+        if ($status === "pending") {
+            return "bg-warning-50 text-warning-600";
+        }
+
+        if (
+            $status === "closed" ||
+            $status === "expired" ||
+            $status === "declined"
+        ) {
+            return "bg-error-50 text-error-600";
+        }
+
+        if ($status === "unredeemed") {
+            return "bg-error-50 text-error-600";
+        }
+
+        if ($status === "redeemed") {
+            return "bg-success-50 text-success-600";
+        }
     }
 
-    if ($status === 'closed' || $status === 'expired' || $status === 'declined') {
-      return 'bg-error-50 text-error-600';
+    public function getStrategyName(int $strategyId)
+    {
+        $filtered = $this->strategies->filter(
+            fn(Strategy $value) => $value["id"] === intval($strategyId),
+        );
+
+        return $filtered->first()["name"];
     }
 
-    if ($status === 'unredeemed') {
-      return 'bg-error-50 text-error-600';
+    public function getReferralAmountRedeemable(string $code)
+    {
+        $referralData = Referral::where(
+            "referral_code",
+            "=",
+            $code,
+            "and",
+        )->first();
+        if (!$referralData) {
+            return 0;
+        }
+        return $referralData->amount;
     }
 
-    if ($status === 'redeemed') {
-      return 'bg-success-50 text-success-600';
+    public function getReferralStatus(string $code)
+    {
+        $referralData = Referral::where(
+            "referral_code",
+            "=",
+            $code,
+            "and",
+        )->first();
+        if (!$referralData) {
+            return "unredeemed";
+        }
+        return "redeemed";
     }
-  }
 
-  public function getStrategyName(int $strategyId)
-  {
-    $filtered = $this->strategies->filter(function (Strategy $value, $key) use ($strategyId) {
-      return $value['id'] === intval($strategyId);
-    });
-
-    return $filtered->first()['name'];
-  }
-
-  public function getReferralAmountRedeemable(string $code)
-  {
-    $referralData = Referral::where('referral_code', $code)->first();
-    if (! $referralData) {
-      return 0;
+    public function convertTimestampToDateTime(string $timestamp): string
+    {
+        return Carbon::createFromTimestampMs($timestamp)->format("Y-m-d H:i:s");
     }
-    return $referralData->amount;
-  }
 
-  public function getReferralStatus(string $code)
-  {
-    $referralData = Referral::where('referral_code', $code)->first();
-    if (! $referralData) {
-      return 'unredeemed';
+    public function addBonus()
+    {
+        try {
+            $user = User::where("id", "=", $this->id, "and")->first();
+            $userLiveBalance = $user->live_balance;
+            $newBalance = $userLiveBalance + floatval($this->bonusAmount) * 100;
+            User::where("id", "=", $this->id, "and")->update([
+                "live_balance" => $newBalance,
+            ]);
+
+            session()->flash("success-message", "Bonus added successfully");
+        } catch (\Exception $e) {
+            session()->flash("error-message", $e->getMessage());
+        }
     }
-    return 'redeemed';
-  }
 
-  public function convertTimestampToDateTime(string $timestamp): string
-  {
-    return Carbon::createFromTimestampMs($timestamp)->format('Y-m-d H:i:s');
-  }
-
-  public function addBonus()
-  {
-    try {
-      $user = User::where('id', $this->id)->first();
-      $userLiveBalance = $user->live_balance;
-      $newBalance = $userLiveBalance + (floatval($this->bonusAmount) * 100);
-      User::where('id', $this->id)->update(['live_balance' => $newBalance]);
-
-      session()->flash('success-message', 'Bonus added successfully');
-    } catch (\Exception $e) {
-      session()->flash('error-message', $e->getMessage());
+    public function sendBroadcast()
+    {
+        try {
+            $user = User::with("bots")->where("id", $this->id)->first();
+            $user->notify(
+                new BroadcastSent($user->name, $this->subject, $this->message),
+            );
+            session()->flash("success-message", "Email sent successfully");
+        } catch (\Exception $e) {
+            session()->flash("error-message", $e->getMessage());
+        }
     }
-  }
 
-  public function sendBroadcast()
-  {
-    try {
-      $user = User::with('bots')->where('id', $this->id)->first();
-      $user->notify(new BroadcastSent($user->name, $this->subject, $this->message));
-      session()->flash('success-message', 'Email sent successfully');
-    } catch (\Exception $e) {
-      session()->flash('error-message', $e->getMessage());
+    public function render()
+    {
+        $user = User::with("bots")->where("id", $this->id)->first();
+        $this->liveBalance = $user->live_balance;
+        $this->email = $user->email;
+        $this->country = $user->country;
+        $this->activeBotCount = $user->bots->where("status", "active")->count();
+        $deposits = Deposit::with("user")
+            ->where("user_id", $user->id)
+            ->latest()
+            ->paginate(10, ["*"], "deposits_page");
+        $bots = Bot::with("user")
+            ->where("user_id", $user->id)
+            ->latest()
+            ->paginate(10, ["*"], "bots_page");
+        $referrals = User::where(
+            "referred_by",
+            "=",
+            $user->referral_code,
+            "and",
+        )->paginate(10, ["*"], "referrals_page");
+
+        return view("livewire.admin.users-details", [
+            "deposits" => $deposits,
+            "bots" => $bots,
+            "referrals" => $referrals,
+        ]);
     }
-  }
-
-  public function render()
-  {
-    $user = User::with('bots')->where('id', $this->id)->first();
-    $this->liveBalance = $user->live_balance;
-    $this->email = $user->email;
-    $this->country = $user->country;
-    $this->activeBotCount = $user->bots->where('status', 'active')->count();
-    $deposits = Deposit::with('user')->where('user_id', $user->id)->latest()->paginate(10, ['*'], 'deposits_page');
-    $bots = Bot::with('user')->where('user_id', $user->id)->latest()->paginate(10, ['*'], 'bots_page');
-    $referrals = User::where('referred_by', $user->referral_code)->paginate(10, ['*'], 'referrals_page');
-
-    return view('livewire.admin.users-details', [
-      'deposits' => $deposits,
-      'bots' => $bots,
-      'referrals' => $referrals,
-    ]);
-  }
 }

@@ -7,8 +7,7 @@ use App\Models\Withdrawal;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
-#[Layout('components.layouts.app')] 
-
+#[Layout("components.layouts.app")]
 class WithdrawHistory extends Component
 {
     public $perPage = 10;
@@ -21,54 +20,70 @@ class WithdrawHistory extends Component
 
     public function mount()
     {
-        if (session()->has('message')) {
-            $message = session()->get('message');
-            $this->dispatch('withdrawal-created', message: $message)->self();
+        if (session()->has("message")) {
+            $message = session()->get("message");
+            $this->dispatch("withdrawal-created", message: $message)->self();
         }
 
         $this->paymentMethods = PaymentMethod::all();
-        $this->totalWithdrawals = Withdrawal::where('user_id', auth()->user()->id)->count();
+        $this->totalWithdrawals = Withdrawal::where(
+            "user_id",
+            "=",
+            auth()->user()->id,
+            "and",
+        )->count();
         $this->visibleCount = min($this->perPage, $this->totalWithdrawals);
     }
 
     public function loadMore(): void
     {
-        $this->visibleCount = min($this->visibleCount + $this->perPage, $this->totalWithdrawals);
+        $this->visibleCount = min(
+            $this->visibleCount + $this->perPage,
+            $this->totalWithdrawals,
+        );
     }
 
     public function getPaymentMethodIconUrl(string $paymentMethod): string
     {
-        $filtered = $this->paymentMethods->filter(function (PaymentMethod $value, $key) use ($paymentMethod) {
-            return $value['name'] === $paymentMethod;
-        });
+        $filtered = $this->paymentMethods->filter(
+            fn(PaymentMethod $value) => $value["name"] === $paymentMethod,
+        );
 
-         return $filtered->first()['icon_url'];
+        return $filtered->first()["icon_url"];
     }
 
     public function getStatusIndicatorColor(string $status)
     {
-        if ($status === 'pending') {
-            return 'bg-yellow-600';
+        if ($status === "pending") {
+            return "bg-yellow-600";
         }
 
-        if ($status === 'approved') {
-            return 'bg-green-600';
+        if ($status === "approved") {
+            return "bg-green-600";
         }
 
-        if ($status === 'declined') {
-            return 'bg-red-600';
+        if ($status === "declined") {
+            return "bg-red-600";
         }
     }
 
     public function render()
     {
-        $withdrawals = Withdrawal::where('user_id', auth()->user()->id)->latest()->take($this->visibleCount)->get();
+        $withdrawals = Withdrawal::where(
+            "user_id",
+            "=",
+            auth()->user()->id,
+            "and",
+        )
+            ->latest()
+            ->take($this->visibleCount)
+            ->get();
 
         $showLoadMoreButton = $this->visibleCount < $this->totalWithdrawals;
 
-        return view('livewire.dashboard.withdraw-history', [
-            'withdrawals' => $withdrawals,
-            'showLoadMoreButton' => $showLoadMoreButton,
+        return view("livewire.dashboard.withdraw-history", [
+            "withdrawals" => $withdrawals,
+            "showLoadMoreButton" => $showLoadMoreButton,
         ]);
     }
 }
