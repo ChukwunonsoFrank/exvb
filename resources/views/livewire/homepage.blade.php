@@ -19,7 +19,7 @@
                                 <div class="title-block text-left flex-wrap justify-start" style="text-align:left">
                                     <h1 class="title-block_child">AI Powered Trading Robot For Everyone</h1>
                                     <h4 class="title-block_child">AI Robot That Trades For You And <a
-                                            href="day-trading-platform/index.html"
+                                            href="{{ route('home') }}"
                                             style="font:inherit;letter-spacing:inherit">Makes Daily Profit</a>.</h4>
                                     <!-- Refactored Button Rendering -->
                                     <div class="button-wrapper title-block_child justify-start">

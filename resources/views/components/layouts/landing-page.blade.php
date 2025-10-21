@@ -40,12 +40,12 @@
         type="font/ttf" crossorigin="anonymous">
     <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
 
-    <link rel='dns-prefetch' href='http://code.jquery.com/' />
-    <link rel='dns-prefetch' href='http://maxcdn.bootstrapcdn.com/' />
-    <link rel='dns-prefetch' href='http://unpkg.com/' />
-    <link rel='dns-prefetch' href='http://cdn.jsdelivr.net/' />
-    <link rel='dns-prefetch' href='http://cdnjs.cloudflare.com/' />
-    <link rel='dns-prefetch' href='http://js-eu1.hs-scripts.com/' />
+    <link rel='dns-prefetch' href='https://code.jquery.com/' />
+    <link rel='dns-prefetch' href='https://maxcdn.bootstrapcdn.com/' />
+    <link rel='dns-prefetch' href='https://unpkg.com/' />
+    <link rel='dns-prefetch' href='https://cdn.jsdelivr.net/' />
+    <link rel='dns-prefetch' href='https://cdnjs.cloudflare.com/' />
+    <link rel='dns-prefetch' href='https://js-eu1.hs-scripts.com/' />
 
     <script>
         window._wpemojiSettings = {
@@ -926,9 +926,9 @@
     <script src="{{ asset('cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/CSSRulePlugin.minb6a4.js') }}"
         id="cssrule-plugin-js"></script>
     <script data-cookieconsent="ignore" data-cookiecategory="essential"
-        src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/SplitText.min.js') }}" id="split-text-js"></script>
+        src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/SplitText.min.js" id="split-text-js"></script>
     <script data-cookieconsent="ignore" data-cookiecategory="essential"
-        src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollSmoother.min.js') }}" id="scroll-smoother-js">
+        src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollSmoother.min.js" id="scroll-smoother-js">
     </script>
     <script data-cookieconsent="ignore" data-cookiecategory="essential"
         src="{{ asset('cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.minb6a4.js') }}" id="prism-js"></script>
