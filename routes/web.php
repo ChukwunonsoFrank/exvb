@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PrivateFileController;
 use App\Livewire\About;
 use App\Livewire\Terms;
 use App\Livewire\Privacy;
@@ -54,6 +55,7 @@ use App\Livewire\Dashboard\Transaction;
 use App\Livewire\Dashboard\VerifyWithdrawTwofa;
 use App\Livewire\Dashboard\WithdrawAddressStep;
 use App\Livewire\FindUs;
+use Illuminate\Support\Facades\Storage;
 
 Route::get("/link-storage", function () {
     Artisan::call("storage:link");
@@ -69,6 +71,10 @@ Route::get("/cache", function () {
     Artisan::call("optimize");
     dd("cached");
 });
+
+Route::get("/private-file/{path}", [PrivateFileController::class, "show"])
+    ->where("path", ".*")
+    ->name("private.file");
 
 Route::get("/", Homepage::class)->name("home");
 Route::get("/find-us", FindUs::class)->name("findus");

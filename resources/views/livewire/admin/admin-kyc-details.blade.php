@@ -106,7 +106,7 @@
                             <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
                                 ID Image
                             </label>
-                            <img src="{{ asset('storage/' . $this->idImagePath) }}" alt="" srcset="">
+                            <img src="{{ route('private.file', ['path' => $this->idImagePath]) }}" alt="" srcset="">
                         </div>
 
                         <div class="w-full px-2.5 xl:w-1/2">

@@ -67,14 +67,11 @@ class VerifyLoginCode extends Component
 
             $ipApiResult = $ipApiResponse->json();
 
-            if (
+            $country =
                 $ipApiResponse->successful() &&
                 $ipApiResult["status"] === "success"
-            ) {
-                $country = $ipApiResult["country"];
-            } else {
-                $country = "N/A";
-            }
+                    ? $ipApiResult["country"]
+                    : "N/A";
 
             event(
                 new Registered(

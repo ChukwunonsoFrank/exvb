@@ -41,8 +41,9 @@ class PaymentMethodDetails extends Component
 
             if ($this->image) {
                 $this->image->storeAs(
-                    path: "payment-method-icon",
-                    name: $this->image->getClientOriginalName(),
+                    "payment-method-icon",
+                    $this->image->getClientOriginalName(),
+                    "public",
                 );
             }
 

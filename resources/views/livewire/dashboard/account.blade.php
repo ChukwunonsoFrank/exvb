@@ -9,7 +9,7 @@
                             <a x-on:click="$store.accountPage.toggleProfilePictureModal();">
                                 <div
                                     class="relative bg-[#232323] size-16 rounded-full flex items-center justify-center lg:size-20">
-                                    @if (is_null(auth()->user()->profile_image_path))
+                                    @if (auth()->user()->profile_image_path === null)
                                         <svg class="absolute" xmlns="http://www.w3.org/2000/svg" width="48"
                                             height="48" viewBox="0 0 48 48" fill="none">
                                             <g clip-path="url(#clip0_49_26)">

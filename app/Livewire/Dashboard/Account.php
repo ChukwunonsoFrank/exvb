@@ -66,8 +66,9 @@ class Account extends Component
             $user->save();
 
             $this->profilePicture->storeAs(
-                path: "profile-picture",
-                name: $this->profilePicture->getClientOriginalName(),
+                "profile-picture",
+                $this->profilePicture->getClientOriginalName(),
+                "public",
             );
 
             $this->dispatch(

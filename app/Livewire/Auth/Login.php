@@ -91,21 +91,27 @@ class Login extends Component
 
                     $loggedInUser = User::find(Auth::id(), ["*"]);
 
-                    $ipApiEndpoint =
-                        "http://ip-api.com/json/" . $this->getClientIPV4();
+                    if (
+                        $loggedInUser->country === null ||
+                        $loggedInUser->country === "N/A"
+                    ) {
+                        $ipApiEndpoint =
+                            "http://ip-api.com/json/" . $this->getClientIPV4();
 
-                    $ipApiResponse = Http::get($ipApiEndpoint);
+                        $ipApiResponse = Http::get($ipApiEndpoint);
 
-                    $ipApiResult = $ipApiResponse->json();
+                        $ipApiResult = $ipApiResponse->json();
 
-                    $loggedInUser->country =
-                        $ipApiResponse->successful() &&
-                        $ipApiResult["status"] === "success"
-                            ? $ipApiResult["country"]
-                            : "N/A";
+                        $loggedInUser->country =
+                            $ipApiResponse->successful() &&
+                            $ipApiResult["status"] === "success"
+                                ? $ipApiResult["country"]
+                                : "N/A";
+
+                        $loggedInUser->ip_address = $this->getClientIPV4();
+                    }
 
                     $loggedInUser->last_login_at = now();
-                    $loggedInUser->ip_address = $this->getClientIPV4();
                     $loggedInUser->save();
 
                     if (Auth::user()->is_admin) {
