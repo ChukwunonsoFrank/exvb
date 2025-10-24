@@ -7,6 +7,7 @@ use App\Models\Withdrawal;
 use App\Notifications\TransactionOccured;
 use App\Notifications\WithdrawalInitiated;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 use PragmaRX\Google2FA\Google2FA;
@@ -36,19 +37,33 @@ class VerifyWithdrawTwofa extends Component
                 $this->code,
             );
             if ($valid) {
-                Withdrawal::create([
-                    "user_id" => auth()->user()->id,
-                    "amount" => $this->amount,
-                    "received_amount" => $this->amountToReceive,
-                    "payment_method" => $this->method,
-                    "address" => $this->address,
-                    "status" => "pending",
-                ]);
-
                 $user = User::find(auth()->user()->id, ["*"]);
+
+                $userId = $user["id"];
+                $userLiveBalance = $user["live_balance"];
+                $newBalance = $userLiveBalance - $this->amount;
+
+                DB::transaction(function () use (
+                    $userId,
+                    $newBalance,
+                ) {
+                    Withdrawal::create([
+                        "user_id" => $userId,
+                        "amount" => $this->amount,
+                        "received_amount" => $this->amountToReceive,
+                        "payment_method" => $this->method,
+                        "address" => $this->address,
+                        "status" => "pending",
+                    ]);
+
+                    User::where("id", "=", $userId, "and")->update([
+                        "live_balance" => $newBalance,
+                    ]);
+                });
+
                 $user->notify(
                     new WithdrawalInitiated(
-                        auth()->user()->name,
+                        $user["name"],
                         strval($this->amount / 100),
                     ),
                 );

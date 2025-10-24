@@ -35,21 +35,10 @@ class AdminWithdrawals extends Component
     ) {
         try {
             $user = User::where("id", "=", $userId, "and")->first();
-            $userLiveBalance = $user->live_balance;
-            $newBalance = $userLiveBalance - $amount;
 
-            DB::transaction(function () use (
-                $withdrawalId,
-                $userId,
-                $newBalance,
-            ) {
-                User::where("id", "=", $userId, "and")->update([
-                    "live_balance" => $newBalance,
-                ]);
-                Withdrawal::where("id", "=", $withdrawalId, "and")->update([
-                    "status" => "completed",
-                ]);
-            });
+            Withdrawal::where("id", "=", $withdrawalId, "and")->update([
+                "status" => "completed",
+            ]);
 
             $user->notify(
                 new WithdrawalApproved($user->name, strval($amount / 100)),
@@ -72,9 +61,23 @@ class AdminWithdrawals extends Component
         try {
             $user = User::where("id", "=", $userId, "and")->first();
 
-            Withdrawal::where("id", "=", $withdrawalId, "and")->update([
-                "status" => "declined",
-            ]);
+            $userLiveBalance = $user["live_balance"];
+            $newBalance = $userLiveBalance + $amount;
+
+            DB::transaction(function () use (
+                $withdrawalId,
+                $userId,
+                $newBalance,
+            ) {
+                Withdrawal::where("id", "=", $withdrawalId, "and")->update([
+                    "status" => "declined",
+                ]);
+
+                User::where("id", "=", $userId, "and")->update([
+                    "live_balance" => $newBalance,
+                ]);
+            });
+
 
             $user->notify(
                 new WithdrawalDeclined($user->name, strval($amount / 100)),
