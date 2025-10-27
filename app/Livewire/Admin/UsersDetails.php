@@ -123,7 +123,7 @@ class UsersDetails extends Component
         try {
             $user = User::where("id", "=", $this->id, "and")->first();
             $userLiveBalance = $user->live_balance;
-            $newBalance = $userLiveBalance + floatval($this->bonusAmount) * 100;
+            $newBalance = $userLiveBalance + $this->bonusAmount * 100;
             User::where("id", "=", $this->id, "and")->update([
                 "live_balance" => $newBalance,
             ]);
