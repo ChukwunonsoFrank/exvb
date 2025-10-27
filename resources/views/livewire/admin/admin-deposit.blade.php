@@ -155,7 +155,7 @@
                                                             @click.outside="isActionDropdownOpen = false"
                                                             class="shadow-theme-lg dark:bg-gray-dark absolute top-0 left-0 z-40 w-fit-content space-y-1 rounded-2xl border border-gray-200 bg-white p-2 pr-4 dark:border-gray-800">
                                                             <form
-                                                                wire:submit.prevent="approveDeposit({{ $deposit['id'] }}, {{ $deposit['user']['id'] }}, {{ $deposit['amount'] })">
+                                                                wire:submit.prevent="approveDeposit({{ $deposit['id'] }}, {{ $deposit['user']['id'] }}, {{ $deposit['amount'] }})">
                                                                 <button type="submit"
                                                                     x-on:click="isActionDropdownOpen = false"
                                                                     class="text-theme-xs flex w-full rounded-lg px-3 py-2 text-left font-medium text-success-600">
