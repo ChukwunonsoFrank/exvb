@@ -84,7 +84,7 @@ class RefreshActiveBots implements ShouldQueue
                                 ]);
                             });
 
-                            if ($bot->user->referred_by) {
+                            if ($bot->user->referred_by !== null) {
                                 $this->processReferralPayouts(
                                     $netProfit,
                                     $bot->user->referral_code,
