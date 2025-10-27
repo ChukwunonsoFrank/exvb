@@ -271,7 +271,7 @@ class AdminDeposit extends Component
                 new DepositApproved($user->name, strval($amount / 100)),
             );
 
-            if ($user->referred_by) {
+            if ($user->referred_by !== null) {
                 $this->computeUpline($user->referred_by);
                 $this->processReferralPayouts(
                     $amount,
