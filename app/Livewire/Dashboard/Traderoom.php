@@ -234,7 +234,7 @@ class Traderoom extends Component
                 /**
                  * Top upline commission(12% on trade profits)
                  */
-                $commission = intval(round(($robotProfit * 12) / 100));
+                $commission = intval(round($robotProfit * (12 / 100)));
                 $newFirstUplineBalance =
                     $this->firstUpline["live_balance"] + $commission;
 
@@ -273,7 +273,7 @@ class Traderoom extends Component
                 /**
                  * Middle upline commission(12% on trade profits)
                  */
-                $commission = intval(round(($robotProfit * 12) / 100));
+                $commission = intval(round($robotProfit * (12 / 100)));
                 $newSecondUplineBalance =
                     $this->secondUpline["live_balance"] + $commission;
 
@@ -310,7 +310,7 @@ class Traderoom extends Component
                 /**
                  * First upline commission(8% on trade profits)
                  */
-                $commission = intval(round(($robotProfit * 8) / 100));
+                $commission = intval(round($robotProfit * (8 / 100)));
                 $newFirstUplineBalance =
                     $this->firstUpline["live_balance"] + $commission;
 
