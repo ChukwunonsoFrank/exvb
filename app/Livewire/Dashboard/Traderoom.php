@@ -143,7 +143,7 @@ class Traderoom extends Component
     public function calculateFees(): int
     {
         $profit = $this->activeBot["profit"];
-        $fee = intval(round(($profit * 5) / 100));
+        $fee = intval(round($profit * (5 / 100)));
         return $fee;
     }
 

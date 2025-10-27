@@ -84,7 +84,7 @@ class AdminDeposit extends Component
                 /**
                  * Top upline commission
                  */
-                $commission = intval(round(($depositAmount * 8) / 100));
+                $commission = intval(round($depositAmount * (8 / 100)));
                 $newFirstUplineBalance =
                     $this->firstUpline["live_balance"] + $commission;
 
@@ -121,7 +121,7 @@ class AdminDeposit extends Component
                 /**
                  * Middle upline commission
                  */
-                $commission = intval(round(($depositAmount * 8) / 100));
+                $commission = intval(round($depositAmount * (8 / 100)));
                 $newSecondUplineBalance =
                     $this->secondUpline["live_balance"] + $commission;
 
@@ -156,7 +156,7 @@ class AdminDeposit extends Component
                 /**
                  * First upline commission
                  */
-                intval(round(($depositAmount * 4) / 100));
+                $commission = intval(round($depositAmount * (4 / 100)));
                 $newFirstUplineBalance =
                     $this->firstUpline["live_balance"] + $commission;
 
