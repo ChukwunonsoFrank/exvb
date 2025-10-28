@@ -147,6 +147,13 @@ class UsersDetails extends Component
         }
     }
 
+    public function displayProfitMinusFee($profit)
+    {
+        $fee = intval(round($profit * (5 / 100)));
+        $displayProfit = $profit - $fee;
+        return $displayProfit / 100;
+    }
+
     public function render()
     {
         $user = User::with("bots")->where("id", $this->id)->first();

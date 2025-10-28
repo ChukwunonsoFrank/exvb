@@ -419,7 +419,7 @@
                                             <td class="px-5 py-3 whitespace-nowrap sm:px-6">
                                                 <div class="flex items-center">
                                                     <p class="text-theme-sm text-gray-700 dark:text-gray-400">
-                                                        @money($bot['profit'] / 100)
+                                                        @money($this->displayProfitMinusFee($bot['profit']))
                                                     </p>
                                                 </div>
                                             </td>
