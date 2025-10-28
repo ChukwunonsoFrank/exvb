@@ -32,7 +32,7 @@ class RefreshActiveBots implements ShouldQueue
         /**
          * Fetch all bots with the status of 'active' and batch process.
          */
-        Bot::with(["user:id,demo_balance,live_balance"])
+        Bot::with(["user:id,demo_balance,live_balance,referred_by,referral_code,name"])
             ->where("status", "active")
             ->chunk(100, function ($bots) {
                 foreach ($bots as $bot) {
