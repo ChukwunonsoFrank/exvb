@@ -352,71 +352,51 @@ class Traderoom extends Component
     public function stopRobot(): void
     {
         try {
-            $accountType = $this->activeBot["account_type"];
+            DB::transaction(function () {
+                // Lock the bot row for update
+                $bot = Bot::where('user_id', auth()->user()->id)
+                    ->where('status', 'active')
+                    ->lockForUpdate()
+                    ->first();
 
-            if ($accountType === "demo") {
-                $amount = $this->activeBot["amount"];
-                $currentBalance = auth()->user()->demo_balance;
-                $profit = $this->activeBot["profit"];
-                $newBalance = $currentBalance + $amount + $profit;
-                $newBalanceMinusFees = $newBalance - $this->fee;
-
-                DB::transaction(function () use ($newBalanceMinusFees) {
-                    Bot::where(
-                        "id",
-                        "=",
-                        $this->activeBot["id"],
-                        "and",
-                    )->update([
-                        "status" => "closed",
-                    ]);
-                    User::where("id", "=", auth()->user()->id, "and")->update([
-                        "demo_balance" => $newBalanceMinusFees,
-                    ]);
-                });
-            }
-
-            if ($accountType === "live") {
-                $amount = $this->activeBot["amount"];
-                $currentBalance = auth()->user()->live_balance;
-                $profit = $this->activeBot["profit"];
-                $newBalance = $currentBalance + $amount + $profit;
-                $newBalanceMinusFees = $newBalance - $this->fee;
-
-                DB::transaction(function () use ($newBalanceMinusFees) {
-                    Bot::where(
-                        "id",
-                        "=",
-                        $this->activeBot["id"],
-                        "and",
-                    )->update([
-                        "status" => "closed",
-                    ]);
-                    User::where("id", "=", auth()->user()->id, "and")->update([
-                        "live_balance" => $newBalanceMinusFees,
-                    ]);
-                });
-
-                // Add referral trade profit only when the profit is greater than 0
-                if (auth()->user()->referred_by && $profit > 0) {
-                    $profitMinusFees = $profit - $this->fee;
-                    $this->computeUpline(auth()->user()->referred_by);
-                    $this->processReferralPayouts(
-                        $profitMinusFees,
-                        auth()->user()->referral_code,
-                        auth()->user()->name,
-                    );
+                if (!$bot) {
+                    $this->dispatch('stop-robot-error', message: 'No active bot found!')->self();
                 }
-            }
 
-            session()->flash("message", "Robot has stopped trading");
+                // Now proceed with the rest of the logic
+                $accountType = $bot->account_type;
+                $amount = $bot->amount;
+                $profit = $bot->profit;
 
-            $this->redirectRoute("dashboard.robot");
+                // Update bot status
+                $bot->status = 'closed';
+                $bot->save();
+
+                // Update user balance
+                if ($accountType === 'demo') {
+                    auth()->user()->increment('demo_balance',
+                        $amount + $profit - $this->fee);
+                } else {
+                    auth()->user()->increment('live_balance',
+                        $amount + $profit - $this->fee);
+
+                    if (auth()->user()->referred_by && $profit > 0) {
+                        $profitMinusFees = $profit - $this->fee;
+                        $this->computeUpline(auth()->user()->referred_by);
+                        $this->processReferralPayouts(
+                            $profitMinusFees,
+                            auth()->user()->referral_code,
+                            auth()->user()->name
+                        );
+                    }
+                }
+            });
+
+            session()->flash('message', 'Robot has stopped trading');
+            $this->redirectRoute('dashboard.robot');
+
         } catch (\Exception $e) {
-            $this->dispatch(
-                "stop-robot-error",
-                message: $e->getMessage(),
-            )->self();
+            $this->dispatch('stop-robot-error', message: $e->getMessage())->self();
         }
     }
 
