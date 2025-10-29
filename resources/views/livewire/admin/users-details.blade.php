@@ -162,17 +162,25 @@
             </div>
             <!-- Metric Group One -->
 
-            <div class="mb-4" x-data="{ activeTab: 'overview' }">
+            <div class="mb-4" x-data="{ activeTab: 'addBonus' }">
                 <div class="rounded-t-xl border border-gray-200 p-3 dark:border-gray-800">
                     <nav
                         class="flex overflow-x-auto rounded-lg bg-gray-100 p-1 dark:bg-gray-900 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-200 dark:[&::-webkit-scrollbar-thumb]:bg-gray-600 [&::-webkit-scrollbar-track]:bg-white dark:[&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar]:h-1.5">
                         <button
                             class="inline-flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200 ease-in-out"
-                            x-bind:class="activeTab === 'overview' ?
+                            x-bind:class="activeTab === 'addBonus' ?
                                 'bg-white text-gray-900 shadow-theme-xs dark:bg-white/[0.03] dark:text-white' :
                                 'bg-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200'"
-                            x-on:click="activeTab = 'overview'">
+                            x-on:click="activeTab = 'addBonus'">
                             Add Bonus
+                        </button>
+                        <button
+                            class="inline-flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200 ease-in-out"
+                            x-bind:class="activeTab === 'removeBonus' ?
+                                'bg-white text-gray-900 shadow-theme-xs dark:bg-white/[0.03] dark:text-white' :
+                                'bg-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200'"
+                            x-on:click="activeTab = 'removeBonus'">
+                            Remove Bonus
                         </button>
                         <button
                             class="inline-flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200 ease-in-out"
@@ -185,7 +193,7 @@
                     </nav>
                 </div>
                 <div class="rounded-b-xl border border-t-0 border-gray-200 p-6 pt-4 dark:border-gray-800">
-                    <div x-show="activeTab === 'overview'">
+                    <div x-show="activeTab === 'addBonus'">
                         <div
                             class="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]">
                             <div class="p-5 space-y-6 border-t border-gray-100 dark:border-gray-800 sm:p-6">
@@ -200,6 +208,29 @@
                                             <button type="submit" wire:loading.attr="disabled"
                                                 class="w-full p-3 text-sm font-medium text-white transition-colors rounded-lg bg-brand-500 hover:bg-brand-600 disabled:opacity-50 disabled:pointer-events-none">
                                                 Add Bonus
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div x-show="activeTab === 'removeBonus'">
+                        <div
+                            class="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]">
+                            <div class="p-5 space-y-6 border-t border-gray-100 dark:border-gray-800 sm:p-6">
+                                <form wire:submit.prevent="removeBonus()">
+                                    <div class="-mx-2.5 flex flex-wrap gap-y-5">
+                                        <div class="w-full px-2.5">
+                                            <input wire:model="bonusAmount" type="text" placeholder="Amount"
+                                                class="dark:bg-dark-900 h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10" />
+                                        </div>
+
+                                        <div class="w-full px-2.5">
+                                            <button type="submit" wire:loading.attr="disabled"
+                                                class="w-full p-3 text-sm font-medium text-white transition-colors rounded-lg bg-brand-500 hover:bg-brand-600 disabled:opacity-50 disabled:pointer-events-none">
+                                                Remove Bonus
                                             </button>
                                         </div>
                                     </div>

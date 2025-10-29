@@ -153,6 +153,46 @@ class UsersDetails extends Component
         }
     }
 
+    public function removeBonus()
+    {
+        try {
+            // Validate bonus amount
+            if (!isset($this->bonusAmount) || $this->bonusAmount <= 0) {
+                throw new \Exception("Invalid bonus amount");
+            }
+
+            DB::transaction(function () {
+                // Lock the user record
+                $user = User::where("id", "=", $this->id, "and")
+                    ->lockForUpdate()
+                    ->first();
+
+                if (!$user) {
+                    throw new \Exception("User not found");
+                }
+
+                if ($this->bonusAmount > $user->live_balance) {
+                    throw new \Exception(
+                        "Insufficient balance for bonus removal",
+                    );
+                }
+
+                $bonusAmountInCents = $this->bonusAmount * 100;
+
+                // Update balance atomically
+                $user->live_balance -= $bonusAmountInCents;
+                $user->save();
+            });
+
+            session()->flash("success-message", "Bonus removed successfully");
+
+            // Reset form
+            $this->reset(["bonusAmount"]);
+        } catch (\Exception $e) {
+            session()->flash("error-message", $e->getMessage());
+        }
+    }
+
     public function sendBroadcast()
     {
         try {
