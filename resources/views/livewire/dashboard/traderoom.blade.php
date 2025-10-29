@@ -643,6 +643,7 @@
             timer: '',
             timeLeft: {},
             timerInterval: null,
+            isStoppingRobot: false,
             isBotSearchingForSignal: '',
             isStopRobotConfirmationModalOpen: false,
             asset: '',
@@ -691,7 +692,12 @@
                 }, 14000);
 
                 setTimeout(() => {
-                    this.$wire.stopRobot();
+                    if (!this.isStoppingRobot) {
+                        this.isStoppingRobot = true;
+                        this.$wire.stopRobot().finally(() => {
+                            this.isStoppingRobot = false;
+                        });
+                    }
                 }, 16000);
             },
 

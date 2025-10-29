@@ -10,12 +10,16 @@ use App\Models\Trade;
 use App\Models\User;
 use App\Notifications\CommissionEarned;
 use Illuminate\Support\Facades\DB;
+use Livewire\Attributes\Locked;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 #[Layout("components.layouts.app")]
 class Traderoom extends Component
 {
+    #[Locked]
+    public $isProcessing = false;
+
     public $activeBot;
 
     public $timerCheckpoint;
@@ -352,6 +356,12 @@ class Traderoom extends Component
     public function stopRobot(): void
     {
         try {
+            if ($this->isProcessing) {
+                return;
+            }
+
+            $this->isProcessing = true;
+
             DB::transaction(function () {
                 // Lock the bot row for update
                 $bot = Bot::where("user_id", "=", auth()->user()->id, "and")
@@ -410,6 +420,8 @@ class Traderoom extends Component
                 "stop-robot-error",
                 message: $e->getMessage(),
             )->self();
+        } finally {
+            $this->isProcessing = false;
         }
     }
 
