@@ -86,41 +86,65 @@ class Dashboard extends Component
     public function stopRobot(int $botId)
     {
         try {
-            $bot = Bot::find($botId, ["*"]);
-            $userId = $bot->user->id;
-            $accountType = $bot["account_type"];
-            $amount = $bot["amount"];
-            $profit = $bot["profit"];
-            $fee = $this->calculateFees($profit);
-            $netProfit = $profit - $fee;
+            DB::transaction(function () use ($botId) {
+                // Lock the bot record first to prevent concurrent stops
+                $bot = Bot::where("id", "=", $botId, "and")
+                    ->lockForUpdate()
+                    ->first();
 
-            if ($accountType === "demo") {
-                $currentBalance = $bot->user->demo_balance;
-                $newBalance = $currentBalance + $amount + $netProfit;
+                if (!$bot) {
+                    throw new \Exception("Bot not found");
+                }
 
-                DB::transaction(function () use ($newBalance, $botId, $userId) {
-                    Bot::where("id", "=", $botId, "and")->update([
-                        "status" => "closed",
-                    ]);
-                    User::where("id", "=", $userId, "and")->update([
-                        "demo_balance" => $newBalance,
-                    ]);
-                });
-            }
+                // Check if already stopped/closed
+                if ($bot->status === "closed") {
+                    throw new \Exception("Bot already stopped");
+                }
 
-            if ($accountType === "live") {
-                $currentBalance = $bot->user->live_balance;
-                $newBalance = $currentBalance + $amount + $netProfit;
+                // Only allow stopping active bots
+                if ($bot->status !== "active") {
+                    throw new \Exception("Only active bots can be stopped");
+                }
 
-                DB::transaction(function () use ($newBalance, $botId, $userId) {
-                    Bot::where("id", "=", $botId, "and")->update([
-                        "status" => "closed",
-                    ]);
-                    User::where("id", "=", $userId, "and")->update([
-                        "live_balance" => $newBalance,
-                    ]);
-                });
-            }
+                $userId = $bot->user_id;
+                $accountType = $bot->account_type;
+                $amount = $bot->amount;
+                $profit = $bot->profit;
+                $fee = $this->calculateFees($profit);
+                $netProfit = $profit - $fee;
+
+                // Lock the user record for balance update
+                $user = User::where("id", "=", $userId, "and")
+                    ->lockForUpdate()
+                    ->first();
+
+                if (!$user) {
+                    throw new \Exception("User not found");
+                }
+
+                if ($accountType === "demo") {
+                    $currentBalance = $user->demo_balance;
+                    $newBalance = $currentBalance + $amount + $netProfit;
+
+                    // Update user balance
+                    $user->demo_balance = $newBalance;
+                    $user->save();
+                } elseif ($accountType === "live") {
+                    $currentBalance = $user->live_balance;
+                    $newBalance = $currentBalance + $amount + $netProfit;
+
+                    // Update user balance
+                    $user->live_balance = $newBalance;
+                    $user->save();
+                } else {
+                    throw new \Exception("Invalid account type");
+                }
+
+                // Update bot status
+                $bot->status = "closed";
+                $bot->save();
+            });
+
             session()->flash("success-message", "Robot stopped successfully.");
         } catch (\Exception $e) {
             session()->flash("error-message", $e->getMessage());

@@ -254,31 +254,56 @@ class AdminDeposit extends Component
     public function approveDeposit(int $depositId, int $userId, int $amount)
     {
         try {
-            $user = User::where("id", "=", $userId, "and")->first();
-            $userLiveBalance = $user->live_balance;
-            $newBalance = $userLiveBalance + $amount;
+            DB::transaction(function () use ($depositId, $userId, $amount) {
+                // Lock the deposit record first to prevent concurrent approvals
+                $deposit = Deposit::where("id", "=", $depositId, "and")
+                    ->lockForUpdate()
+                    ->first();
 
-            DB::transaction(function () use ($depositId, $userId, $newBalance) {
-                User::where("id", "=", $userId, "and")->update([
-                    "live_balance" => $newBalance,
-                ]);
-                Deposit::where("id", "=", $depositId, "and")->update([
-                    "status" => "confirmed",
-                ]);
-            });
+                if (!$deposit) {
+                    throw new \Exception("Deposit not found");
+                }
 
-            $user->notify(
-                new DepositApproved($user->name, strval($amount / 100)),
-            );
+                // Check if already processed
+                if ($deposit->status === "confirmed") {
+                    throw new \Exception("Deposit already confirmed");
+                }
 
-            if ($user->referred_by !== null) {
-                $this->computeUpline($user->referred_by);
-                $this->processReferralPayouts(
-                    $amount,
-                    $user->referral_code,
-                    $user->name,
+                // Lock the user record for balance update
+                $user = User::where("id", "=", $userId, "and")
+                    ->lockForUpdate()
+                    ->first();
+
+                if (!$user) {
+                    throw new \Exception("User not found");
+                }
+
+                $userLiveBalance = $user->live_balance;
+                $newBalance = $userLiveBalance + $amount;
+
+                // Update user balance
+                $user->live_balance = $newBalance;
+                $user->save();
+
+                // Update deposit status
+                $deposit->status = "confirmed";
+                $deposit->save();
+
+                // Send notification (inside transaction to ensure it only happens once)
+                $user->notify(
+                    new DepositApproved($user->name, strval($amount / 100)),
                 );
-            }
+
+                // Process referral payouts if applicable
+                if ($user->referred_by !== null) {
+                    $this->computeUpline($user->referred_by);
+                    $this->processReferralPayouts(
+                        $amount,
+                        $user->referral_code,
+                        $user->name,
+                    );
+                }
+            });
 
             session()->flash(
                 "success-message",

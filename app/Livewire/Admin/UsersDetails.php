@@ -9,6 +9,7 @@ use App\Models\Strategy;
 use App\Models\User;
 use App\Notifications\BroadcastSent;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Url;
 use Livewire\Component;
@@ -121,14 +122,32 @@ class UsersDetails extends Component
     public function addBonus()
     {
         try {
-            $user = User::where("id", "=", $this->id, "and")->first();
-            $userLiveBalance = $user->live_balance;
-            $newBalance = $userLiveBalance + $this->bonusAmount * 100;
-            User::where("id", "=", $this->id, "and")->update([
-                "live_balance" => $newBalance,
-            ]);
+            // Validate bonus amount
+            if (!isset($this->bonusAmount) || $this->bonusAmount <= 0) {
+                throw new \Exception("Invalid bonus amount");
+            }
+
+            DB::transaction(function () {
+                // Lock the user record
+                $user = User::where("id", "=", $this->id, "and")
+                    ->lockForUpdate()
+                    ->first();
+
+                if (!$user) {
+                    throw new \Exception("User not found");
+                }
+
+                $bonusAmountInCents = $this->bonusAmount * 100;
+
+                // Update balance atomically
+                $user->live_balance += $bonusAmountInCents;
+                $user->save();
+            });
 
             session()->flash("success-message", "Bonus added successfully");
+
+            // Reset form
+            $this->reset(["bonusAmount"]);
         } catch (\Exception $e) {
             session()->flash("error-message", $e->getMessage());
         }

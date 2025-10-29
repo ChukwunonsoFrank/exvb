@@ -354,13 +354,16 @@ class Traderoom extends Component
         try {
             DB::transaction(function () {
                 // Lock the bot row for update
-                $bot = Bot::where('user_id', auth()->user()->id)
-                    ->where('status', 'active')
+                $bot = Bot::where("user_id", "=", auth()->user()->id, "and")
+                    ->where("status", "active")
                     ->lockForUpdate()
                     ->first();
 
                 if (!$bot) {
-                    $this->dispatch('stop-robot-error', message: 'No active bot found!')->self();
+                    $this->dispatch(
+                        "stop-robot-error",
+                        message: "No active bot found!",
+                    )->self();
                 }
 
                 // Now proceed with the rest of the logic
@@ -369,16 +372,24 @@ class Traderoom extends Component
                 $profit = $bot->profit;
 
                 // Update bot status
-                $bot->status = 'closed';
+                $bot->status = "closed";
                 $bot->save();
 
                 // Update user balance
-                if ($accountType === 'demo') {
-                    auth()->user()->increment('demo_balance',
-                        $amount + $profit - $this->fee);
+                if ($accountType === "demo") {
+                    auth()
+                        ->user()
+                        ->increment(
+                            "demo_balance",
+                            $amount + $profit - $this->fee,
+                        );
                 } else {
-                    auth()->user()->increment('live_balance',
-                        $amount + $profit - $this->fee);
+                    auth()
+                        ->user()
+                        ->increment(
+                            "live_balance",
+                            $amount + $profit - $this->fee,
+                        );
 
                     if (auth()->user()->referred_by && $profit > 0) {
                         $profitMinusFees = $profit - $this->fee;
@@ -386,17 +397,19 @@ class Traderoom extends Component
                         $this->processReferralPayouts(
                             $profitMinusFees,
                             auth()->user()->referral_code,
-                            auth()->user()->name
+                            auth()->user()->name,
                         );
                     }
                 }
             });
 
-            session()->flash('message', 'Robot has stopped trading');
-            $this->redirectRoute('dashboard.robot');
-
+            session()->flash("message", "Robot has stopped trading");
+            $this->redirectRoute("dashboard.robot");
         } catch (\Exception $e) {
-            $this->dispatch('stop-robot-error', message: $e->getMessage())->self();
+            $this->dispatch(
+                "stop-robot-error",
+                message: $e->getMessage(),
+            )->self();
         }
     }
 

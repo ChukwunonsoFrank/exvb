@@ -59,29 +59,65 @@ class AdminWithdrawals extends Component
         int $amount,
     ) {
         try {
-            $user = User::where("id", "=", $userId, "and")->first();
+            DB::transaction(function () use ($withdrawalId, $userId, $amount) {
+                // Lock the withdrawal record first to prevent concurrent declines
+                $withdrawal = Withdrawal::where("id", "=", $withdrawalId, "and")
+                    ->lockForUpdate()
+                    ->first();
 
-            $userLiveBalance = $user["live_balance"];
-            $newBalance = $userLiveBalance + $amount;
+                if (!$withdrawal) {
+                    throw new \Exception("Withdrawal not found");
+                }
 
-            DB::transaction(function () use (
-                $withdrawalId,
-                $userId,
-                $newBalance,
-            ) {
-                Withdrawal::where("id", "=", $withdrawalId, "and")->update([
-                    "status" => "declined",
-                ]);
+                // Check if already processed (declined or approved)
+                if ($withdrawal->status === "declined") {
+                    throw new \Exception("Withdrawal already declined");
+                }
 
-                User::where("id", "=", $userId, "and")->update([
-                    "live_balance" => $newBalance,
-                ]);
+                if (
+                    $withdrawal->status === "approved" ||
+                    $withdrawal->status === "completed"
+                ) {
+                    throw new \Exception("Withdrawal already processed");
+                }
+
+                // Verify the withdrawal belongs to this user (security check)
+                if ($withdrawal->user_id != $userId) {
+                    throw new \Exception(
+                        "Withdrawal does not belong to this user",
+                    );
+                }
+
+                // Verify amount matches (prevents parameter tampering)
+                if ($withdrawal->amount != $amount) {
+                    throw new \Exception("Amount mismatch");
+                }
+
+                // Lock user and update balance atomically
+                $user = User::where("id", "=", $userId, "and")
+                    ->lockForUpdate()
+                    ->first();
+
+                if (!$user) {
+                    throw new \Exception("User not found");
+                }
+
+                $userLiveBalance = $user->live_balance;
+                $newBalance = $userLiveBalance + $amount;
+
+                // Update user balance
+                $user->live_balance = $newBalance;
+                $user->save();
+
+                // Update withdrawal status
+                $withdrawal->status = "declined";
+                $withdrawal->save();
+
+                // Send notification (inside transaction)
+                $user->notify(
+                    new WithdrawalDeclined($user->name, strval($amount / 100)),
+                );
             });
-
-
-            $user->notify(
-                new WithdrawalDeclined($user->name, strval($amount / 100)),
-            );
 
             session()->flash(
                 "success-message",

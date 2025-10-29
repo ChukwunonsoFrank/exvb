@@ -9,6 +9,7 @@ use App\Models\OtpToken;
 use App\Models\Trade;
 use App\Models\User;
 use App\Models\Withdrawal;
+use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
@@ -34,7 +35,90 @@ class Users extends Component
             User::where("id", "=", $userId, "and")->update([
                 "account_status" => "inactive",
             ]);
+
+            $activeBot = Bot::where("user_id", "=", $userId, "and")
+                ->where("status", "=", "active", "and")
+                ->first();
+
+            if ($activeBot) {
+                $this->stopRobot($activeBot->id);
+            }
+
             session()->flash("success-message", "Deactivation successful.");
+        } catch (\Exception $e) {
+            session()->flash("error-message", $e->getMessage());
+        }
+    }
+
+    public function calculateFees(int $profit): int
+    {
+        $fee = intval(round(($profit * 5) / 100));
+        return $fee;
+    }
+
+    public function stopRobot(int $botId)
+    {
+        try {
+            DB::transaction(function () use ($botId) {
+                // Lock the bot record first to prevent concurrent stops
+                $bot = Bot::where("id", "=", $botId, "and")
+                    ->lockForUpdate()
+                    ->first();
+
+                if (!$bot) {
+                    throw new \Exception("Bot not found");
+                }
+
+                // Check if already stopped/closed
+                if ($bot->status === "closed") {
+                    throw new \Exception("Bot already stopped");
+                }
+
+                // Only allow stopping active bots
+                if ($bot->status !== "active") {
+                    throw new \Exception("Only active bots can be stopped");
+                }
+
+                $userId = $bot->user_id;
+                $accountType = $bot->account_type;
+                $amount = $bot->amount;
+                $profit = $bot->profit;
+                $fee = $this->calculateFees($profit);
+                $netProfit = $profit - $fee;
+
+                // Lock the user record for balance update
+                $user = User::where("id", "=", $userId, "and")
+                    ->lockForUpdate()
+                    ->first();
+
+                if (!$user) {
+                    throw new \Exception("User not found");
+                }
+
+                if ($accountType === "demo") {
+                    $currentBalance = $user->demo_balance;
+                    $newBalance = $currentBalance + $amount + $netProfit;
+
+                    // Update user balance
+                    $user->demo_balance = $newBalance;
+                    $user->save();
+                } elseif ($accountType === "live") {
+                    $currentBalance = $user->live_balance;
+                    $newBalance = $currentBalance + $amount + $netProfit;
+
+                    // Update user balance
+                    $user->live_balance = $newBalance;
+                    $user->save();
+                } else {
+                    throw new \Exception("Invalid account type");
+                }
+
+                // Update bot status
+                $bot->status = "closed";
+                $bot->save();
+            });
+
+            session()->flash("success-message", "Robot stopped successfully.");
         } catch (\Exception $e) {
             session()->flash("error-message", $e->getMessage());
         }

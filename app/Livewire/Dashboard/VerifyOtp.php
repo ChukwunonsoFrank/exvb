@@ -11,6 +11,7 @@ use App\Notifications\WithdrawalInitiated;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Locked;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 
@@ -33,6 +34,9 @@ class VerifyOtp extends Component
 
     public $generatedToken;
 
+    #[Locked]
+    public $processingWithdrawal = false;
+
     public function mount()
     {
         $this->generatedToken = OtpToken::where(
@@ -45,41 +49,63 @@ class VerifyOtp extends Component
 
     public function createWithdrawal()
     {
+        // Prevent double submission
+        if ($this->processingWithdrawal) {
+            $this->dispatch(
+                "withdraw-error",
+                message: "Already processing withdrawal",
+            )->self();
+            return;
+        }
+
+        $this->processingWithdrawal = true;
+
         try {
-            if ($this->token === "") {
-                $this->dispatch(
-                    "withdraw-error",
-                    message: "OTP token field is empty",
-                )->self();
-                return;
+            // Validate OTP token
+            if (empty($this->token)) {
+                throw new \Exception("OTP token field is empty");
+            }
+
+            if (
+                !isset($this->generatedToken["token"]) ||
+                !isset($this->generatedToken["expires_at"])
+            ) {
+                throw new \Exception(
+                    "No valid OTP session found. Please generate a new code.",
+                );
             }
 
             if ($this->token !== $this->generatedToken["token"]) {
-                $message = "Invalid OTP token";
-                $this->dispatch("withdraw-error", message: $message)->self();
-                return;
+                // Increment failed attempts (optional: implement lockout after X attempts)
+                throw new \Exception("Invalid OTP token");
             }
 
             $expiresAt = $this->generatedToken["expires_at"];
             $now = now()->getTimestampMs();
+
             if ($now > $expiresAt) {
-                $message =
-                    'Expired OTP token. Click on "Resend code" to generate a new token.';
-                $this->dispatch("withdraw-error", message: $message)->self();
-                return;
+                throw new \Exception(
+                    'Expired OTP token. Click on "Resend code" to generate a new token.',
+                );
             }
 
-            $user = User::find(auth()->user()->id, ["*"]);
+            DB::transaction(function () {
+                // Lock the user record to prevent concurrent withdrawals
+                $user = User::where("id", "=", auth()->user()->id, "and")
+                    ->lockForUpdate()
+                    ->first();
 
-            $userId = $user["id"];
-            $userLiveBalance = $user["live_balance"];
-            $newBalance = $userLiveBalance - $this->amount;
+                if (!$user) {
+                    throw new \Exception("User not found");
+                }
 
-            DB::transaction(function () use (
-                $userId,
-                $newBalance,
-            ) {
-                Withdrawal::create([
+                $userId = $user->id;
+                $userLiveBalance = $user->live_balance;
+
+                $newBalance = $userLiveBalance - $this->amount;
+
+                // Create withdrawal record
+                $withdrawal = Withdrawal::create([
                     "user_id" => $userId,
                     "amount" => $this->amount,
                     "received_amount" => $this->amountToReceive,
@@ -88,37 +114,51 @@ class VerifyOtp extends Component
                     "status" => "pending",
                 ]);
 
-                User::where("id", "=", $userId, "and")->update([
-                    "live_balance" => $newBalance,
-                ]);
+                // Update user balance atomically
+                $user->live_balance = $newBalance;
+                $user->save();
+
+                // Invalidate the OTP token after successful use (prevent replay)
+                $this->generatedToken["token"] = null;
+                $this->generatedToken["expires_at"] = null;
+
+                // Send notifications
+                $user->notify(
+                    new WithdrawalInitiated(
+                        $user->name,
+                        strval($this->amount / 100),
+                    ),
+                );
+
+                Notification::route("mail", "fredhonest230@gmail.com")->notify(
+                    new TransactionOccured(
+                        "withdrawal",
+                        $user->name,
+                        strval($this->amount / 100),
+                    ),
+                );
             });
-
-            $user->notify(
-                new WithdrawalInitiated(
-                    $user["name"],
-                    strval($this->amount / 100),
-                ),
-            );
-
-            Notification::route("mail", "fredhonest230@gmail.com")->notify(
-                new TransactionOccured(
-                    "withdrawal",
-                    $user["name"],
-                    strval($this->amount / 100),
-                ),
-            );
 
             session()->flash(
                 "message",
                 "Withdrawal successful. You will receive an email when your withdrawal has been processed.",
             );
 
+            $this->reset([
+                "token",
+                "amount",
+                "amountToReceive",
+                "method",
+                "address",
+            ]);
             $this->redirectRoute("dashboard.transactions");
         } catch (\Exception $e) {
             $this->dispatch(
                 "withdraw-error",
                 message: $e->getMessage(),
             )->self();
+        } finally {
+            $this->processingWithdrawal = false;
         }
     }
 

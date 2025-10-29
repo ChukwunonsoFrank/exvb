@@ -31,39 +31,57 @@ class VerifyWithdrawTwofa extends Component
     public function verify2fa()
     {
         try {
+            // Validate 2FA code format
+            if (empty($this->code) || strlen($this->code) !== 6) {
+                throw new \Exception("Invalid 2FA code format");
+            }
+
             $google2fa = new Google2FA();
             $valid = $google2fa->verifyKey(
                 auth()->user()->google2fa_secret,
                 $this->code,
+                2, // Allow 2 time windows for clock drift
             );
-            if ($valid) {
-                $user = User::find(auth()->user()->id, ["*"]);
 
-                $userId = $user["id"];
-                $userLiveBalance = $user["live_balance"];
+            if (!$valid) {
+                $this->reset("code");
+                $this->dispatch("error", message: "Invalid 2FA code")->self();
+                return;
+            }
+
+            DB::transaction(function () {
+                // Lock the user record to prevent concurrent withdrawals
+                $user = User::where("id", "=", auth()->user()->id, "and")
+                    ->lockForUpdate()
+                    ->first();
+
+                if (!$user) {
+                    throw new \Exception("User not found");
+                }
+
+                $userId = $user->id;
+                $userLiveBalance = $user->live_balance;
+
                 $newBalance = $userLiveBalance - $this->amount;
 
-                DB::transaction(function () use (
-                    $userId,
-                    $newBalance,
-                ) {
-                    Withdrawal::create([
-                        "user_id" => $userId,
-                        "amount" => $this->amount,
-                        "received_amount" => $this->amountToReceive,
-                        "payment_method" => $this->method,
-                        "address" => $this->address,
-                        "status" => "pending",
-                    ]);
+                // Create withdrawal record
+                $withdrawal = Withdrawal::create([
+                    "user_id" => $userId,
+                    "amount" => $this->amount,
+                    "received_amount" => $this->amountToReceive,
+                    "payment_method" => $this->method,
+                    "address" => $this->address,
+                    "status" => "pending",
+                ]);
 
-                    User::where("id", "=", $userId, "and")->update([
-                        "live_balance" => $newBalance,
-                    ]);
-                });
+                // Update user balance atomically
+                $user->live_balance = $newBalance;
+                $user->save();
 
+                // Send notifications inside transaction
                 $user->notify(
                     new WithdrawalInitiated(
-                        $user["name"],
+                        $user->name,
                         strval($this->amount / 100),
                     ),
                 );
@@ -71,21 +89,18 @@ class VerifyWithdrawTwofa extends Component
                 Notification::route("mail", "fredhonest230@gmail.com")->notify(
                     new TransactionOccured(
                         "withdrawal",
-                        $user["name"],
+                        $user->name,
                         strval($this->amount / 100),
                     ),
                 );
+            });
 
-                session()->flash(
-                    "message",
-                    "Withdrawal successful. You will receive an email when your withdrawal has been processed.",
-                );
+            session()->flash(
+                "message",
+                "Withdrawal successful. You will receive an email when your withdrawal has been processed.",
+            );
 
-                $this->redirectRoute("dashboard.transactions");
-            } else {
-                $this->reset("code");
-                $this->dispatch("error", message: "Invalid code")->self();
-            }
+            $this->redirectRoute("dashboard.transactions");
         } catch (\Exception $e) {
             $this->dispatch("error", message: $e->getMessage())->self();
         }
