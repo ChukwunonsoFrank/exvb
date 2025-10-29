@@ -142,7 +142,7 @@
                         @foreach ($level1Downlines as $dl)
                             <div class="flex items-center rounded-full bg-accent px-3 py-2">
                                 <div>
-                                    <p class="text-xs text-white">{{ $dl['name'] }}</p>
+                                    <p class="text-xs text-white">{{ $dl }}</p>
                                 </div>
                             </div>
                         @endforeach
@@ -155,66 +155,13 @@
                         @foreach ($level2Downlines as $dl)
                             <div class="flex items-center rounded-full bg-accent px-3 py-2">
                                 <div>
-                                    <p class="text-xs text-white">{{ $dl['name'] }}</p>
+                                    <p class="text-xs text-white">{{ $dl }}</p>
                                 </div>
                             </div>
                         @endforeach
                     </div>
                 </div>
             </div>
-
-            {{-- <div class="mt-6">
-                <h1 class="text-white text-lg md:text-xl lg:text-2xl font-semibold">Earnings</h1>
-            </div>
-
-            <div class="mt-4 pb-24 h-96 md:h-[38rem] lg:h-80 overflow-scroll scrollbar-hide">
-                @forelse ($referrals as $referral)
-                    <div wire:key="referral-{{ $referral['id'] }}"
-                        class="bg-trade w-full rounded-sm flex flex-col space-y-2 p-3 mb-3">
-                        <div class="flex items-center">
-                            <div class="flex-1">
-                                <span
-                                    class="inline-flex items-center gap-x-1.5 py-1 px-2 rounded-full text-xs bg-trade-badge text-white">LEVEL
-                                    {{ $referral['level'] }}</span>
-                            </div>
-                            <div class="flex-1 text-end">
-                                <p class="text-gray-400 text-xs">{{ $referral['created_at_formatted'] }}</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center space-x-1">
-                            <div class="flex-none">
-                                <p class="font-semibold text-xs text-white md:text-sm">{{ $referral->user->name }}
-                                </p>
-                            </div>
-                            <div class="flex-1 pb-1">
-                                <span
-                                    class="inline-flex items-center gap-x-1.5 py-0.5 px-1.5 rounded-md text-[9px] font-semibold bg-green-600 text-white">{{ $this->getLevelPercentage($referral['level']) }}</span>
-                            </div>
-                            <div class="flex-none text-end">
-                                <p class="font-semibold text-sm md:text-base text-green-500">+@money($referral['amount'] / 100)</p>
-                            </div>
-                        </div>
-                    </div>
-                @empty
-                    <div class="flex justify-center items-center">
-                        <div class="bg-dim w-full rounded-lg flex flex-col space-y-2 p-3 mb-3">
-                            <div class="text-center">
-                                <p class="text-xs text-zinc-300">No redeemed referrals yet.</p>
-                            </div>
-                        </div>
-                    </div>
-                @endforelse
-                @if ($showLoadMoreButton)
-                    <div class="flex justify-center">
-                        <button wire:click="loadMore" wire:loading.attr="disabled" type="button"
-                            class="py-2 px-3 inline-flex items-center gap-x-2 text-xs font-normal rounded-full border border-gray-400 text-white shadow-2xs cursor-pointer disabled:opacity-50 disabled:pointer-events-none">
-                            <span wire:loading.remove wire:target="loadMore">Load more</span>
-                            <i wire:loading.remove wire:target="loadMore" class="fas fa-rotate"></i>
-                            <i wire:loading class="fas fa-rotate fa-spin"></i>
-                        </button>
-                    </div>
-                @endif
-            </div> --}}
         </div>
     </div>
 </div>

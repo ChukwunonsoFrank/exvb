@@ -53,67 +53,41 @@ class ShowReferrals extends Component
 
     public function render()
     {
-        $level1Referrals = Referral::where(
-            "user_id",
+        $level1Downlines = [];
+        $level2Downlines = [];
+
+        $level1Referrals = User::where(
+            "referred_by",
             "=",
-            auth()->user()->id,
+            auth()->user()->referral_code,
             "and",
         )
-            ->where("level", "=", "1", "and")
             ->latest()
             ->get();
-        $level2Referrals = Referral::where(
-            "user_id",
-            "=",
-            auth()->user()->id,
-            "and",
-        )
-            ->where("level", "=", "2", "and")
-            ->latest()
-            ->get();
-        $level1Downlines = collect();
-        $level2Downlines = collect();
 
-        $seenReferralCodes = [];
-        if ($level1Referrals) {
-            foreach ($level1Referrals as $lv1Ref) {
-                if (in_array($lv1Ref->referral_code, $seenReferralCodes)) {
-                    continue;
-                }
-                $users = User::where(
-                    "referral_code",
-                    "=",
-                    $lv1Ref->referral_code,
-                    "and",
-                )->get();
-                $level1Downlines = $level1Downlines->merge($users);
-                $seenReferralCodes[] = $lv1Ref->referral_code;
+        $level1Referrals->each(function ($user) use (
+            &$level1Downlines,
+            &$level2Downlines,
+        ) {
+            $level1Downlines[] = $user->name;
+
+            $level2Referrals = User::where(
+                "referred_by",
+                "=",
+                $user->referral_code,
+                "and",
+            )
+                ->latest()
+                ->get();
+
+            foreach ($level2Referrals as $level2User) {
+                $level2Downlines[] = $level2User->name;
             }
-        }
-
-        $seenReferralCodes = [];
-        if ($level2Referrals) {
-            foreach ($level2Referrals as $lv2Ref) {
-                if (in_array($lv2Ref->referral_code, $seenReferralCodes)) {
-                    continue;
-                }
-                $users = User::where(
-                    "referral_code",
-                    "=",
-                    $lv2Ref->referral_code,
-                    "and",
-                )->get();
-                $level2Downlines = $level2Downlines->merge($users);
-                $seenReferralCodes[] = $lv2Ref->referral_code;
-            }
-        }
-
-        // $showLoadMoreButton = $this->visibleCount < $this->totalReferrals;
+        });
 
         return view("livewire.dashboard.show-referrals", [
             "level1Downlines" => $level1Downlines,
             "level2Downlines" => $level2Downlines,
-            // 'showLoadMoreButton' => $showLoadMoreButton,
         ]);
     }
 }
