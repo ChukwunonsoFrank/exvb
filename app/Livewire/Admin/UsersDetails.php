@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin;
 
 use App\Models\Bot;
+use App\Models\Bonus;
 use App\Models\Deposit;
 use App\Models\Referral;
 use App\Models\Strategy;
@@ -142,6 +143,13 @@ class UsersDetails extends Component
                 // Update balance atomically
                 $user->live_balance += $bonusAmountInCents;
                 $user->save();
+
+                // Create a new bonus record
+                Bonus::create([
+                    'user_id' => $user->id,
+                    'amount' => $bonusAmountInCents,
+                    'type' => 'add',
+                ]);
             });
 
             session()->flash("success-message", "Bonus added successfully");
@@ -182,6 +190,13 @@ class UsersDetails extends Component
                 // Update balance atomically
                 $user->live_balance -= $bonusAmountInCents;
                 $user->save();
+
+                // Create a new bonus record
+                Bonus::create([
+                    'user_id' => $user->id,
+                    'amount' => $bonusAmountInCents,
+                    'type' => 'remove',
+                ]);
             });
 
             session()->flash("success-message", "Bonus removed successfully");
