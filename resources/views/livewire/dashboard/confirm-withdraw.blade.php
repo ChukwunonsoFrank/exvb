@@ -19,8 +19,7 @@
                     <div class="flex items-center gap-x-3 mb-3 text-left pb-2 lg:pt-4">
                         <div class="flex-none">
                             <h1 class="text-white text-lg md:text-xl lg:text-2xl font-bold">Withdraw with
-                                <img class="inline-block -mt-1 align-middle"
-                                    src="{{ Storage::url($this->iconUrl) }}">
+                                <img class="inline-block -mt-1 align-middle" src="{{ Storage::url($this->iconUrl) }}">
                                 {{ $this->method }}
                             </h1>
                         </div>
@@ -70,7 +69,8 @@
                     <div class="md:px-52">
                         <button wire:click="generateOTP()" type="button" wire:loading.attr="disabled"
                             class="py-2.5 cursor-pointer px-4 w-full md:px-6 text-center gap-x-2 text-sm font-semibold rounded-lg bg-accent text-white focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none">
-                            Confirm
+                            <i wire:loading class="fa-solid fa-circle-notch fa-spin"></i>
+                            <span wire:loading.remove>Confirm</span>
                         </button>
                     </div>
                 </div>
