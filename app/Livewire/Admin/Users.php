@@ -16,181 +16,181 @@ use Livewire\Component;
 #[Layout("components.layouts.admin")]
 class Users extends Component
 {
-    public string $query = "";
+  public string $query = "";
 
-    public function getStatusIndicatorColor(string $status)
-    {
-        if ($status === "active") {
-            return "bg-success-50 text-success-600";
-        }
-
-        if ($status === "inactive") {
-            return "bg-error-50 text-error-600";
-        }
+  public function getStatusIndicatorColor(string $status)
+  {
+    if ($status === "active") {
+      return "bg-success-50 text-success-600";
     }
 
-    public function deactivateUser(int $userId)
-    {
-        try {
-            User::where("id", "=", $userId, "and")->update([
-                "account_status" => "inactive",
-            ]);
-
-            $activeBot = Bot::where("user_id", "=", $userId, "and")
-                ->where("status", "=", "active", "and")
-                ->first();
-
-            if ($activeBot) {
-                $this->stopRobot($activeBot->id);
-            }
-
-            session()->flash("success-message", "Deactivation successful.");
-        } catch (\Exception $e) {
-            session()->flash("error-message", $e->getMessage());
-        }
+    if ($status === "inactive") {
+      return "bg-error-50 text-error-600";
     }
+  }
 
-    public function calculateFees(int $profit): int
-    {
-        $fee = intval(round(($profit * 5) / 100));
-        return $fee;
+  public function deactivateUser(int $userId)
+  {
+    try {
+      User::where("id", "=", $userId, "and")->update([
+        "account_status" => "inactive",
+      ]);
+
+      $activeBot = Bot::where("user_id", "=", $userId, "and")
+        ->where("status", "=", "active", "and")
+        ->first();
+
+      if ($activeBot) {
+        $this->stopRobot($activeBot->id);
+      }
+
+      session()->flash("success-message", "Deactivation successful.");
+    } catch (\Exception $e) {
+      session()->flash("error-message", $e->getMessage());
     }
+  }
 
-    public function stopRobot(int $botId)
-    {
-        try {
-            DB::transaction(function () use ($botId) {
-                // Lock the bot record first to prevent concurrent stops
-                $bot = Bot::where("id", "=", $botId, "and")
-                    ->lockForUpdate()
-                    ->first();
+  public function calculateFees(int $profit): int
+  {
+    $fee = intval(round(($profit * 5) / 100));
+    return $fee;
+  }
 
-                if (!$bot) {
-                    throw new \Exception("Bot not found");
-                }
+  public function stopRobot(int $botId)
+  {
+    try {
+      DB::transaction(function () use ($botId) {
+        // Lock the bot record first to prevent concurrent stops
+        $bot = Bot::where("id", "=", $botId, "and")
+          ->lockForUpdate()
+          ->first();
 
-                // Check if already stopped/closed
-                if ($bot->status === "closed") {
-                    throw new \Exception("Bot already stopped");
-                }
-
-                // Only allow stopping active bots
-                if ($bot->status !== "active") {
-                    throw new \Exception("Only active bots can be stopped");
-                }
-
-                $userId = $bot->user_id;
-                $accountType = $bot->account_type;
-                $amount = $bot->amount;
-                $profit = $bot->profit;
-                $fee = $this->calculateFees($profit);
-                $netProfit = $profit - $fee;
-
-                // Lock the user record for balance update
-                $user = User::where("id", "=", $userId, "and")
-                    ->lockForUpdate()
-                    ->first();
-
-                if (!$user) {
-                    throw new \Exception("User not found");
-                }
-
-                if ($accountType === "demo") {
-                    $currentBalance = $user->demo_balance;
-                    $newBalance = $currentBalance + $amount + $netProfit;
-
-                    // Update user balance
-                    $user->demo_balance = $newBalance;
-                    $user->save();
-                } elseif ($accountType === "live") {
-                    $currentBalance = $user->live_balance;
-                    $newBalance = $currentBalance + $amount + $netProfit;
-
-                    // Update user balance
-                    $user->live_balance = $newBalance;
-                    $user->save();
-                } else {
-                    throw new \Exception("Invalid account type");
-                }
-
-                // Update bot status
-                $bot->status = "closed";
-                $bot->save();
-            });
-
-            session()->flash("success-message", "Robot stopped successfully.");
-        } catch (\Exception $e) {
-            session()->flash("error-message", $e->getMessage());
-        }
-    }
-
-    public function destroyUser(int $userId)
-    {
-        try {
-            // Delete related KYC records
-            Kyc::where("user_id", "=", $userId, "and")->delete();
-
-            // Delete related deposit records
-            Deposit::where("user_id", "=", $userId, "and")->delete();
-
-            // Delete related withdrawal records
-            Withdrawal::where("user_id", "=", $userId, "and")->delete();
-
-            // Delete related bot records
-            Bot::where("user_id", "=", $userId, "and")->delete();
-
-            // Delete related bot trades records
-            Trade::where("user_id", "=", $userId, "and")->delete();
-
-            // Delete related bot trades records
-            OtpToken::where("user_id", "=", $userId, "and")->delete();
-
-            // Delete the user account
-            $user = User::findOrFail($userId);
-            $user->delete($userId);
-            session()->flash("success-message", "User deleted successfully.");
-        } catch (\Exception $e) {
-            session()->flash("error-message", $e->getMessage());
-        }
-    }
-
-    public function activateUser(int $userId)
-    {
-        try {
-            User::where("id", "=", $userId, "and")->update([
-                "account_status" => "active",
-            ]);
-            session()->flash("success-message", "Activation successful.");
-        } catch (\Exception $e) {
-            session()->flash("error-message", $e->getMessage());
-        }
-    }
-
-    public function search() {}
-
-    public function render()
-    {
-        $query = User::from("users as u")
-            ->leftJoin(
-                "users as referrers",
-                "u.referred_by",
-                "=",
-                "referrers.referral_code",
-            )
-            ->select("u.*", "referrers.name as referrer_name")
-            ->where("u.is_admin", 0);
-
-        if (!empty($this->query)) {
-            $query = $query->whereRaw(
-                "MATCH(u.name, u.email) AGAINST(? IN BOOLEAN MODE)",
-                [$this->query],
-            );
+        if (!$bot) {
+          throw new \Exception("Bot not found");
         }
 
-        $users = $query->latest()->paginate(20);
+        // Check if already stopped/closed
+        if ($bot->status === "closed") {
+          throw new \Exception("Bot already stopped");
+        }
 
-        return view("livewire.admin.users", [
-            "users" => $users,
-        ]);
+        // Only allow stopping active bots
+        if ($bot->status !== "active") {
+          throw new \Exception("Only active bots can be stopped");
+        }
+
+        $userId = $bot->user_id;
+        $accountType = $bot->account_type;
+        $amount = $bot->amount;
+        $profit = $bot->profit;
+        $fee = $this->calculateFees($profit);
+        $netProfit = $profit - $fee;
+
+        // Lock the user record for balance update
+        $user = User::where("id", "=", $userId, "and")
+          ->lockForUpdate()
+          ->first();
+
+        if (!$user) {
+          throw new \Exception("User not found");
+        }
+
+        if ($accountType === "demo") {
+          $currentBalance = $user->demo_balance;
+          $newBalance = $currentBalance + $amount + $netProfit;
+
+          // Update user balance
+          $user->demo_balance = $newBalance;
+          $user->save();
+        } elseif ($accountType === "live") {
+          $currentBalance = $user->live_balance;
+          $newBalance = $currentBalance + $amount + $netProfit;
+
+          // Update user balance
+          $user->live_balance = $newBalance;
+          $user->save();
+        } else {
+          throw new \Exception("Invalid account type");
+        }
+
+        // Update bot status
+        $bot->status = "closed";
+        $bot->save();
+      });
+
+      session()->flash("success-message", "Robot stopped successfully.");
+    } catch (\Exception $e) {
+      session()->flash("error-message", $e->getMessage());
     }
+  }
+
+  public function destroyUser(int $userId)
+  {
+    try {
+      // Delete related KYC records
+      Kyc::where("user_id", "=", $userId, "and")->delete();
+
+      // Delete related deposit records
+      Deposit::where("user_id", "=", $userId, "and")->delete();
+
+      // Delete related withdrawal records
+      Withdrawal::where("user_id", "=", $userId, "and")->delete();
+
+      // Delete related bot trades records
+      Trade::where("user_id", "=", $userId, "and")->delete();
+
+      // Delete related bot records
+      Bot::where("user_id", "=", $userId, "and")->delete();
+
+      // Delete related bot trades records
+      OtpToken::where("user_id", "=", $userId, "and")->delete();
+
+      // Delete the user account
+      $user = User::findOrFail($userId);
+      $user->delete($userId);
+      session()->flash("success-message", "User deleted successfully.");
+    } catch (\Exception $e) {
+      session()->flash("error-message", $e->getMessage());
+    }
+  }
+
+  public function activateUser(int $userId)
+  {
+    try {
+      User::where("id", "=", $userId, "and")->update([
+        "account_status" => "active",
+      ]);
+      session()->flash("success-message", "Activation successful.");
+    } catch (\Exception $e) {
+      session()->flash("error-message", $e->getMessage());
+    }
+  }
+
+  public function search() {}
+
+  public function render()
+  {
+    $query = User::from("users as u")
+      ->leftJoin(
+        "users as referrers",
+        "u.referred_by",
+        "=",
+        "referrers.referral_code",
+      )
+      ->select("u.*", "referrers.name as referrer_name")
+      ->where("u.is_admin", 0);
+
+    if (!empty($this->query)) {
+      $query = $query->whereRaw(
+        "MATCH(u.name, u.email) AGAINST(? IN BOOLEAN MODE)",
+        [$this->query],
+      );
+    }
+
+    $users = $query->latest()->paginate(20);
+
+    return view("livewire.admin.users", [
+      "users" => $users,
+    ]);
+  }
 }

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use App\Notifications\DepositApproved;
 use App\Notifications\DepositDeclined;
 use App\Notifications\CommissionEarned;
+use Illuminate\Support\Facades\Log;
 
 #[Layout("components.layouts.admin")]
 class AdminDeposit extends Component
@@ -48,6 +49,8 @@ class AdminDeposit extends Component
       if ($currentUpline !== null) {
         $this->firstUpline = $currentUpline;
         $this->level += 1;
+        Log::info("First upline found: " . $this->firstUpline["id"]);
+        Log::info("Level: " . $this->level);
         $currentUpline = User::where(
           "referral_code",
           "=",
@@ -58,6 +61,8 @@ class AdminDeposit extends Component
           $this->secondUpline = $this->firstUpline;
           $this->firstUpline = $currentUpline;
           $this->level += 1;
+          Log::info("Second upline found: " . $this->firstUpline["id"]);
+          Log::info("Level: " . $this->level);
         }
       }
     } catch (\Exception $e) {
@@ -105,6 +110,8 @@ class AdminDeposit extends Component
             "deposit",
           ),
         );
+
+        Log::info("Ran level 1 referral payout for user ID: " . $firstUpline->id);
       }
 
       if ($this->level === 2) {
@@ -174,6 +181,8 @@ class AdminDeposit extends Component
             "deposit",
           ),
         );
+
+        Log::info("Ran level 1 & 2 referral payout for user IDs: " . $firstUpline->id . ", " . $secondUpline->id);
       }
     } catch (\Exception $e) {
       session()->flash("error-message", $e->getMessage());
@@ -225,7 +234,9 @@ class AdminDeposit extends Component
 
         // Process referral payouts if applicable
         if ($user->referred_by !== null) {
+          Log::info("Processing referral payouts for user ID: " . $user->id);
           $this->computeUpline($user->referred_by);
+          Log::info("Current Level: " . $this->level);
           $this->processReferralPayouts(
             $amount,
             $user->referral_code,
