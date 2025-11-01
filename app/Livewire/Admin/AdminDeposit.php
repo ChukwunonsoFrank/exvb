@@ -39,34 +39,30 @@ class AdminDeposit extends Component
 
   public function computeUpline(string $referredBy)
   {
-    try {
+    $currentUpline = User::where(
+      "referral_code",
+      "=",
+      $referredBy,
+      "and",
+    )->first();
+    if ($currentUpline !== null) {
+      $this->firstUpline = $currentUpline;
+      $this->level += 1;
+      Log::info("First upline found: " . $this->firstUpline["id"]);
+      Log::info("Level: " . $this->level);
       $currentUpline = User::where(
         "referral_code",
         "=",
-        $referredBy,
+        $currentUpline["referred_by"],
         "and",
       )->first();
       if ($currentUpline !== null) {
+        $this->secondUpline = $this->firstUpline;
         $this->firstUpline = $currentUpline;
         $this->level += 1;
-        Log::info("First upline found: " . $this->firstUpline["id"]);
+        Log::info("Second upline found: " . $this->firstUpline["id"]);
         Log::info("Level: " . $this->level);
-        $currentUpline = User::where(
-          "referral_code",
-          "=",
-          $currentUpline["referred_by"],
-          "and",
-        )->first();
-        if ($currentUpline !== null) {
-          $this->secondUpline = $this->firstUpline;
-          $this->firstUpline = $currentUpline;
-          $this->level += 1;
-          Log::info("Second upline found: " . $this->firstUpline["id"]);
-          Log::info("Level: " . $this->level);
-        }
       }
-    } catch (\Exception $e) {
-      session()->flash("error-message", $e->getMessage());
     }
   }
 
@@ -75,117 +71,113 @@ class AdminDeposit extends Component
     string $referralCode,
     string $depositOwnerName,
   ) {
-    try {
-      if ($this->level === 1) {
-        // Lock and fetch the first upline user
-        $firstUpline = User::where("id", "=", $this->firstUpline["id"], "and")
-          ->lockForUpdate()
-          ->first();
+    if ($this->level === 1) {
+      // Lock and fetch the first upline user
+      $firstUpline = User::where("id", "=", $this->firstUpline["id"], "and")
+        ->lockForUpdate()
+        ->first();
 
-        if (!$firstUpline) {
-          throw new \Exception("First upline user not found");
-        }
-
-        /**
-         * Top upline commission
-         */
-        $commission = intval(round($depositAmount * (8 / 100)));
-        $newFirstUplineBalance = $firstUpline->live_balance + $commission;
-
-        $firstUpline->live_balance = $newFirstUplineBalance;
-        $firstUpline->save();
-
-        Referral::create([
-          "user_id" => $firstUpline->id,
-          "referral_code" => $referralCode,
-          "amount" => $commission,
-          "level" => "1",
-        ]);
-
-        $firstUpline->notify(
-          new CommissionEarned(
-            $firstUpline->name,
-            $depositOwnerName,
-            strval($commission / 100),
-            "deposit",
-          ),
-        );
-
-        Log::info("Ran level 1 referral payout for user ID: " . $firstUpline->id);
+      if (!$firstUpline) {
+        throw new \Exception("First upline user not found");
       }
 
-      if ($this->level === 2) {
-        // Lock both upline users to prevent race conditions
-        $secondUpline = User::where("id", "=", $this->secondUpline["id"], "and")
-          ->lockForUpdate()
-          ->first();
+      /**
+       * Top upline commission
+       */
+      $commission = intval(round($depositAmount * (8 / 100)));
+      $newFirstUplineBalance = $firstUpline->live_balance + $commission;
 
-        if (!$secondUpline) {
-          throw new \Exception("Second upline user not found");
-        }
+      $firstUpline->live_balance = $newFirstUplineBalance;
+      $firstUpline->save();
 
-        $firstUpline = User::where("id", "=", $this->firstUpline["id"], "and")
-          ->lockForUpdate()
-          ->first();
+      Referral::create([
+        "user_id" => $firstUpline->id,
+        "referral_code" => $referralCode,
+        "amount" => $commission,
+        "level" => "1",
+      ]);
 
-        if (!$firstUpline) {
-          throw new \Exception("First upline user not found");
-        }
+      $firstUpline->notify(
+        new CommissionEarned(
+          $firstUpline->name,
+          $depositOwnerName,
+          strval($commission / 100),
+          "deposit",
+        ),
+      );
 
-        /**
-         * Middle upline commission
-         */
-        $commission = intval(round($depositAmount * (8 / 100)));
-        $newSecondUplineBalance = $secondUpline->live_balance + $commission;
+      Log::info("Ran level 1 referral payout for user ID: " . $firstUpline->id);
+    }
 
-        $secondUpline->live_balance = $newSecondUplineBalance;
-        $secondUpline->save();
+    if ($this->level === 2) {
+      // Lock both upline users to prevent race conditions
+      $secondUpline = User::where("id", "=", $this->secondUpline["id"], "and")
+        ->lockForUpdate()
+        ->first();
 
-        Referral::create([
-          "user_id" => $secondUpline->id,
-          "referral_code" => $referralCode,
-          "amount" => $commission,
-          "level" => "1",
-        ]);
-
-        $secondUpline->notify(
-          new CommissionEarned(
-            $secondUpline->name,
-            $depositOwnerName,
-            strval($commission / 100),
-            "deposit",
-          ),
-        );
-
-        /**
-         * First upline commission
-         */
-        $commission = intval(round($depositAmount * (4 / 100)));
-        $newFirstUplineBalance = $firstUpline->live_balance + $commission;
-
-        $firstUpline->live_balance = $newFirstUplineBalance;
-        $firstUpline->save();
-
-        Referral::create([
-          "user_id" => $firstUpline->id,
-          "referral_code" => $referralCode,
-          "amount" => $commission,
-          "level" => "2",
-        ]);
-
-        $firstUpline->notify(
-          new CommissionEarned(
-            $firstUpline->name,
-            $depositOwnerName,
-            strval($commission / 100),
-            "deposit",
-          ),
-        );
-
-        Log::info("Ran level 1 & 2 referral payout for user IDs: " . $firstUpline->id . ", " . $secondUpline->id);
+      if (!$secondUpline) {
+        throw new \Exception("Second upline user not found");
       }
-    } catch (\Exception $e) {
-      session()->flash("error-message", $e->getMessage());
+
+      $firstUpline = User::where("id", "=", $this->firstUpline["id"], "and")
+        ->lockForUpdate()
+        ->first();
+
+      if (!$firstUpline) {
+        throw new \Exception("First upline user not found");
+      }
+
+      /**
+       * Middle upline commission
+       */
+      $commission = intval(round($depositAmount * (8 / 100)));
+      $newSecondUplineBalance = $secondUpline->live_balance + $commission;
+
+      $secondUpline->live_balance = $newSecondUplineBalance;
+      $secondUpline->save();
+
+      Referral::create([
+        "user_id" => $secondUpline->id,
+        "referral_code" => $referralCode,
+        "amount" => $commission,
+        "level" => "1",
+      ]);
+
+      $secondUpline->notify(
+        new CommissionEarned(
+          $secondUpline->name,
+          $depositOwnerName,
+          strval($commission / 100),
+          "deposit",
+        ),
+      );
+
+      /**
+       * First upline commission
+       */
+      $commission = intval(round($depositAmount * (4 / 100)));
+      $newFirstUplineBalance = $firstUpline->live_balance + $commission;
+
+      $firstUpline->live_balance = $newFirstUplineBalance;
+      $firstUpline->save();
+
+      Referral::create([
+        "user_id" => $firstUpline->id,
+        "referral_code" => $referralCode,
+        "amount" => $commission,
+        "level" => "2",
+      ]);
+
+      $firstUpline->notify(
+        new CommissionEarned(
+          $firstUpline->name,
+          $depositOwnerName,
+          strval($commission / 100),
+          "deposit",
+        ),
+      );
+
+      Log::info("Ran level 1 & 2 referral payout for user IDs: " . $firstUpline->id . ", " . $secondUpline->id);
     }
   }
 
