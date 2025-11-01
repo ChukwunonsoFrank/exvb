@@ -205,6 +205,11 @@ class Traderoom extends Component
 
   public function computeUpline(string $referredBy)
   {
+    // Reset properties
+    $this->firstUpline = null;
+    $this->secondUpline = null;
+    $this->level = 0;
+
     $currentUpline = User::where(
       "referral_code",
       "=",
@@ -213,7 +218,7 @@ class Traderoom extends Component
     )->first();
     if ($currentUpline !== null) {
       $this->firstUpline = $currentUpline;
-      $this->level += 1;
+      $this->level = 1;
       $currentUpline = User::where(
         "referral_code",
         "=",
@@ -223,7 +228,7 @@ class Traderoom extends Component
       if ($currentUpline !== null) {
         $this->secondUpline = $this->firstUpline;
         $this->firstUpline = $currentUpline;
-        $this->level += 1;
+        $this->level = 2;
       }
     }
   }

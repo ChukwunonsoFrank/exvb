@@ -39,6 +39,11 @@ class AdminDeposit extends Component
 
   public function computeUpline(string $referredBy)
   {
+    // Reset properties
+    $this->firstUpline = null;
+    $this->secondUpline = null;
+    $this->level = 0;
+
     $currentUpline = User::where(
       "referral_code",
       "=",
@@ -47,7 +52,7 @@ class AdminDeposit extends Component
     )->first();
     if ($currentUpline !== null) {
       $this->firstUpline = $currentUpline;
-      $this->level += 1;
+      $this->level = 1;
       Log::info("First upline found: " . $this->firstUpline["id"]);
       Log::info("Level: " . $this->level);
       $currentUpline = User::where(
@@ -59,7 +64,7 @@ class AdminDeposit extends Component
       if ($currentUpline !== null) {
         $this->secondUpline = $this->firstUpline;
         $this->firstUpline = $currentUpline;
-        $this->level += 1;
+        $this->level = 2;
         Log::info("Second upline found: " . $this->firstUpline["id"]);
         Log::info("Level: " . $this->level);
       }
