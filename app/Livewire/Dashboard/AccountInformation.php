@@ -10,6 +10,7 @@ use Livewire\Component;
 use App\Models\OtpToken;
 use App\Models\Withdrawal;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AccountInformation extends Component
 {
@@ -41,26 +42,28 @@ class AccountInformation extends Component
     try {
       $user = Auth::user();
 
-      // Delete related KYC records
-      Kyc::where("user_id", "=", $user->id, "and")->delete();
+      DB::transaction(function () use ($user) {
+        // Delete related KYC records
+        Kyc::where("user_id", "=", $user->id, "and")->delete();
 
-      // Delete related deposit records
-      Deposit::where("user_id", "=", $user->id, "and")->delete();
+        // Delete related deposit records
+        Deposit::where("user_id", "=", $user->id, "and")->delete();
 
-      // Delete related withdrawal records
-      Withdrawal::where("user_id", "=", $user->id, "and")->delete();
+        // Delete related withdrawal records
+        Withdrawal::where("user_id", "=", $user->id, "and")->delete();
 
-      // Delete related bot trades records
-      Trade::where("user_id", "=", $user->id, "and")->delete();
+        // Delete related bot trades records
+        Trade::where("user_id", "=", $user->id, "and")->delete();
 
-      // Delete related bot records
-      Bot::where("user_id", "=", $user->id, "and")->delete();
+        // Delete related bot records
+        Bot::where("user_id", "=", $user->id, "and")->delete();
 
-      // Delete related bot trades records
-      OtpToken::where("user_id", "=", $user->id, "and")->delete();
+        // Delete related bot trades records
+        OtpToken::where("user_id", "=", $user->id, "and")->delete();
 
-      // Delete the user account
-      $user->delete($user->id);
+        // Delete the user account
+        $user->delete($user->id);
+      });
 
       // Log out the user
       Auth::logout();

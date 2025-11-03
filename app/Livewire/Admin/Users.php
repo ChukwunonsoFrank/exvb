@@ -127,27 +127,30 @@ class Users extends Component
   public function destroyUser(int $userId)
   {
     try {
-      // Delete related KYC records
-      Kyc::where("user_id", "=", $userId, "and")->delete();
+      DB::transaction(function () use ($userId) {
+        // Delete related KYC records
+        Kyc::where("user_id", "=", $userId, "and")->delete();
 
-      // Delete related deposit records
-      Deposit::where("user_id", "=", $userId, "and")->delete();
+        // Delete related deposit records
+        Deposit::where("user_id", "=", $userId, "and")->delete();
 
-      // Delete related withdrawal records
-      Withdrawal::where("user_id", "=", $userId, "and")->delete();
+        // Delete related withdrawal records
+        Withdrawal::where("user_id", "=", $userId, "and")->delete();
 
-      // Delete related bot trades records
-      Trade::where("user_id", "=", $userId, "and")->delete();
+        // Delete related bot trades records
+        Trade::where("user_id", "=", $userId, "and")->delete();
 
-      // Delete related bot records
-      Bot::where("user_id", "=", $userId, "and")->delete();
+        // Delete related bot records
+        Bot::where("user_id", "=", $userId, "and")->delete();
 
-      // Delete related bot trades records
-      OtpToken::where("user_id", "=", $userId, "and")->delete();
+        // Delete related bot trades records
+        OtpToken::where("user_id", "=", $userId, "and")->delete();
 
-      // Delete the user account
-      $user = User::findOrFail($userId);
-      $user->delete($userId);
+        // Delete the user account
+        $user = User::findOrFail($userId);
+        $user->delete($userId);
+      });
+
       session()->flash("success-message", "User deleted successfully.");
     } catch (\Exception $e) {
       session()->flash("error-message", $e->getMessage());
