@@ -135,7 +135,32 @@
                                                 </div>
                                             </td>
                                             <td class="px-5 py-3 whitespace-nowrap sm:px-6">
-                                                <div class="flex items-center">
+                                                <div class="flex items-center gap-x-1">
+                                                    <div x-on:click="$store.adminWithdrawalsPage.copyWalletAddress('withdraw-address-{{ $withdrawal['address'] }}')"
+                                                        class="cursor-pointer">
+                                                        <svg width="14" height="14" viewBox="0 0 14 14"
+                                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_3044_32)">
+                                                                <path
+                                                                    d="M11.6667 4.66675H5.83341C5.18908 4.66675 4.66675 5.18908 4.66675 5.83341V11.6667C4.66675 12.3111 5.18908 12.8334 5.83341 12.8334H11.6667C12.3111 12.8334 12.8334 12.3111 12.8334 11.6667V5.83341C12.8334 5.18908 12.3111 4.66675 11.6667 4.66675Z"
+                                                                    stroke="#344054" stroke-linecap="round"
+                                                                    stroke-linejoin="round" />
+                                                                <path
+                                                                    d="M2.33341 9.33342C1.69175 9.33342 1.16675 8.80842 1.16675 8.16675V2.33341C1.16675 1.69175 1.69175 1.16675 2.33341 1.16675H8.16675C8.80842 1.16675 9.33342 1.69175 9.33342 2.33341"
+                                                                    stroke="#344054" stroke-linecap="round"
+                                                                    stroke-linejoin="round" />
+                                                            </g>
+                                                            <defs>
+                                                                <clipPath id="clip0_3044_32">
+                                                                    <rect width="14" height="14"
+                                                                        fill="white" />
+                                                                </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </div>
+                                                    <input id="withdraw-address-{{ $withdrawal['address'] }}"
+                                                        type="text" class="hidden"
+                                                        value="{{ $withdrawal['address'] }}">
                                                     <p class="text-theme-sm text-gray-700 dark:text-gray-400">
                                                         {{ $withdrawal['address'] }}
                                                     </p>
@@ -211,3 +236,64 @@
     <!-- ===== Main Content End ===== -->
 </div>
 <!-- ===== Content Area End ===== -->
+
+<script>
+    let lastToast = null;
+
+    function toastCopied() {
+        if (lastToast) {
+            lastToast.hideToast();
+        }
+
+        const copiedToastMarkup = `
+        <div class="mx-auto p-4">
+            <div wire:key="success-{{ time() }}" x-data="{ show: true }" x-show="show" x-init="setTimeout(() => { show = false }, 4000)"
+                    x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 transform scale-90"
+                    x-transition:enter-end="opacity-100 transform scale-100"
+                    x-transition:leave="transition ease-in duration-300"
+                    x-transition:leave-start="opacity-100 transform scale-100"
+                    x-transition:leave-end="opacity-0 transform scale-90"
+                    class="rounded-xl border border-success-500 bg-success-50 p-4 mb-4 dark:border-success-500/30 dark:bg-success-500/15">
+                    <div class="flex items-start gap-3">
+                        <div class="-mt-0.5 text-success-500">
+                            <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M3.70186 12.0001C3.70186 7.41711 7.41711 3.70186 12.0001 3.70186C16.5831 3.70186 20.2984 7.41711 20.2984 12.0001C20.2984 16.5831 16.5831 20.2984 12.0001 20.2984C7.41711 20.2984 3.70186 16.5831 3.70186 12.0001ZM12.0001 1.90186C6.423 1.90186 1.90186 6.423 1.90186 12.0001C1.90186 17.5772 6.423 22.0984 12.0001 22.0984C17.5772 22.0984 22.0984 17.5772 22.0984 12.0001C22.0984 6.423 17.5772 1.90186 12.0001 1.90186ZM15.6197 10.7395C15.9712 10.388 15.9712 9.81819 15.6197 9.46672C15.2683 9.11525 14.6984 9.11525 14.347 9.46672L11.1894 12.6243L9.6533 11.0883C9.30183 10.7368 8.73198 10.7368 8.38051 11.0883C8.02904 11.4397 8.02904 12.0096 8.38051 12.3611L10.553 14.5335C10.7217 14.7023 10.9507 14.7971 11.1894 14.7971C11.428 14.7971 11.657 14.7023 11.8257 14.5335L15.6197 10.7395Z"
+                                    fill="" />
+                            </svg>
+                        </div>
+
+                        <div>
+                            <h4 class="mb-1 text-sm font-semibold text-gray-800 dark:text-white/90">
+                                Copied wallet address
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+                </div>
+        `;
+
+        lastToast = Toastify({
+            text: copiedToastMarkup,
+            duration: 4000,
+            close: false,
+            escapeMarkup: false
+        });
+
+        lastToast.showToast();
+    }
+
+    document.addEventListener('alpine:init', () => {
+        Alpine.store('adminWithdrawalsPage', {
+            copyWalletAddress(id) {
+                var copyText = document.getElementById(id);
+                copyText.select();
+                copyText.setSelectionRange(0, 99999); // For mobile devices
+                navigator.clipboard.writeText(copyText.value);
+                toastCopied();
+            }
+        })
+    })
+</script>

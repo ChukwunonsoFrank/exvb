@@ -671,6 +671,13 @@
             },
 
             toggleStartRobotConfirmationModal(wire) {
+                if (wire.isBanned) {
+                    toastRobotError(
+                        'Your account has been banned. Reach out to support at support@moxyai.com.'
+                    );
+                    return;
+                }
+
                 if (wire.accountStatus === 'inactive') {
                     toastRobotError(
                         'This account has been disabled and unable to perform any transactions. Kindly contact support for more details.'

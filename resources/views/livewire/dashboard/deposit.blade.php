@@ -406,9 +406,16 @@
                     return;
                 }
 
+                if (wire.isBanned) {
+                    this.isPaymentMethodSelectVisible = false;
+                    let message =
+                        'Your account has been banned. Reach out to support at support@moxyai.com.';
+                    toast('deposit-error', message);
+                    return;
+                }
+
                 if (parseFloat(this.amount) < parseInt(wire.minimumDepositAmount) && parseFloat(wire
                         .amount) !== 0) {
-                    console.log('ran');
                     this.isPaymentMethodSelectVisible = false;
                     let message = `Minimum deposit is $${wire.minimumDepositAmount}`;
                     toast('deposit-error', message);

@@ -150,10 +150,18 @@
                                                         class="text-theme-sm block font-medium text-gray-700 dark:text-gray-400">
                                                         {{ $user['name'] }}
                                                     </p>
-                                                    <p
-                                                        class="text-theme-xs bg-success-50 text-success-600 rounded-full px-2 py-0.5 font-medium">
-                                                        {{ $user['referrer_name'] }}
-                                                    </p>
+                                                    @if ($user['referrer_name'])
+                                                        <p
+                                                            class="text-theme-xs bg-success-50 text-success-600 rounded-full px-2 py-0.5 font-medium">
+                                                            {{ $user['referrer_name'] }}
+                                                        </p>
+                                                    @endif
+                                                    @if ($user['is_banned'])
+                                                        <p
+                                                            class="text-theme-xs bg-error-50 text-error-600 rounded-full px-2 py-0.5 font-medium">
+                                                            Banned
+                                                        </p>
+                                                    @endif
                                                 </div>
                                             </td>
                                             <td class="py-3 pr-5 whitespace-nowrap sm:pr-5">
@@ -237,14 +245,25 @@
                                                                     </button>
                                                                 </form>
                                                             @endif
-                                                            <form
-                                                                wire:submit.prevent="destroyUser({{ $user['id'] }})">
-                                                                <button type="submit"
-                                                                    x-on:click="isActionDropdownOpen = false"
-                                                                    class="text-theme-xs flex w-full rounded-lg px-3 py-2 text-left font-medium text-error-600">
-                                                                    Delete user
-                                                                </button>
-                                                            </form>
+                                                            @if ($user['is_banned'])
+                                                                <form
+                                                                    wire:submit.prevent="unbanUser({{ $user['id'] }})">
+                                                                    <button type="submit"
+                                                                        x-on:click="isActionDropdownOpen = false"
+                                                                        class="text-theme-xs flex w-full rounded-lg px-3 py-2 text-left font-medium text-success-600">
+                                                                        Unban user
+                                                                    </button>
+                                                                </form>
+                                                            @else
+                                                                <form
+                                                                    wire:submit.prevent="banUser({{ $user['id'] }})">
+                                                                    <button type="submit"
+                                                                        x-on:click="isActionDropdownOpen = false"
+                                                                        class="text-theme-xs flex w-full rounded-lg px-3 py-2 text-left font-medium text-error-600">
+                                                                        Ban user
+                                                                    </button>
+                                                                </form>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>

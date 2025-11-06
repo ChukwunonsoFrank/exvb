@@ -247,6 +247,7 @@ $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(valu
         {{ $slot }}
 
     </div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     @livewireScripts
     {{-- @vite('resources/js/app.js') --}}
 </body>

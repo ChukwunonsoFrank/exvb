@@ -81,7 +81,7 @@ Route::get("/find-us", FindUs::class)->name("findus");
 Route::get("/terms", Terms::class)->name("terms");
 Route::get("/privacy", Privacy::class)->name("privacy");
 
-Route::middleware(["auth", "user"])->group(function () {
+Route::middleware(["auth", "user", "banned"])->group(function () {
     Route::get("/dashboard", Index::class)
         ->middleware(["auth", "verified"])
         ->name("dashboard");

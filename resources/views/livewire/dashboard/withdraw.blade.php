@@ -413,6 +413,14 @@
                     return;
                 }
 
+                if (wire.isBanned) {
+                    this.isPaymentMethodSelectVisible = false;
+                    let message =
+                        'Your account has been banned. Reach out to support at support@moxyai.com.';
+                    toast('withdraw-error', message);
+                    return;
+                }
+
                 if (parseFloat(this.amount) < parseInt(wire.minimumWithdrawAmount) && parseFloat(wire
                         .amount) !== 0) {
                     this.isPaymentMethodSelectVisible = false;

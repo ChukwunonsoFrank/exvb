@@ -3,26 +3,33 @@
 namespace App\Livewire\Actions;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Session;
 
 class Logout
 {
-  /**
-   * Log the current user out of the application.
-   */
-  public function __invoke()
-  {
-    Auth::guard('web')->logout();
+    /**
+     * Log the current user out of the application.
+     */
+    public function __invoke()
+    {
+        $userId = Auth::id();
+        $sessionId = session()->getId();
 
-    $loggedInFromApp = session('device');
+        // Remove this session from the tracking set
+        Redis::connection()->srem("user:{$userId}:sessions", $sessionId);
 
-    Session::invalidate();
-    Session::regenerateToken();
+        Auth::guard("web")->logout();
 
-    if ($loggedInFromApp === 'app') {
-      return redirect('/applogin');
+        $loggedInFromApp = session("device");
+
+        Session::invalidate();
+        Session::regenerateToken();
+
+        if ($loggedInFromApp === "app") {
+            return redirect("/applogin");
+        }
+
+        return redirect("/login");
     }
-
-    return redirect('/login');
-  }
 }
