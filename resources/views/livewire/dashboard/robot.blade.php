@@ -390,6 +390,156 @@
                     </div>
                 </div>
 
+                <div id="safariInstallModal"
+                    class="hidden fixed top-0 left-0 h-svh w-full px-4 lg:px-96 pt-6 z-20">
+                    <div class="absolute inset-0 h-svh w-full px-4 lg:px-96 pt-6 z-20 bg-dashboard opacity-85"></div>
+                    <div class="relative w-full h-full flex items-center justify-center z-30">
+                        <div
+                            class="max-w-sm mx-auto flex flex-col bg-dashboard border border-[#26252a] rounded-2xl pointer-events-auto">
+                            <div class="p-6 overflow-y-auto">
+                                <div class="flex items-center gap-x-3 mb-4">
+                                    <div
+                                        class="size-12 p-2 flex items-center justify-center rounded-lg border-3 border-accent">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 18H12.01M7 2H17C18.1046 2 19 2.89543 19 4V20C19 21.1046 18.1046 22 17 22H7C5.89543 22 5 21.1046 5 20V4C5 2.89543 5.89543 2 7 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                    </div>
+                                    <div>
+                                        <h1 class="text-white font-bold text-base">Install Moxyai</h1>
+                                        <p class="text-white text-xs">Add to your phone</p>
+                                    </div>
+                                </div>
+                                <p class="text-white font-medium text-sm mb-4">
+                                    Install Moxyai on your phone for quick access and a native app experience.
+                                </p>
+
+                                <div class="p-4 bg-dim rounded-md mb-4">
+                                    <h2 class="text-white font-semibold text-sm mb-2">Follow these steps:</h2>
+                                    <ul class="list-disc list-inside text-white text-sm">
+                                        <li>Tap the <span class="font-bold">"Share"</span> button <svg xmlns="http://www.w3.org/2000/svg" class="inline w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8m-8-8v12m0-12l-4 4m4-4l4 4"/></svg> <span class="text-xs">(bottom of the Safari browser)</span></li>
+                                        <li>Scroll down and tap <span class="font-bold">"Add to Home Screen"</span></li>
+                                        <li>Tap <span class="font-bold">"Add"</span> to install Moxyai</li>
+                                    </ul>
+                                </div>
+
+                                {{-- <div>
+                                    <div class="flex items-center gap-x-2 mb-1">
+                                        <div><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_3087_47)">
+                                        <path d="M7.00002 1.16675C10.2218 1.16675 12.8334 3.77833 12.8334 7.00008C12.8334 10.2218 10.2218 12.8334 7.00002 12.8334C3.77827 12.8334 1.16669 10.2218 1.16669 7.00008C1.16669 3.77833 3.77827 1.16675 7.00002 1.16675ZM9.0621 4.889L6.1746 7.7765L4.93794 6.53925C4.88378 6.48505 4.81947 6.44205 4.7487 6.41271C4.67792 6.38336 4.60206 6.36824 4.52544 6.36821C4.37069 6.36816 4.22227 6.42958 4.11281 6.53896C4.00336 6.64834 3.94183 6.79672 3.94178 6.95146C3.94172 7.1062 4.00314 7.25462 4.11252 7.36408L5.72135 8.97292C5.78094 9.03253 5.85169 9.07982 5.92956 9.11209C6.00743 9.14435 6.0909 9.16096 6.17519 9.16096C6.25948 9.16096 6.34294 9.14435 6.42081 9.11209C6.49868 9.07982 6.56943 9.03253 6.62902 8.97292L9.88752 5.71441C9.99698 5.60496 10.0585 5.4565 10.0585 5.30171C10.0585 5.14691 9.99698 4.99846 9.88752 4.889C9.77806 4.77954 9.62961 4.71805 9.47481 4.71805C9.32002 4.71805 9.17156 4.77954 9.0621 4.889Z" fill="#20CC6A"/>
+                                        </g>
+                                        <defs>
+                                        <clipPath id="clip0_3087_47">
+                                        <rect width="14" height="14" fill="white"/>
+                                        </clipPath>
+                                        </defs>
+                                        </svg>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs text-white">Works offline</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center gap-x-2 mb-1">
+                                        <div><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_3087_47)">
+                                        <path d="M7.00002 1.16675C10.2218 1.16675 12.8334 3.77833 12.8334 7.00008C12.8334 10.2218 10.2218 12.8334 7.00002 12.8334C3.77827 12.8334 1.16669 10.2218 1.16669 7.00008C1.16669 3.77833 3.77827 1.16675 7.00002 1.16675ZM9.0621 4.889L6.1746 7.7765L4.93794 6.53925C4.88378 6.48505 4.81947 6.44205 4.7487 6.41271C4.67792 6.38336 4.60206 6.36824 4.52544 6.36821C4.37069 6.36816 4.22227 6.42958 4.11281 6.53896C4.00336 6.64834 3.94183 6.79672 3.94178 6.95146C3.94172 7.1062 4.00314 7.25462 4.11252 7.36408L5.72135 8.97292C5.78094 9.03253 5.85169 9.07982 5.92956 9.11209C6.00743 9.14435 6.0909 9.16096 6.17519 9.16096C6.25948 9.16096 6.34294 9.14435 6.42081 9.11209C6.49868 9.07982 6.56943 9.03253 6.62902 8.97292L9.88752 5.71441C9.99698 5.60496 10.0585 5.4565 10.0585 5.30171C10.0585 5.14691 9.99698 4.99846 9.88752 4.889C9.77806 4.77954 9.62961 4.71805 9.47481 4.71805C9.32002 4.71805 9.17156 4.77954 9.0621 4.889Z" fill="#20CC6A"/>
+                                        </g>
+                                        <defs>
+                                        <clipPath id="clip0_3087_47">
+                                        <rect width="14" height="14" fill="white"/>
+                                        </clipPath>
+                                        </defs>
+                                        </svg>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs text-white">Home screen icon</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center gap-x-2">
+                                        <div><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_3087_47)">
+                                        <path d="M7.00002 1.16675C10.2218 1.16675 12.8334 3.77833 12.8334 7.00008C12.8334 10.2218 10.2218 12.8334 7.00002 12.8334C3.77827 12.8334 1.16669 10.2218 1.16669 7.00008C1.16669 3.77833 3.77827 1.16675 7.00002 1.16675ZM9.0621 4.889L6.1746 7.7765L4.93794 6.53925C4.88378 6.48505 4.81947 6.44205 4.7487 6.41271C4.67792 6.38336 4.60206 6.36824 4.52544 6.36821C4.37069 6.36816 4.22227 6.42958 4.11281 6.53896C4.00336 6.64834 3.94183 6.79672 3.94178 6.95146C3.94172 7.1062 4.00314 7.25462 4.11252 7.36408L5.72135 8.97292C5.78094 9.03253 5.85169 9.07982 5.92956 9.11209C6.00743 9.14435 6.0909 9.16096 6.17519 9.16096C6.25948 9.16096 6.34294 9.14435 6.42081 9.11209C6.49868 9.07982 6.56943 9.03253 6.62902 8.97292L9.88752 5.71441C9.99698 5.60496 10.0585 5.4565 10.0585 5.30171C10.0585 5.14691 9.99698 4.99846 9.88752 4.889C9.77806 4.77954 9.62961 4.71805 9.47481 4.71805C9.32002 4.71805 9.17156 4.77954 9.0621 4.889Z" fill="#20CC6A"/>
+                                        </g>
+                                        <defs>
+                                        <clipPath id="clip0_3087_47">
+                                        <rect width="14" height="14" fill="white"/>
+                                        </clipPath>
+                                        </defs>
+                                        </svg>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs text-white">Fast performance</p>
+                                        </div>
+                                    </div>
+                                </div> --}}
+
+                                <div class="mt-6 grid grid-cols-1 gap-y-2">
+                                    <div>
+                                        <button id="safariInstallBtn" type="button"
+                                            type="button"
+                                            class="p-3 w-full text-center text-sm font-semibold rounded-lg border border-transparent bg-accent text-white cursor-pointer hover:bg-accent focus:outline-hidden focus:bg-accent disabled:opacity-50 disabled:pointer-events-none">
+                                            Got it!
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <button id="safariCancelInstall"
+                                            type="button"
+                                            class="p-3 w-full text-center text-sm font-semibold rounded-lg border border-white text-white shadow-2xs cursor-pointer focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none">
+                                            Maybe later
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="chromeInstallModal"
+                    class="hidden fixed top-0 left-0 h-svh w-full px-4 lg:px-96 pt-6 z-20">
+                    <div class="absolute inset-0 h-svh w-full px-4 lg:px-96 pt-6 z-20 bg-dashboard opacity-85"></div>
+                    <div class="relative w-full h-full flex items-center justify-center z-30">
+                        <div
+                            class="max-w-sm mx-auto flex flex-col bg-dashboard border border-[#26252a] rounded-2xl pointer-events-auto">
+                            <div class="p-6 overflow-y-auto">
+                                <div class="flex items-center gap-x-3 mb-4">
+                                    <div
+                                        class="size-12 p-2 flex items-center justify-center rounded-lg border-3 border-accent">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 18H12.01M7 2H17C18.1046 2 19 2.89543 19 4V20C19 21.1046 18.1046 22 17 22H7C5.89543 22 5 21.1046 5 20V4C5 2.89543 5.89543 2 7 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                    </div>
+                                    <div>
+                                        <h1 class="text-white font-bold text-base">Install Moxyai</h1>
+                                        <p class="text-white text-xs">Add to your phone</p>
+                                    </div>
+                                </div>
+                                <p class="text-white font-medium text-sm mb-4">
+                                    Install Moxyai on your phone for quick access and a native app experience.
+                                </p>
+
+                                <div class="mt-6 grid grid-cols-1 gap-y-2">
+                                    <div>
+                                        <button id="chromeInstallBtn" type="button"
+                                            type="button"
+                                            class="p-3 w-full text-center text-sm font-semibold rounded-lg border border-transparent bg-accent text-white cursor-pointer hover:bg-accent focus:outline-hidden focus:bg-accent disabled:opacity-50 disabled:pointer-events-none">
+                                            Got it!
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <button id="chromeCancelInstall"
+                                            type="button"
+                                            class="p-3 w-full text-center text-sm font-semibold rounded-lg border border-white text-white shadow-2xs cursor-pointer focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none">
+                                            Maybe later
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div x-cloak x-transition x-show="$store.robotPage.isStartRobotConfirmationModalOpen"
                     class="fixed top-0 left-0 h-svh w-full px-4 lg:px-96 pt-6 z-20">
                     <div class="absolute inset-0 h-svh w-full px-4 lg:px-96 pt-6 z-20 bg-dashboard opacity-85"></div>
@@ -614,6 +764,85 @@
 
 
 <script>
+    let deferredPrompt; // Store the beforeinstallprompt event
+
+    // Detect if user is on iOS Safari
+    const isIos = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    const isInStandaloneMode = ('standalone' in window.navigator) && window.navigator.standalone;
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        // Stop Chrome's automatic mini-infobar
+        e.preventDefault();
+        deferredPrompt = e;
+
+        const hasSeenModal = localStorage.getItem('installPromptShown');
+        if (!hasSeenModal && !isIos) {
+            showModalForChrome();
+        }
+    });
+
+    // Show modal manually for iOS Safari (it never fires beforeinstallprompt)
+    window.addEventListener('load', () => {
+        const hasSeenModal = localStorage.getItem('installPromptShown');
+        if (isIos && !isInStandaloneMode && !hasSeenModal) {
+            showModalForSafari();
+        }
+    });
+
+    // Show Chrome/Android install prompt modal
+    function showModalForChrome() {
+        const modal = document.getElementById('chromeInstallModal');
+        modal.classList.remove('hidden');
+    }
+
+    // Show iOS Safari instructions modal
+    function showModalForSafari() {
+        const modal = document.getElementById('safariInstallModal');
+        modal.classList.remove('hidden');
+    }
+
+    // Button event listeners
+    document.getElementById('safariInstallBtn').addEventListener('click', async () => {
+        localStorage.setItem('installPromptShown', 'true');
+
+        if (isIos && !isInStandaloneMode) {
+            document.getElementById('safariInstallModal').classList.add('hidden');
+        }
+    });
+
+    // Button event listeners
+    document.getElementById('chromeInstallBtn').addEventListener('click', async () => {
+        localStorage.setItem('installPromptShown', 'true');
+
+        if (!isIos) {
+            document.getElementById('chromeInstallModal').classList.add('hidden');
+        }
+
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            console.log(`User response: ${outcome}`);
+            deferredPrompt = null;
+        }
+    });
+
+    document.getElementById('safariCancelInstall').addEventListener('click', () => {
+        localStorage.setItem('installPromptShown', 'true');
+
+        if (isIos && !isInStandaloneMode) {
+            document.getElementById('safariInstallModal').classList.add('hidden');
+        }
+    });
+
+    document.getElementById('chromeCancelInstall').addEventListener('click', () => {
+        localStorage.setItem('installPromptShown', 'true');
+
+        if (!isIos) {
+            document.getElementById('chromeInstallModal').classList.add('hidden');
+        }
+    });
+
     let lastToast = null;
 
     function toastRobotError(message) {

@@ -55,6 +55,7 @@ use App\Livewire\Dashboard\Transaction;
 use App\Livewire\Dashboard\VerifyWithdrawTwofa;
 use App\Livewire\Dashboard\WithdrawAddressStep;
 use App\Livewire\FindUs;
+use App\Livewire\Offline;
 use Illuminate\Support\Facades\Storage;
 
 Route::get("/link-storage", function () {
@@ -75,6 +76,9 @@ Route::get("/cache", function () {
 Route::get("/private-file/{path}", [PrivateFileController::class, "show"])
     ->where("path", ".*")
     ->name("private.file");
+
+// PWA specific routes
+Route::get("/offline", Offline::class)->name("offline");
 
 Route::get("/", Homepage::class)->name("home");
 Route::get("/find-us", FindUs::class)->name("findus");

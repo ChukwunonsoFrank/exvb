@@ -12,11 +12,16 @@ use App\Models\Withdrawal;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Url;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 #[Layout("components.layouts.admin")]
 class Users extends Component
 {
+    use WithPagination;
+
+    #[Url(keep: true)]
     public string $query = "";
 
     public function getStatusIndicatorColor(string $status)
@@ -227,7 +232,17 @@ class Users extends Component
         }
     }
 
-    public function search() {}
+    public function search()
+    {
+        // Reset to first page when searching
+        $this->resetPage();
+    }
+
+    public function updatedQuery()
+    {
+        // Reset to first page when query changes
+        $this->resetPage();
+    }
 
     public function render()
     {
