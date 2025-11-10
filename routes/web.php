@@ -78,7 +78,7 @@ Route::get("/private-file/{path}", [PrivateFileController::class, "show"])
     ->name("private.file");
 
 // PWA specific routes
-Route::get("/offline", Offline::class)->name("offline");
+// Route::get("/offline", Offline::class)->name("offline");
 
 Route::get("/", Homepage::class)->name("home");
 Route::get("/find-us", FindUs::class)->name("findus");
