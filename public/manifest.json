@@ -2,7 +2,7 @@
     "name": "Moxyai - Automated AI Trading",
     "short_name": "Moxyai",
     "description": "AI Robot That Trades For You And Makes Daily Profit.",
-    "start_url": "/",
+    "start_url": "/login",
     "scope": "/",
     "icons": [
         {
