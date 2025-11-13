@@ -226,7 +226,7 @@
 
                     <div class="flex justify-center mt-8">
                         <div>
-                            {{ $withdrawals->links() }}
+                            {{ $withdrawals->links('pagination::tailwind') }}
                         </div>
                     </div>
                 </div>

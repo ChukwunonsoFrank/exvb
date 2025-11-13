@@ -152,7 +152,7 @@
 
                     <div class="flex justify-center mt-8">
                         <div>
-                            {{ $depositIntents->links() }}
+                            {{ $depositIntents->links('pagination::tailwind') }}
                         </div>
                     </div>
                 </div>

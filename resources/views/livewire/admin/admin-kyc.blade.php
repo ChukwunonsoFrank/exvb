@@ -111,7 +111,7 @@
 
                     <div class="flex justify-center mt-8">
                         <div>
-                            {{ $kycRequests->links() }}
+                            {{ $kycRequests->links('pagination::tailwind') }}
                         </div>
                     </div>
                 </div>

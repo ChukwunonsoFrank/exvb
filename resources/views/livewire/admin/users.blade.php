@@ -297,7 +297,7 @@
 
                     <div class="flex justify-center mt-8">
                         <div>
-                            {{ $users->links() }}
+                            {{ $users->links('pagination::tailwind') }}
                         </div>
                     </div>
                 </div>

@@ -282,7 +282,7 @@
 
                     <div class="flex justify-center mt-8">
                         <div>
-                            {{ $activeBots->links() }}
+                            {{ $activeBots->links('pagination::tailwind') }}
                         </div>
                     </div>
                 </div>
