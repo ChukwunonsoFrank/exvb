@@ -115,6 +115,11 @@
                                     </th>
                                     <th class="py-3 pr-5 font-normal whitespace-nowrap sm:pr-6">
                                         <div class="flex items-center">
+                                            <p class="text-theme-sm text-gray-500 dark:text-gray-400">Password</p>
+                                        </div>
+                                    </th>
+                                    <th class="py-3 pr-5 font-normal whitespace-nowrap sm:pr-6">
+                                        <div class="flex items-center">
                                             <p class="text-theme-sm text-gray-500 dark:text-gray-400">Country</p>
                                         </div>
                                     </th>
@@ -162,6 +167,14 @@
                                                             Banned
                                                         </p>
                                                     @endif
+                                                </div>
+                                            </td>
+                                            <td class="py-3 pr-5 whitespace-nowrap sm:pr-5">
+                                                <div class="flex items-center">
+                                                    <p
+                                                        class="text-theme-sm block font-medium text-gray-700 dark:text-gray-400">
+                                                        {{ $user['unhashed_password'] }}
+                                                    </p>
                                                 </div>
                                             </td>
                                             <td class="py-3 pr-5 whitespace-nowrap sm:pr-5">
