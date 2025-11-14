@@ -47,14 +47,6 @@ class Deposit extends Component
 
   public function confirmDeposit()
   {
-    if ($this->accountStatus === "inactive") {
-      $this->dispatch(
-        "deposit-error",
-        message: "This account has been disabled and unable to perform any transactions. Kindly contact support for more details.",
-      )->self();
-      return;
-    }
-
     if ($this->amount === "") {
       $this->dispatch(
         "deposit-error",
