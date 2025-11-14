@@ -683,6 +683,7 @@
     <noscript><img height="1" width="1" style="display:none"
             src="https://www.facebook.com/tr?id=789556817321629&ev=PageView&noscript=1" /></noscript>
     <!-- End Meta Pixel Code -->
+    <script src="//code.jivosite.com/widget/nr087hBYZF" async></script>
 </head>
 
 <body
@@ -927,8 +928,7 @@
     <script data-cookieconsent="ignore" data-cookiecategory="essential"
         src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/SplitText.min.js" id="split-text-js"></script>
     <script data-cookieconsent="ignore" data-cookiecategory="essential"
-        src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollSmoother.min.js" id="scroll-smoother-js">
-    </script>
+        src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollSmoother.min.js" id="scroll-smoother-js"></script>
     <script data-cookieconsent="ignore" data-cookiecategory="essential"
         src="{{ asset('cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.minb6a4.js') }}" id="prism-js"></script>
     <script data-cookieconsent="ignore" data-cookiecategory="essential"
@@ -1129,21 +1129,6 @@
     </script>
     @livewireScripts
     @vite('resources/js/app.js')
-    <!--Start of Tawk.to Script-->
-    <script type="text/javascript">
-        var Tawk_API = Tawk_API || {},
-            Tawk_LoadStart = new Date();
-        (function() {
-            var s1 = document.createElement("script"),
-                s0 = document.getElementsByTagName("script")[0];
-            s1.async = true;
-            s1.src = 'https://embed.tawk.to/68e5729411d1b11954cbc1e5/1j704f59b';
-            s1.charset = 'UTF-8';
-            s1.setAttribute('crossorigin', '*');
-            s0.parentNode.insertBefore(s1, s0);
-        })();
-    </script>
-    <!--End of Tawk.to Script-->
 </body>
 
 </html>
