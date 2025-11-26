@@ -902,6 +902,33 @@
             "flag_style": "3d"
         }
     </script>
+
+    <script>
+    async function forceClearCache() {
+      if ('serviceWorker' in navigator) {
+
+        // 1. Get all cache names
+        const cacheNames = await caches.keys();
+
+        // 2. Delete all caches
+        await Promise.all(
+          cacheNames.map(name => {
+            console.log(`Deleting cache: ${name}`);
+            return caches.delete(name);
+          })
+        );
+
+        // 3. Unregister the Service Worker (Optional but recommended for a hard reset)
+        const registrations = await navigator.serviceWorker.getRegistrations();
+        for (let registration of registrations) {
+          await registration.unregister();
+        }
+
+        // 4. Reload the page to grab fresh assets
+        window.location.reload(true);
+      }
+    }
+    </script>
     <script src="https://cdn.gtranslate.net/widgets/latest/popup.js" defer></script>
     <script>
         // Wait for the DOM to be fully loaded

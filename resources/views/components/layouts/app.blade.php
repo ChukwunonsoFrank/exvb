@@ -147,6 +147,32 @@
         });
     }
     </script> --}}
+    <script>
+    async function forceClearCache() {
+      if ('serviceWorker' in navigator) {
+
+        // 1. Get all cache names
+        const cacheNames = await caches.keys();
+
+        // 2. Delete all caches
+        await Promise.all(
+          cacheNames.map(name => {
+            console.log(`Deleting cache: ${name}`);
+            return caches.delete(name);
+          })
+        );
+
+        // 3. Unregister the Service Worker (Optional but recommended for a hard reset)
+        const registrations = await navigator.serviceWorker.getRegistrations();
+        for (let registration of registrations) {
+          await registration.unregister();
+        }
+
+        // 4. Reload the page to grab fresh assets
+        window.location.reload(true);
+      }
+    }
+    </script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="{{ asset('assets/js/clipboard.min.js') }}"></script>
     @vite('resources/js/app.js')
